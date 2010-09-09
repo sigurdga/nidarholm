@@ -1,0 +1,14 @@
+<h1>{{ debate.title }}</h1>
+<p><a href="{{ debate.get_absolute_url }}/new">Reply</a></p>
+
+{{ debate.content }}
+
+<ul>
+    {% for debate in debate.children.all %}
+    <li>
+        {% with "forum/tree.html" as filename %}
+        {% include filename %}
+        {% endwith %}
+    </li>
+    {% endfor %}
+</ul>
