@@ -4,7 +4,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     (r'^forum/', include('nidarholm.forum.urls.debate')),
+    (r'^news/', include('nidarholm.news.urls.story'))
 
-    # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
 )

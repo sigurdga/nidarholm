@@ -1,7 +1,4 @@
 import os.path
-import sys
-
-#sys.path.append(".")
 
 # Django settings for nidarholm project.
 
@@ -85,4 +82,5 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'south',
     'forum',
+    'news',
 )
