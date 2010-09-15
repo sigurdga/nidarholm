@@ -6,7 +6,7 @@ from forum.models import Debate
 from forum.forms import DebateForm
 
 def debate_list(request):
-    debate_list = Debate.objects.all()
+    debate_list = Debate.objects.filter(parent=None)
     paginator = Paginator(debate_list, 25)
 
     try:
@@ -21,7 +21,7 @@ def debate_list(request):
 
     return render_to_response('forum/list.html', {'debates': debates})
 
-def debate_tree(request, slug):
+def debate(request, slug):
     debate = get_object_or_404(Debate, slug=slug)
     return render_to_response('forum/tree.html', {'debate': debate})
 
