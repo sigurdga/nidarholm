@@ -81,6 +81,11 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.admin',
     'south',
+    'profiles',
+    'accounts',
     'forum',
     'news',
 )
+
+AUTH_PROFILE_MODULE = 'accounts.UserProfile'
+
