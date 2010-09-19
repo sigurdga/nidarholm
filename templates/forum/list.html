@@ -1,6 +1,6 @@
 <ul>
 {% for debate in debates.object_list %}
-<li><a href="{{debate.get_absolute_url}}">{{debate.title}}</a></li>
+<li><a href="{{ debate.get_absolute_url }}">{{ debate.title }}</a></li>
 {% empty %}
 <li>Nothing here</li>
 {% endfor %}

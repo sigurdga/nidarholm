@@ -1,0 +1,7 @@
+<ul>
+{% for event in events.object_list %}
+<li><a href="{{ event.get_absolute_url }}">{{ event.title }}</a></li>
+{% empty %}
+<li>Nothing here</li>
+{% endfor %}
+</ul>
