@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Logg inn</h1>
+
+{% if form.errors %}
+<p class="error">Uffda, dette var nok ikke riktig</p>
+{% endif %}
+
+<form action="" method="post">
+    <label for="username">Brukernavn</label>
+    <input type="text" name="username" value="" id="username" />
+    <label for="password">Passord</label>
+    <input type="password" name="password" value="" id="password" />
+
+    <input type="submit" value="Logg inn" />
+    <input type="hidden" name="next" value="{{ next|escape }}" />
+</form>
+
+{% endblock %}

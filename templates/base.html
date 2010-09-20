@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>{% block title %}Nidarholm{% endblock title %}</title>
+
+<link rel="stylesheet" href="media/stylesheet.css" type="text/css" />
+
+</head>
+
+<body>
+  {% block body %}
+  <div id="page">
+    {% block page %}
+    <div id="header">
+      {% block header %}Nidarholm{% endblock header %}
+    </div>
+    <div id="content">
+      {% block content %}
+      No content here
+      {% endblock content %}
+    </div>
+    <div id="footer">
+      {% block footer %}(c) Nidarholm og Sigurd Gartmann{% endblock footer %}
+    {% endblock page %}
+  </div>
+  {% endblock body %}
+</body>
+</html>

@@ -1,10 +1,14 @@
 from django.conf.urls.defaults import * #@UnusedWildImport
 from django.contrib import admin
+from accounts.views import login, logout, register
 admin.autodiscover()
 
 from accounts.forms import ProfileForm
 
 urlpatterns = patterns('',
+    (r'^login/', login, (), 'login'),
+    (r'^logout/', logout, (), 'logout'),
+    (r'^register/', register, (), 'register'),
     (r'^forum/', include('nidarholm.forum.urls.debate')),
     (r'^news/', include('nidarholm.news.urls.story')),
     (r'^events/', include('nidarholm.events.urls.event')),
