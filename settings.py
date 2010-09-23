@@ -35,14 +35,16 @@ SITE_ID = 1
 # to load the internationalization machinery.
 USE_I18N = True
 
+USE_L10N = True
+
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = os.path.abspath(os.path.dirname(__file__)) + '/media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
@@ -62,6 +64,7 @@ TEMPLATE_LOADERS = (
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
 )
 
@@ -72,6 +75,7 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     os.path.abspath(os.path.dirname(__file__)) + '/templates',
+    '/home/sigurdga/Prosjekter/django/moldejazz/src/django-debug-toolbar/debug_toolbar/templates',
 )
 
 INSTALLED_APPS = (
@@ -81,12 +85,15 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.admin',
     'south',
+    'tagging',
     'profiles',
+    'debug_toolbar',
     'accounts',
     'events',
     'forum',
     'news',
+    'vault',
 )
 
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
-
+INTERNAL_IPS = ('127.0.0.1', '192.168.0.102')

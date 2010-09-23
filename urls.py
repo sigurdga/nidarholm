@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     (r'^forum/', include('nidarholm.forum.urls.debate')),
     (r'^news/', include('nidarholm.news.urls.story')),
     (r'^events/', include('nidarholm.events.urls.event')),
+    (r'^files/', include('nidarholm.vault.urls.uploadedfile')),
     
     (r'^users/create', 'profiles.views.create_profile', {'form_class': ProfileForm,}),
     (r'^users/edit', 'profiles.views.edit_profile', {'form_class': ProfileForm,}),
