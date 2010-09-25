@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.sites.models import Site
 from django.utils.translation import ugettext_lazy as _
 
+from markdown import markdown
 
 class FlatPage(models.Model):
     url = models.CharField(_('URL'), max_length=100, db_index=True)
@@ -26,3 +27,7 @@ class FlatPage(models.Model):
 
     def get_absolute_url(self):
         return self.url
+
+    def save(self):
+        self.content = markdown(self.content_markdown)
+        super(FlatPage, self).save()
