@@ -66,6 +66,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'pages.middleware.FlatpageFallbackMiddleware',
 )
 
 ROOT_URLCONF = 'nidarholm.urls'
@@ -93,6 +94,7 @@ INSTALLED_APPS = (
     'forum',
     'news',
     'vault',
+    'pages',
 )
 
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
