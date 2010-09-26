@@ -14,6 +14,8 @@
     {% block page %}
     <div id="header">
       {% block header %}Nidarholm{% endblock header %}
+      {% load menu %}
+      {% full_menu %}
     </div>
     <div id="content">
       {% block content %}

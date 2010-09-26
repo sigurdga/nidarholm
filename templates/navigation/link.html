@@ -1,0 +1,10 @@
+{{ link.title }}: {{ link.url }}
+<ul>
+    {% for link in link.children.all %}
+    <li>
+        {% with "navigation/link.html" as filename %}
+        {% include filename %}
+        {% endwith %}
+    </li>
+    {% endfor %}
+</ul>

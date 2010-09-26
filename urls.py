@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     (r'^events/', include('nidarholm.events.urls.event')),
     (r'^files/', include('nidarholm.vault.urls.uploadedfile')),
     
+    (r'^sitemap/', include('nidarholm.navigation.urls.sitemap')),
     (r'^users/create', 'profiles.views.create_profile', {'form_class': ProfileForm,}),
     (r'^users/edit', 'profiles.views.edit_profile', {'form_class': ProfileForm,}),
     (r'^users/', include('profiles.urls')),

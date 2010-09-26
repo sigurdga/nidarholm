@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Sitemap</h1>
+<ul>
+{% for link in sitemap %}
+<li>
+    {% with "navigation/link.html" as filename %}
+    {% include filename %}
+    {% endwith %}
+</li>
+{% empty %}
+<li><i>No pages in menu structure</i></li>
+{% endfor %}
+</ul>
+{% endblock %}

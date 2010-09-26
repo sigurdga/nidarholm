@@ -1,4 +1,5 @@
 import os.path
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
 
 # Django settings for nidarholm project.
 
@@ -95,6 +96,7 @@ INSTALLED_APPS = (
     'news',
     'vault',
     'pages',
+    'navigation',
 )
 
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
