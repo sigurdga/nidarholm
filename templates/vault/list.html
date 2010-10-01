@@ -1,3 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}Filer{% endblock %}
+ 
+{% block content %
+
 <ul>
 {% for uploadedfile in files.object_list %}
 <li><a href="{{ uploadedfile.get_absolute_url }}">{{ uploadedfile.filename }}</a></li>
@@ -5,3 +11,5 @@
 <li>Nothing here</li>
 {% endfor %}
 </ul>
+
+{% endblock content %}

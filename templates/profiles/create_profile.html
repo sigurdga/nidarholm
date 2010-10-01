@@ -1,11 +1,13 @@
-{% block title %}Create Profile{% endblock %}
+{% extends 'base.html' %}
+
+{% block title %}Opprett profil{% endblock %}
  
 {% block content %}
-<h1>Add contact info</h1>
+<h1>Legg inn kontaktinfo</h1>
  
-<form method="POST" action="">
-    {{ form.as_ul }}
-    <input type="submit" name="submit" value="Save" id="submit">
+<form method="post" action="">
+    {{ form.as_p }}
+    <input type="submit" name="submit" value="Lagre" id="submit">
 </form>
  
 {% endblock content %}

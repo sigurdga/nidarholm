@@ -1,4 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Vis aktivitet{% endblock %}
+
+{% block content %}
+
 <h1>{{ event.title }}</h1>
 <p>{{ event.start }} -- {{ event.end }}</p>
 
 {{ event.description }}
+
+{% endblock content %}

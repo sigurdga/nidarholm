@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-{% block title %} | Access Denied{% endblock %}
+{% block title %}{{ block.super }} | Ingen tilgang{% endblock %}
 
 {% block content %}
-<h1>Access Denied</h1>
-<span>We're sorry, but you are not authorized to view this page (Error: 403)</span>
+<h1>Ingen tilgang</h1>
+<span>Det ser ut som tilgangssperrene virker (Error: 403)</span>
 {% endblock content %}

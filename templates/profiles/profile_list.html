@@ -1,6 +1,14 @@
-<h1>All users</h1>
+{% extends 'base.html' %}
+
+{% block title %}Alle brukere{% endblock %}
+ 
+{% block content %}
+
+<h1>Alle brukere</h1>
 {% for object in object_list %}
 <a href="{{ object.user.get_absolute_url }}">{{ object }}</a>
 {% empty %}
 No users
 {% endfor %}
+
+{% endblock content %}

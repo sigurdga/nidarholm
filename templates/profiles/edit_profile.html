@@ -1,11 +1,13 @@
-{% block title %}Edit Profile{% endblock %}
+{% extends 'base.html' %}
+
+{% block title %}Endre profil{% endblock %}
  
 {% block content %}
-<h1>Edit contact info for {{ user }} </h1>
+<h1>Endre kontaktinfo for {{ user }} </h1>
  
-<form method="POST" action="">
-    {{ form.as_ul }}
-    <input type="submit" name="submit" value="Update" id="submit">
+<form method="post" action="">
+    {{ form.as_p }}
+    <input type="submit" name="submit" value="Lagre" id="submit">
 </form>
  
 {% endblock content %}
