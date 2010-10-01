@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import User
 
 from permissions.models import ObjectPermission
 
@@ -26,6 +26,9 @@ class ObjectPermBackend(object):
             return False
 
         p = ObjectPermission.objects.filter(content_type=ct,
-                                            object_id=obj.id,
-                                            group__user=user_obj)
+                                            object_id=obj.id)
+        if not len(p):
+            return True
+        
+        p = p.filter(group__user=user_obj)
         return p.filter(**{'can_%s' % perm: True}).exists()
