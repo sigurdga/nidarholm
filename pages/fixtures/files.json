@@ -1,0 +1,68 @@
+[
+    {
+        "pk": 1, 
+        "model": "vault.uploadedfile", 
+        "fields": {
+            "uploaded": "2010-09-23 21:19:22", 
+            "user": 1, 
+            "content_type": "", 
+            "file": "files/Frostnatt.pdf", 
+            "filename": ""
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "vault.uploadedfile", 
+        "fields": {
+            "uploaded": "2010-09-23 22:17:26", 
+            "user": 1, 
+            "content_type": "", 
+            "file": "files/DSC_0135.JPG", 
+            "filename": ""
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "vault.uploadedfile", 
+        "fields": {
+            "uploaded": "2010-09-23 22:18:25", 
+            "user": 1, 
+            "content_type": "", 
+            "file": "5/1285273105", 
+            "filename": ""
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "vault.uploadedfile", 
+        "fields": {
+            "uploaded": "2010-09-23 22:31:10", 
+            "user": 1, 
+            "content_type": ".jpg", 
+            "file": "files/0/1285273870", 
+            "filename": "DSC_0137_1.jpg"
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "vault.uploadedfile", 
+        "fields": {
+            "uploaded": "2010-09-23 23:00:21", 
+            "user": 1, 
+            "content_type": "image/jpeg", 
+            "file": "files/1/1285275621", 
+            "filename": "hjelmbilde.jpg"
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "vault.uploadedfile", 
+        "fields": {
+            "uploaded": "2010-09-23 23:03:43", 
+            "user": 1, 
+            "content_type": "image/jpeg", 
+            "file": "files/3/1285275823", 
+            "filename": "DSC_0135.JPG"
+        }
+    }
+]
