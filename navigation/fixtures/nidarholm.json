@@ -1,0 +1,82 @@
+[
+    {
+        "pk": 6, 
+        "model": "navigation.link", 
+        "fields": {
+            "url": "/om/musikk/", 
+            "older_sibling": null, 
+            "parent": null, 
+            "title": "Musikk"
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "navigation.link", 
+        "fields": {
+            "url": "/om/medlemmer/", 
+            "older_sibling": 6, 
+            "parent": null, 
+            "title": "Medlemmer"
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "navigation.link", 
+        "fields": {
+            "url": "/kontakt/", 
+            "older_sibling": 7, 
+            "parent": null, 
+            "title": "Kontakt"
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "navigation.link", 
+        "fields": {
+            "url": "/about/", 
+            "older_sibling": 8, 
+            "parent": null, 
+            "title": "English"
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "navigation.link", 
+        "fields": {
+            "url": "/login/", 
+            "older_sibling": 9, 
+            "parent": null, 
+            "title": "Logg inn"
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "navigation.link", 
+        "fields": {
+            "url": "/om/musikk/konserter/", 
+            "older_sibling": null, 
+            "parent": 6, 
+            "title": "Konserter"
+        }
+    }, 
+    {
+        "pk": 12, 
+        "model": "navigation.link", 
+        "fields": {
+            "url": "/users/", 
+            "older_sibling": null, 
+            "parent": 7, 
+            "title": "Medlemsliste"
+        }
+    }, 
+    {
+        "pk": 13, 
+        "model": "navigation.link", 
+        "fields": {
+            "url": "/om/dirigenten/", 
+            "older_sibling": 12, 
+            "parent": 7, 
+            "title": "Dirigenten"
+        }
+    }
+]
