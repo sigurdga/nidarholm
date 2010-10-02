@@ -8,4 +8,4 @@ class Link(models.Model):
     older_sibling = models.ForeignKey('Link', null=True, blank=True, related_name='younger_siblings')
     
     def __unicode__(self):
-        return self.url
+        return self.title + ": " + self.url
