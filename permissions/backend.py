@@ -27,7 +27,7 @@ class ObjectPermBackend(object):
 
         p = ObjectPermission.objects.filter(content_type=ct,
                                             object_id=obj.id)
-        if not len(p):
+        if not p.count():
             return True
         
         p = p.filter(group__user=user_obj)
