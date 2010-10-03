@@ -1,11 +1,13 @@
 from django.conf.urls.defaults import * #@UnusedWildImport
 from django.contrib import admin
 from accounts.views import login, logout, register
+from news.views import story_list
 admin.autodiscover()
 
 from accounts.forms import ProfileForm
 
 urlpatterns = patterns('',
+    (r'^$', story_list, (), 'main'),
     (r'^login/', login, (), 'login'),
     (r'^logout/', logout, (), 'logout'),
     (r'^register/', register, (), 'register'),

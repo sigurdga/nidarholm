@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Velkommen{% endblock %}
+
+{% block content %}
+
+{% if infopage %}
+<h1>{{ infopage.title }}</h1>
+
+{{ infopage.content|safe }}
+
+{% else %}
+<h1>Nyheter</h1>
+{% endif %}
+<ul>
+{% for story in stories.object_list %}
+<li>
+  <h2><a href="{{ story.get_absolute_url }}">{{ story.title }}</a></h2>
+  {{ story.content|safe }}
+</li>
+{% empty %}
+<li>Ingenting å skrive hjem om</li>
+{% endfor %}
+</ul>
+
+{% endblock content %}
