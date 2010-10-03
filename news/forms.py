@@ -7,4 +7,5 @@ class StoryForm(ModelForm):
         exclude = ('user', 'group', 'slug')
         widgets = {
                 'parent': HiddenInput(),
+                'content': HiddenInput(),
                 }

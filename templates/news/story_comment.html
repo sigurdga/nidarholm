@@ -1,0 +1,13 @@
+<p><a href="{% url news-stories %}{{ object.id }}/comment">Svar</a></p>
+
+{{ object.content|safe }}
+
+<ul>
+    {% for object in object.children.all %}
+    <li>
+        {% with "news/story_comment.html" as filename %}
+        {% include filename %}
+        {% endwith %}
+    </li>
+    {% endfor %}
+</ul>

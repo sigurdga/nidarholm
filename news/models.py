@@ -18,7 +18,13 @@ class Story(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('news_story', (), {'slug': self.slug})
+        return ('news-story', (), {
+                              'slug': self.slug,
+                              'year': self.pub_date.year,
+                              'month': self.pub_date.month,
+                              'day': self.pub_date.day,
+                              }
+        )
 
     def save(self):
         self.content = extend_markdown(self.content_markdown)

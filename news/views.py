@@ -6,6 +6,7 @@ from news.models import Story
 from news.forms import StoryForm
 from pages.models import FlatPage
 from django.views.generic import list_detail
+from django.views.generic.date_based import object_detail
 
 def story_list(request, page=1):    
     if page == 1:
@@ -19,11 +20,7 @@ def story_list(request, page=1):
                                    template_name='news/main.html',
                                    extra_context={'infopage': infopage})
 
-def story(request, slug):
-    debate = get_object_or_404(Story, slug=slug)
-    return render_to_response('forum/tree.html', {'debate': debate})
-
-def new_story(request, slug=None):
+def new_story(request, id=None):
     """slug is the slug of the parent, may be null"""
     if request.method == 'POST':
         form = StoryForm(request.POST)
@@ -34,7 +31,7 @@ def new_story(request, slug=None):
             story.save()
             return HttpResponseRedirect('/forum')
     else:
-        parent = get_object_or_404(Story, slug=slug)
+        parent = get_object_or_404(Story, id=id)
         story = Story()
         story.parent = parent
         form = StoryForm(instance=story)

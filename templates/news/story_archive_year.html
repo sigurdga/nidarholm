@@ -1,0 +1,7 @@
+<h1>Nyhetsarkiv {{ year}}</h1>
+
+<ul>
+{% for story in object_list %}
+<li><a href="{{ story.get_absolute_url }}">{{ story.title }}</a></li>
+{% endfor %}
+</ul>
