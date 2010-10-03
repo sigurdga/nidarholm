@@ -26,7 +26,7 @@ def extend_markdown(markdown_content):
                 pass
             else:
                 markdown_content += "\n[{img_id}]: {img_url}".format(img_id=img_id, img_url=reverse('vault.views.send_file', kwargs={'id':img_id}))
-    return markdown_content
+    return markdown(markdown_content)
     
 
 class FlatPage(models.Model):
@@ -53,5 +53,5 @@ class FlatPage(models.Model):
         return self.url
 
     def save(self):
-        self.content = markdown(extend_markdown(self.content_markdown))
+        self.content = extend_markdown(self.content_markdown)
         super(FlatPage, self).save()
