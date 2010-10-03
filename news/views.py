@@ -6,7 +6,6 @@ from news.models import Story
 from news.forms import StoryForm
 from pages.models import FlatPage
 from django.views.generic import list_detail
-from django.views.generic.date_based import object_detail
 
 def story_list(request, page=1):    
     if page == 1:
@@ -15,7 +14,7 @@ def story_list(request, page=1):
         infopage = None
 
     return list_detail.object_list(request,
-                                   queryset=Story.objects.filter(parent=None),
+                                   queryset=Story.objects.for_user(request.user).filter(parent=None),
                                    page=page,
                                    template_name='news/main.html',
                                    extra_context={'infopage': infopage})
