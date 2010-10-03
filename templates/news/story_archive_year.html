@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+
+{% block title %}Nyhetsarkiv {{ year }}{% endblock %}
+{% block content %}
 <h1>Nyhetsarkiv {{ year}}</h1>
 
 <ul>
@@ -5,3 +9,5 @@
 <li><a href="{{ story.get_absolute_url }}">{{ story.title }}</a></li>
 {% endfor %}
 </ul>
+
+{% endblock %}
