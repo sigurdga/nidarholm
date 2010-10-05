@@ -5,5 +5,6 @@ urlpatterns = patterns('django.views.generic.list_detail',
         (r'^new$', new_file, (), 'new_file'),
         (r'^get/(?P<id>\d+)$', send_file, (), 'send_file'),
         (r'^(?P<id>\d+)$', file_details, (), 'file_details'),
+        (r'^tags/(?P<tags>.*)$', file_list, (), 'file_list_tags'),
         (r'^$', file_list, (), 'file_list'),
         )
