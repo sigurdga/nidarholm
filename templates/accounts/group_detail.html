@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Gruppe {{ object.name }}{% endblock %}
+
+{% block content %}
+
+<h1>{{ object.name }}</h1>
+
+<ul>
+{% for member in object.user_set.all %}
+  <li><a href="{{ member.get_absolute_url }}">{{ member.username }}</a></li>
+{% endfor %}
+</ul>
+
+{% endblock %}

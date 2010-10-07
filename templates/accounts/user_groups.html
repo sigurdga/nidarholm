@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}Grupper{% endblock %}
+
+{% block content %}
+<ul>
+{% for group in object_list %}
+  <li>{{ group.name }}</li>
+{% endfor %}
+{% endblock %}

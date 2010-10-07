@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import * #@UnusedWildImport
 from django.contrib import admin
-from accounts.views import login, logout, register
+from accounts.views import login, logout, register, groups, group_object_detail, user_groups
 from news.views import story_list
 admin.autodiscover()
 
@@ -18,7 +18,7 @@ or   {% url pattern-name arg1 %} if the pattern requires arguments
 """
 def show_url_patterns(request):
     patterns = _get_named_patterns()
-    r = HttpResponse(intro_text, content_type = 'text/plain')
+    r = HttpResponse(intro_text, content_type='text/plain')
     longest = max([len(pair[0]) for pair in patterns])
     for key, value in patterns:
         r.write('%s %s\n' % (key.ljust(longest + 1), value))
@@ -45,11 +45,14 @@ urlpatterns = patterns('',
     (r'^news/', include('nidarholm.news.urls.story')),
     (r'^events/', include('nidarholm.events.urls.event')),
     (r'^files/', include('nidarholm.vault.urls.uploadedfile')),
-    
+
     (r'^sitemap/', include('nidarholm.navigation.urls.sitemap')),
-    (r'^users/create', 'profiles.views.create_profile', {'form_class': ProfileForm,}),
-    (r'^users/edit', 'profiles.views.edit_profile', {'form_class': ProfileForm,}),
+    (r'^users/create', 'profiles.views.create_profile', {'form_class': ProfileForm}),
+    (r'^users/edit', 'profiles.views.edit_profile', {'form_class': ProfileForm}),
+    (r'^users/(?P<id>\d+)/groups$', user_groups, (), 'user-groups'),
     (r'^users/', include('profiles.urls')),
+    (r'^groups$', groups, (), 'groups'),
+    (r'^groups/(?P<id>\d+)$', group_object_detail, (), 'groups-group'),
 
     (r'^admin/', include(admin.site.urls)),
     (r'^urls/', show_url_patterns)
