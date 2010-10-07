@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Aktiviteter {{ day }}{% endblock %}
+
+{% block content %}
+
+<h1>Aktiviteter {{ day }}</h1>
+<ul>
+{% for event in object_list %}
+<li><a href="{{ event.get_absolute_url }}">{{ event.title }}</a></li>
+{% empty %}
+<li>Nothing here</li>
+{% endfor %}
+</ul>
+
+{% endblock content %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}{{ object.title}} - Aktiviteter{% endblock %}
+
+{% block content %}
+
+<h1>{{ object.title }}</h1>
+<p>{{ object.start }} -- {{ object.end }}</p>
+
+{{ object.text_html|safe }}
+
+{% if user.is_authenticated %}
+<a href="{% url events-edit object.id %}">Edit</a>
+{% endif %}
+{% endblock content %}

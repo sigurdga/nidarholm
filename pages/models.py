@@ -1,33 +1,7 @@
 from django.db import models
 from django.contrib.sites.models import Site
 from django.utils.translation import ugettext_lazy as _
-
-from markdown import markdown
-
-import re
-from vault.models import UploadedFile
-from django.core.urlresolvers import reverse
-def extend_markdown(markdown_content):
-    img_ids = [] # ids which will possibly get an automatic reference
-    ref_ids = [] # ids of lines with references already
-    for line in markdown_content.split():
-        img_match = re.search(r'^\s*!\[.*?\]\[(\d+)\]', line)
-        if img_match:
-            img_ids.append(int(img_match.group(1)))
-        ref_match = re.search(r'^\s*\[(\d+)\]:', line)
-        if ref_match:
-            ref_ids.append(int(ref_match.group(1)))
-    for img_id in img_ids:
-        if not img_id in ref_ids:
-            ref_ids.append(img_id)
-            try:
-                img = UploadedFile.objects.get(id=img_id)
-            except UploadedFile.DoesNotExist:
-                pass
-            else:
-                markdown_content += "\n[{img_id}]: {img_url}".format(img_id=img_id, img_url=reverse('vault.views.send_file', kwargs={'id':img_id}))
-    return markdown(markdown_content)
-    
+from core.models import extend_markdown
 
 class FlatPage(models.Model):
     url = models.CharField(_('URL'), max_length=100, db_index=True)

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Aktivitetsliste{% endblock %}
+
+{% block content %}
+
+<h1>Kalendervisning for måned {{ month.month }}</h1>
+<ul>
+{% for event in object_list %}
+<li><a href="{{ event.get_absolute_url }}">{{ event.title }}</a></li>
+{% empty %}
+<li>Nothing here</li>
+{% endfor %}
+</ul>
+
+{% endblock content %}
