@@ -89,7 +89,6 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     os.path.abspath(os.path.dirname(__file__)) + '/templates',
     os.path.abspath(os.path.dirname(__file__)) + '/../django-debug-toolbar/debug_toolbar/templates',
-    '/home/sigurdga/Prosjekter/django/moldejazz/src/django-debug-toolbar/debug_toolbar/templates',
 )
 
 INSTALLED_APPS = (
