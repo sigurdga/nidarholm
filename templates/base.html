@@ -14,7 +14,7 @@
     {% block page %}
     <div id="header">
       {% block header %}Nidarholm{% endblock header %}
-      {% block login %}{% if user.is_authenticated %}Logget inn som {{ user.get_full_name }}. <a href="{% url logout %}">Logg ut</a>{% else %}<a href="{% url login %}">Logg inn</a>{% endif %}{% endblock login %}
+      {% block login %}{% if user.is_authenticated %}Logget inn som <a href="{{ user.get_absolute_url }}">{{ user.username }}</a>. <a href="{% url logout %}">Logg ut</a>{% else %}<a href="{% url login %}">Logg inn</a>{% endif %}{% endblock login %}
       {% load menu %}
       {% full_menu %}
     </div>

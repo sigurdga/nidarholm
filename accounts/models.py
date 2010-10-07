@@ -16,14 +16,14 @@ class UserProfile(models.Model):
     joined = models.DateField(null=True, blank=True)
     # to be replaced by something generic, maybe use knowledge from other fields
     status = models.SmallIntegerField(null=True, blank=True)
-    parent_organization_member_number=models.IntegerField(null=True, blank=True)
+    parent_organization_member_number = models.IntegerField(null=True, blank=True)
     insured = models.SmallIntegerField(null=True, blank=True)
     # to be replaced by something generic: organization added fields like instrument, verv
     account = models.IntegerField(null=True, blank=True) #reskontro
 
     def __unicode__(self):
-        return self.user.get_full_name()
-    
+        return self.user.username
+
     @models.permalink
     def get_absolute_url(self):
         return ('profiles.views.profile_detail', (), {'username': self.user.username})
