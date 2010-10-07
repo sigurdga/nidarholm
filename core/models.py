@@ -8,6 +8,7 @@ import re
 from vault.models import UploadedFile
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
+from django.db.models.query_utils import Q
 
 def extend_markdown(markdown_content):
     img_ids = [] # ids which will possibly get an automatic reference
@@ -30,16 +31,25 @@ def extend_markdown(markdown_content):
                 markdown_content += "\n[{img_id}]: {img_url}".format(img_id=img_id, img_url=reverse('vault.views.send_file', kwargs={'id':img_id}))
     return markdown(markdown_content)
 
+class CommonManager(models.Manager):
+
+    def for_user(self, user=None):
+        if user and user.is_authenticated():
+            return self.get_query_set().filter(Q(group=None) | Q(group__user=user))
+        else:
+            return self.get_query_set().filter(group=None)
 
 class TextEntry(models.Model):
     title = models.CharField(_('title'), max_length=60)
     slug = models.CharField(_('slug'), max_length=60)
-    created = models.DateTimeField(_('created|datetime'), auto_now_add=True)
-    updated = models.DateTimeField(_('updated|datetime'), auto_now=True)
+    created = models.DateTimeField(_('created'), auto_now_add=True)
+    updated = models.DateTimeField(_('updated'), auto_now=True)
     user = models.ForeignKey(User, verbose_name=_('created by|user'))
     group = models.ForeignKey(Group, verbose_name=_('created for|group'), null=True, blank=True)
     text = models.TextField(_('content'), blank=True, help_text=_('Use Markdown syntax'))
     text_html = models.TextField(_('html content'), blank=True)
+
+    objects = CommonManager()
 
     def save(self, *args, **kwargs):
         self.text_html = extend_markdown(self.text)
