@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Organisasjonsliste {{object.name}}{% endblock %}
+
+{% block content %}
+<ul>
+  {% for group in object.groupprofile_set.all %}
+  <li>{{ group.name }}</li>
+  {% endfor %}
+</ul>
+{% endblock %}

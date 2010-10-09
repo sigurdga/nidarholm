@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Organisasjonsliste{% endblock %}
+
+{% block content %}
+<ul>
+  {% for category in object_list %}
+  <li>{{ category.name }}</li>
+  {% endfor %}
+</ul>
+{% endblock %}

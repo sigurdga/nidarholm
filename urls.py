@@ -53,6 +53,7 @@ urlpatterns = patterns('',
     (r'^users/', include('profiles.urls')),
     (r'^groups$', groups, (), 'groups'),
     (r'^groups/(?P<id>\d+)$', group_object_detail, (), 'groups-group'),
+    (r'^organization/', include('relations.urls')),
 
     (r'^admin/', include(admin.site.urls)),
     (r'^urls/', show_url_patterns)

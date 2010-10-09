@@ -103,6 +103,7 @@ INSTALLED_APPS = (
     'profiles',
     'debug_toolbar',
     'permissions',
+    'relations',
     'accounts',
     'events',
     'forum',
