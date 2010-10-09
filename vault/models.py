@@ -6,16 +6,16 @@ import time
 from django.db.models.query_utils import Q
 
 class FileManager(models.Manager):
-    
+
     def for_user(self, user):
         if user.is_authenticated():
-            return self.get_query_set().filter(Q(group=None)|Q(group__user=user))
+            return self.get_query_set().filter(Q(group=None) | Q(group__user=user))
         else:
             return self.get_query_set().filter(group=None)
-        
+
     def tagged(self, tags_string):
         tags = tags_string.split("/")
-        return TaggedItem.objects.get_by_model(UploadedFile, tags)       
+        return TaggedItem.objects.get_by_model(UploadedFile, tags)
 
 def upload_path(instance, filename):
     timestamp = time.strftime('%s')
@@ -30,12 +30,12 @@ class UploadedFile(models.Model):
     user = models.ForeignKey(User)
     group = models.ForeignKey(Group, blank=True, null=True)
     uploaded = models.DateTimeField(auto_now_add=True)
-    
+
     objects = FileManager()
-    
+
     def __unicode__(self):
         return self.filename
-    
+
     @models.permalink
     def get_absolute_url(self):
         return ('file_details', (), {'id': self.id})
