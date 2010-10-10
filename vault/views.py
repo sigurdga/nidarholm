@@ -37,13 +37,14 @@ def file_list(request, tags="", page=1):
     return list_detail.object_list(request,
                                    queryset=queryset,
                                    page=page,
-                                   template_name='vault/list.html',
                                    extra_context={'tags': tags},
                                    )
 
-def file_details(request, id):
-    uploaded_file = get_object_or_404(UploadedFile, id=id)
-    return render_to_response('vault/file.html', {'uploaded_file': uploaded_file})
+def file_object_detail(request, id):
+    return list_detail.object_detail(request,
+                                     UploadedFile.objects.for_user(request.user),
+                                     id,
+                                     )
 
 def send_file(request, id):
     uploaded_file = get_object_or_404(UploadedFile, id=id)

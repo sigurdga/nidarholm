@@ -39,6 +39,6 @@ class UploadedFile(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('file_details', (), {'id': self.id})
+        return ('vault-file', (), {'id': self.id})
 
 #tagging.register(UploadedFile)

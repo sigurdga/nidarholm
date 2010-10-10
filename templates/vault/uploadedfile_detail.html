@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Filinformasjon{% endblock %}
+ 
+{% block content %}
+
+<h1>Fil: {{ object.filename }}</h1>
+
+<p><a href="{% url vault.views.send_file object.id %}">Last ned</a>
+
+<p>Lagret av {{ object.user.get_full_name }}</p>
+
+<p>Lagret dato {{ object.uploaded|date }}</p>
+
+{% endblock %}
