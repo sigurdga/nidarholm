@@ -1,17 +1,20 @@
 from django.db import models
-from django.contrib.auth.models import User, Group
+from core.models import TextEntry
 
-class Debate(models.Model):
+class Debate(TextEntry):
     parent = models.ForeignKey('Debate', null=True, blank=True, related_name='children')
-    user = models.ForeignKey(User)
-    group = models.ForeignKey(Group, null=True, blank=True)
-    title = models.CharField(max_length=255)
-    slug = models.SlugField()
-    content = models.TextField()
 
     def __unicode__(self):
         return self.title
 
     @models.permalink
     def get_absolute_url(self):
-        return ('forum_debate', (), {'slug': self.slug})
+        return ('forum-debate', (), {'slug': self.slug})
+
+    def get_top_url(self):
+        parent = self.parent
+        top = self
+        while parent:
+            top = parent
+            parent = top.parent
+        return top.get_absolute_url()

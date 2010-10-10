@@ -1,10 +1,10 @@
-<h1>{{ debate.title }}</h1>
-<p><a href="{{ debate.get_absolute_url }}/new">Svar</a></p>
+<h1>{{ object.title }}</h1>
+<p><a href="{{ object.get_absolute_url }}/new">Svar</a></p>
 
-{{ debate.content }}
+{{ object.text_html|safe }}
 
 <ul>
-    {% for debate in debate.children.all %}
+    {% for object in object.children.all %}
     <li>
         {% with "forum/tree.html" as filename %}
         {% include filename %}

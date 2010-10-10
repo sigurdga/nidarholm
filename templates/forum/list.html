@@ -4,7 +4,7 @@
 
 {% block content %}
 <ul>
-{% for debate in debates.object_list %}
+{% for debate in object_list %}
 <li><a href="{{ debate.get_absolute_url }}">{{ debate.title }}</a></li>
 {% empty %}
 <li>Nothing here</li>

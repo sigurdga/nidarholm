@@ -4,26 +4,23 @@ from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.template.defaultfilters import slugify
 from forum.models import Debate
 from forum.forms import DebateForm
+from django.template.context import RequestContext
+from django.views.generic import list_detail
 
-def debate_list(request):
-    debate_list = Debate.objects.filter(parent=None)
-    paginator = Paginator(debate_list, 25)
+def debate_list(request, page=1):
 
-    try:
-        page = int(request.GET.get('page', '1'))
-    except ValueError:
-        page = 1
+    return list_detail.object_list(request,
+                                   queryset=Debate.objects.for_user(request.user).filter(parent=None),
+                                   page=page,
+                                   template_name='forum/list.html',
+                                   )
 
-    try:
-        debates = paginator.page(page)
-    except (EmptyPage, InvalidPage):
-        debates = paginator.page(paginator.num_pages)
-
-    return render_to_response('forum/list.html', {'debates': debates})
-
-def debate(request, slug):
-    debate = get_object_or_404(Debate, slug=slug)
-    return render_to_response('forum/tree.html', {'debate': debate})
+def debate_object_detail(request, slug):
+    return list_detail.object_detail(request,
+                                     Debate.objects.for_user(request.user),
+                                     slug=slug,
+                                     template_name='forum/tree.html',
+                                     )
 
 def new_debate(request, slug=None):
     """slug is the slug of the parent, may be null"""
@@ -32,12 +29,12 @@ def new_debate(request, slug=None):
         if form.is_valid():
             debate = form.save(commit=False)
             debate.user = request.user
-            debate.slug = slugify(debate.title)
             debate.save()
-            return HttpResponseRedirect('/forum')
+            return HttpResponseRedirect(debate.get_top_url())
     else:
-        parent = get_object_or_404(Debate, slug=slug)
         debate = Debate()
-        debate.parent = parent
+        if slug:
+            parent = get_object_or_404(Debate, slug=slug)
+            debate.parent = parent
         form = DebateForm(instance=debate)
-    return render_to_response('forum/new_debate.html', {'form': form})
+    return render_to_response('forum/new_debate.html', {'form': form}, context_instance=RequestContext(request))
