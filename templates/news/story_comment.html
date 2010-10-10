@@ -1,6 +1,6 @@
 <p><a href="{% url news-stories %}{{ object.id }}/comment">Svar</a></p>
 
-{{ object.content|safe }}
+{{ object.text_html|safe }}
 
 <ul>
     {% for object in object.children.all %}
