@@ -5,7 +5,7 @@
 {% block content %}
 
 <ul>
-{% for uploadedfile in files.object_list %}
+{% for uploadedfile in object_list %}
 <li><a href="{{ uploadedfile.get_absolute_url }}">{{ uploadedfile.filename }}</a></li>
 {% empty %}
 <li>Nothing here</li>

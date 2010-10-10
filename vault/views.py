@@ -8,6 +8,7 @@ import os
 from django.conf import settings
 from django.views.generic import list_detail
 from tagging.models import TaggedItem
+from django.template.context import RequestContext
 
 def new_file(request):
     if request.method == 'POST':
@@ -22,17 +23,17 @@ def new_file(request):
     else:
         uploadedfile = UploadedFile()
         form = UploadedFileForm(instance=uploadedfile)
-    return render_to_response('vault/new_file.html', {'form': form})
+    return render_to_response('vault/new_file.html', {'form': form}, context_instance=RequestContext(request))
 
-def file_list(request, tags=None, page=1):
+def file_list(request, tags="", page=1):
     if tags:
         tags = tags.split("/")
-        queryset = TaggedItem.objects.get_by_model(UploadedFile, tags)
+        queryset = UploadedFile.objects.for_user(request.user)
+        queryset = TaggedItem.objects.get_by_model(queryset, tags)
     else:
-        queryset = UploadedFile.objects
-    if queryset.count():
-        queryset = queryset.for_user(request.user)
-        
+        tags = []
+        queryset = UploadedFile.objects.for_user(request.user)
+
     return list_detail.object_list(request,
                                    queryset=queryset,
                                    page=page,
@@ -51,7 +52,7 @@ def send_file(request, id):
     filename = settings.MEDIA_ROOT + uploaded_file.file.name
     #import pdb; pdb.set_trace()
     #wrapper = FileWrapper(open(filename))
-    f = open(filename,'r')
+    f = open(filename, 'r')
     output = f.read()
     f.close()
     response = HttpResponse(content_type=uploaded_file.content_type)

@@ -1,14 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User, Group
 from tagging.models import TaggedItem
-import tagging
 import time
 from django.db.models.query_utils import Q
+from tagging.fields import TagField
 
 class FileManager(models.Manager):
 
     def for_user(self, user):
-        if user.is_authenticated():
+        if user and user.is_authenticated():
             return self.get_query_set().filter(Q(group=None) | Q(group__user=user))
         else:
             return self.get_query_set().filter(group=None)
@@ -30,6 +30,7 @@ class UploadedFile(models.Model):
     user = models.ForeignKey(User)
     group = models.ForeignKey(Group, blank=True, null=True)
     uploaded = models.DateTimeField(auto_now_add=True)
+    tags = TagField()
 
     objects = FileManager()
 
@@ -40,4 +41,4 @@ class UploadedFile(models.Model):
     def get_absolute_url(self):
         return ('file_details', (), {'id': self.id})
 
-tagging.register(UploadedFile)
+#tagging.register(UploadedFile)
