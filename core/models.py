@@ -44,8 +44,8 @@ class TextEntry(models.Model):
     slug = models.CharField(_('slug'), max_length=60)
     created = models.DateTimeField(_('created'), auto_now_add=True)
     updated = models.DateTimeField(_('updated'), auto_now=True)
-    user = models.ForeignKey(User, verbose_name=_('created by|user'))
-    group = models.ForeignKey(Group, verbose_name=_('created for|group'), null=True, blank=True)
+    user = models.ForeignKey(User, verbose_name=_('created by'))
+    group = models.ForeignKey(Group, verbose_name=_('created for'), null=True, blank=True)
     text = models.TextField(_('content'), blank=True, help_text=_('Use Markdown syntax'))
     text_html = models.TextField(_('html content'), blank=True)
 
