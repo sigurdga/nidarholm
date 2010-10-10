@@ -6,6 +6,7 @@ from news.models import Story
 from news.forms import StoryForm
 from pages.models import FlatPage
 from django.views.generic import list_detail
+from django.template.context import RequestContext
 
 def story_list(request, page=1):
     if page == 1:
@@ -28,10 +29,11 @@ def new_story(request, id=None):
             story.user = request.user
             #story.slug = slugify(story.title)
             story.save()
-            return HttpResponseRedirect('/forum')
+            return HttpResponseRedirect('/')
     else:
-        parent = get_object_or_404(Story, id=id)
         story = Story()
-        story.parent = parent
+        if id:
+            parent = get_object_or_404(Story, id=id)
+            story.parent = parent
         form = StoryForm(instance=story)
-    return render_to_response('forum/new_debate.html', {'form': form})
+    return render_to_response('forum/new_debate.html', {'form': form}, context_instance=RequestContext(request))

@@ -4,7 +4,7 @@ from news.models import Story
 class StoryForm(ModelForm):
     class Meta:
         model = Story
-        exclude = ('user', 'slug')
+        exclude = ('user', 'slug', 'text_html')
         widgets = {
                 'parent': HiddenInput(),
                 'content': HiddenInput(),
