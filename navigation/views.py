@@ -1,6 +1,8 @@
 from navigation.models import Link
-from django.shortcuts import render_to_response
+from django.views.generic import list_detail
 
 def sitemap(request):
-    top_level_links = Link.objects.filter(parent=None)
-    return render_to_response('navigation/sitemap.html', {'sitemap': top_level_links})
+        return list_detail.object_list(request,
+               queryset=Link.objects.filter(parent=None),
+               template_name='navigation/sitemap.html',
+               )

@@ -3,7 +3,7 @@
 {% block content %}
 <h1>Sitemap</h1>
 <ul>
-{% for link in sitemap %}
+{% for link in object_list %}
 <li>
     {% with "navigation/link.html" as filename %}
     {% include filename %}
