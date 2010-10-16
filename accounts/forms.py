@@ -1,7 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django import forms
 from accounts.models import UserProfile
+from django.forms.formsets import formset_factory
+from django.forms.models import modelformset_factory, inlineformset_factory
 
 class ProfileForm(forms.ModelForm):
 
@@ -33,3 +35,13 @@ class ProfileForm(forms.ModelForm):
         u.save()
         profile = super(ProfileForm, self).save(*args, **kwargs)
         return profile
+
+class UserGroupsForm(forms.ModelForm):
+    groups = forms.ModelMultipleChoiceField(
+        queryset=Group.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False)
+
+    class Meta:
+        model = User
+        fields = ('id', 'groups')
