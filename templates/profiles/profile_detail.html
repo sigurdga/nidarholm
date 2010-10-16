@@ -1,10 +1,21 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ user.username }}{% endblock %}
+{% block title %}{{ profile.user.username }}{% endblock %}
  
 {% block content %}
-<h1>{{ user.get_full_name }}</h1>
+<h1>{{ profile.user.get_full_name }}</h1>
 
-<p>{{ user.username}}</p>
+<p>{{ profile.user.username}}</p>
+
+<h2>Groups</h2>
+
+<a href="{% url user-groups profile.user %}">Edit groups</a>
+<ul>
+  {% for group in profile.user.groups.all %}
+  <li><a href="{{ group.get_absolute_url }}">{{ group.name }}</a></li>
+  {% empty %}
+  <li><em>{{ profile.user.username}} is not member of any groups</em></li>
+  {% endfor %}
+</ul>
 
 {% endblock %}
