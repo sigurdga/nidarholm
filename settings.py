@@ -102,7 +102,6 @@ INSTALLED_APPS = (
     'tagging',
     'profiles',
     'debug_toolbar',
-    'permissions',
     'relations',
     'accounts',
     'events',
@@ -111,6 +110,7 @@ INSTALLED_APPS = (
     'vault',
     'pages',
     'navigation',
+    'instruments',
 )
 
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'

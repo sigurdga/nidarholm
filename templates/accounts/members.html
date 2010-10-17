@@ -9,8 +9,11 @@
 <table>
 {% for object in object_list %}
 <tr>
-  <td><a href="{{ object.user.get_absolute_url }}">{{ object.user.get_full_name }} ({{ object.user.username }})</a></td>
-  <td>{{ object.instrument.name }}</td>
+  <td><a href="{{ object.get_absolute_url }}">{{ object.get_full_name }} ({{ object.username }})</a></td>
+  <td>{{ object.get_profile.instrument.name }}</td>
+  {% if user_ok %}
+  <td>{{ object.get_profile.cellphone }}</td>
+  {% endif %}
 </tr>
 {% endfor %}
 </table>

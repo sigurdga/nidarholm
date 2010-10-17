@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import * #@UnusedWildImport
 from django.contrib import admin
-from accounts.views import login, logout, register, groups, group_object_detail, user_groups
+from accounts.views import login, logout, register, groups, group_object_detail, user_groups, member_list
 from news.views import story_list
 admin.autodiscover()
 
@@ -50,6 +50,7 @@ urlpatterns = patterns('',
     (r'^users/create', 'profiles.views.create_profile', {'form_class': ProfileForm}),
     (r'^users/edit', 'profiles.views.edit_profile', {'form_class': ProfileForm}),
     (r'^users/(?P<username>\w+)/groups$', user_groups, (), 'user-groups'),
+    (r'^members$', member_list, (), 'member-list'),
     (r'^users/', include('profiles.urls')),
     (r'^groups$', groups, (), 'groups'),
     (r'^groups/(?P<id>\d+)$', group_object_detail, (), 'groups-group'),

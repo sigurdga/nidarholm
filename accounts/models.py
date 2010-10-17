@@ -1,12 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+from instruments.models import Instrument
 
 class UserProfile(models.Model):
     user = models.ForeignKey(User)
     #organization = models.ForeignKey(Organization)
-    #instrument m2m
-    #verv m2m
+    #verv m2m: kobles mot gruppe
     cellphone = models.CharField(max_length=20, null=True, blank=True)
     address = models.CharField(max_length=50, null=True, blank=True)
     postcode = models.SmallIntegerField(null=True, blank=True)
@@ -21,6 +21,7 @@ class UserProfile(models.Model):
     insured = models.SmallIntegerField(null=True, blank=True)
     # to be replaced by something generic: organization added fields like instrument, verv
     account = models.IntegerField(null=True, blank=True) #reskontro
+    instrument = models.ForeignKey(Instrument, null=True, blank=True)
 
     def __unicode__(self):
         return self.user.username
