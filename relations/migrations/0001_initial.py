@@ -8,36 +8,45 @@ class Migration(SchemaMigration):
     
     def forwards(self, orm):
         
-        # Adding model 'Groupcategory'
+        # Adding model 'GroupCategory'
         db.create_table('relations_groupcategory', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=40)),
         ))
-        db.send_create_signal('relations', ['Groupcategory'])
+        db.send_create_signal('relations', ['GroupCategory'])
 
         # Adding model 'GroupProfile'
         db.create_table('relations_groupprofile', (
-            ('groupcategory', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['relations.Groupcategory'])),
+            ('groupcategory', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['relations.GroupCategory'], null=True, blank=True)),
             ('number', self.gf('django.db.models.fields.SmallIntegerField')(null=True, blank=True)),
             ('group', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['auth.Group'], unique=True)),
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=80)),
+            ('email', self.gf('django.db.models.fields.EmailField')(max_length=75, null=True, blank=True)),
         ))
         db.send_create_signal('relations', ['GroupProfile'])
 
         # Adding model 'Role'
         db.create_table('relations_role', (
-            ('groupprofile', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['relations.GroupProfile'])),
             ('number', self.gf('django.db.models.fields.SmallIntegerField')(null=True, blank=True)),
+            ('group', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.Group'])),
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=80)),
         ))
         db.send_create_signal('relations', ['Role'])
+
+        # Adding model 'Membership'
+        db.create_table('relations_membership', (
+            ('role', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['relations.Role'])),
+            ('group', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.Group'])),
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
+        ))
+        db.send_create_signal('relations', ['Membership'])
     
     
     def backwards(self, orm):
         
-        # Deleting model 'Groupcategory'
+        # Deleting model 'GroupCategory'
         db.delete_table('relations_groupcategory')
 
         # Deleting model 'GroupProfile'
@@ -45,6 +54,9 @@ class Migration(SchemaMigration):
 
         # Deleting model 'Role'
         db.delete_table('relations_role')
+
+        # Deleting model 'Membership'
+        db.delete_table('relations_membership')
     
     
     models = {
@@ -61,6 +73,22 @@ class Migration(SchemaMigration):
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '50'})
         },
+        'auth.user': {
+            'Meta': {'object_name': 'User'},
+            'date_joined': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
+            'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'blank': 'True'}),
+            'first_name': ('django.db.models.fields.CharField', [], {'max_length': '30', 'blank': 'True'}),
+            'groups': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['auth.Group']", 'symmetrical': 'False', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'is_active': ('django.db.models.fields.BooleanField', [], {'default': 'True', 'blank': 'True'}),
+            'is_staff': ('django.db.models.fields.BooleanField', [], {'default': 'False', 'blank': 'True'}),
+            'is_superuser': ('django.db.models.fields.BooleanField', [], {'default': 'False', 'blank': 'True'}),
+            'last_login': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
+            'last_name': ('django.db.models.fields.CharField', [], {'max_length': '30', 'blank': 'True'}),
+            'password': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
+            'user_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['auth.Permission']", 'symmetrical': 'False', 'blank': 'True'}),
+            'username': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '30'})
+        },
         'contenttypes.contenttype': {
             'Meta': {'unique_together': "(('app_label', 'model'),)", 'object_name': 'ContentType', 'db_table': "'django_content_type'"},
             'app_label': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
@@ -69,21 +97,28 @@ class Migration(SchemaMigration):
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
         'relations.groupcategory': {
-            'Meta': {'object_name': 'Groupcategory'},
+            'Meta': {'object_name': 'GroupCategory'},
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '40'})
         },
         'relations.groupprofile': {
             'Meta': {'object_name': 'GroupProfile'},
+            'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'null': 'True', 'blank': 'True'}),
             'group': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['auth.Group']", 'unique': 'True'}),
-            'groupcategory': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['relations.Groupcategory']"}),
+            'groupcategory': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['relations.GroupCategory']", 'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '80'}),
             'number': ('django.db.models.fields.SmallIntegerField', [], {'null': 'True', 'blank': 'True'})
+        },
+        'relations.membership': {
+            'Meta': {'object_name': 'Membership'},
+            'group': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.Group']"}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'role': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['relations.Role']"}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"})
         },
         'relations.role': {
             'Meta': {'object_name': 'Role'},
-            'groupprofile': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['relations.GroupProfile']"}),
+            'group': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.Group']"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '80'}),
             'number': ('django.db.models.fields.SmallIntegerField', [], {'null': 'True', 'blank': 'True'})
