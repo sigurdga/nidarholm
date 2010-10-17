@@ -77,6 +77,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'sqlmiddleware.SQLLogToConsoleMiddleware',
+    'request.middleware.RequestMiddleware',
     'permissions.middleware.http.Http403Middleware',
     'pages.middleware.FlatpageFallbackMiddleware',
 )
@@ -99,6 +100,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.admin',
     'south',
+    'request',
     'tagging',
     'profiles',
     'debug_toolbar',
