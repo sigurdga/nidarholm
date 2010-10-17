@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import * #@UnusedWildImport
+from django.conf.urls.defaults import *
 from django.contrib import admin
 from accounts.views import login, logout, register, groups, group_object_detail, user_groups, member_list
 from news.views import story_list
@@ -41,12 +41,12 @@ urlpatterns = patterns('',
     (r'^login/', login, (), 'login'),
     (r'^logout/', logout, (), 'logout'),
     (r'^register/', register, (), 'register'),
-    (r'^forum/', include('nidarholm.forum.urls.debate')),
-    (r'^news/', include('nidarholm.news.urls.story')),
-    (r'^events/', include('nidarholm.events.urls.event')),
-    (r'^files/', include('nidarholm.vault.urls.uploadedfile')),
+    (r'^forum/', include('nidarholm.forum.urls')),
+    (r'^news/', include('nidarholm.news.urls')),
+    (r'^events/', include('nidarholm.events.urls')),
+    (r'^files/', include('nidarholm.vault.urls')),
 
-    (r'^sitemap/', include('nidarholm.navigation.urls.sitemap')),
+    (r'^sitemap/', include('nidarholm.navigation.urls')),
     (r'^users/create', 'profiles.views.create_profile', {'form_class': ProfileForm}),
     (r'^users/edit', 'profiles.views.edit_profile', {'form_class': ProfileForm}),
     (r'^users/(?P<username>\w+)/groups$', user_groups, (), 'user-groups'),
