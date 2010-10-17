@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}Organisasjonsliste {{object.name}}{% endblock %}
+{% block title %}Medlemsliste{% endblock %}
 
 {% block content %}
-<ul>
-  {% for group in object.groupprofile_set.all %}
-  <li>{{ group.name }}</li>
-  {% endfor %}
-</ul>
+
+<h1>Medlemsliste</h1>
+
+{% load grouplistings %}
+{% list_groups request "Medlemmer" "Instrumentgrupper" %}
+
 {% endblock %}

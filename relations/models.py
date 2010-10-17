@@ -5,6 +5,7 @@ from django.db.models.signals import post_save
 
 class GroupCategory(models.Model):
     name = models.CharField(_('name'), max_length=40)
+    slug = models.SlugField()
 
     class Meta:
         verbose_name = _('group category')
@@ -13,19 +14,24 @@ class GroupCategory(models.Model):
     def __unicode__(self):
         return self.name
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('relations-group-category-detail', (), {'slug': self.slug})
+
 class GroupProfile(models.Model):
     group = models.OneToOneField(Group, verbose_name=_('group'))
     email = models.EmailField(_('email'), null=True, blank=True)
+    admin_email = models.EmailField(_('email to administrator'), null=True, blank=True)
     number = models.SmallIntegerField(_('seaquence number'), null=True, blank=True)
     groupcategory = models.ForeignKey(GroupCategory,
         null=True, blank=True, verbose_name=_('group category'))
 
     class Meta:
-        verbose_name = _('group_profile')
-        verbose_name_plural = _('group_profiles')
+        verbose_name = _('group profile')
+        verbose_name_plural = _('group profiles')
 
     def __unicode__(self):
-        return self.name
+        return self.group.name
 
 class Role(models.Model):
     name = models.CharField(_('name'), max_length=80)
@@ -37,7 +43,7 @@ class Role(models.Model):
         verbose_name_plural = _('roles')
 
     def __unicode__(self):
-        return self.name + " (" + self.groupprofile.name + ")"
+        return self.name + " (" + self.group.name + ")"
 
 class Membership(models.Model):
     group = models.ForeignKey(Group, verbose_name=_('group'))
@@ -49,7 +55,7 @@ class Membership(models.Model):
         verbose_name_plural = _('memberships')
 
     def __unicode__(self):
-        return self.user.username + "-" + self.group_profile.name + "-" + self.role.name
+        return self.user.username + "-" + self.group.name + "-" + self.role.name
 
 
 
