@@ -2,6 +2,8 @@ import os.path
 
 # Django settings for nidarholm project.
 
+DEVELOPMENT_MODE = True
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -52,7 +54,7 @@ MEDIA_ROOT = os.path.abspath(os.path.dirname(__file__)) + '/media/'
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = '/media/'
+MEDIA_URL = '/m/'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.

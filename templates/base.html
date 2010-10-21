@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <title>{% block title %}Heia{% endblock title %} - Nidarholm</title>
 
-<link rel="stylesheet" href="media/stylesheet.css" type="text/css" />
+<link rel="stylesheet" href="/m/stylesheet.css" type="text/css" />
 
 </head>
 
@@ -12,21 +12,44 @@
   {% block body %}
   <div id="page">
     {% block page %}
-    <div id="header">
-      {% block header %}<a href="/">Nidarholm</a>{% endblock header %}
-      {% block login %}{% if request.user.is_authenticated %}Logget inn som <a href="{{ user.get_absolute_url }}">{{ user.username }}</a>. <a href="{% url logout %}">Logg ut</a>{% else %}<a href="{% url login %}">Logg inn</a>{% endif %}{% endblock login %}
-      ({{ request.path }})
-      {% load menu %}
-      {% breadcrumbs request %}
-      {% local_menu request %}
+    <div id="top">
+        <div class="padding">
+            <div id="login">
+                {% block login %}{% if request.user.is_authenticated %}Logget inn som <a href="{{ user.get_absolute_url }}">{{ user.username }}</a>. <a href="{% url logout %}">Logg ut</a>{% else %}<a href="{% url login %}">Logg inn</a>{% endif %}{% endblock login %}
+            </div>
+
+            {% load menu %}
+            <div id="logo">
+                <a href="/"><img src="/m/nidarholm.png" /></a>
+            </div>
+            <div id="breadcrumbs">
+                {% breadcrumbs request %}
+            </div>
+            <div id="menu">
+                {% local_menu request %}
+            </div>
+        </div>
     </div>
-    <div id="content">
-      {% block content %}
-      No content here
-      {% endblock content %}
+    
+    <div id="middle">
+        <div class="padding">
+
+            <div id="content">
+                {% block content %}
+                No content here
+                {% endblock content %}
+            </div>
+        </div>
     </div>
-    <div id="footer">
-      {% block footer %}Opphavsrett (c) Nidarholm og Nidarholms medlemmer - <a href="/kontakt/">Kontakt</a>: post (a) nidarholm.no - Postadresse: Postboks 1881 Lade, 7440 Trondheim - Kontonummer: 4240 07 10036 - Organisasjonsnummer: 971 558 105{% endblock footer %}
+
+    <div id="bottom">
+        <div class="padding">
+            {% block footer %}Opphavsrett (c) Nidarholm og Nidarholms medlemmer - <a href="/kontakt/">Kontakt</a>: post (a) nidarholm.no - Postadresse: Postboks 1881 Lade, 7440 Trondheim - Kontonummer: 4240 07 10036 - Organisasjonsnummer: 971 558 105{% endblock footer %}
+        </div>
+    </div>
+
+
+
     {% endblock page %}
   </div>
   {% endblock body %}

@@ -1,5 +1,6 @@
 from django.conf.urls.defaults import *
 from django.contrib import admin
+from django.conf import settings
 from accounts.views import login, logout, register, groups, group_object_detail, user_groups, member_list
 from news.views import story_list
 admin.autodiscover()
@@ -59,4 +60,11 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
     (r'^urls/', show_url_patterns)
 )
+
+if settings.DEVELOPMENT_MODE:
+    import os
+
+    urlpatterns += patterns('',
+            (r'^m/(.*)$', 'django.views.static.serve', {'document_root': os.path.join(os.path.abspath(os.path.dirname(__file__)), 'media')}),
+            )
 
