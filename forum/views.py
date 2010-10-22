@@ -19,7 +19,7 @@ def debate_object_detail(request, slug):
     return list_detail.object_detail(request,
                                      Debate.objects.for_user(request.user),
                                      slug=slug,
-                                     template_name='forum/tree.html',
+                                     template_name='forum/debate_detail.html',
                                      )
 
 def new_debate(request, slug=None):

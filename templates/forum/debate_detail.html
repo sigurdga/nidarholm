@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Forum{% endblock %}
+
+{% block contextmenu %}<a href="{% url forum-new-debate %}">Opprett nytt forum</a>{% endblock %}
+{% block content %}
+
+{% with "forum/tree.html" as filename %}
+{% include filename %}
+{% endwith %}
+
+{% endblock %}
