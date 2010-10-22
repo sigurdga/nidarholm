@@ -1,6 +1,7 @@
 from pages.models import FlatPage
+from pages.forms import PageForm
 from django.template import loader, RequestContext
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from django.conf import settings
 from django.core.xheaders import populate_xheaders
@@ -62,3 +63,18 @@ def render_flatpage(request, f):
     response = HttpResponse(t.render(c))
     populate_xheaders(request, response, FlatPage, f.id)
     return response
+
+def edit_flatpage(request, id):
+    if request.method == 'POST':
+        flatpage = get_object_or_404(FlatPage, id=id)
+        form = PageForm(request.POST, instance=flatpage)
+        if form.is_valid():
+            form.save(commit=False)
+            flatpage.user = request.user
+            flatpage.save()
+            return HttpResponseRedirect(flatpage.url)
+    else:
+        flatpage = get_object_or_404(FlatPage, id=id)
+        form = PageForm(instance=flatpage)
+    return render_to_response('pages/edit_page.html', {'form': form}, context_instance=RequestContext(request))
+

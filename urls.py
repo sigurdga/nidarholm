@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.conf import settings
 from accounts.views import login, logout, register, groups, group_object_detail, user_groups, member_list
 from news.views import story_list
+from pages.views import edit_flatpage
 admin.autodiscover()
 
 from accounts.forms import ProfileForm
@@ -57,6 +58,7 @@ urlpatterns = patterns('',
     (r'^groups/(?P<id>\d+)$', group_object_detail, (), 'groups-group'),
     (r'^organization/', include('relations.urls')),
 
+    (r'^pages/(?P<id>\d+)/edit$', edit_flatpage, (), 'edit-flatpage'),
     (r'^admin/', include(admin.site.urls)),
     (r'^urls/', show_url_patterns)
 )
