@@ -2,7 +2,7 @@
 
 {% block title %}Forum{% endblock %}
 
-{% block contextmenu %}<a href="{% url forum-new-debate %}">Opprett nytt forum</a>{% endblock %}
+{% block contextmenu %}{% if request.user %}<a href="{% url forum-new-debate %}">Opprett nytt forum</a>{% endif %}{% endblock %}
 {% block content %}
 <ul>
 {% for debate in object_list %}

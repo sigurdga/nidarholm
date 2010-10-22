@@ -3,6 +3,9 @@ from core.models import TextEntry
 
 class Debate(TextEntry):
     parent = models.ForeignKey('Debate', null=True, blank=True, related_name='children')
+ 
+    class Meta:
+        ordering = ('created',)
 
     def __unicode__(self):
         return self.title
