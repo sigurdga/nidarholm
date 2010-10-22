@@ -37,3 +37,11 @@
     float: right;
     width: 220px;
 }
+
+div.forum-post {
+    width: 460px;
+    border: 1px solid gray;
+}
+div.forum-post-reply {
+    float: right;
+}

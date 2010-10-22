@@ -1,14 +1,17 @@
-<h1>{{ object.title }}</h1>
-<p><a href="{{ object.get_absolute_url }}/new">Svar</a></p>
+<div class="forum-post">
+    <h1>{{ object.title }}</h1>
+    <div class="forum-post-reply"><a href="{{ object.get_absolute_url }}/new">Svar</a></div>
+    <p><a href="{{ object.user.get_profile.get_absolute_url }}">{{ object.user.get_full_name }}</a>, {{ object.created }}
 
-{{ object.text_html|safe }}
+    {{ object.text_html|safe }}
 
-<ul>
-    {% for object in object.children.all %}
-    <li>
-        {% with "forum/tree.html" as filename %}
-        {% include filename %}
-        {% endwith %}
-    </li>
-    {% endfor %}
-</ul>
+    <ul>
+        {% for object in object.children.all %}
+        <li>
+            {% with "forum/tree.html" as filename %}
+            {% include filename %}
+            {% endwith %}
+        </li>
+        {% endfor %}
+    </ul>
+</div>
