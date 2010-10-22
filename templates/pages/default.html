@@ -2,6 +2,8 @@
 
 {% block title %}{{ flatpage.title }}{% endblock %}
 
+{% block contextmenu %}{% if request.user %}<a href="{% url edit-flatpage flatpage.id %}">Rediger sideinnhold</a>{% endif %}{% endblock %}
+
 {% block content %}
 
 {{ flatpage.content }}
