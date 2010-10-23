@@ -57,6 +57,7 @@ def file_object_detail(request, id):
                                      )
 
 def send_file(request, id, size=4):
+    size = int(size)
     uploaded_file = get_object_or_404(UploadedFile, id=id)
     if not uploaded_file.group in request.user.groups.all():
         raise Http403
@@ -64,9 +65,6 @@ def send_file(request, id, size=4):
     original_filename = "{root}originals/{filename}".format(
             root=settings.FILE_SERVE_ROOT,
             filename=uploaded_file.file.name)
-
-    #if not os.path.exists(original_filename):
-    #    raise Http404
 
     filetype = uploaded_file.content_type.split('/')[0]
 
@@ -79,8 +77,8 @@ def send_file(request, id, size=4):
             filename=uploaded_file.file.name)
 
         if not os.path.exists(filename):
-            os.makedirs(os.path.dirname(filename))
-            # use pil to make the cached smaller? version
+            if not os.path.exists(os.path.dirname(filename)):
+                os.makedirs(os.path.dirname(filename))
 
             try:
                 import Image
