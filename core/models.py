@@ -11,35 +11,53 @@ from django.template.defaultfilters import slugify
 from django.db.models.query_utils import Q
 from django.conf import settings
 
+def replace_references(match_obj):
+    # can the parsing be stricter, please?
+    description = match_obj.group('description')
+    path = match_obj.group('path')
+    try:
+        img_id, size = path.split('/')
+        img_id = int(img_id)
+    except ValueError:
+        img_id = int(path)
+        size = settings.DEFAULT_IMAGE_SIZE
+    try:
+        file_to_preview = UploadedFile.objects.get(id=img_id)
+    except UploadedFile.DoesNotExist:
+        return ""
+    if file_to_preview.is_image():
+        return """<div class="preview">
+        <img src="{path}" alt="{description}"/>
+        <p class="caption">{description}</p></div>""".format(
+            path=reverse('vault.views.send_file', kwargs={'id':img_id, 'size': size}),
+            description=description)
+    else:
+        return """<div class="preview">
+        <h2>{filename}</h2>
+        <p>Type: {content_type}</p>
+        <p class="caption">{description}</p>
+        <p><a href="{path}">Last ned</a></p>
+        <p><a href="{info_path}">Informasjon</a></p>
+        </div>""".format(
+            path=reverse('vault.views.send_file', kwargs={'id':img_id}),
+            info_path=file_to_preview.get_absolute_url(),
+            description=description,
+            filename=file_to_preview.filename,
+            content_type=file_to_preview.content_type)
+
+
+
 def extend_markdown(markdown_content):
-    img_ids = [] # ids which will possibly get an automatic reference
-    ref_ids = [] # ids of lines with references already
+    parsed = []
+    pattern = re.compile(r'\!\[(?P<description>.*?)\]\[(?P<path>\d+(?:\/\d+)?)\]')
     for line in markdown_content.split('\n'):
-        img_match = re.search(r'\!\[.*?\]\[(\d+(?:\/\d+)?)\]', line)
-        #import pdb; pdb.set_trace()
-        if img_match:
-            img_ids.append(img_match.group(1))
-        ref_match = re.search(r'^\s*\[(\d+)\]:', line)
-        if ref_match:
-            ref_ids.append(int(ref_match.group(1)))
-    for img_url in img_ids:
-        try:
-            img_id, size = img_url.split('/')
-            img_id = int(img_id)
-        except ValueError:
-            img_id = int(img_url)
-            size = settings.DEFAULT_IMAGE_SIZE
-        if not img_id in ref_ids:
-            ref_ids.append(img_id)
-            try:
-                img = UploadedFile.objects.get(id=img_id)
-            except UploadedFile.DoesNotExist:
-                pass
-            else:
-                markdown_content += "\n[{img_url}]: {url}".format(
-                    img_url=img_url,
-                    url=reverse('vault.views.send_file', kwargs={'id':img_id, 'size': size}))
-    return markdown(markdown_content)
+        if line.find('![') > -1:
+            a = pattern.sub(replace_references, line)
+            parsed.append(a)
+        else:
+            parsed.append(line)
+
+    return markdown('\n'.join(parsed))
 
 class CommonManager(models.Manager):
 

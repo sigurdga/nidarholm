@@ -45,3 +45,8 @@ div.forum-post {
 div.forum-post-reply {
     float: right;
 }
+
+div.preview {
+    float: right;
+    width: 220px;
+}

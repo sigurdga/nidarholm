@@ -48,4 +48,8 @@ class UploadedFile(models.Model):
     def get_absolute_url(self):
         return ('vault-file', (), {'id': self.id})
 
+    def is_image(self):
+        if self.content_type.startswith('image'):
+            return True
+
 #tagging.register(UploadedFile)
