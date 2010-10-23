@@ -9,18 +9,26 @@ from vault.models import UploadedFile
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
 from django.db.models.query_utils import Q
+from django.conf import settings
 
 def extend_markdown(markdown_content):
     img_ids = [] # ids which will possibly get an automatic reference
     ref_ids = [] # ids of lines with references already
-    for line in markdown_content.split():
-        img_match = re.search(r'^\s*!\[.*?\]\[(\d+)\]', line)
+    for line in markdown_content.split('\n'):
+        img_match = re.search(r'\!\[.*?\]\[(\d+(?:\/\d+)?)\]', line)
+        #import pdb; pdb.set_trace()
         if img_match:
-            img_ids.append(int(img_match.group(1)))
+            img_ids.append(img_match.group(1))
         ref_match = re.search(r'^\s*\[(\d+)\]:', line)
         if ref_match:
             ref_ids.append(int(ref_match.group(1)))
-    for img_id in img_ids:
+    for img_url in img_ids:
+        try:
+            img_id, size = img_url.split('/')
+            img_id = int(img_id)
+        except ValueError:
+            img_id = int(img_url)
+            size = settings.DEFAULT_IMAGE_SIZE
         if not img_id in ref_ids:
             ref_ids.append(img_id)
             try:
@@ -28,7 +36,9 @@ def extend_markdown(markdown_content):
             except UploadedFile.DoesNotExist:
                 pass
             else:
-                markdown_content += "\n[{img_id}]: {img_url}".format(img_id=img_id, img_url=reverse('vault.views.send_file', kwargs={'id':img_id}))
+                markdown_content += "\n[{img_url}]: {url}".format(
+                    img_url=img_url,
+                    url=reverse('vault.views.send_file', kwargs={'id':img_id, 'size': size}))
     return markdown(markdown_content)
 
 class CommonManager(models.Manager):
