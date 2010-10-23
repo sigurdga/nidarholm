@@ -47,6 +47,9 @@ USE_I18N = True
 # calendars according to the current locale
 USE_L10N = True
 
+# Serves local files, where permissions are checked
+FILE_SERVE_ROOT = os.path.abspath(os.path.dirname(__file__)) + '/uploads/'
+
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
 MEDIA_ROOT = os.path.abspath(os.path.dirname(__file__)) + '/media/'

@@ -4,6 +4,8 @@ from tagging.models import TaggedItem
 import time
 from django.db.models.query_utils import Q
 from tagging.fields import TagField
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
 
 class FileManager(models.Manager):
 
@@ -17,14 +19,19 @@ class FileManager(models.Manager):
         tags = tags_string.split("/")
         return TaggedItem.objects.get_by_model(UploadedFile, tags)
 
+
 def upload_path(instance, filename):
+    # To save outside of media root, we have to make a new FileStorage,
+    # where we could pass extra path info too.
+    # Now using media_root, knowing we have to limit access to media/files
     timestamp = time.strftime('%s')
-    folder = timestamp[-1]
+    folder = timestamp[-2:]
     instance.filename = filename
-    return 'files/' + folder + '/' + timestamp
+    return folder + '/' + timestamp
+
 
 class UploadedFile(models.Model):
-    file = models.FileField(upload_to=upload_path)
+    file = models.FileField(upload_to=upload_path, storage=FileSystemStorage(location=settings.FILE_SERVE_ROOT + '/originals'))
     content_type = models.CharField(max_length=15, blank=True)
     filename = models.CharField(max_length=100, blank=True)
     user = models.ForeignKey(User)

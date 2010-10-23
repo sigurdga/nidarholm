@@ -6,6 +6,8 @@
 
 <h1>Fil: {{ object.filename }}</h1>
 
+<p>Filtype: {{ object.content_type }}</p>
+
 <p><a href="{% url vault.views.send_file object.id %}">Last ned</a>
 
 <p>Lagret av {{ object.user.get_full_name }}</p>
