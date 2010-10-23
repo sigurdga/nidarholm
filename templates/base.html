@@ -52,6 +52,13 @@
     <div id="bottom">
         <div class="padding">
             {% block footer %}Opphavsrett (c) Nidarholm og Nidarholms medlemmer - <a href="/kontakt/">Kontakt</a>: post (a) nidarholm.no - Postadresse: Postboks 1881 Lade, 7440 Trondheim - Kontonummer: 4240 07 10036 - Organisasjonsnummer: 971 558 105{% endblock footer %}
+            {% load request_tag %}
+            <h2>Aktive brukere siste 10 minutt</h2>
+            <ul>
+            {% active_users in 10 minutes as user_list %}
+            {% for user in user_list %}
+            <li><a href="{{ user.get_profile.get_absolute_url }}">{{ user.username }}</a></li>
+            {% endfor %}
         </div>
     </div>
 
