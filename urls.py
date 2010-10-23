@@ -49,8 +49,8 @@ urlpatterns = patterns('',
     (r'^files/', include('nidarholm.vault.urls')),
 
     (r'^sitemap/', include('nidarholm.navigation.urls')),
-    (r'^users/create', 'profiles.views.create_profile', {'form_class': ProfileForm}),
-    (r'^users/edit', 'profiles.views.edit_profile', {'form_class': ProfileForm}),
+    #(r'^users/create$', 'profiles.views.create_profile', {'form_class': ProfileForm}),
+    (r'^users/edit$', 'profiles.views.edit_profile', {'form_class': ProfileForm}, 'edit-profile'),
     (r'^users/(?P<username>\w+)/groups$', user_groups, (), 'user-groups'),
     (r'^members$', member_list, (), 'member-list'),
     (r'^users/', include('profiles.urls')),
@@ -60,7 +60,8 @@ urlpatterns = patterns('',
 
     (r'^pages/(?P<id>\d+)/edit$', edit_flatpage, (), 'edit-flatpage'),
     (r'^admin/', include(admin.site.urls)),
-    (r'^urls/', show_url_patterns)
+    (r'^avatar/', include('avatar.urls')),
+    (r'^urls/', show_url_patterns),
 )
 
 if settings.DEVELOPMENT_MODE:

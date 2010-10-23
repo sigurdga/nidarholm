@@ -111,6 +111,7 @@ INSTALLED_APPS = (
     'request',
     'tagging',
     'profiles',
+    'avatar',
     'debug_toolbar',
     'relations',
     'accounts',
@@ -139,3 +140,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.media",
     "django.contrib.messages.context_processors.messages",
     )
+
+AUTO_GENERATE_AVATAR_SIZES = (100,)
+AVATAR_STORAGE_DIR = 'avatars/'
+AVATAR_GRAVATAR_BACKUP = False
+AVATAR_DEFAULT_URL = 'avatars/dragen.jpg'

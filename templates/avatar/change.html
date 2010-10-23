@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load avatar_tags %}
+
+{% block content %}
+    <p>Ditt profilbilde: </p>
+    {% avatar user 100 %}
+    {% if not avatars %}
+        <p>Du har ikke noe profilbilde. Det er fint om du laster opp et.</p>
+    {% else %}
+        <form method="POST" action="">
+          {% csrf_token %}
+            <ul>
+                {{ primary_avatar_form.as_ul }}
+            </ul>
+            <input type="submit" value="Velg bilde" />
+        </form>
+    {% endif %}
+    <form enctype="multipart/form-data" method="POST" action="">
+        {% csrf_token %}
+        <input type="file" name="avatar" value="Avatar Image" />
+        <input type="submit" value="Last opp nytt bilde" />
+    </form>
+{% endblock %}
