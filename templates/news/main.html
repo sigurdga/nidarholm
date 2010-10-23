@@ -2,6 +2,10 @@
 
 {% block title %}Velkommen{% endblock %}
 
+{% block contextmenu %}{% if request.user %}
+<li><a href="{% url news-new-story %}">Lag ny nyhet</a></li>
+{% if infopage %}<li><a href="{% url edit-flatpage infopage.id %}">Rediger tekst</a></li>{% endif %}
+{% endif %}{% endblock %}
 {% block content %}
 
 {% if infopage %}
