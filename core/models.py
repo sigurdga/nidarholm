@@ -27,24 +27,26 @@ def replace_references(match_obj):
         return ""
     if file_to_preview.is_image():
         return """<div class="preview">
-        <img src="{path}" alt="{description}"/>
-        <p class="caption">{description}</p></div>""".format(
-            path=reverse('vault.views.send_file', kwargs={'id':img_id, 'size': size}),
-            description=description)
+        <img src="%s" alt="%s"/>
+        <p class="caption">%s</p></div>""" % (
+            reverse('vault.views.send_file', kwargs={'id':img_id, 'size': size}),
+            description,
+            description,
+            )
     else:
         return """<div class="preview">
-        <h2>{filename}</h2>
-        <p>Type: {content_type}</p>
-        <p class="caption">{description}</p>
-        <p><a href="{path}">Last ned</a></p>
-        <p><a href="{info_path}">Informasjon</a></p>
-        </div>""".format(
-            path=reverse('vault.views.send_file', kwargs={'id':img_id}),
-            info_path=file_to_preview.get_absolute_url(),
-            description=description,
-            filename=file_to_preview.filename,
-            content_type=file_to_preview.content_type)
-
+        <h2>%s</h2>
+        <p>Type: %s</p>
+        <p class="caption">%s</p>
+        <p><a href="%s">Last ned</a></p>
+        <p><a href="%s">Informasjon</a></p>
+        </div>""" % (
+            file_to_preview.filename,
+            file_to_preview.content_type,
+            description,
+            reverse('vault.views.send_file', kwargs={'id':img_id}),
+            file_to_preview.get_absolute_url(),
+            )
 
 
 def extend_markdown(markdown_content):

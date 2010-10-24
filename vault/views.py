@@ -62,19 +62,13 @@ def send_file(request, id, size=settings.DEFAULT_IMAGE_SIZE):
     if uploaded_file.group and not uploaded_file.group in request.user.groups.all():
         raise Http403
 
-    original_filename = "{root}originals/{filename}".format(
-            root=settings.FILE_SERVE_ROOT,
-            filename=uploaded_file.file.name)
-
+    original_filename = settings.FILE_SERVE_ROOT + "originals/" + uploaded_file.file.name
     filetype = uploaded_file.content_type.split('/')[0]
 
     if filetype != "image":
         filename = original_filename
     else:
-        filename = "{root}cache/{filename}/{size}".format(
-            root=settings.FILE_SERVE_ROOT,
-            size=size,
-            filename=uploaded_file.file.name)
+        filename = settings.FILE_SERVE_ROOT + "cache/" + uploaded_file.file.name + "/" + str(size)
 
         if not os.path.exists(filename):
             if not os.path.exists(os.path.dirname(filename)):
