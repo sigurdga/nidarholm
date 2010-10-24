@@ -59,7 +59,7 @@ def file_object_detail(request, id):
 def send_file(request, id, size=settings.DEFAULT_IMAGE_SIZE):
     size = int(size)
     uploaded_file = get_object_or_404(UploadedFile, id=id)
-    if not uploaded_file.group in request.user.groups.all():
+    if uploaded_file.group and not uploaded_file.group in request.user.groups.all():
         raise Http403
 
     original_filename = "{root}originals/{filename}".format(
