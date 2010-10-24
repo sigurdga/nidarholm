@@ -6,16 +6,17 @@
 <li><a href="{% url news-new-story %}">Lag ny nyhet</a></li>
 {% if infopage %}<li><a href="{% url edit-flatpage infopage.id %}">Rediger tekst</a></li>{% endif %}
 {% endif %}{% endblock %}
-{% block content %}
 
 {% if infopage %}
-<h1>{{ infopage.title }}</h1>
-
+{% block contextinfo %}
 {{ infopage.content|safe }}
-
-{% else %}
-<h1>Nyheter</h1>
+{% endblock %}
 {% endif %}
+
+{% block content %}
+
+<h1>Nyheter</h1>
+
 <ul>
 {% for story in object_list %}
 <li>

@@ -38,6 +38,9 @@
                     {% block contextmenu %}
                     <li>Nothing in sidebar, do not show</li>
                     {% endblock %}
+                </ul>
+                <div id="contextinfo">
+                    {% block contextinfo %}{% endblock %}
                 </div>
             </div>
 
@@ -47,6 +50,7 @@
                 {% endblock content %}
             </div>
         </div>
+        <div style="clear:both;"></div>
     </div>
 
     <div id="bottom">
