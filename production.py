@@ -16,7 +16,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'production.sqlite3', # Or path to database file if using sqlite3.
+        'NAME': '/srv/www/beta/nidarholm/database/development.sqlite3', # Or path to database file if using sqlite3.
         'USER': '', # Not used with sqlite3.
         'PASSWORD': '', # Not used with sqlite3.
         'HOST': '', # Set to empty string for localhost. Not used with sqlite3.
@@ -55,7 +55,7 @@ FILE_SERVE_ROOT = os.path.abspath(os.path.dirname(__file__)) + '/uploads/'
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = os.path.abspath(os.path.dirname(__file__)) + '/media/'
+MEDIA_ROOT = '/srv/www/beta/nidarholm/media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -84,7 +84,7 @@ MIDDLEWARE_CLASSES = (
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'sqlmiddleware.SQLLogToConsoleMiddleware',
+    #'sqlmiddleware.SQLLogToConsoleMiddleware',
     'request.middleware.RequestMiddleware',
     'permissions.middleware.http.Http403Middleware',
     'pages.middleware.FlatpageFallbackMiddleware',
@@ -101,6 +101,7 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
+    'accounts',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -114,7 +115,6 @@ INSTALLED_APPS = (
     'avatar',
     #'debug_toolbar',
     'relations',
-    'accounts',
     'events',
     'forum',
     'news',

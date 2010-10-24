@@ -1,1 +1,4 @@
 pip-log.txt
+*.pyc
+*.sqlite3
+
