@@ -2,7 +2,7 @@
 
 {% block title %}Velkommen{% endblock %}
 
-{% block contextmenu %}{% if request.user %}
+{% block contextmenu %}{% if request.user.is_authenticated %}
 <li><a href="{% url news-new-story %}">Lag ny nyhet</a></li>
 {% if infopage %}<li><a href="{% url edit-flatpage infopage.id %}">Rediger tekst</a></li>{% endif %}
 {% endif %}{% endblock %}
