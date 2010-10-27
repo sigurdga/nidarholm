@@ -39,41 +39,14 @@
                         {% endblock %} 
                     </ul> 
                     <div id="contextinfo"> 
- 
-    <h1>Musikkforeningen Nidarholm</h1> 
-    <p>Nidarholm spiller først og fremst utfordrende og spennende musikk. Vi har et ungt, sosialt miljø som er sultent på nye og store utfordringer. Vi satser på kvalitetsproduksjoner, og jobber bevisst med å holde et høyt nivå gjennom hele året. I Norgesmesterskapet for janitsjarkorps deltar vi i Elitedivisjon.
-    </p> 
-    <p>Vår langsiktige innsats har gitt gode resultater i konkurranser, og vi har de siste årene holdt oss stabile blant topp fire i elitedivisjonen. Senest i sommer deltok Musikkforeningen Nidarholm i øverste divisjon i World Music Contest, det uoffisielle verdensmesterskapet for korps.
-    </p> 
-    <p><div class="preview"> 
-               <img src="/files/get/2/4" alt="Jubileumskonserten"/> 
-               <p class="caption">Jubileumskonserten</p></div> 
-    </p> 
-    <p>Vi ønsker nye medlemmer velkommen, ta kontakt om du er interessert. 
-       Meld deg på vårt nyhetsbrev, så vil du kunne følge Nidarholm jevnlig, med fem til ti nyhetsbrev per år.
-    </p> 
- 
+                        {% block contextinfo %}{% endblock %}
                     </div> 
                 </div> 
  
                 <div id="content"> 
- 
- 
-    <h1>Nyheter</h1> 
- 
-    <ul> 
- 
-    <li> 
-      <h2><a href="/news/2010/10/25/nye-nettsider/">Nye nettsider</a></h2> 
-      <p>Endelig kan det se ut til at jeg har noe nytt å komme med på nettsidefronten.
-    </p> 
-    <p>Ikke la dere lure av den horrible grafikken som er her i starten, det skal bli bedre etterhvert.
-    </p> 
-    </li> 
- 
-    </ul> 
- 
- 
+                    {% block content %}
+                    No content here
+                    {% endblock content %}
                 </div> 
             </div> 
             <div style="clear:both;"></div> 
