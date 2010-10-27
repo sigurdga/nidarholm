@@ -1,0 +1,119 @@
+html {
+  background: black url(/m/i/page-gradient.png) repeat-x 0 0;
+}
+
+body {
+  background: transparent url(/m/i/top.png) no-repeat 50% 0;
+}
+
+div#top {
+  height: 200px;
+}
+
+div#top a,
+div#top a:active,
+div#top a:visited {
+  color: #ead7bb;
+  text-decoration: none;
+}
+
+div#top a:hover {
+  text-decoration: underline;
+}
+
+div#top div.padding {
+  width: 800px;
+  margin: 0 auto;
+  height: 100%;
+  position: relative;
+}
+
+div#breadcrumbs ul,
+div#menu ul {
+  list-style-type: none;
+}
+
+div#breadcrumbs ul li,
+div#menu ul li {
+  float: left;
+  margin-right: 10px;
+  padding-left: 12px;
+  background: transparent url(/m/i/bullet.png) no-repeat 0px 5px;
+}
+
+div#breadcrumbs ul li.first,
+div#menu ul li.first {
+  padding-left: 0px;
+  background: transparent;
+}
+
+div#breadcrumbs {
+  position: absolute;
+  top: 118px;
+  left: 156px;
+}
+
+div#menu {
+  position: absolute;
+  top: 175px;
+  left: 103px;
+}
+
+div#login {
+  float: right;
+  padding-top: 3px;
+  font-size: 80%;
+}
+
+div#middle div.padding {
+  background: transparent url(/m/i/middle-top.png) no-repeat 50% 0;
+  padding: 10px;
+}
+
+div#middle {
+  background: white url(/m/i/middle-gradient.png) repeat-x 0 0;
+  min-height: 400px;
+}
+
+div#page {
+  position: relative;
+}
+
+div#bottom {
+  background: black url(/m/i/bottom-gradient.png) repeat-x 0 0;
+  color: #efefef;
+  font-size: 80%;
+  margin-top: 20px;
+  padding: 10px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+div#bottom div.padding {
+  text-align: center;
+}
+
+#sidebar {
+    float: right;
+    width: 220px;
+}
+
+div.forum-post {
+    width: 460px;
+    border: 1px solid gray;
+}
+div.forum-post-reply {
+    float: right;
+}
+
+div.preview {
+    float: right;
+    width: 220px;
+}
+
+h1 {
+    font-size: 160%;
+}
+

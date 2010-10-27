@@ -1,73 +1,96 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8" />
-<title>{% block title %}Heia{% endblock title %} - Nidarholm</title>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" > 
+	<head> 
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" /> 
+		<title>{% block title %}Heia{% endblock title %} - Nidarholm</title> 
+ 
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.2.0/build/cssreset/reset-min.css"> 
+		<link rel="stylesheet" type="text/css" href="/m/i/stylesheet.css" media="screen" /> 
+		
+	</head> 
+ 
+	<body id="generic"> 
+      {% block body %}
+	    <div id="page"> 
+        {% block page %}
+        <div id="top"> 
+            <div class="padding"> 
+                <div id="login"> 
+                    {% block login %}{% if request.user.is_authenticated %}Logget inn som <a href="{{ user.get_absolute_url }}">{{ user.username }}</a>. <a href="{% url logout %}">Logg ut</a>{% else %}<a href="{% url login %}">Logg inn</a>{% endif %}{% endblock login %}
+                </div> 
+ 
+                {% load menu %}
+                <div id="breadcrumbs"> 
+                    {% breadcrumbs request %}
+                </div> 
+                <div id="menu"> 
+                    {% local_menu request %}
+                </div> 
+            </div> 
+        </div> 
+ 
+        <div id="middle"> 
+            <div class="padding"> 
+                <div id="sidebar"> 
+                    <ul id="contextmenu"> 
+                        {% block contextmenu %}
+                        <li>Nothing in sidebar, do not show</li>
+                        {% endblock %} 
+                    </ul> 
+                    <div id="contextinfo"> 
+ 
+    <h1>Musikkforeningen Nidarholm</h1> 
+    <p>Nidarholm spiller først og fremst utfordrende og spennende musikk. Vi har et ungt, sosialt miljø som er sultent på nye og store utfordringer. Vi satser på kvalitetsproduksjoner, og jobber bevisst med å holde et høyt nivå gjennom hele året. I Norgesmesterskapet for janitsjarkorps deltar vi i Elitedivisjon.
+    </p> 
+    <p>Vår langsiktige innsats har gitt gode resultater i konkurranser, og vi har de siste årene holdt oss stabile blant topp fire i elitedivisjonen. Senest i sommer deltok Musikkforeningen Nidarholm i øverste divisjon i World Music Contest, det uoffisielle verdensmesterskapet for korps.
+    </p> 
+    <p><div class="preview"> 
+               <img src="/files/get/2/4" alt="Jubileumskonserten"/> 
+               <p class="caption">Jubileumskonserten</p></div> 
+    </p> 
+    <p>Vi ønsker nye medlemmer velkommen, ta kontakt om du er interessert. 
+       Meld deg på vårt nyhetsbrev, så vil du kunne følge Nidarholm jevnlig, med fem til ti nyhetsbrev per år.
+    </p> 
+ 
+                    </div> 
+                </div> 
+ 
+                <div id="content"> 
+ 
+ 
+    <h1>Nyheter</h1> 
+ 
+    <ul> 
+ 
+    <li> 
+      <h2><a href="/news/2010/10/25/nye-nettsider/">Nye nettsider</a></h2> 
+      <p>Endelig kan det se ut til at jeg har noe nytt å komme med på nettsidefronten.
+    </p> 
+    <p>Ikke la dere lure av den horrible grafikken som er her i starten, det skal bli bedre etterhvert.
+    </p> 
+    </li> 
+ 
+    </ul> 
+ 
+ 
+                </div> 
+            </div> 
+            <div style="clear:both;"></div> 
+        </div> 
 
-<link rel="stylesheet" href="/m/stylesheet.css" type="text/css" />
-
-</head>
-
-<body>
-  {% block body %}
-  <div id="page">
-    {% block page %}
-    <div id="top">
-        <div class="padding">
-            <div id="login">
-                {% block login %}{% if request.user.is_authenticated %}Logget inn som <a href="{{ user.get_absolute_url }}">{{ user.username }}</a>. <a href="{% url logout %}">Logg ut</a>{% else %}<a href="{% url login %}">Logg inn</a>{% endif %}{% endblock login %}
-            </div>
-
-            {% load menu %}
-            <div id="logo">
-                <a href="/"><img src="/m/nidarholm.png" /></a>
-            </div>
-            <div id="breadcrumbs">
-                {% breadcrumbs request %}
-            </div>
-            <div id="menu">
-                {% local_menu request %}
+         <div id="bottom">
+            <div class="padding">
+                {% block footer %}Opphavsrett (c) Nidarholm og Nidarholms medlemmer - <a href="/kontakt/">Kontakt</a>: post (a) nidarholm.no - Postadresse: Postboks 1881 Lade, 7440 Trondheim - Kontonummer: 4240 07 10036 - Organisasjonsnummer: 971 558 105{% endblock footer %}
+                {% load request_tag %}
+                <h2>Aktive brukere siste 10 minutt</h2>
+                <ul>
+                {% active_users in 10 minutes as user_list %}
+                {% for user in user_list %}
+                <li><a href="{{ user.get_profile.get_absolute_url }}">{{ user.username }}</a></li>
+                {% endfor %}
             </div>
         </div>
-    </div>
-    
-    <div id="middle">
-        <div class="padding">
-            <div id="sidebar">
-                <ul id="contextmenu">
-                    {% block contextmenu %}
-                    <li>Nothing in sidebar, do not show</li>
-                    {% endblock %}
-                </ul>
-                <div id="contextinfo">
-                    {% block contextinfo %}{% endblock %}
-                </div>
-            </div>
-
-            <div id="content">
-                {% block content %}
-                No content here
-                {% endblock content %}
-            </div>
-        </div>
-        <div style="clear:both;"></div>
-    </div>
-
-    <div id="bottom">
-        <div class="padding">
-            {% block footer %}Opphavsrett (c) Nidarholm og Nidarholms medlemmer - <a href="/kontakt/">Kontakt</a>: post (a) nidarholm.no - Postadresse: Postboks 1881 Lade, 7440 Trondheim - Kontonummer: 4240 07 10036 - Organisasjonsnummer: 971 558 105{% endblock footer %}
-            {% load request_tag %}
-            <h2>Aktive brukere siste 10 minutt</h2>
-            <ul>
-            {% active_users in 10 minutes as user_list %}
-            {% for user in user_list %}
-            <li><a href="{{ user.get_profile.get_absolute_url }}">{{ user.username }}</a></li>
-            {% endfor %}
-        </div>
-    </div>
-
-
-
     {% endblock page %}
   </div>
   {% endblock body %}
