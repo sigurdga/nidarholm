@@ -17,7 +17,7 @@ def html_menu(menu):
     return "<ul>" + "".join([ '<li><a href="%s">%s</a></li>' % (item.url, item.title) for item in menu ]) + "</ul>"
 
 def make_breadcrumb(parents):
-    return "<ul>" + "".join([ '<li><a href="%s">%s</a>' % (parent.url, parent.title) for parent in parents ]) + "</ul>"
+    return "<ul>" + "".join([ '<li><a href="%s">%s</a></li>' % (parent.url, parent.title) for parent in parents ]) + "</ul>"
 
 
 @register.simple_tag
