@@ -1,7 +1,7 @@
 from django.db import models
-from core.models import TextEntry
+from core.models import Common, Title, Markdown
 
-class Debate(TextEntry):
+class Debate(Common, Title, Markdown):
     parent = models.ForeignKey('Debate', null=True, blank=True, related_name='children')
  
     class Meta:

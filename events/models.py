@@ -1,8 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-#from django.core.management.validation import max_length
 
-from core.models import TextEntry
+from core.models import Common, Title, Markdown
 
 class EventCategory(models.Model):
     title = models.CharField(max_length=20)
@@ -17,7 +16,7 @@ class EventCategory(models.Model):
     #    return ('event_category_details', (), {'slug', self.slug})
 
 
-class Event(TextEntry):
+class Event(Common, Title, Markdown):
     #place = models.ForeignKey('Place', blank=True, null=True)
     whole_day = models.BooleanField(default=False)
     start = models.DateTimeField()

@@ -61,6 +61,7 @@ def extend_markdown(markdown_content):
 
     return markdown('\n'.join(parsed))
 
+
 class CommonManager(models.Manager):
 
     def for_user(self, user=None):
@@ -69,22 +70,38 @@ class CommonManager(models.Manager):
         else:
             return self.get_query_set().filter(group=None)
 
-class TextEntry(models.Model):
-    title = models.CharField(_('title'), max_length=60)
-    slug = models.CharField(_('slug'), max_length=60)
+
+class Common(models.Model):
     created = models.DateTimeField(_('created'), auto_now_add=True)
     updated = models.DateTimeField(_('updated'), auto_now=True)
     user = models.ForeignKey(User, verbose_name=_('created by'))
     group = models.ForeignKey(Group, verbose_name=_('created for'), null=True, blank=True)
+    
+    objects = CommonManager()
+
+    class Meta:
+        abstract = True
+
+
+class Markdown(models.Model):
     text = models.TextField(_('content'), blank=True, help_text=_('Use Markdown syntax'))
     text_html = models.TextField(_('html content'), blank=True)
 
-    objects = CommonManager()
-
     def save(self, *args, **kwargs):
         self.text_html = extend_markdown(self.text)
+        super(Markdown, self).save(*args, **kwargs)
+
+    class Meta:
+        abstract = True
+ 
+
+class Title(models.Model):
+    title = models.CharField(_('title'), max_length=60)
+    slug = models.CharField(_('slug'), max_length=60)
+
+    def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
-        super(TextEntry, self).save(*args, **kwargs)
+        super(Title, self).save(*args, **kwargs)
 
     class Meta:
         abstract = True

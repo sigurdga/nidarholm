@@ -1,6 +1,7 @@
 django-request
 django-profiles
 django-avatar
+django-debug-toolbar
 pil
 pyexiv2
 magic

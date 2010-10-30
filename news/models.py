@@ -1,9 +1,9 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from core.models import TextEntry
+from core.models import Common, Title, Markdown
 
-class Story(TextEntry):
+class Story(Common, Title, Markdown):
     parent = models.ForeignKey('Story', null=True, blank=True, related_name='children')
     pub_date = models.DateTimeField(auto_now_add=True)
 
