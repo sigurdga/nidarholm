@@ -55,7 +55,7 @@ def render_flatpage(request, f):
     # mark the title and content as already safe (since they are raw HTML
     # content in the first place).
     f.title = mark_safe(f.title)
-    f.content = mark_safe(f.content)
+    f.text_html = mark_safe(f.text_html)
 
     c = RequestContext(request, {
         'flatpage': f,
