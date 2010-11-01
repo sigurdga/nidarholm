@@ -15,12 +15,29 @@
 {% block content %}
 <h1>{{ profile.user.get_full_name }}</h1>
 
+<p>{{ profile.user.username}}</p>
+
 {% load avatar_tags %}
 {% avatar user 100 %}
 
-<p>{{ profile.user.username}}</p>
+<h2>Kontaktinfo</h2>
+<table>
+    <tr><th>Epost</th><td>{{ profile.email }}</td></tr>
+    <tr><th>Mobil</th><td>{{ profile.cellphone }}</td></tr>
+    <tr><th>Adresse</th><td>{{ profile.address }}</td></tr>
+    <tr><th>Postnummer</th><td>{{ profile.postcode }}</td></tr>
+</table>
 
-<h2>Groups</h2>
+<h2>Arbeid</h2>
+<table>
+    <tr><th>Yrke</th><td>{{ profile.occupation }}</td></tr>
+    <tr><th>Arbeidsgiver</th><td>{{ profile.employer }}</td></tr>
+</table>
+
+<h2>Fødselsdag</h2>
+Kommer
+
+<h2>Grupper</h2>
 
 <ul>
   {% for group in profile.user.groups.all %}

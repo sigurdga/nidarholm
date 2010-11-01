@@ -22,7 +22,7 @@ class ProfileForm(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        exclude = ('user', 'joined', 'status', 'parent_organization_member_number', 'insured', 'account')
+        fields = ('first_name', 'last_name', 'email', 'cellphone', 'address', 'postcode', 'occupation', 'employer', 'born')
 
     def save(self, *args, **kwargs):
         """

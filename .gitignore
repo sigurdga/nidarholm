@@ -2,3 +2,4 @@ pip-log.txt
 *.pyc
 *.sqlite3
 uploads
+media/avatars
