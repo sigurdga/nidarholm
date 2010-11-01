@@ -113,11 +113,13 @@ div#bottom div.padding {
   margin-right: 26%;
 }
 
-div.forum-post {
+div.forum-post,
+div.news-comment {
   width: 460px;
   border-top: 1px solid gray;
 }
-div.forum-post-reply {
+div.forum-post-reply,
+div.news-comment-reply {
   float: right;
 }
 
