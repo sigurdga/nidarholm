@@ -115,7 +115,7 @@ div#bottom div.padding {
 
 div.forum-post {
   width: 460px;
-  border: 1px solid gray;
+  border-top: 1px solid gray;
 }
 div.forum-post-reply {
   float: right;
@@ -134,6 +134,10 @@ h1, h2, h3 {
 h1 { font-size: 160%; }
 h2 { font-size: 130%; }
 h3 { font-size: 100%; }
+
+ul {
+  margin-left: 20px;
+}
 
 p {
   padding-bottom: 12px;
