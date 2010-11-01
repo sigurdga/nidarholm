@@ -27,13 +27,15 @@ def new_story(request, id=None):
         if form.is_valid():
             story = form.save(commit=False)
             story.user = request.user
-            #story.slug = slugify(story.title)
             story.save()
             return HttpResponseRedirect('/')
     else:
         story = Story()
+        initial = {}
         if id:
             parent = get_object_or_404(Story, id=id)
             story.parent = parent
-        form = StoryForm(instance=story)
+            initial['title'] = "Re: " + parent.title
+            initial['group'] = parent.group
+        form = StoryForm(instance=story, initial=initial)
     return render_to_response('forum/new_debate.html', {'form': form}, context_instance=RequestContext(request))

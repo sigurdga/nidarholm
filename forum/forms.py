@@ -4,7 +4,7 @@ from forum.models import Debate
 class DebateForm(ModelForm):
     class Meta:
         model = Debate
-        exclude = ('user', 'group', 'slug', 'text_html')
+        fields = ('text', 'title', 'group', 'parent')
         widgets = {
                 'parent': HiddenInput(),
                 }

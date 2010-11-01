@@ -33,8 +33,11 @@ def new_debate(request, slug=None):
             return HttpResponseRedirect(debate.get_top_url())
     else:
         debate = Debate()
+        initial = {}
         if slug:
             parent = get_object_or_404(Debate, slug=slug)
             debate.parent = parent
-        form = DebateForm(instance=debate)
+            initial['title'] = "Re: " + parent.title
+            initial['group'] = parent.group
+        form = DebateForm(instance=debate, initial=initial)
     return render_to_response('forum/new_debate.html', {'form': form}, context_instance=RequestContext(request))
