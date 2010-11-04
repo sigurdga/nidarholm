@@ -4,12 +4,13 @@ from collections import deque
 
 register = template.Library()
 
-def make_menu(parent):
+def make_menu(parent, user):
     menu = []
     nexts = deque(Link.objects.filter(parent=parent, older_sibling=None))
     while nexts:
         next = nexts.popleft()
-        menu.append(next)
+        if not next.group or next.group in user.groups.all():
+            menu.append(next)
         nexts.extend(next.younger_siblings.all())
     return menu
 
@@ -27,18 +28,19 @@ def local_menu(request):
     except Link.DoesNotExist:
         return ""
     else:
-        return html_menu(make_menu(page))
+        return html_menu(make_menu(page, request.user))
 
 @register.simple_tag
 def breadcrumbs(request):
     parents = []
     try:
-        page = Link.objects.get(url=request.path_info)
+        link = Link.objects.get(url=request.path_info)
     except Link.DoesNotExist:
         return ""
     else:
-        while page:
-            parents.append(page)
-            page = page.parent
-        parents.reverse()
+        if not link.group or link.group in request.user.groups.all():
+            while link:
+                parents.append(link)
+                link = link.parent
+            parents.reverse()
         return make_breadcrumb(parents)
