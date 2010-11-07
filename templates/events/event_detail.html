@@ -2,6 +2,11 @@
 
 {% block title %}{{ object.title}} - Aktiviteter{% endblock %}
 
+{% block contextmenu %}
+{% if request.user.is_authenticated %}
+<li><a href="{% url events-edit object.id %}">Rediger</a></li>
+{% endif %}
+{% endblock %}
 {% block content %}
 
 <h1>{{ object.title }}</h1>
@@ -9,7 +14,4 @@
 
 {{ object.text_html|safe }}
 
-{% if user.is_authenticated %}
-<a href="{% url events-edit object.id %}">Edit</a>
-{% endif %}
 {% endblock content %}
