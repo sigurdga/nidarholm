@@ -3,3 +3,6 @@ pip-log.txt
 *.sqlite3
 uploads
 media/avatars
+.project
+.pydevproject
+build
