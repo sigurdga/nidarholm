@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}Medlemsliste{% endblock %}
+{% block title %}{{ object.name }}{% endblock %}
 
 {% block content %}
 
-<h1>Medlemsliste</h1>
+<h1>{{ object.name }}</h1>
 
 {% load grouplistings %}
-{% list_groups request "Medlemmer" "Instrumentgrupper" %}
+{% list_groups request group_name object.name %}
 
 {% endblock %}

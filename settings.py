@@ -114,6 +114,7 @@ INSTALLED_APPS = (
     'avatar',
     'debug_toolbar',
     'relations',
+    'organizations',
     'accounts',
     'events',
     'forum',
@@ -122,6 +123,7 @@ INSTALLED_APPS = (
     'pages',
     'navigation',
     'instruments',
+    'django_extensions',
 )
 
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
