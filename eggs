@@ -2,6 +2,8 @@ django-request
 django-profiles
 django-avatar
 django-debug-toolbar
+django-extensions
+werkzeug
 pil
 pyexiv2
 magic
