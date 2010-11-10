@@ -21,11 +21,15 @@
                 </div> 
  
                 {% load menu %}
-                <div id="breadcrumbs"> 
-                    {% breadcrumbs request %}
+                <div id="breadcrumbs">
+                  {% block breadcrumbs %}
+                  {% breadcrumbs request.path_info request.user %}
+                  {% endblock breadcrumbs %}
                 </div> 
                 <div id="menu"> 
-                    {% local_menu request %}
+                  {% block local_menu %}
+                  {% local_menu request.path_info request.user %}
+                  {% endblock local_menu %}
                 </div> 
             </div> 
         </div> 

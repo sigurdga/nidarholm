@@ -22,25 +22,23 @@ def make_breadcrumb(parents):
 
 
 @register.simple_tag
-def local_menu(request):
+def local_menu(request_path_info, request_user):
     try:
-        page = Link.objects.get(url=request.path_info)
+        page = Link.objects.get(url=request_path_info)
     except Link.DoesNotExist:
-        return ""
-    else:
-        return html_menu(make_menu(page, request.user))
+        page = Link.objects.get(url='/')
+    return html_menu(make_menu(page, request_user))
 
 @register.simple_tag
-def breadcrumbs(request):
+def breadcrumbs(request_path_info, request_user):
     parents = []
     try:
-        link = Link.objects.get(url=request.path_info)
+        link = Link.objects.get(url=request_path_info)
     except Link.DoesNotExist:
-        return ""
-    else:
-        if not link.group or link.group in request.user.groups.all():
-            while link:
-                parents.append(link)
-                link = link.parent
-            parents.reverse()
-        return make_breadcrumb(parents)
+        link = Link.objects.get(url='/')
+    if not link.group or link.group in request_user.groups.all():
+        while link:
+            parents.append(link)
+            link = link.parent
+        parents.reverse()
+    return make_breadcrumb(parents)
