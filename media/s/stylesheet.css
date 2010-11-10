@@ -141,6 +141,10 @@ ul {
   margin-left: 20px;
 }
 
+em {
+  font-weight: bold;
+}
+
 p {
   padding-bottom: 12px;
 }
