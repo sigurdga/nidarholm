@@ -3,6 +3,7 @@ django-profiles
 django-avatar
 django-debug-toolbar
 django-extensions
+xapian-haystack
 werkzeug
 pil
 pyexiv2

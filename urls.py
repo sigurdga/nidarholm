@@ -61,6 +61,7 @@ urlpatterns = patterns('',
     (r'^pages/(?P<id>\d+)/edit$', edit_flatpage, (), 'edit-flatpage'),
     (r'^admin/', include(admin.site.urls)),
     (r'^avatar/', include('avatar.urls')),
+    (r'^search/', include('search.urls')),
     (r'^urls/', show_url_patterns),
 )
 

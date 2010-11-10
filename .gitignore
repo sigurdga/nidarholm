@@ -6,3 +6,4 @@ media/avatars
 .project
 .pydevproject
 build
+index.xapian
