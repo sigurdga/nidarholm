@@ -1,0 +1,3 @@
+{{ object.filename }}
+{{ object.user.get_full_name }}
+{{ object.tags }}
