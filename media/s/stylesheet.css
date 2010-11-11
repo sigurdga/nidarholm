@@ -137,7 +137,7 @@ h1 { font-size: 160%; }
 h2 { font-size: 130%; }
 h3 { font-size: 100%; }
 
-ul {
+div#middle ul {
   margin-left: 20px;
 }
 
