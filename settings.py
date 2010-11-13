@@ -150,5 +150,6 @@ AVATAR_GRAVATAR_BACKUP = False
 AVATAR_DEFAULT_URL = 'avatars/dragen.jpg'
 
 HAYSTACK_SITECONF = 'search.search_sites'
-HAYSTACK_SEARCH_ENGINE = 'xapian'
+HAYSTACK_SEARCH_ENGINE = 'whoosh'
 HAYSTACK_XAPIAN_PATH = os.path.abspath(os.path.dirname(__file__)) + '/index.xapian'
+HAYSTACK_WHOOSH_PATH = os.path.abspath(os.path.dirname(__file__)) + '/index.whoosh'

@@ -7,7 +7,7 @@ from vault.models import UploadedFile
 class UploadedFileIndex(SearchIndex):
     text = CharField(document=True, use_template=True)
     user = CharField(model_attr='user')
-    group = DateTimeField(model_attr='group', null=True)
+    group = CharField(model_attr='group', null=True)
 
     #def get_queryset(self):
     #    """Used when the entire index for model is updated."""

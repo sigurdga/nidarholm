@@ -7,3 +7,4 @@ media/avatars
 .pydevproject
 build
 index.xapian
+index.whoosh
