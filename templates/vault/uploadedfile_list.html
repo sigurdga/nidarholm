@@ -15,3 +15,27 @@
 <a href="{% url vault.views.new_file %}">Last opp ny fil</a>
 
 {% endblock %}
+
+{% block contextinfo %}
+  {% load tagging_tags %}
+  {% tag_cloud_for_model vault.UploadedFile as cloud with distribution=log steps=4 %}
+  {% for tag in cloud %}
+  {% if tag.name not in tags %}
+    <span class="tag">
+      <a style="font-size:1.{{ tag.font_size }}em" href="{% url file_list %}tags/{{ tags|join:"/" }}{% if tags %}/{% endif %}{{ tag }}">{{ tag }}</a>
+    </span>
+    {% endif %}
+  {% endfor %}
+{% endblock contextinfo %}
+
+
+{% load menu %}
+
+{% block breadcrumbs %}
+{% breadcrumbs '/files/' request.user menu_tags %}
+{% endblock breadcrumbs %}
+
+{% block local_menu %}
+{% local_menu '/files/' request.user %}
+{% endblock local_menu %}
+
