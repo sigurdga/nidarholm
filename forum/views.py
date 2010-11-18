@@ -12,6 +12,7 @@ def debate_list(request, page=1):
     return list_detail.object_list(request,
                                    queryset=Debate.objects.for_user(request.user).filter(parent=None),
                                    page=page,
+                                   paginate_by=20,
                                    template_name='forum/list.html',
                                    )
 

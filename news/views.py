@@ -17,6 +17,7 @@ def story_list(request, page=1):
     return list_detail.object_list(request,
                                    queryset=Story.objects.for_user(request.user).filter(parent=None),
                                    page=page,
+                                   paginate_by=10,
                                    template_name='news/main.html',
                                    extra_context={'infopage': infopage})
 

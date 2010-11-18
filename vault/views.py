@@ -50,6 +50,7 @@ def file_list(request, tags="", page=1):
     return list_detail.object_list(request,
                                    queryset=queryset,
                                    page=page,
+                                   paginate_by=20,
                                    extra_context={
                                            'tags': tags,
                                            'menu_tags': menu_tags,

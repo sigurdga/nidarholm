@@ -44,6 +44,9 @@ class UploadedFile(models.Model):
     def __unicode__(self):
         return self.filename
 
+    class Meta:
+        ordering = ("-uploaded",)
+
     @models.permalink
     def get_absolute_url(self):
         return ('vault-file', (), {'id': self.id})

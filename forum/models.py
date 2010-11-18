@@ -3,9 +3,9 @@ from core.models import Common, Title, Markdown
 
 class Debate(Common, Title, Markdown):
     parent = models.ForeignKey('Debate', null=True, blank=True, related_name='children')
- 
+
     class Meta:
-        ordering = ('created',)
+        ordering = ('-created',)
 
     def __unicode__(self):
         return self.title
