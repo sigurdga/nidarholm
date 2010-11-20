@@ -23,6 +23,7 @@ class EventCategory(models.Model):
 
 class Event(Common, Title, Markdown):
     #place = models.ForeignKey('Place', blank=True, null=True)
+    location = models.CharField(max_length=50, blank=True, null=True)
     whole_day = models.BooleanField(default=False)
     start = models.DateTimeField()
     end = models.DateTimeField(blank=True, null=True)
