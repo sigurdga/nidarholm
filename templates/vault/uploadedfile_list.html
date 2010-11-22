@@ -3,22 +3,42 @@
 {% block title %}Filer{% endblock %}
  
 {% block content %}
+{% load tagging_tags %}
 
 <ul>
 {% for uploadedfile in object_list %}
-<li><a href="{{ uploadedfile.get_absolute_url }}">{{ uploadedfile.filename }}</a></li>
+<li><a href="{{ uploadedfile.get_absolute_url }}">{{ uploadedfile.filename }}</a>
+{% tags_for_object uploadedfile as filetags %}
+{% for tag in filetags %}
+{% if tag.name != "Filer" %}
+  <a href="{% url file_list %}tags/{{ tags|join:"/"}}{% if tags %}/{% endif %}{{ tag.name }}">{{ tag }}</a>
+{% endif %}
+{% endfor %}
+<br />{{ uploadedfile.uploaded }} <a href="{{ uploadedfile.user.get_absolute_url }}">{{ uploadedfile.user.get_full_name }}</a></li>
 {% empty %}
 <li>Nothing here</li>
 {% endfor %}
 </ul>
 
-<a href="{% url vault.views.new_file %}">Last opp ny fil</a>
+            {% if page.has_previous or page.has_next %}
+                <div>
+                    {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Forrige{% if page.has_previous %}</a>{% endif %}
+                    |
+                    {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Neste &raquo;{% if page.has_next %}</a>{% endif %}
+                </div>
+            {% endif %}
 
+{% endblock %}
+
+{% block contextmenu %}
+{% if request.user.is_authenticated %}
+<a href="{% url vault.views.new_file %}">Last opp ny fil</a>
+{% endif %}
 {% endblock %}
 
 {% block contextinfo %}
   {% load tagging_tags %}
-  {% tag_cloud_for_model vault.UploadedFile as cloud with distribution=log steps=4 %}
+  {% tag_cloud_for_model vault.UploadedFile as cloud with distribution=log steps=4 min_count=50 %}
   {% for tag in cloud %}
   {% if tag.name not in tags %}
     <span class="tag">
