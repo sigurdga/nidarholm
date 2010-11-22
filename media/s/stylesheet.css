@@ -137,10 +137,6 @@ h1 { font-size: 160%; }
 h2 { font-size: 130%; }
 h3 { font-size: 100%; }
 
-div#middle ul {
-  margin-left: 20px;
-}
-
 em {
   font-weight: bold;
 }
@@ -185,7 +181,7 @@ p.caption {
   font-style: normal;
 }
 
-.paginator { padding: .25em .25em .6em .25em; }
+.paginator { padding: .25em 0 .6em 0 }
 .paginate-pages { padding: 2px 3px; }
 .paginate-first, .paginate-last { padding: 2px 6px; border: 1px solid #ddd; font-weight: bold; }
 .paginate-previous, .paginate-next { padding: 2px 3px; border: 1px solid #ddd; }
