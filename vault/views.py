@@ -36,7 +36,8 @@ def new_file(request):
         form = UploadedFileForm(instance=uploadedfile)
     return render_to_response('vault/new_file.html', {'form': form}, context_instance=RequestContext(request))
 
-def file_list(request, tags="", page=1):
+def file_list(request, tags=""):
+
     if tags:
         tags = tags.split("/")
         queryset = UploadedFile.objects.for_user(request.user)
@@ -49,7 +50,6 @@ def file_list(request, tags="", page=1):
 
     return list_detail.object_list(request,
                                    queryset=queryset,
-                                   page=page,
                                    paginate_by=20,
                                    extra_context={
                                            'tags': tags,

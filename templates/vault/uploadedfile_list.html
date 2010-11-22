@@ -19,15 +19,8 @@
 <li>Nothing here</li>
 {% endfor %}
 </ul>
-
-            {% if page.has_previous or page.has_next %}
-                <div>
-                    {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Forrige{% if page.has_previous %}</a>{% endif %}
-                    |
-                    {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Neste &raquo;{% if page.has_next %}</a>{% endif %}
-                </div>
-            {% endif %}
-
+{% load paginator %}
+{% if is_paginated %}<div class="paginator">{% paginator %}</div>{% endif %}
 {% endblock %}
 
 {% block contextmenu %}
