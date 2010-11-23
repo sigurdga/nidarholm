@@ -132,7 +132,6 @@ INTERNAL_IPS = ('127.0.0.1', '192.168.0.102')
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-    #'permissions.backend.ObjectPermBackend',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
