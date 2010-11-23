@@ -12,4 +12,7 @@
 {% endfor %}
 </ul>
 
+{% load paginator %}
+{% if is_paginated %}<div class="paginator">{% paginator %}</div>{% endif %}
+
 {% endblock content %}

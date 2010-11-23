@@ -7,11 +7,10 @@ from forum.forms import DebateForm
 from django.template.context import RequestContext
 from django.views.generic import list_detail
 
-def debate_list(request, page=1):
+def debate_list(request):
 
     return list_detail.object_list(request,
                                    queryset=Debate.objects.for_user(request.user).filter(parent=None),
-                                   page=page,
                                    paginate_by=20,
                                    template_name='forum/list.html',
                                    )
