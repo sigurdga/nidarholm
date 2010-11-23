@@ -113,6 +113,7 @@ INSTALLED_APPS = (
     'tagging',
     'profiles',
     'avatar',
+    'core',
     'debug_toolbar',
     'search',
     'relations',

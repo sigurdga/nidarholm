@@ -4,10 +4,12 @@
 
 {% block content %}
 
+{% load date %}
 <h1>Aktivitetsliste {{ year }}</h1>
 <ul>
 {% for event in object_list %}
 <li><a href="{{ event.get_absolute_url }}">{{ event.title }}</a></li>
+{% between_datetimes event.start event.end event.whole_day %}
 {% empty %}
 <li>Nothing here</li>
 {% endfor %}
