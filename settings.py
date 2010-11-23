@@ -84,7 +84,6 @@ MIDDLEWARE_CLASSES = (
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'sqlmiddleware.SQLLogToConsoleMiddleware',
     'request.middleware.RequestMiddleware',
     'permissions.middleware.http.Http403Middleware',
     'pages.middleware.FlatpageFallbackMiddleware',
