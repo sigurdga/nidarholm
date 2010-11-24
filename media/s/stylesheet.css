@@ -30,6 +30,10 @@ div#top div.padding {
   position: relative;
 }
 
+div#content ul {
+  margin-left: 20px;
+}
+
 div#breadcrumbs ul,
 div#menu ul {
   list-style-type: none;
