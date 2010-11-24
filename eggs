@@ -1,5 +1,6 @@
 django-request
 django-profiles
+django-registration
 django-avatar
 django-debug-toolbar
 django-extensions

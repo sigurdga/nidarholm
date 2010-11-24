@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Ny registrering{% endblock %}
+
+{% block content %}
+
+<h1>Ny registrering</h1>
+
+<form method="post">
+    {{ form.as_ul }}
+    {% csrf_token %}
+    <input type="submit" value="Send" />
+</form>
+
+{% endblock content %}

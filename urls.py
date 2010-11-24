@@ -1,6 +1,7 @@
 from django.conf.urls.defaults import *
 from django.contrib import admin
 from django.conf import settings
+from django.contrib.auth import views as auth_views
 from accounts.views import login, logout, register, groups, group_object_detail, user_groups, member_list
 from news.views import story_list
 from pages.views import edit_flatpage
@@ -40,9 +41,13 @@ def _get_named_patterns():
 
 urlpatterns = patterns('',
     (r'^$', story_list, (), 'main'),
-    (r'^login/', login, (), 'login'),
-    (r'^logout/', logout, (), 'logout'),
-    (r'^register/', register, (), 'register'),
+    #(r'^login/', login, (), 'login'),
+    #(r'^logout/', logout, (), 'logout'),
+    #(r'^password/reset/$', auth_views.password_reset, (), 'reset-password'),
+    #(r'^password/reset/done/$', auth_views.password_reset_done, (), 'reset-password-done'),
+    #(r'^a/password/reset/confirm/(?P<uidb36>[-\w]+)/(?P<token>[-w]+)/$',  auth_views.password_reset_confirm, (), 'reset-password-confirm'),
+    #(r'^password/reset/complete/$', auth_views.password_reset_complete, (), 'reset-password-complete'),
+    (r'^accounts/', include('registration.urls')),
     (r'^forum/', include('nidarholm.forum.urls')),
     (r'^news/', include('nidarholm.news.urls')),
     (r'^events/', include('nidarholm.events.urls')),

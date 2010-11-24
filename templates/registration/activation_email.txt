@@ -1,0 +1,7 @@
+Aktiver brukeren din på {{ site }}
+
+Du gjør det ved å klikke
+{{ activation_key }}
+innen {{ activation_key }}
+
+Hilsen Automatikken
