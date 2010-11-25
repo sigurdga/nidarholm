@@ -11,10 +11,12 @@
 {% endif %}
 
 <form action="" method="post">
-  {{ form.as_p }}
-  {% csrf_token %}
-  <input type="submit" value="Logg inn" />
-  <input type="hidden" name="next" value="{{ next|escape }}" />
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{{ next|escape }}" />
+    <table>
+        {{ form.as_table }}
+        <tr><td></td><td><input type="submit" value="Logg inn" /></td></tr>
+    </table>
 </form>
 
 {% endblock %}
