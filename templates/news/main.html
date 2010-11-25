@@ -9,7 +9,7 @@
 
 {% if infopage %}
 {% block contextinfo %}
-{{ infopage.content|safe }}
+{{ infopage.content_html|safe }}
 {% endblock %}
 {% endif %}
 
@@ -21,7 +21,7 @@
 {% for story in object_list %}
 <li>
   <h2><a href="{{ story.get_absolute_url }}">{{ story.title }}</a></h2>
-  {{ story.text_html|safe }}
+  {{ story.content_html|safe }}
 </li>
 {% empty %}
 <li>Ingenting å skrive hjem om</li>

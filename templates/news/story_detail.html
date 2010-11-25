@@ -7,7 +7,7 @@
 <div class="news-comment-reply"><a href="{% url news-stories %}{{ object.id }}/comment">Svar</a></div>
 <p><a href="{{ object.user.get_profile.get_absolute_url }}">{{ object.user.get_full_name }}</a>, {{ object.created }}
 
-{{ object.text_html|safe }}
+{{ object.content_html|safe }}
 
 <ul>
     {% for object in object.children.all %}

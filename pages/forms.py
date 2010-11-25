@@ -4,4 +4,4 @@ from pages.models import FlatPage
 class PageForm(ModelForm):
     class Meta:
         model = FlatPage
-        exclude = ('text_html')
+        exclude = ('content_html')

@@ -84,11 +84,11 @@ class Common(models.Model):
 
 
 class Markdown(models.Model):
-    text = models.TextField(_('content'), blank=True, help_text=_('Use Markdown syntax'))
-    text_html = models.TextField(_('html content'), blank=True)
+    content = models.TextField(_('content'), blank=True, null=True, help_text=_('Use Markdown syntax'))
+    content_html = models.TextField(_('html content'), blank=True, null=True)
 
     def save(self, *args, **kwargs):
-        self.text_html = extend_markdown(self.text)
+        self.content_html = extend_markdown(self.content)
         super(Markdown, self).save(*args, **kwargs)
 
     class Meta:
