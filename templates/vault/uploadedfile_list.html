@@ -30,6 +30,13 @@
 {% endblock %}
 
 {% block contextinfo %}
+<form method="get" action="/search/">
+    <table> 
+        <tr><th><label for="id_q">Søk:</label></th><td><input type="text" name="q" value="" id="id_q" /></td></tr> 
+        <tr><td></td><td><input type="submit" value="Søk" /></td></tr> 
+    </table>
+</form>
+
   {% load tagging_tags %}
   {% tag_cloud_for_model vault.UploadedFile as cloud with distribution=log steps=4 min_count=50 %}
   {% for tag in cloud %}
