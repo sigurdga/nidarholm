@@ -8,3 +8,4 @@ media/avatars
 build
 index.xapian
 index.whoosh
+.settings
