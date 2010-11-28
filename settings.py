@@ -134,10 +134,6 @@ INSTALLED_APPS = (
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 INTERNAL_IPS = ('127.0.0.1', '192.168.0.102')
 
-AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
-)
-
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.request",
     "django.contrib.auth.context_processors.auth",
