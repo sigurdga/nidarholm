@@ -43,3 +43,8 @@ class Event(Common, Title, Markdown):
                                      'slug': self.slug
                                      }
         )
+
+    class Meta:
+        verbose_name = _('Event')
+        verbose_name_plural = _('Events')
+        ordering = ('start',)

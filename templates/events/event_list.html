@@ -9,13 +9,18 @@
 {% endif %}
 {% endblock %}
 
+{% block contextinfo %}
+{% endblock contextinfo %}
+
 {% block content %}
 {% load date %}
 
 <h1>{% trans "Event list" %}</h1>
 <ul>
 {% for event in object_list %}
-<li><a href="{{ event.get_absolute_url }}">{{ event.title }}</a> {% single_datetime event.start %}</li>
+<li>
+  <a href="{{ event.get_absolute_url }}">{{ event.title }}</a><br />
+  {% single_datetime event.start event.whole_day %}{% if event.location %}, {{ event.location }}{% endif %}</li>
 {% empty %}
 <li>{% trans "Nothing here" %}</li>
 {% endfor %}
