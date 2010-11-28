@@ -23,16 +23,20 @@
 
 <h2>{% trans "Contact information" %}</h2>
 <table>
-    <tr><th>{% trans "E-mail" %}</th><td>{{ profile.email }}</td></tr>
-    <tr><th>{% trans "Cellphone" %}</th><td>{{ profile.cellphone }}</td></tr>
-    <tr><th>{% trans "Address" %}</th><td>{{ profile.address }}</td></tr>
-    <tr><th>{% trans "Postcode" %}</th><td>{{ profile.postcode }}</td></tr>
+    <tr><th>{% trans "Email" %}</th><td>{% if profile.user.email %}{{ profile.user.email }}{% endif %}</td></tr>
+    <tr><th>{% trans "Cellphone" %}</th><td>{% if profile.cellphone %}{{ profile.cellphone }}{% endif %}</td></tr>
+    <tr><th>{% trans "Address" %}</th><td>{% if profile.address %}{{ profile.address }}{% endif %}</td></tr>
+    <tr><th>{% trans "Postcode" %}</th><td>{% if profile.postcode %}{{ profile.postcode }}{% endif %}</td></tr>
 </table>
 
 <h2>{% trans "Work information" %}</h2>
 <table>
+    {% if profile.occupation %}
     <tr><th>{% trans "Occupation" %}</th><td>{{ profile.occupation }}</td></tr>
+    {% endif %}
+    {% if profile.employer %}
     <tr><th>{% trans "Employer" %}</th><td>{{ profile.employer }}</td></tr>
+    {% endif %}
 </table>
 
 <h2>{% trans "Birthday" %}</h2>
