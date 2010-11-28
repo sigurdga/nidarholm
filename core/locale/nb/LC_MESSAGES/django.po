@@ -1,0 +1,86 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-11-27 18:07+0100\n"
+"PO-Revision-Date: 2010-11-27 18:25+0100\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: models.py:75
+msgid "created"
+msgstr "laget"
+
+#: models.py:76
+msgid "updated"
+msgstr "oppdatert"
+
+#: models.py:77
+msgid "created by"
+msgstr "laget av"
+
+#: models.py:78
+msgid "created for"
+msgstr "laget for"
+
+#: models.py:87
+msgid "content"
+msgstr "innhold"
+
+#: models.py:87
+msgid "Use Markdown syntax"
+msgstr "Bruk Markdown"
+
+#: models.py:88
+msgid "html content"
+msgstr "html-innhold"
+
+#: models.py:99
+msgid "title"
+msgstr "tittel"
+
+#: models.py:100
+msgid "slug"
+msgstr "slug"
+
+#: templatetags/markdown.py:21
+msgid "Syntax help"
+msgstr "Skrivehjelp"
+
+#: templatetags/markdown.py:22
+msgid ""
+"Markdown helps you write text on the web. For bullet lists, start the lines "
+"with dash (-), plus (+) or asterisk (*) followed by space. To emphasize "
+"words, enclose them in <code>_underscores_</code> or <code>*asterisks*</"
+"code>. Two makes the emphasis <code>__stronger__</code>."
+msgstr "Markdown hjelper deg med å skrive hypertekst. For punktliste, start linjene med minus (-), pluss (+) eller stjerne (*) etterfulgt av mellomrom. For å utheve ord, bruk <code>_lavstreker_</code> eller <code>*stjerner*</code> rundt dem. Bruk doble for å gjøre uthevingen <code>__sterkere__</code>."
+
+#: templatetags/markdown.py:23
+msgid ""
+"Readable links are a bit more complex, here is an example: <code>[Link text "
+"descibing the link](http://address.to/location)</code>. You can also make "
+"simpler not so readable links like this: <code>&lt;http://address.to/"
+"location&gt;</code>."
+msgstr "Lesbare lenker er litt mer komplekse, her er et eksempel: <code>[Beskrivende tekst(http://adresse.til/nettsted)</code>. Du kan også lenker enklere, men ikke lesbare, som dette: <code>&lt;http://adresse.til/nettsted&gt;</code>."
+
+#: templatetags/markdown.py:24
+msgid ""
+"Images are similar, but you need an exclamation mark: <code>![Image "
+"description](http://address.to/picture.jpg)</code>. Use internal images like "
+"this: <code>![Image description][8]</code>. You only need the image number "
+"in brackets, but you can optinally specify the image size like: <code>!"
+"[Description][8/4]</code>."
+msgstr "Bilder er tilsvarende men du trenger et utropstegn først: <code>![Bildetekst](http://adresse.til/bilde.jpg)</code>. Interne bilder kan legges inn slik: <code>![Bildebeskrivelse][8]</code>. Du trenger bare bildenummer i den siste firkantparentesen, men du kan også legge på bildestørrelse slik: <code>![Bildebeskrivelse][8/4]</code>."
+
+#: templatetags/markdown.py:25
+msgid "See the complete specification of the Markdown syntax"
+msgstr "Les mer om hvordan du bruker Markdown"

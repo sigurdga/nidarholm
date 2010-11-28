@@ -1,0 +1,343 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-11-27 18:49+0100\n"
+"PO-Revision-Date: 2010-11-27 19:02+0100\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: templates/403.html:4 templates/403.html.py:7
+msgid "No access"
+msgstr "Ingen tilgang"
+
+#: templates/403.html:8
+msgid "It looks like the permission system works"
+msgstr "Det ser ut som tilgangssystemet virker"
+
+#: templates/base.html:23
+msgid "Logged in as"
+msgstr "Logget inn som"
+
+#: templates/base.html:24
+msgid "Log out"
+msgstr "Logg ut"
+
+#: templates/base.html:26
+#: templates/registration/password_reset_complete.html:12
+msgid "Log in"
+msgstr "Logg inn"
+
+#: templates/base.html:72
+msgid "Active users last 10 minutes"
+msgstr "Aktive brukere de siste ti minuttene"
+
+#: templates/base.html:82
+msgid "active users last 10 minutes"
+msgstr "aktive brukere de siste ti minuttene"
+
+#: templates/accounts/edit_user_groups.html:4
+#: templates/accounts/edit_user_groups.html:8
+msgid "User groups"
+msgstr "Brukergrupper"
+
+#: templates/accounts/edit_user_groups.html:13
+#: templates/events/new_event.html:14 templates/forum/new_debate.html:14
+#: templates/pages/edit_page.html:11 templates/profiles/create_profile.html:13
+#: templates/profiles/edit_profile.html:13
+msgid "Submit"
+msgstr "Lagre"
+
+#: templates/accounts/group_detail.html:4
+msgid "Group"
+msgstr "Gruppe"
+
+#: templates/accounts/group_list.html:4 templates/accounts/user_groups.html:4
+msgid "Groups"
+msgstr "Grupper"
+
+#: templates/accounts/members.html:4 templates/accounts/members.html.py:8
+#: templates/profiles/profile_list.html:4
+msgid "All users"
+msgstr "Alle brukere"
+
+#: templates/accounts/members.html:22 templates/profiles/profile_list.html:19
+msgid "No users"
+msgstr "Ingen brukere"
+
+#: templates/avatar/change.html:6
+msgid "Your profile picture:"
+msgstr "Ditt profilbilde:"
+
+#: templates/avatar/change.html:9
+msgid ""
+"You do not have a profile picture. It would be kind of you to upload one."
+msgstr "Du har ikke noe profilbilde. Det er fint om du laster opp ett."
+
+#: templates/avatar/change.html:16
+msgid "Choose picture"
+msgstr "Velg bilde"
+
+#: templates/avatar/change.html:21
+msgid "Profile picture"
+msgstr "Profilbilde"
+
+#: templates/avatar/change.html:22
+msgid "Upload"
+msgstr "Last opp"
+
+#: templates/events/event_archive_day.html:4
+#: templates/events/event_archive_day.html:8
+#: templates/events/event_detail.html:4
+msgid "Events"
+msgstr "Aktiviteter"
+
+#: templates/events/event_archive_day.html:13
+#: templates/events/event_archive_month.html:13
+#: templates/events/event_archive_year.html:16
+#: templates/events/event_list.html:20 templates/forum/list.html:18
+msgid "Nothing here"
+msgstr "Ingenting her"
+
+#: templates/events/event_archive_month.html:4
+#: templates/events/event_archive_month.html:8
+#: templates/events/event_archive_year.html:4
+#: templates/events/event_archive_year.html:9
+#: templates/events/event_list.html:4 templates/events/event_list.html:15
+msgid "Event list"
+msgstr "Aktivitetsliste"
+
+#: templates/events/event_detail.html:8
+msgid "Edit"
+msgstr "Rediger"
+
+#: templates/events/event_list.html:8 templates/events/new_event.html:4
+#: templates/events/new_event.html.py:8
+msgid "New event"
+msgstr "Ny aktivitet"
+
+#: templates/forum/list.html:4 templates/forum/list.html.py:13
+msgid "Forum"
+msgstr "Forum"
+
+#: templates/forum/list.html:8
+msgid "New topic"
+msgstr "Nytt tema"
+
+#: templates/forum/new_debate.html:4 templates/forum/new_debate.html.py:8
+msgid "New post"
+msgstr "Nytt innlegg"
+
+#: templates/forum/tree.html:4 templates/news/story_comment.html:3
+#: templates/news/story_detail.html:8
+msgid "Reply"
+msgstr "Svar"
+
+#: templates/navigation/paginator.html:4
+msgid "First page"
+msgstr "Første side"
+
+#: templates/navigation/paginator.html:7
+msgid "Previous page"
+msgstr "Forrige side"
+
+#: templates/navigation/paginator.html:11
+msgid "Current page"
+msgstr "Aktiv side"
+
+#: templates/navigation/paginator.html:13
+#, python-format
+msgid "Page %(num)s"
+msgstr "Side %(num)s"
+
+#: templates/navigation/paginator.html:17
+msgid "Next page"
+msgstr "Neste side"
+
+#: templates/navigation/paginator.html:20
+msgid "Last Page"
+msgstr "Siste side"
+
+#: templates/navigation/paginator.html:22
+msgid "av"
+msgstr "av"
+
+#: templates/navigation/paginator.html:22
+msgid "pages"
+msgstr "sider"
+
+#: templates/navigation/sitemap.html:4
+msgid "Sitemap"
+msgstr "Nettstedkart"
+
+#: templates/navigation/sitemap.html:15
+msgid "No links in menu structure"
+msgstr "Ingen lenker i menystrukturen"
+
+#: templates/news/main.html:4
+msgid "Main"
+msgstr "Hovedside"
+
+#: templates/news/main.html:7
+msgid "Create new story"
+msgstr "Lag ny nyhet"
+
+#: templates/news/main.html:9
+msgid "Edit welcome text"
+msgstr "Rediger velkomsttekst"
+
+#: templates/news/main.html:21
+msgid "News"
+msgstr "Nyheter"
+
+#: templates/news/main.html:30
+msgid "No news at this time"
+msgstr "Ingen nyheter på det nåværende tidspunktet"
+
+#: templates/news/main.html:34
+msgid "Next important event"
+msgstr "Neste konsert"
+
+#: templates/news/story_archive.html:4 templates/news/story_archive.html:7
+#: templates/news/story_archive_year.html:4
+#: templates/news/story_archive_year.html:6
+msgid "News archive"
+msgstr "Nyhetsarkiv"
+
+#: templates/pages/default.html:7 templates/pages/edit_page.html:3
+msgid "Edit page content"
+msgstr "Rediger sideinnhold"
+
+#: templates/profiles/create_profile.html:4
+msgid "Create profile"
+msgstr "Rediger brukerprofil"
+
+#: templates/profiles/create_profile.html:7
+msgid "Add your details"
+msgstr "Legg inn brukerinformasjon"
+
+#: templates/profiles/edit_profile.html:4
+#: templates/profiles/edit_profile.html:7
+#, python-format
+msgid "Edit user profile %(user)s"
+msgstr "Rediger brukerprofil «%(user)s»"
+
+#: templates/profiles/profile_detail.html:8
+msgid "Edit user details"
+msgstr "Rediger brukerinformasjon"
+
+#: templates/profiles/profile_detail.html:9
+msgid "Change profile picture"
+msgstr "Bytt profilbilde"
+
+#: templates/profiles/profile_detail.html:12
+msgid "Edit group permissions"
+msgstr "Rediger grupperettigheter"
+
+#: templates/profiles/profile_list.html:22
+msgid "Only superusers may see this"
+msgstr "Bare superbrukere får se dette"
+
+#: templates/registration/logout.html:6
+msgid "Thanks for spending some quality time with the Web site today."
+msgstr "Takk for at du var innom i dag."
+
+#: templates/registration/logout.html:8
+msgid "Log in again"
+msgstr "Logg inn igjen"
+
+#: templates/registration/password_reset_complete.html:4
+#: templates/registration/password_reset_complete.html:8
+msgid "Password reset complete"
+msgstr "Ferdig med endring av passordet"
+
+#: templates/registration/password_reset_complete.html:10
+msgid "Your password has been set.  You may go ahead and log in now."
+msgstr "Passordet ditt er lagret. Du kan nå logge inn."
+
+#: templates/registration/password_reset_confirm.html:4
+#: templates/registration/password_reset_form.html:4
+#: templates/registration/password_reset_form.html:8
+msgid "Password reset"
+msgstr "Nullstilling av passord"
+
+#: templates/registration/password_reset_confirm.html:10
+msgid "Enter new password"
+msgstr "Legg inn nytt passord"
+
+#: templates/registration/password_reset_confirm.html:12
+msgid ""
+"Please enter your new password twice so we can verify you typed it in "
+"correctly."
+msgstr "Legg inn det nye passordet to ganger så vi vet at du skreiv det inn rett."
+
+#: templates/registration/password_reset_confirm.html:17
+msgid "Change my password"
+msgstr "Bytt passordet mitt"
+
+#: templates/registration/password_reset_confirm.html:22
+msgid "Password reset unsuccessful"
+msgstr "Nullstilling av passord feilet"
+
+#: templates/registration/password_reset_confirm.html:24
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a new password reset."
+msgstr "Lenken for å nullstille passordet er feil, muligens fordi den allerede kan ha blitt brukt. Prøv å nullstille passordet på nytt."
+
+#: templates/registration/password_reset_done.html:4
+#: templates/registration/password_reset_done.html:8
+msgid "Password reset successful"
+msgstr "Nullstilling av passordet gikk bra"
+
+#: templates/registration/password_reset_done.html:10
+msgid ""
+"We've e-mailed you instructions for setting your password to the e-mail "
+"address you submitted. You should be receiving it shortly."
+msgstr "Vi har sendt instruksjoner på epost for hvordan du kan endre passordet ditt. Du bør motta den om ganske kort tid."
+
+#: templates/registration/password_reset_form.html:10
+msgid ""
+"Forgotten your password? Enter your e-mail address below, and we'll e-mail "
+"instructions for setting a new one."
+msgstr "Glemt passordet? Skriv inn epostadressa di under så sender vi deg instruksjoner på hvordan du kan lage deg et nytt."
+
+#: templates/registration/password_reset_form.html:16
+msgid "Reset my password"
+msgstr "Nullstill passordet mitt"
+
+#: templates/relations/groupcategory_list.html:4
+#: templates/relations/groupcategory_list.html:7
+msgid "Organization"
+msgstr "Organisasjon"
+
+#: templates/relations/groupcategory_list.html:15
+msgid "No groupcategories: can not show organization."
+msgstr "Ingen gruppekategorier: kan ikke vise organisasjon."
+
+#: templates/search/search.html:5 templates/search/search.html.py:10
+msgid "Search"
+msgstr "Søk"
+
+#: templates/search/search.html:14
+msgid "Results"
+msgstr "Resultater"
+
+#: templates/search/search.html:21
+#, python-format
+msgid ""
+"Hidden file, only visible for members of group \"%(result.object.group)s\""
+msgstr "Skjult fil. Bare synlig for medlemmer av gruppa «%(result.object.group)s»."
+
+#: templates/search/search.html:25
+msgid "No results"
+msgstr "Ingen resultater"
