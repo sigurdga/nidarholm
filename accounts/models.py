@@ -1,27 +1,39 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
-from instruments.models import Instrument
+from django.utils.translation import ugettext_lazy as _
 
 class UserProfile(models.Model):
     user = models.ForeignKey(User)
     #organization = models.ForeignKey(Organization)
     #verv m2m: kobles mot gruppe
-    cellphone = models.CharField(max_length=20, null=True, blank=True)
-    address = models.CharField(max_length=50, null=True, blank=True)
-    postcode = models.SmallIntegerField(null=True, blank=True)
+    cellphone = models.CharField(max_length=20, null=True, blank=True,
+            verbose_name=_('cellphone'))
+    address = models.CharField(max_length=50, null=True, blank=True,
+            verbose_name=_('address'))
+    postcode = models.SmallIntegerField(null=True, blank=True,
+            verbose_name=_('postcode'))
     #country: add later
-    occupation = models.CharField(max_length=50, null=True, blank=True)
-    employer = models.CharField(max_length=30, null=True, blank=True)
-    born = models.DateField(null=True, blank=True)
-    joined = models.DateField(null=True, blank=True)
+    occupation = models.CharField(max_length=50, null=True, blank=True,
+            verbose_name=_('occupation'))
+    employer = models.CharField(max_length=30, null=True, blank=True,
+            verbose_name=_('employer'))
+    born = models.DateField(null=True, blank=True,
+            verbose_name=_('birth date'))
+    joined = models.DateField(null=True, blank=True,
+            verbose_name=_('joined date'))
     # to be replaced by something generic, maybe use knowledge from other fields
-    status = models.SmallIntegerField(null=True, blank=True)
-    parent_organization_member_number = models.IntegerField(null=True, blank=True)
-    insured = models.SmallIntegerField(null=True, blank=True)
+    status = models.SmallIntegerField(null=True, blank=True,
+            verbose_name=_('membership status'))
+    parent_organization_member_number = models.IntegerField(null=True, blank=True,
+            verbose_name=_('external member number'))
+    insured = models.SmallIntegerField(null=True, blank=True,
+            verbose_name=_('insurance'))
     # to be replaced by something generic: organization added fields like instrument, verv
-    account = models.IntegerField(null=True, blank=True) #reskontro
-    instrument = models.ForeignKey(Instrument, null=True, blank=True)
+    account = models.IntegerField(null=True, blank=True,
+            verbose_name=_('account reference')) #reskontro
+    history = models.TextField(null=True, blank=True,
+            verbose_name=_('membership history'))
 
     def __unicode__(self):
         return self.user.username
