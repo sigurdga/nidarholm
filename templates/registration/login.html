@@ -1,13 +1,14 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}Logg inn{% endblock %}
+{% block title %}{% trans "Login" %}{% endblock %}
 
 {% block content %}
 
-<h1>Logg inn</h1>
+<h1>{% trans "Login" %}</h1>
 
 {% if form.errors %}
-<p class="error">Uffda, dette var nok ikke riktig</p>
+<p class="error">{% trans "Ooops! That was not correct."}</p>
 {% endif %}
 
 <form action="" method="post">
@@ -15,8 +16,13 @@
     <input type="hidden" name="next" value="{{ next|escape }}" />
     <table>
         {{ form.as_table }}
+        <tr><td></td><td><a href="{% url django.contrib.auth.views.password_reset %}">{% trans "Lost your password?" %}</a></td></tr>
         <tr><td></td><td><input type="submit" value="Logg inn" /></td></tr>
     </table>
 </form>
+
+<script type="text/javascript">
+document.getElementById('id_username').focus()
+</script>
 
 {% endblock %}
