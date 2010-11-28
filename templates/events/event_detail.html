@@ -12,7 +12,10 @@
 {% block content %}
 {% load date %}
 <h1>{{ object.title }}</h1>
-<p>{% between_datetimes object.start object.end object.whole_day %}}</p>
+<p>
+  {% between_datetimes object.start object.end object.whole_day %}{% if object.location %}, {{ object.location }}{% endif %}<br />
+  ({% if object.group %}{% trans "For group" %}: {{ object.group }}{% else %}{% trans "For all" %}{% endif %})
+</p>
 
 {{ object.content_html|safe }}
 
