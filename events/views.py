@@ -12,12 +12,12 @@ MONTH_FORMAT = '%m'
 def upcoming_events(request, page=1):
 
     return list_detail.object_list(request,
-                                   queryset=Event.objects.for_user(request.user).filter(start__gt=date.today()),
+                                   queryset=Event.objects.for_user(request.user).filter(start__gt=date.today()).order_by("-start"),
                                    page=page,
                                    )
 
 def event_archive(request):
-    return date_based.archive_index(request, Event.objects.for_user(request.user).order_by("start"), DATEFIELD)
+    return date_based.archive_index(request, Event.objects.for_user(request.user), DATEFIELD)
 
 def event_archive_year(request, year):
     return date_based.archive_year(request, year, Event.objects.for_user(request.user), DATEFIELD,

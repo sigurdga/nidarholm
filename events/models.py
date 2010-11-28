@@ -47,4 +47,4 @@ class Event(Common, Title, Markdown):
     class Meta:
         verbose_name = _('Event')
         verbose_name_plural = _('Events')
-        ordering = ('start',)
+        ordering = ('-start',)
