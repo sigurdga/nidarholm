@@ -1,5 +1,6 @@
+{% load i18n %}
 <div class="news-comment">
-    <div class="news-comment-reply"><a href="{% url news-stories %}{{ object.id }}/comment">Svar</a></div>
+    <div class="news-comment-reply"><a href="{% url news-stories %}{{ object.id }}/comment">{% trans "Reply" %}</a></div>
     <p><a href="{{ object.user.get_profile.get_absolute_url }}">{{ object.user.get_full_name }}</a>, {{ object.created }}
 
     {{ object.content_html|safe }}

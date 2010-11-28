@@ -1,6 +1,7 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}Gruppe {{ object.name }}{% endblock %}
+{% block title %}{% trans "Group" %}{{ object.name }}{% endblock %}
 
 {% block content %}
 

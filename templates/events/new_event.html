@@ -1,13 +1,18 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}Ny aktivitet{% endblock %}
+{% block title %}{% trans "New event" %}{% endblock %}
 
 {% block content %}
 
+<h1>{% trans "New event" %}
+
 <form method="post">
-{{ form.as_ul }}
-{% csrf_token %}
-<input type="submit" value="Submit" />
+  {% csrf_token %}
+  <table>
+    {{ form.as_table }}
+    <tr><td></td><td><input type="submit" value="{% trans "Submit" %}" /></td></tr>
+  </table>
 </form>
 
 {% endblock content %}

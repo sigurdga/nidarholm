@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block title %}{{ profile.user.username }}{% endblock %}
 
 {% block contextmenu %}
 {% if request.user == profile.user %}
-<li><a href="{% url edit-profile %}">Rediger opplysninger</a></li>
-<li><a href="{% url avatar_change %}">Endre bilde</a></li>
+<li><a href="{% url edit-profile %}">{% trans "Edit user details" %}</a></li>
+<li><a href="{% url avatar_change %}"{% trans "Change profile picture" %}</a></li>
 {% endif %}
 {% if request.user.is_superuser %}
-<li><a href="{% url user-groups profile.user %}">Rediger grupper</a></li>
+<li><a href="{% url user-groups profile.user %}">{% trans "Edit group permissions" %}</a></li>
 {% endif %}
 {% endblock %}
  

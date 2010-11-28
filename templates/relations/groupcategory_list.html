@@ -1,9 +1,10 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}Organisasjon{% endblock %}
+{% block title %}{% trans "Organization" %}{% endblock %}
 
 {% block content %}
-<h1>Organisasjon</h1>
+<h1>{% trans "Organization" %}</h1>
 {% if object_list %}
 <ul>
   {% for category in object_list %}
@@ -11,6 +12,6 @@
   {% endfor %}
 </ul>
 {% else %}
-No groupcategories
+{% trans "No groupcategories: can not show organization." %}
 {% endif %}
 {% endblock %}

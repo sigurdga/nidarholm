@@ -1,6 +1,7 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}Nettstedkart{% endblock %}
+{% block title %}{% trans "Sitemap" %}{% endblock %}
 {% block content %}
 <h1>Nettstedkart</h1>
 <ul>
@@ -11,7 +12,7 @@
     {% endwith %}
 </li>
 {% empty %}
-<li><i>No pages in menu structure</i></li>
+<li><i>{% trans "No links in menu structure" %}</i></li>
 {% endfor %}
 </ul>
 {% endblock %}

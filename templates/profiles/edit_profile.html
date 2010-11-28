@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}Endre profil{% endblock %}
+{% block title %}{% blocktrans %}Edit user profile {{ user }}{% endblocktrans %}{% endblock %}
  
 {% block content %}
-<h1>Endre kontaktinfo for {{ user }} </h1>
+<h1>{% blocktrans %}Edit user profile {{ user }}{% endblocktrans %}</h1>
  
 <form method="post" action="">
     {% csrf_token %}
     <table>
         {{ form.as_table }}
-        <tr><td></td><td><input type="submit" name="submit" value="Lagre" id="submit" /></td></tr>
+        <tr><td></td><td><input type="submit" name="submit" value="{% trans "Submit" %}" id="submit" /></td></tr>
     </table>
 </form>
  

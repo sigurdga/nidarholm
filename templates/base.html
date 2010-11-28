@@ -1,9 +1,10 @@
+{% load i18n %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" > 
 	<head> 
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" /> 
-		<title>{% block title %}Heia{% endblock title %} - Nidarholm</title> 
+		<title>{% block title %}Nidarholm{% endblock title %} - {{ request.get_host }}</title> 
  
     <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.2.0/build/cssreset/reset-min.css"> 
 		<link rel="stylesheet" type="text/css" href="/m/s/stylesheet.css" media="screen" /> 
@@ -17,7 +18,14 @@
         <div id="top"> 
             <div class="padding"> 
                 <div id="login"> 
-                    {% block login %}{% if request.user.is_authenticated %}Logget inn som <a href="{{ user.get_absolute_url }}">{{ user.username }}</a>. <a href="{% url auth_logout %}">Logg ut</a>{% else %}<a href="{% url auth_login %}">Logg inn</a>{% endif %}{% endblock login %}
+                    {% block login %}
+                    {% if request.user.is_authenticated %}
+                    {% trans "Logged in as" %} <a href="{{ request.user.get_absolute_url }}">{{ request.user.username }}</a>.
+                    <a href="{% url auth_logout %}">{% trans "Log out" %}</a>
+                    {% else %}
+                    <a href="{% url auth_login %}">{% trans "Log in" %}</a>
+                    {% endif %}
+                    {% endblock login %}
                 </div> 
  
                 {% load menu %}
@@ -39,7 +47,6 @@
                 <div id="sidebar"> 
                     <ul id="contextmenu"> 
                         {% block contextmenu %}
-                        <li>Nothing in sidebar, do not show</li>
                         {% endblock %} 
                     </ul> 
                     <div id="contextinfo"> 
@@ -62,7 +69,7 @@
                 {% load request_tag %}
                 {% active_users in 10 minutes as user_list %}
                 {% if request.user.is_authenticated %}
-                    <h2>Aktive brukere siste 10 minutt</h2>
+                    <h2>{% trans "Active users last 10 minutes" %}</h2>
                     <ul>
                     {% for user in user_list %}
                     <li><a href="{{ user.get_profile.get_absolute_url }}">{{ user.username }}</a></li>
@@ -72,7 +79,7 @@
                     {% file_list request 10 %}
                 {% else %}
                     {% if user_list %}
-                    <p>{{ user_list|length }} aktive brukere siste 10 minutt</p>
+                    <p>{{ user_list|length }} {% trans "active users last 10 minutes" %}</p>
                     {% endif %}
                 {% endif %}
             </div>

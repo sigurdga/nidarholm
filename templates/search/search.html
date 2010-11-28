@@ -1,27 +1,28 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block content %}
-    <h2>Søk</h2>
+    <h2>{% trans "Search" %}</h2>
 
     <form method="get" action=".">
         <table>
             {{ form.as_table }}
-            <tr><td></td><td><input type="submit" value="Søk" /></td></tr>
+            <tr><td></td><td><input type="submit" value="{% trans "Search" %}" /></td></tr>
         </table>
 
         {% if query %}
-            <h3>Resultater</h3>
+            <h3>{% trans "Results" %}</h3>
 
             {% for result in page.object_list %}
                 <p>
                     {% if not result.object.group or result.object.group in request.user.groups.all %}
                       <a href="{{ result.object.get_absolute_url }}">{{ result.object }}</a>
                     {% else %}
-                      Skjult fil: Fila vises for medlemmer av gruppa «{{ result.object.group }}»
+                      {% blocktrans %}Hidden file, only visible for members of group "{{ result.object.group }}"{% endblocktrans %}
                     {% endif %}
                 </p>
             {% empty %}
-                <p>Ingen resultater</p>
+                <p>{% trans "No results" %}</p>
             {% endfor %}
 
             {% if page.has_previous or page.has_next %}

@@ -1,16 +1,18 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}{{ object.title}} - Aktiviteter{% endblock %}
+{% block title %}{{ object.title}} - {% trans "Events" %}{% endblock %}
 
 {% block contextmenu %}
 {% if request.user.is_authenticated %}
-<li><a href="{% url events-edit object.id %}">Rediger</a></li>
+<li><a href="{% url events-edit object.id %}">{% trans "Edit" %}</a></li>
 {% endif %}
 {% endblock %}
-{% block content %}
 
+{% block content %}
+{% load date %}
 <h1>{{ object.title }}</h1>
-<p>{{ object.start }} -- {{ object.end }}</p>
+<p>{% between_datetimes object.start object.end object.whole_day %}}</p>
 
 {{ object.content_html|safe }}
 

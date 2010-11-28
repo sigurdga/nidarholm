@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}Alle brukere{% endblock %}
+{% block title %}{% trans "All users" %}{% endblock %}
  
 {% block content %}
-
+{% if request.user.is_superuser %}
 <h1>Alle brukere</h1>
 {% if object_list %}
 <table>
@@ -15,7 +16,9 @@
 {% endfor %}
 </table>
 {% else %}
-Ingen brukere
+{% trans "No users" %}
 {% endif %}
+{% else %}
+{% trans "Only superusers may see this" %}
 
 {% endblock content %}

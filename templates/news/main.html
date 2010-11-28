@@ -1,11 +1,14 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}Velkommen{% endblock %}
+{% block title %}{% trans "Main" %}{% endblock %}
 
 {% block contextmenu %}{% if request.user.is_authenticated %}
-<li><a href="{% url news-new-story %}">Lag ny nyhet</a></li>
-{% if infopage %}<li><a href="{% url edit-flatpage infopage.id %}">Rediger tekst</a></li>{% endif %}
-{% endif %}{% endblock %}
+<li><a href="{% url news-new-story %}">{% trans "Create new story" %}</a></li>
+{% if infopage %}
+<li><a href="{% url edit-flatpage infopage.id %}">{% trans "Edit welcome text" %}</a></li>{% endif %}
+{% endif %}
+{% endblock %}
 
 {% if infopage %}
 {% block contextinfo %}
@@ -15,7 +18,7 @@
 
 {% block content %}
 
-<h1>Nyheter</h1>
+<h1>{% trans "News" %}</h1>
 
 <ul>
 {% for story in object_list %}
@@ -24,11 +27,11 @@
   {{ story.content_html|safe }}
 </li>
 {% empty %}
-<li>Ingenting å skrive hjem om</li>
+<li>{% trans "No news at this time" %}</li>
 {% endfor %}
 </ul>
 
-<h1>Neste konsert</h1>
+<h1>{% trans "Next important event" %}</h1>
 {% load event_tag %}
 {% next_of_category "Konserter" request.user %}
 

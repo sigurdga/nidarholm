@@ -1,18 +1,19 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}Aktivitetsliste{% endblock %}
+{% block title %}{% trans "Event list" %}{{ year }}{% endblock %}
 
 {% block content %}
 
 {% load date %}
-<h1>Aktivitetsliste {{ year }}</h1>
+<h1>{% trans "Event list" %} {{ year }}</h1>
 <ul>
 {% for event in object_list %}
 <li><a href="{{ event.get_absolute_url }}">{{ event.title }}</a><br />
 {% between_datetimes event.start event.end event.whole_day %}
 </li>
 {% empty %}
-<li>Nothing here</li>
+<li>{% trans "Nothing here" %}</li>
 {% endfor %}
 </ul>
 

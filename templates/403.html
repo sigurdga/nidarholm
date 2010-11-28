@@ -1,7 +1,9 @@
 {% extends "base.html" %}
-{% block title %}{{ block.super }} | Ingen tilgang{% endblock %}
+{% load i18n %}
+
+{% block title %}{% trans "No access" %} | {{ block.super }}{% endblock %}
 
 {% block content %}
-<h1>Ingen tilgang</h1>
-<span>Det ser ut som tilgangssperrene virker (Error: 403)</span>
+<h1>{% trans "No access" %}</h1>
+<span>{% trans "It looks like the permission system works" %} (Error: 403)</span>
 {% endblock content %}

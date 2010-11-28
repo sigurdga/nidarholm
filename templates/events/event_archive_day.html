@@ -1,15 +1,16 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}Aktiviteter {{ day }}{% endblock %}
+{% block title %}{% trans "Events" %} {{ day }}{% endblock %}
 
 {% block content %}
 
-<h1>Aktiviteter {{ day }}</h1>
+<h1>{% trans "Events" %} {{ day }}</h1>
 <ul>
 {% for event in object_list %}
 <li><a href="{{ event.get_absolute_url }}">{{ event.title }}</a></li>
 {% empty %}
-<li>Nothing here</li>
+<li>{% trans "Nothing here" %}</li>
 {% endfor %}
 </ul>
 

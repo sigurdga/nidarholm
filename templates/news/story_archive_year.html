@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}Nyhetsarkiv {{ year }}{% endblock %}
+{% block title %}{% trans "News archive" %} {{ year }}{% endblock %}
 {% block content %}
-<h1>Nyhetsarkiv {{ year}}</h1>
+<h1>{% trans "News archive" %} {{ year}}</h1>
 
 <ul>
 {% for story in object_list %}

@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}Alle brukere{% endblock %}
+{% block title %}{% trans "All users" %}{% endblock %}
  
 {% block content %}
 
-<h1>Alle brukere</h1>
+<h1>{% trans "All users" %}</h1>
 {% if object_list %}
 <table>
 {% for object in object_list %}
@@ -18,7 +19,7 @@
 {% endfor %}
 </table>
 {% else %}
-Ingen brukere
+{% trans "No users" %}
 {% endif %}
 
 {% endblock content %}
