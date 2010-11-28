@@ -1,4 +1,7 @@
+# encoding: utf-8
 import os.path
+
+ugettext = lambda s: s
 
 # Django settings for nidarholm project.
 
@@ -156,3 +159,8 @@ HAYSTACK_WHOOSH_PATH = os.path.abspath(os.path.dirname(__file__)) + '/index.whoo
 
 ACCOUNT_ACTIVATION_DAYS = 14
 LOGIN_REDIRECT_URL = '/'
+
+LANGUAGES = (
+  ('nb', ugettext('Norwegian bokmål')),
+  ('en', ugettext('English')),
+)
