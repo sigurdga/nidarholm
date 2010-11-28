@@ -16,6 +16,9 @@ def upcoming_events(request, page=1):
                                    page=page,
                                    )
 
+def event_archive(request):
+    return date_based.archive_index(request, Event.objects.for_user(request.user).order_by("start"), DATEFIELD)
+
 def event_archive_year(request, year):
     return date_based.archive_year(request, year, Event.objects.for_user(request.user), DATEFIELD,
                                    make_object_list=True,

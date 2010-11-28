@@ -1,24 +1,26 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Event list" %}{% endblock %}
+{% block title %}{% trans "Event archive" %}{% endblock %}
 
 {% block contextmenu %}
 {% if request.user.is_authenticated %}
 <li><a href="{% url events-new %}">{% trans "New event" %}</a></li>
 {% endif %}
-<li><a href="{% url events-archive %}">{% trans "Event archive" %}</a></li>
 {% endblock %}
 
 {% block contextinfo %}
+{% for year in date_list %}
+<li><a href="{{ year.year }}">{{ year.year }}</a></li>
+{% endfor %}
 {% endblock contextinfo %}
 
 {% block content %}
 {% load date %}
 
-<h1>{% trans "Event list" %}</h1>
+<h1>{% trans "Event archive" %}</h1>
 <ul>
-{% for event in object_list %}
+{% for event in latest %}
 <li>
   <a href="{{ event.get_absolute_url }}">{{ event.title }}</a><br />
   {% single_datetime event.start event.whole_day %}{% if event.location %}, {{ event.location }}{% endif %}</li>
