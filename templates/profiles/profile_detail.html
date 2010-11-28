@@ -21,30 +21,30 @@
 {% load avatar_tags %}
 {% avatar profile.user 100 %}
 
-<h2>Kontaktinfo</h2>
+<h2>{% trans "Contact information" %}</h2>
 <table>
-    <tr><th>Epost</th><td>{{ profile.email }}</td></tr>
-    <tr><th>Mobil</th><td>{{ profile.cellphone }}</td></tr>
-    <tr><th>Adresse</th><td>{{ profile.address }}</td></tr>
-    <tr><th>Postnummer</th><td>{{ profile.postcode }}</td></tr>
+    <tr><th>{% trans "E-mail" %}</th><td>{{ profile.email }}</td></tr>
+    <tr><th>{% trans "Cellphone" %}</th><td>{{ profile.cellphone }}</td></tr>
+    <tr><th>{% trans "Address" %}</th><td>{{ profile.address }}</td></tr>
+    <tr><th>{% trans "Postcode" %}</th><td>{{ profile.postcode }}</td></tr>
 </table>
 
-<h2>Arbeid</h2>
+<h2>{% Work information %}</h2>
 <table>
-    <tr><th>Yrke</th><td>{{ profile.occupation }}</td></tr>
-    <tr><th>Arbeidsgiver</th><td>{{ profile.employer }}</td></tr>
+    <tr><th>{% trans "Occupation" %}</th><td>{{ profile.occupation }}</td></tr>
+    <tr><th>{% trans "Employer" %}</th><td>{{ profile.employer }}</td></tr>
 </table>
 
-<h2>Fødselsdag</h2>
-Kommer
+<h2>{% trans "Birthday" %}</h2>
+{% trans "Coming soon …" %}
 
-<h2>Grupper</h2>
+<h2>{% trans "Groups" %}</h2>
 
 <ul>
   {% for group in profile.user.groups.all %}
   <li><a href="{{ group.get_absolute_url }}">{{ group.name }}</a></li>
   {% empty %}
-  <li><em>{{ profile.user.username}} is not member of any groups</em></li>
+  <li><em>{% blocktrans %}{{ profile.user.username}} is not member of any groups{% endblocktrans %}</em></li>
   {% endfor %}
 </ul>
 
