@@ -12,7 +12,7 @@ MONTH_FORMAT = '%m'
 def upcoming_events(request, page=1):
 
     return list_detail.object_list(request,
-                                   queryset=Event.objects.for_user(request.user).filter(start__gt=date.today()).order_by("-start"),
+                                   queryset=Event.objects.for_user(request.user).filter(start__gt=date.today()).order_by("start"),
                                    page=page,
                                    )
 
