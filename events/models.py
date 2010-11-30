@@ -48,3 +48,4 @@ class Event(Common, Title, Markdown):
         verbose_name = _('Event')
         verbose_name_plural = _('Events')
         ordering = ('-start',)
+        get_latest_by = 'start'

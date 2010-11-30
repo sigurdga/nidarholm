@@ -17,12 +17,6 @@ def make_menu(parent, user):
 def html_menu(menu):
     return "<ul>" + "".join([ '<li><a href="%s">%s</a></li>' % (item.url, item.title) for item in menu ]) + "</ul>"
 
-def make_breadcrumbs(parents):
-    return "<ul>" + "".join([ '<li><a href="%s">%s</a></li>' % (parent.url, parent.title) for parent in parents ]) + "</ul>"
-
-def make_extra_breadcrumbs(tuples):
-    return "<ul>" + "".join([ '<li><a href="%s">%s</a></li>' % (t[0], t[1]) for t in tuples ]) + "</ul>"
-
 
 @register.simple_tag
 def local_menu(request_path_info, request_user):
@@ -45,7 +39,4 @@ def breadcrumbs(request_path_info, request_user, extra=[]):
             link = link.parent
         parents.reverse()
 
-    return "<ul>%s%s</ul>" % (
-            "".join([ '<li><a href="%s">%s</a></li>' % (parent.url, parent.title) for parent in parents ]),
-            "".join([ '<li><a href="%s">%s</a></li>' % (t[0], t[1]) for t in extra ]),
-            )
+    return " > ".join([ '<a href="%s">%s</a>' % (parent.url, parent.title) for parent in parents ] + [ '<a href="%s">%s</a>' % (t[0], t[1]) for t in extra ])

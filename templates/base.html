@@ -65,18 +65,23 @@
 
          <div id="bottom">
             <div class="padding">
-                {% block footer %}Opphavsrett (c) Nidarholm og Nidarholms medlemmer - <a href="/kontakt/">Kontakt</a>: post (a) nidarholm.no - Postadresse: Postboks 1881 Lade, 7440 Trondheim - Kontonummer: 4240 07 10036 - Organisasjonsnummer: 971 558 105{% endblock footer %}
+                {% block footer %}Opphavsrett (c) Nidarholm og Nidarholms medlemmer<br /><div class="footerbox"><h2><a href="/kontakt/">Kontakt</a></h1><ul><li>post (a) nidarholm.no</li><li>Pb 1881 Lade, 7440 Trondheim</li><li>Kontonummer: 4240 07 10036</li><li>Org.nummer: 971 558 105</li></ul></div>{% endblock footer %}
                 {% load request_tag %}
                 {% active_users in 10 minutes as user_list %}
                 {% if request.user.is_authenticated %}
+                <div class="footerbox">
                     <h2>{% trans "Active users last 10 minutes" %}</h2>
                     <ul>
                     {% for user in user_list %}
                     <li><a href="{{ user.get_profile.get_absolute_url }}">{{ user.username }}</a></li>
                     {% endfor %}
+                    </ul>
+                </div>
+                <div class="footerbox">
                     <h2>Siste filer</h2>
                     {% load interactivity %}
                     {% file_list request 10 %}
+                </div>
                 {% else %}
                     {% if user_list %}
                     <p>{{ user_list|length }} {% trans "active users last 10 minutes" %}</p>
