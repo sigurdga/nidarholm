@@ -68,14 +68,14 @@ div#login {
 div#breadcrumbs {
     position: absolute;
     top: 105px;
-    left: 86px;
+    left: 74px;
 }
 
 
 div#menu {
     position: absolute;
     top: 130px;
-    left: 86px;
+    left: 74px;
 }
 div#menu ul {
     list-style-type: none;
@@ -124,7 +124,7 @@ div#middle h2 {
 }
 
 p {
-    margin-bottom: 14px;
+    padding-bottom: 14px;
 }
 
 div.footerbox {
