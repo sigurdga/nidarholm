@@ -20,6 +20,8 @@ def new_file(request):
     if request.method == 'POST':
         form = UploadedFileForm(request.POST, request.FILES)
         if form.is_valid():
+            m = magic.open(magic.MAGIC_MIME)
+            m.load()
             uploaded_file = form.save(commit=False)
             uploaded_file.user = request.user
             uploaded_file.filename = request.FILES['file'].name
@@ -28,7 +30,8 @@ def new_file(request):
             #    filename=uploaded_file.file)
             #import pdb; pdb.set_trace()
             #uploaded_file.content_type = magic.Magic(mime=True).from_file(original_filename)
-            uploaded_file.content_type = request.FILES['file'].content_type
+            uploaded_file.content_type = m.file(original_filename)
+            #uploaded_file.content_type = request.FILES['file'].content_type
             uploaded_file.save()
             return HttpResponseRedirect('/files')
     else:
