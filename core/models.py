@@ -1,3 +1,4 @@
+# encoding: utf-8
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User, Group
@@ -7,9 +8,22 @@ from markdown import markdown
 import re
 from vault.models import UploadedFile
 from django.core.urlresolvers import reverse
-from django.template.defaultfilters import slugify
 from django.db.models.query_utils import Q
 from django.conf import settings
+
+def slugify(value):
+    """
+    Normalizes a string using unidecode library. Lowercase it, remove
+    punctuation and replace spacing with hyphens.
+
+    >>> slugify(u'Blåbærsyltetøy')
+    'Blabaersyltetoy'
+    """
+    from unidecode import unidecode
+    from django.utils.safestring import mark_safe
+    value = unidecode(value)
+    value = unicode(re.sub('[^\w\s-]', '', value).strip().lower())
+    return mark_safe(re.sub('[-\s]+', '-', value))
 
 def replace_references(match_obj):
     # can the parsing be stricter, please?
@@ -100,7 +114,12 @@ class Title(models.Model):
     slug = models.CharField(_('slug'), max_length=60)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
+        title = self.title
+        slug = slugify(self.title)
+        while self.__class__.objects.filter(slug=slug):
+            title += "_"
+            slug = slugify(title)
+        self.slug = slug
         super(Title, self).save(*args, **kwargs)
 
     class Meta:
