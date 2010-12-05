@@ -102,7 +102,8 @@ class Markdown(models.Model):
     content_html = models.TextField(_('html content'), blank=True, null=True)
 
     def save(self, *args, **kwargs):
-        self.content_html = extend_markdown(self.content)
+        if self.content:
+            self.content_html = extend_markdown(self.content)
         super(Markdown, self).save(*args, **kwargs)
 
     class Meta:
