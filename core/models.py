@@ -90,6 +90,7 @@ class Common(models.Model):
     updated = models.DateTimeField(_('updated'), auto_now=True)
     user = models.ForeignKey(User, verbose_name=_('created by'))
     group = models.ForeignKey(Group, verbose_name=_('created for'), null=True, blank=True)
+    admingroup = models.ForeignKey(Group, verbose_name=('writable for'), related_name='admingroup')
     
     objects = CommonManager()
 
