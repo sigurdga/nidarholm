@@ -3,7 +3,7 @@ body {
     width: 960px;
     font-family: sans-serif;
     line-height: 1.3;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 a {
@@ -88,3 +88,11 @@ div.footerbox h2 {
     font-weight: bold;
     padding-top: 10px;
 }
+
+.paginator { padding: .25em 0 .6em 0 }
+.paginate-pages { padding: 2px 3px; }
+.paginate-first, .paginate-last { padding: 2px 6px; border: 1px solid #ddd; font-weight: bold; }
+.paginate-previous, .paginate-next { padding: 2px 3px; border: 1px solid #ddd; }
+.paginate-link { padding: 2px 4px; border: 1px solid #ddd; }
+.paginate-current { padding: 2px 4px; border: 1px solid #ddd; font-weight: bold; background:#efefef; color:#ffffff; }
+
