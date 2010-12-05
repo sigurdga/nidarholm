@@ -4,6 +4,7 @@ from django.contrib.sites.models import Site
 from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_save
 
+from core.models import Common
 
 class GroupCategory(models.Model):
     name = models.CharField(_('name'), max_length=40)
@@ -38,7 +39,7 @@ class GroupProfile(models.Model):
 
 
 class Role(models.Model):
-    name = models.CharField(_('name'), max_length=80)
+    name = models.CharField(_('name'), max_length=30)
     group = models.ForeignKey(Group, verbose_name=_('group'))
     number = models.SmallIntegerField(_('seaquence number'), null=True, blank=True)
 
@@ -63,16 +64,8 @@ class Membership(models.Model):
         return self.user.username + "-" + self.group.name + "-" + self.role.name
 
 
-class SiteProfile(models.Model):
+class SiteProfile(Common):
     site = models.OneToOneField(Site, verbose_name=_('site'))
-    primary_group = models.ForeignKey(Group,
-            verbose_name=_('primary group'),
-            related_name=_('site'))
-    administration_group = models.ForeignKey(Group,
-            verbose_name=_('administration group'),
-            related_name=_('administers_site'))
-    primary_groupcategory = models.ForeignKey(GroupCategory,
-            verbose_name=_('primary group category'))
 
     def __unicode__(self):
         return self.site.name
@@ -89,15 +82,12 @@ def create_site_profile(sender, instance, created, **kwargs):
     if created:
         site_profile = SiteProfile()
         site_profile.site = instance
-        site_profile.primary_group = Group()
-        site_profile.primary_group.name = _('Members')
-        site_profile.primary_group.save()
-        site_profile.administration_group = Group()
-        site_profile.administration_group.name = _('Administrators')
-        site_profile.administration_group.save()
-        site_profile.primary_groupcategory = Groupcategory()
-        site_profile.primary_groupcategory.name = _('Activity groups')
-        site_profile.primary_groupcategory.save()
+        site_profile.group = Group()
+        site_profile.group.name = _('Members')
+        site_profile.group.save()
+        site_profile.admingroup = Group()
+        site_profile.admingroup.name = _('Administrators')
+        site_profile.admingroup.save()
         site_profile.save()
 
 

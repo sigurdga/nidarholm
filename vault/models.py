@@ -7,6 +7,8 @@ from tagging.fields import TagField
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 
+from hashlib import sha1
+
 class FileManager(models.Manager):
 
     def for_user(self, user):
@@ -19,14 +21,22 @@ class FileManager(models.Manager):
         tags = tags_string.split("/")
         return TaggedItem.objects.get_by_model(UploadedFile, tags)
 
+# from http://stackoverflow.com/questions/552659/assigning-git-sha1s-without-git
+# not in use yet
+def githash(data):
+    s = sha1()
+    s.update("blob %u\0" % len(data))
+    s.update(data)
+    return s.hexdigest()
 
 def upload_path(instance, filename):
     # To save outside of media root, we have to make a new FileStorage,
     # where we could pass extra path info too.
+    # And use githash (not currently used at all)
     # Now using media_root, knowing we have to limit access to media/files
-    timestamp = time.strftime('%s')
+    timestamp = datetime.now().strftime('%s%f') # with microseconds
     folder = timestamp[-2:]
-    instance.filename = filename
+    #instance.filename = filename
     return folder + '/' + timestamp
 
 
