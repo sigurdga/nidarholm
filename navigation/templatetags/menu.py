@@ -19,12 +19,17 @@ def html_menu(menu):
 
 
 @register.simple_tag
-def local_menu(request_path_info, request_user):
+def local_menu(request_path_info, user):
     try:
         page = Link.objects.get(url=request_path_info)
+        menu = make_menu(page, user)
+        while not menu: #empty?
+            page = page.parent
+            menu = make_menu(page, user)
     except Link.DoesNotExist:
         page = Link.objects.get(url='/')
-    return html_menu(make_menu(page, request_user))
+        menu = make_menu(page, user)
+    return html_menu(menu)
 
 @register.simple_tag
 def breadcrumbs(request_path_info, request_user, extra=[]):
