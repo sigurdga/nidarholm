@@ -9,3 +9,4 @@ werkzeug
 pil
 pyexiv2
 magic
+unidecode
