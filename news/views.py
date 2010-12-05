@@ -8,18 +8,13 @@ from pages.models import FlatPage
 from django.views.generic import list_detail
 from django.template.context import RequestContext
 
-def story_list(request, page=1):
-    if page == 1:
-        infopage = get_object_or_404(FlatPage, url__exact='/', sites__id__exact=settings.SITE_ID)
-    else:
-        infopage = None
+def story_list(request):
+    infopage = get_object_or_404(FlatPage, url__exact='/', sites__id__exact=settings.SITE_ID)
 
     return list_detail.object_list(request,
-                                   queryset=Story.objects.for_user(request.user).filter(parent=None),
-                                   page=page,
-                                   paginate_by=10,
-                                   template_name='news/main.html',
-                                   extra_context={'infopage': infopage})
+            queryset=Story.objects.for_user(request.user).filter(parent=None)[:5],
+            template_name='news/main.html',
+            extra_context={'infopage': infopage})
 
 def new_story(request, id=None):
     """slug is the slug of the parent, may be null"""
