@@ -39,7 +39,7 @@ class GroupProfile(models.Model):
 
 
 class Role(models.Model):
-    name = models.CharField(_('name'), max_length=80)
+    name = models.CharField(_('name'), max_length=30)
     group = models.ForeignKey(Group, verbose_name=_('group'))
     number = models.SmallIntegerField(_('seaquence number'), null=True, blank=True)
 
