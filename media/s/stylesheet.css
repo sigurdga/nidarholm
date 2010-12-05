@@ -138,7 +138,7 @@ div.footerbox h2 {
     padding-top: 10px;
 }
 
-.paginator { padding: .25em 0 .6em 0 }
+.paginator { padding: 10px 0 10px 0 }
 .paginate-pages { padding: 2px 3px; }
 .paginate-first, .paginate-last { padding: 2px 6px; border: 1px solid #ddd; font-weight: bold; }
 .paginate-previous, .paginate-next { padding: 2px 3px; border: 1px solid #ddd; }
