@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block content %}
-<h1>{% trans "Forum" %}
+<h1>{% trans "Forum" %}</h1>
 <ul>
 {% for debate in object_list %}
 <li><a href="{{ debate.get_absolute_url }}">{{ debate.title }}</a> {{ debate.created }}</li>
