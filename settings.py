@@ -51,7 +51,7 @@ USE_I18N = True
 USE_L10N = True
 
 # Default file size (in columns, where a column is 40px and margins are 20px
-DEFAULT_IMAGE_SIZE = 4
+DEFAULT_IMAGE_SIZE = 5 #280px
 
 # Serves local files, where permissions are checked
 FILE_SERVE_ROOT = os.path.abspath(os.path.dirname(__file__)) + '/uploads/'
