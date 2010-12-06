@@ -4,26 +4,27 @@ body {
     font-size: 13px;
     background-image: url(/m/i/top-bg.png);
     background-repeat: repeat-x;
-    background-color: #606060;
+    background-color: #666666;
 }
 
 div#top-bg {
     margin: 0 auto;
-    width: 986px;
+    width: 970px;
     background-image: url(/m/i/top.png);
     background-repeat: no-repeat;
 }
 div#middle-bg {
     margin: 0 auto;
-    width: 986px;
+    width: 970px;
     background-image: url(/m/i/middle.png);
     background-repeat: repeat-y;
 }
 div#bottom-bg {
     margin: 0 auto;
-    width: 986px;
+    width: 970px;
     background-image: url(/m/i/bottom.png);
     background-repeat: no-repeat;
+    padding-bottom: 10px;
 }
 a {
     text-decoration: none;
@@ -95,10 +96,12 @@ div#sidebar {
 div#content {
     width: 640px;
     padding: 0 10px 0 10px;
+    background-image: url(/m/i/content-bg.png);
+    background-repeat: repeat-x;
 }
 
 div#footer {
-    padding: 0 10px 10px 10px;
+    padding: 5px 10px 0 10px;
 }
 
 div#bottom div.footerbox {
