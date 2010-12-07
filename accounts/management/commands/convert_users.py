@@ -1,7 +1,15 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.contrib.auth.models import User
+from django.conf import settings
 
+from avatar.models import Avatar
+
+from hashlib import md5
 import MySQLdb
+
+def udec(text):
+    if text:
+        return text.decode('utf-8')
 
 class Command(BaseCommand):
     help = "Converts users not already converted, or updates their info"
@@ -15,8 +23,35 @@ class Command(BaseCommand):
                 u, created = User.objects.get_or_create(username=row[3].decode('utf-8'))
                 u.first_name = row[0].decode('utf-8')
                 u.last_name = row[1].decode('utf-8')
-                #import pdb; pdb.set_trace()
                 self.stdout.write("%s\n" % (u,))
                 u.email = row[2] or ""
                 u.save()
+                p = u.get_profile()
+                p.cellphone = row[12]
+                p.address = udec(row[13])
+                p.postcode = row[14]
+                p.personal_website = row[15]
+                p.occupation = row[16]
+                p.employer = row[17]
+                p.employer_website = row[20]
+                p.joined = row[6]
+                p.status = row[22]
+                p.created = row[23]
+                p.updated = row[23]
+                p.parent_organization_member_number = row[7]
+                p.insured = row[8]
+                p.account = row[10]
+                p.history = udec(row[9])
+                p.save()
+                
+                avatar_filename = md5().update("s_%s" % (row[24]),).hexdigest()
+                print avatar_filename
+                path = "/srv/www/nidarholm/website/webdocs/innhold/persongalleri/%s.jpg" % (avatar_filename,)
+                copy_path = "%s%s%s" % (settings.MEDIA_ROOT, settings.AVATAR_STORAGE_DIR, u.username)
+                if os.exists(path):
+                    a = Avatar.objects.get_or_create(avatar=copy_path)
+                    a.user = u
+                    a.primary = True
+                    a.save()
+
         conn.close()
