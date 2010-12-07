@@ -37,14 +37,17 @@ class Command(BaseCommand):
                 p.employer = row[17]
                 p.employer_website = row[20]
                 p.joined = row[6]
-                p.status = row[22]
+                if row[22]:
+                    p.status = row[22]
                 if row[23]:
                     date = datetime.fromtimestamp(row[23])
                     p.created = date
                     p.updated = date
-                p.parent_organization_member_number = row[7]
+                if row[7]:
+                    p.parent_organization_member_number = row[7]
                 p.insured = row[8]
-                p.account = row[10]
+                if row[10]:
+                    p.account = row[10]
                 p.history = udec(row[9])
                 p.save()
                 
