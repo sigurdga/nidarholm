@@ -13,11 +13,16 @@ class UserProfile(models.Model):
             verbose_name=_('address'))
     postcode = models.SmallIntegerField(null=True, blank=True,
             verbose_name=_('postcode'))
+    personal_website = models.CharField(max_length=80, null=True, blank=True,
+            verbose_name=_('personal website'))
     #country: add later
     occupation = models.CharField(max_length=50, null=True, blank=True,
             verbose_name=_('occupation'))
     employer = models.CharField(max_length=30, null=True, blank=True,
             verbose_name=_('employer'))
+    employer_website = models.CharField(max_length=80, null=True, blank=True,
+            verbose_name=_('employer website'))
+
     born = models.DateField(null=True, blank=True,
             verbose_name=_('birth date'))
     joined = models.DateField(null=True, blank=True,
@@ -34,6 +39,8 @@ class UserProfile(models.Model):
             verbose_name=_('account reference')) #reskontro
     history = models.TextField(null=True, blank=True,
             verbose_name=_('membership history'))
+    created = models.DateTimeField(null=True, blank=True)
+    updated = models.DateTimeField(null=True, blank=True)
 
     def __unicode__(self):
         return self.user.username

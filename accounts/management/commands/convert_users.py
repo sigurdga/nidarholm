@@ -44,7 +44,7 @@ class Command(BaseCommand):
                 p.history = udec(row[9])
                 p.save()
                 
-                avatar_filename = md5().update("s_%s" % (row[24]),).hexdigest()
+                avatar_filename = md5().update("s_%s" % (row[29]),).hexdigest()
                 print avatar_filename
                 path = "/srv/www/nidarholm/website/webdocs/innhold/persongalleri/%s.jpg" % (avatar_filename,)
                 copy_path = "%s%s%s" % (settings.MEDIA_ROOT, settings.AVATAR_STORAGE_DIR, u.username)
