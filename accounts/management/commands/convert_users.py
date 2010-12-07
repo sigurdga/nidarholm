@@ -5,7 +5,9 @@ from django.conf import settings
 from avatar.models import Avatar
 
 from hashlib import md5
+from datetime import datetime
 import MySQLdb
+import os
 
 def udec(text):
     if text:
@@ -36,21 +38,24 @@ class Command(BaseCommand):
                 p.employer_website = row[20]
                 p.joined = row[6]
                 p.status = row[22]
-                p.created = row[23]
-                p.updated = row[23]
+                if row[23]:
+                    date = datetime.fromtimestamp(row[23])
+                    p.created = date
+                    p.updated = date
                 p.parent_organization_member_number = row[7]
                 p.insured = row[8]
                 p.account = row[10]
                 p.history = udec(row[9])
                 p.save()
                 
-                avatar_filename = md5().update("s_%s" % (row[29]),).hexdigest()
+                m = md5()
+                m.update("s_%d" % (row[26]),)
+                avatar_filename = m.hexdigest()
                 print avatar_filename
                 path = "/srv/www/nidarholm/website/webdocs/innhold/persongalleri/%s.jpg" % (avatar_filename,)
                 copy_path = "%s%s%s" % (settings.MEDIA_ROOT, settings.AVATAR_STORAGE_DIR, u.username)
-                if os.exists(path):
-                    a = Avatar.objects.get_or_create(avatar=copy_path)
-                    a.user = u
+                if os.path.exists(path):
+                    a, created = Avatar.objects.get_or_create(user=u, avatar=copy_path)
                     a.primary = True
                     a.save()
 
