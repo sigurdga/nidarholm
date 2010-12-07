@@ -11,7 +11,7 @@ class UserProfile(models.Model):
             verbose_name=_('cellphone'))
     address = models.CharField(max_length=50, null=True, blank=True,
             verbose_name=_('address'))
-    postcode = models.SmallIntegerField(null=True, blank=True,
+    postcode = models.CharField(max_length=8, null=True, blank=True,
             verbose_name=_('postcode'))
     personal_website = models.CharField(max_length=80, null=True, blank=True,
             verbose_name=_('personal website'))
