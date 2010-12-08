@@ -32,11 +32,7 @@ class Command(BaseCommand):
                 p = u.get_profile()
                 p.cellphone = row[12]
                 p.address = udec(row[13])
-                if row[14]:
-                    try:
-                        p.postcode = int(row[14])
-                    except:
-                        pass
+                p.postcode = row[14]
                 p.personal_website = row[15]
                 p.occupation = row[16]
                 p.employer = row[17]
