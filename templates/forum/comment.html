@@ -1,15 +1,11 @@
-{% extends "base.html" %}
 {% load i18n %}
 {% load avatar_tags %}
 
-{% block title %}{{ object.title }}{% endblock %}
-{% block content %}
-
-<h1>{{ object.title }}</h1>
 <div class="forum-post">
     <div class="forum-post-reply"><a href="{{ object.get_absolute_url }}comment">{% trans "Reply" %}</a></div>
     {% avatar object.user 40 %}
     <div class="forum-header"><a href="{{ object.user.get_profile.get_absolute_url }}">{{ object.user.get_full_name }}</a>, {{ object.created }}</div>
+
     {{ object.content_html|safe }}
 
     <ul>
@@ -22,5 +18,3 @@
         {% endfor %}
     </ul>
 </div>
-
-{% endblock %}

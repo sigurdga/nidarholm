@@ -152,3 +152,37 @@ div.footerbox h2 {
 .paginate-link { padding: 2px 4px; border: 1px solid #ddd; }
 .paginate-current { padding: 2px 4px; border: 1px solid #ddd; font-weight: bold; background:#efefef; color:#ffffff; }
 
+
+/* forum */
+
+div.news-comment,
+div.forum-post {
+    width: 460px;
+    position: relative;
+    border-top: 1px solid #dddddd;
+}
+div.news-comment img.avatar,
+div.forum-post img.avatar {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+div.news-comment ul,
+div.forum-post ul {
+    margin-left: 20px;
+}
+
+div.news-comment div.news-comment-header,
+div.forum-post div.forum-header {
+    position: absolute;
+    top: 0;
+    left: 45px;
+}
+
+div.news-comment div.news-comment-reply,
+div.forum-post div.forum-post-reply {
+    position: absolute;
+    top: 0;
+    right: 0;
+}

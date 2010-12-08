@@ -22,8 +22,8 @@ story_info_detail = {
                      }
 
 urlpatterns = patterns('',
-        (r'^(?P<id>\d+)/comment$', new_story, (), 'news-new-story-comment'),
-        (r'^new$', new_story, (), 'news-new-story'),
+        (r'^(?P<id>\d+)/comment/$', new_story, (), 'news-new-story-comment'),
+        (r'^new/$', new_story, (), 'news-new-story'),
         )
 
 urlpatterns += patterns('',

@@ -1,7 +1,10 @@
 {% load i18n %}
+{% load avatar_tags %}
+
 <div class="news-comment">
     <div class="news-comment-reply"><a href="{% url news-stories %}{{ object.id }}/comment">{% trans "Reply" %}</a></div>
-    <p><a href="{{ object.user.get_profile.get_absolute_url }}">{{ object.user.get_full_name }}</a>, {{ object.created }}
+    {% avatar object.user 40 %}
+    <div class="news-comment-header"><a href="{{ object.user.get_profile.get_absolute_url }}">{{ object.user.get_full_name }}</a>, {{ object.created }}</div>
 
     {{ object.content_html|safe }}
 

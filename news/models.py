@@ -11,7 +11,7 @@ class Story(Common, Title, Markdown):
         return self.title
 
     class Meta:
-        ordering = ("-pub_date",)
+        ordering = ("pub_date",)
 
     @models.permalink
     def get_absolute_url(self):
