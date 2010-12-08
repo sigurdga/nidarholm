@@ -5,11 +5,20 @@ from django.contrib.auth.models import User, Group
 
 from markdown import markdown
 
-import re
 from vault.models import UploadedFile
 from django.core.urlresolvers import reverse
 from django.db.models.query_utils import Q
 from django.conf import settings
+
+import re
+import urllib2
+import magic
+import os
+
+from os.path import basename
+from datetime import datetime
+from BeautifulSoup import BeautifulSoup
+
 
 def slugify(value):
     """
@@ -75,6 +84,58 @@ def extend_markdown(markdown_content):
 
     return markdown('\n'.join(parsed))
 
+def comment_converter(text):
+    print text
+    oid = None
+    name = None
+    soup = BeautifulSoup(text)
+    m = magic.open(magic.MAGIC_MIME)
+    m.load()
+
+    for img in soup('img'):
+        url = img['src'] 
+        print url
+        if not url.startswith("http"):
+            if url.startswith("/"):
+                url = "http://nidarholm.no" + url
+            else:
+                url = "http://nidarholm.no/" + url
+        name = basename(url)
+        try:
+            netfile = urllib2.urlopen(url)
+        except urllib2.HTTPError:
+            print "Could not get: %s" % url
+        else:
+            tmpcontents = netfile.read()
+            f, created = UploadedFile.objects.get_or_create(filename=name)
+            timestamp = datetime.now()
+            t = timestamp.strftime("%s%f")
+            f.uploaded = timestamp
+            short_folder = t[-2:]
+            folder = settings.FILE_SERVE_ROOT + "originals/" + t[-2:]
+            if not os.path.isdir(folder):
+                os.mkdir(folder)
+            path = folder + '/' + t
+            short_path = short_folder + '/' + t
+            f.file = short_path
+            outfile = open(path, "w")
+            outfile.write(tmpcontents)
+            outfile.close()
+            
+            f.content_type = m.file(path)
+            print f.content_type
+            f.save()
+            oid = f.id
+        
+        if oid:
+            new_reference = '!['+name+']['+str(oid)+']'
+            if img.parent.name == "a":
+                img.parent.replaceWith(new_refence)
+            else:
+                img.replaceWith(new_refence)
+    print unicode(soup)
+    return unicode(soup)
+
 
 class CommonManager(models.Manager):
 
@@ -86,8 +147,8 @@ class CommonManager(models.Manager):
 
 
 class Common(models.Model):
-    created = models.DateTimeField(_('created'), auto_now_add=True)
-    updated = models.DateTimeField(_('updated'), auto_now=True)
+    created = models.DateTimeField(_('created'))
+    updated = models.DateTimeField(_('updated'))
     user = models.ForeignKey(User, verbose_name=_('created by'))
     group = models.ForeignKey(Group, verbose_name=_('created for'), null=True, blank=True)
     
