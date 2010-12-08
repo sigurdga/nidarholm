@@ -12,7 +12,7 @@ def story_list(request):
     infopage = get_object_or_404(FlatPage, url__exact='/', sites__id__exact=settings.SITE_ID)
 
     return list_detail.object_list(request,
-            queryset=Story.objects.for_user(request.user).filter(parent=None)[:5],
+            queryset=Story.objects.for_user(request.user).filter(parent=None).order_by('-pub_date')[:5],
             template_name='news/main.html',
             extra_context={'infopage': infopage})
 
