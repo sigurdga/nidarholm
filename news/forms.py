@@ -4,7 +4,7 @@ from news.models import Story
 class StoryForm(ModelForm):
     class Meta:
         model = Story
-        fields = ('content', 'title', 'group', 'parent')
+        fields = ('title', 'content', 'group', 'parent')
         widgets = {
                 'parent': HiddenInput(),
                 }
