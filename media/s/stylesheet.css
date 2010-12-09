@@ -49,6 +49,7 @@ div#middle {
     margin: 0 auto;
     width: 960px;
     clear: both;
+    position: relative;
 }
 div#bottom {
     margin: 0 auto;
@@ -94,7 +95,10 @@ div#menu ul li {
 
 div#sidebar {
     width: 280px;
-    float: right;
+    /*float: right;*/
+    position: absolute;
+    top: 0;
+    right: 0;
     padding: 0 10px;
 }
 div#content {
@@ -118,6 +122,7 @@ div#middle h1 {
     font-size: 22px;
     font-weight: bold;
     padding-top: 12px;
+    clear: both;
 }
 
 div#sidebar h1 {
@@ -128,6 +133,7 @@ div#sidebar h1 {
 div#middle h2 {
     font-size: 18px;
     margin-top: 5px;
+    clear: both;
 }
 
 p {
@@ -151,6 +157,11 @@ div.footerbox h2 {
 .paginate-previous, .paginate-next { padding: 2px 3px; border: 1px solid #ddd; }
 .paginate-link { padding: 2px 4px; border: 1px solid #ddd; }
 .paginate-current { padding: 2px 4px; border: 1px solid #ddd; font-weight: bold; background:#efefef; color:#ffffff; }
+
+div.preview {
+    float: right;
+    padding: 0 0 0 20px;
+}
 
 
 /* forum */
