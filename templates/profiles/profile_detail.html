@@ -18,6 +18,7 @@
 
 <p>{{ profile.user.username}}</p>
 
+{% if 'Medlemmer' in request.user.groups %}
 {% load avatar_tags %}
 {% avatar profile.user 100 %}
 
@@ -51,5 +52,7 @@
   <li><em>{% blocktrans %}{{ profile.user.username}} is not member of any groups{% endblocktrans %}</em></li>
   {% endfor %}
 </ul>
+
+{% endif %}
 
 {% endblock %}
