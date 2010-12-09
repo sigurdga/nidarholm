@@ -4,8 +4,10 @@ from tagging.models import Tag
 from vault.models import UploadedFile
 
 from datetime import datetime
+from shutil import copyfile
 import magic
 import hashlib
+import random
 
 import MySQLdb
 
@@ -25,12 +27,17 @@ class Command(BaseCommand):
             timestamp = datetime.fromtimestamp(float(row[6]))
             f.uploaded = timestamp
             original_filename = "/srv/www/nidarholm/website/webdocs/innhold/filer/%s.%s" % (hashlib.md5("f_%s" % (row[0],)).hexdigest(), row[2])
-            folder = row[6][-2:]
-            f.file = folder + '/' + row[6]
+            t = timestamp.strftime("%s") + str(random.randrange(0,999999))
+            short_folder = t[-2:]
+            folder = settings.FILE_SERVE_ROOT + "originals/" + short_folder
+            if not os.path.isdir(folder):
+                os.mkdir(folder)
+            path = folder + '/' + t
+            short_path = short_folder + '/' + t
+            f.file = short_path
+            copyfile(original_filename, path)
             #f.content_type = magic.Magic(mime=True).from_file(original_filename)
             f.content_type = m.file(original_filename)
-            print original_filename
-            print m.file(original_filename)
             f.tags = ",".join(self.find_tags(cursor, int(row[7])))
             if g.name == 'verden':
                 g = None
