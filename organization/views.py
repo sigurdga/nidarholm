@@ -1,5 +1,5 @@
 from django.views.generic import list_detail
-from relations.models import GroupCategory
+from organization.models import GroupCategory
 
 
 def group_category_list(request):

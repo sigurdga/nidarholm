@@ -119,7 +119,7 @@ INSTALLED_APPS = (
     'core',
     'debug_toolbar',
     'search',
-    'relations',
+    'organization',
     'accounts',
     'events',
     'forum',

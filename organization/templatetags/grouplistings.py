@@ -1,6 +1,6 @@
 from django import template
 from django.contrib.auth.models import Group
-from relations.models import GroupCategory, Role
+from organization.models import GroupCategory, Role
 
 register = template.Library()
 

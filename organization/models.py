@@ -3,8 +3,13 @@ from django.contrib.auth.models import Group, User
 from django.contrib.sites.models import Site
 from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_save
+from django.shortcuts import get_object_or_404
 
 from core.models import Common
+
+def get_organization(request):
+    host = request.get_host()
+    return get_object_or_404(SiteProfile, site__domain=host)
 
 class GroupCategory(models.Model):
     name = models.CharField(_('name'), max_length=40)
@@ -19,7 +24,7 @@ class GroupCategory(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('relations-group-category-detail', (), {'slug': self.slug})
+        return ('organization-group-category-detail', (), {'slug': self.slug})
 
 
 class GroupProfile(models.Model):

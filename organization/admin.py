@@ -1,5 +1,5 @@
 from django.contrib import admin
-from relations.models import GroupCategory, GroupProfile, Role, Membership, SiteProfile
+from organization.models import GroupCategory, GroupProfile, Role, Membership, SiteProfile
 
 admin.site.register(GroupCategory)
 admin.site.register(GroupProfile)

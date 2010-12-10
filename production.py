@@ -116,7 +116,7 @@ INSTALLED_APPS = (
     'avatar',
     #'debug_toolbar',
     'core',
-    'relations',
+    'organization',
     'events',
     'forum',
     'news',

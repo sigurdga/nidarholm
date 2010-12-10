@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.contrib.auth.models import User, Group
-from relations.models import GroupCategory
+from organization.models import GroupCategory
 
 import MySQLdb
 
