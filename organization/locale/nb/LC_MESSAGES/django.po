@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-27 18:31+0100\n"
+"POT-Creation-Date: 2010-12-10 21:44+0100\n"
 "PO-Revision-Date: 2010-11-27 18:33+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,86 +16,81 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: models.py:9 models.py:41
+#: models.py:15 models.py:47
 msgid "name"
 msgstr "navn"
 
-#: models.py:13 models.py:30
+#: models.py:19 models.py:36
 msgid "group category"
 msgstr "gruppekategori"
 
-#: models.py:25 models.py:42 models.py:54
+#: models.py:31 models.py:48 models.py:60
 msgid "group"
 msgstr "gruppe"
 
-#: models.py:26
+#: models.py:32
 msgid "email"
 msgstr "epost"
 
-#: models.py:27
+#: models.py:33
 msgid "email to administrator"
 msgstr "epost til administrator"
 
-#: models.py:28 models.py:43
+#: models.py:34 models.py:49
 msgid "seaquence number"
 msgstr "rekkefølgenummer"
 
-#: models.py:33
+#: models.py:39
 msgid "group profile"
 msgstr "gruppeprofil"
 
-#: models.py:34
+#: models.py:40
 msgid "group profiles"
 msgstr "gruppeprofiler"
 
-#: models.py:46 models.py:56
+#: models.py:52 models.py:62
 msgid "role"
 msgstr "rolle"
 
-#: models.py:47
+#: models.py:53
 msgid "roles"
 msgstr "roller"
 
-#: models.py:55
+#: models.py:61
 msgid "user"
 msgstr "bruker"
 
-#: models.py:59
+#: models.py:65
 msgid "membership"
 msgstr "medlemskap"
 
-#: models.py:60
+#: models.py:66
 msgid "memberships"
 msgstr "medlemskap"
 
-#: models.py:67 models.py:70
+#: models.py:73
 msgid "site"
 msgstr "nettsted"
 
-#: models.py:69
-msgid "primary group"
-msgstr "primærgruppe"
-
-#: models.py:72
-msgid "administration group"
-msgstr "administrasjonsgruppe"
-
-#: models.py:73
-msgid "administers_site"
-msgstr "administrerer nettsted"
-
-#: models.py:75
-msgid "primary group category"
-msgstr "primær gruppekategori"
-
-#: models.py:93
+#: models.py:91
 msgid "Members"
 msgstr "Medlemmer"
 
-#: models.py:96
+#: models.py:94
 msgid "Administrators"
 msgstr "Administratorer"
 
-#: models.py:99
-msgid "Activity groups"
-msgstr "Aktivitetsgrupper"
+#~ msgid "primary group"
+#~ msgstr "primærgruppe"
+
+#~ msgid "administration group"
+#~ msgstr "administrasjonsgruppe"
+
+#~ msgid "administers_site"
+#~ msgstr "administrerer nettsted"
+
+#~ msgid "primary group category"
+#~ msgstr "primær gruppekategori"
+
+#~ msgid "Activity groups"
+#~ msgstr "Aktivitetsgrupper"

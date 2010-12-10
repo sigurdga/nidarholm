@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-27 18:29+0100\n"
+"POT-Creation-Date: 2010-12-10 21:45+0100\n"
 "PO-Revision-Date: 2010-11-27 18:31+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: admin.py:12 models.py:7
+#: admin.py:12 models.py:8
 msgid "URL"
 msgstr "URL"
 
@@ -29,16 +29,17 @@ msgstr "Eksempel: «/om/kontakt/». Må starte og slutte med skråstreker."
 msgid ""
 "This value must contain only letters, numbers, underscores, dashes or "
 "slashes."
-msgstr "Kan bare inneholde bokstaver, tall, lavstreker, minuser eller skråstreker."
+msgstr ""
+"Kan bare inneholde bokstaver, tall, lavstreker, minuser eller skråstreker."
 
-#: models.py:8
+#: models.py:9
 msgid "title"
 msgstr "tittel"
 
-#: models.py:16
+#: models.py:18
 msgid "page"
 msgstr "side"
 
-#: models.py:17
+#: models.py:19
 msgid "pages"
 msgstr "sider"
