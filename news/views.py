@@ -5,7 +5,7 @@ from django.conf import settings
 from news.models import Story
 from news.forms import StoryForm
 from pages.models import FlatPage
-from django.views.generic import list_detail
+from django.views.generic import list_detail, date_based
 from django.template.context import RequestContext
 
 def story_list(request):
@@ -15,6 +15,23 @@ def story_list(request):
             queryset=Story.objects.for_user(request.user).filter(parent=None).order_by('-pub_date')[:5],
             template_name='news/main.html',
             extra_context={'infopage': infopage})
+
+def story_archive(request):
+    queryset = Story.objects.for_user(request.user).filter(parent=None)
+    date_field = "pub_date"
+    return date_based.archive_index(request, queryset, date_field)
+
+def story_year(request, year):
+    queryset = Story.objects.for_user(request.user).filter(parent=None)
+    date_field = "pub_date"
+    return date_based.archive_year(request, year, queryset, date_field, make_object_list=True)
+
+def story_detail(request, year, month, day, slug):
+    queryset = Story.objects.for_user(request.user).filter(parent=None)
+    date_field = "pub_date"
+    month_format = "%m"
+    return date_based.object_detail(request, year, month, day, queryset, date_field, month_format=month_format, slug=slug, allow_future=True)
+    
 
 def new_story(request, id=None):
     """slug is the slug of the parent, may be null"""
