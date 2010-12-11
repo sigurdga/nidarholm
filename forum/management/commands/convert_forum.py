@@ -2,6 +2,8 @@ from django.core.management.base import BaseCommand, CommandError
 from django.contrib.auth.models import User, Group
 from forum.models import Debate
 
+from core.models import comment_converter
+
 import MySQLdb
 import time
 import re
