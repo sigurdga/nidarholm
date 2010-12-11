@@ -10,3 +10,4 @@ build
 index.xapian
 index.whoosh
 .settings
+settings.py
