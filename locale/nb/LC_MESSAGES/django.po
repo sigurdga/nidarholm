@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-27 18:49+0100\n"
-"PO-Revision-Date: 2010-11-27 19:02+0100\n"
+"POT-Creation-Date: 2010-12-11 10:28+0100\n"
+"PO-Revision-Date: 2010-12-11 10:32+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -37,11 +37,11 @@ msgstr "Logg ut"
 msgid "Log in"
 msgstr "Logg inn"
 
-#: templates/base.html:72
+#: templates/base.html:74
 msgid "Active users last 10 minutes"
 msgstr "Aktive brukere de siste ti minuttene"
 
-#: templates/base.html:82
+#: templates/base.html:88
 msgid "active users last 10 minutes"
 msgstr "aktive brukere de siste ti minuttene"
 
@@ -52,7 +52,7 @@ msgstr "Brukergrupper"
 
 #: templates/accounts/edit_user_groups.html:13
 #: templates/events/new_event.html:14 templates/forum/new_debate.html:14
-#: templates/pages/edit_page.html:11 templates/profiles/create_profile.html:13
+#: templates/pages/edit_page.html:12 templates/profiles/create_profile.html:13
 #: templates/profiles/edit_profile.html:13
 msgid "Submit"
 msgstr "Lagre"
@@ -62,6 +62,7 @@ msgid "Group"
 msgstr "Gruppe"
 
 #: templates/accounts/group_list.html:4 templates/accounts/user_groups.html:4
+#: templates/profiles/profile_detail.html:46
 msgid "Groups"
 msgstr "Grupper"
 
@@ -70,7 +71,7 @@ msgstr "Grupper"
 msgid "All users"
 msgstr "Alle brukere"
 
-#: templates/accounts/members.html:22 templates/profiles/profile_list.html:19
+#: templates/accounts/members.html:22 templates/profiles/profile_list.html:18
 msgid "No users"
 msgstr "Ingen brukere"
 
@@ -95,24 +96,35 @@ msgstr "Profilbilde"
 msgid "Upload"
 msgstr "Last opp"
 
+#: templates/events/event_archive.html:4
+#: templates/events/event_archive.html:21 templates/events/event_list.html:10
+msgid "Event archive"
+msgstr "Aktivitetskalender"
+
+#: templates/events/event_archive.html:8 templates/events/event_list.html:8
+#: templates/events/new_event.html:4 templates/events/new_event.html.py:8
+msgid "New event"
+msgstr "Ny aktivitet"
+
+#: templates/events/event_archive.html:28
+#: templates/events/event_archive_day.html:13
+#: templates/events/event_archive_month.html:13
+#: templates/events/event_archive_year.html:16
+#: templates/events/event_list.html:26 templates/forum/list.html:18
+msgid "Nothing here"
+msgstr "Ingenting her"
+
 #: templates/events/event_archive_day.html:4
 #: templates/events/event_archive_day.html:8
 #: templates/events/event_detail.html:4
 msgid "Events"
 msgstr "Aktiviteter"
 
-#: templates/events/event_archive_day.html:13
-#: templates/events/event_archive_month.html:13
-#: templates/events/event_archive_year.html:16
-#: templates/events/event_list.html:20 templates/forum/list.html:18
-msgid "Nothing here"
-msgstr "Ingenting her"
-
 #: templates/events/event_archive_month.html:4
 #: templates/events/event_archive_month.html:8
 #: templates/events/event_archive_year.html:4
 #: templates/events/event_archive_year.html:9
-#: templates/events/event_list.html:4 templates/events/event_list.html:15
+#: templates/events/event_list.html:4 templates/events/event_list.html:19
 msgid "Event list"
 msgstr "Aktivitetsliste"
 
@@ -120,10 +132,18 @@ msgstr "Aktivitetsliste"
 msgid "Edit"
 msgstr "Rediger"
 
-#: templates/events/event_list.html:8 templates/events/new_event.html:4
-#: templates/events/new_event.html.py:8
-msgid "New event"
-msgstr "Ny aktivitet"
+#: templates/events/event_detail.html:17
+msgid "For group"
+msgstr "For gruppe"
+
+#: templates/events/event_detail.html:17
+msgid "For all"
+msgstr "For alle"
+
+#: templates/forum/comment.html:5 templates/forum/debate_detail.html:10
+#: templates/news/story_comment.html:5 templates/news/story_detail.html:9
+msgid "Reply"
+msgstr "Svar"
 
 #: templates/forum/list.html:4 templates/forum/list.html.py:13
 msgid "Forum"
@@ -137,16 +157,11 @@ msgstr "Nytt tema"
 msgid "New post"
 msgstr "Nytt innlegg"
 
-#: templates/forum/tree.html:4 templates/news/story_comment.html:3
-#: templates/news/story_detail.html:8
-msgid "Reply"
-msgstr "Svar"
-
 #: templates/navigation/paginator.html:4
 msgid "First page"
 msgstr "Første side"
 
-#: templates/navigation/paginator.html:7
+#: templates/navigation/paginator.html:7 templates/search/search.html:30
 msgid "Previous page"
 msgstr "Forrige side"
 
@@ -159,7 +174,7 @@ msgstr "Aktiv side"
 msgid "Page %(num)s"
 msgstr "Side %(num)s"
 
-#: templates/navigation/paginator.html:17
+#: templates/navigation/paginator.html:17 templates/search/search.html:32
 msgid "Next page"
 msgstr "Neste side"
 
@@ -195,17 +210,17 @@ msgstr "Lag ny nyhet"
 msgid "Edit welcome text"
 msgstr "Rediger velkomsttekst"
 
-#: templates/news/main.html:21
+#: templates/news/main.html:17
+msgid "Next important event"
+msgstr "Neste konsert"
+
+#: templates/news/main.html:26
 msgid "News"
 msgstr "Nyheter"
 
-#: templates/news/main.html:30
+#: templates/news/main.html:35
 msgid "No news at this time"
 msgstr "Ingen nyheter på det nåværende tidspunktet"
-
-#: templates/news/main.html:34
-msgid "Next important event"
-msgstr "Neste konsert"
 
 #: templates/news/story_archive.html:4 templates/news/story_archive.html:7
 #: templates/news/story_archive_year.html:4
@@ -213,7 +228,7 @@ msgstr "Neste konsert"
 msgid "News archive"
 msgstr "Nyhetsarkiv"
 
-#: templates/pages/default.html:7 templates/pages/edit_page.html:3
+#: templates/pages/default.html:8 templates/pages/edit_page.html:4
 msgid "Edit page content"
 msgstr "Rediger sideinnhold"
 
@@ -243,9 +258,66 @@ msgstr "Bytt profilbilde"
 msgid "Edit group permissions"
 msgstr "Rediger grupperettigheter"
 
-#: templates/profiles/profile_list.html:22
+#: templates/profiles/profile_detail.html:25
+msgid "Contact information"
+msgstr "Kontaktinformasjon"
+
+#: templates/profiles/profile_detail.html:27
+msgid "Email"
+msgstr "Epost"
+
+#: templates/profiles/profile_detail.html:28
+msgid "Cellphone"
+msgstr "Mobiltelefon"
+
+#: templates/profiles/profile_detail.html:29
+msgid "Address"
+msgstr "Adresse"
+
+#: templates/profiles/profile_detail.html:30
+msgid "Postcode"
+msgstr "Postnummer"
+
+#: templates/profiles/profile_detail.html:33
+msgid "Work information"
+msgstr "Arbeidsinformasjon"
+
+#: templates/profiles/profile_detail.html:36
+msgid "Occupation"
+msgstr "Yrke"
+
+#: templates/profiles/profile_detail.html:39
+msgid "Employer"
+msgstr "Arbeidssted"
+
+#: templates/profiles/profile_detail.html:43
+msgid "Birthday"
+msgstr "Fødselsdag"
+
+#: templates/profiles/profile_detail.html:44
+msgid "Coming soon …"
+msgstr "Kommer …"
+
+#: templates/profiles/profile_detail.html:52
+#, python-format
+msgid "%(profile.user.username)s is not member of any groups"
+msgstr "%(profile.user.username)s er ikke medlem av noen grupper"
+
+#: templates/profiles/profile_list.html:21
 msgid "Only superusers may see this"
 msgstr "Bare superbrukere får se dette"
+
+#: templates/registration/login.html:4 templates/registration/login.html:8
+msgid "Login"
+msgstr "Logg inn"
+
+#: templates/registration/login.html:11
+msgid "Ooops! That was not correct."
+msgstr "Oisann! Det var feil."
+
+#: templates/registration/login.html:19
+msgid "Lost your password?"
+msgstr "Mistet passordet?"
 
 #: templates/registration/logout.html:6
 msgid "Thanks for spending some quality time with the Web site today."
@@ -278,21 +350,24 @@ msgstr "Legg inn nytt passord"
 msgid ""
 "Please enter your new password twice so we can verify you typed it in "
 "correctly."
-msgstr "Legg inn det nye passordet to ganger så vi vet at du skreiv det inn rett."
+msgstr ""
+"Legg inn det nye passordet to ganger så vi vet at du skreiv det inn rett."
 
-#: templates/registration/password_reset_confirm.html:17
+#: templates/registration/password_reset_confirm.html:18
 msgid "Change my password"
 msgstr "Bytt passordet mitt"
 
-#: templates/registration/password_reset_confirm.html:22
+#: templates/registration/password_reset_confirm.html:24
 msgid "Password reset unsuccessful"
 msgstr "Nullstilling av passord feilet"
 
-#: templates/registration/password_reset_confirm.html:24
+#: templates/registration/password_reset_confirm.html:26
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a new password reset."
-msgstr "Lenken for å nullstille passordet er feil, muligens fordi den allerede kan ha blitt brukt. Prøv å nullstille passordet på nytt."
+msgstr ""
+"Lenken for å nullstille passordet er feil, muligens fordi den allerede kan "
+"ha blitt brukt. Prøv å nullstille passordet på nytt."
 
 #: templates/registration/password_reset_done.html:4
 #: templates/registration/password_reset_done.html:8
@@ -303,13 +378,17 @@ msgstr "Nullstilling av passordet gikk bra"
 msgid ""
 "We've e-mailed you instructions for setting your password to the e-mail "
 "address you submitted. You should be receiving it shortly."
-msgstr "Vi har sendt instruksjoner på epost for hvordan du kan endre passordet ditt. Du bør motta den om ganske kort tid."
+msgstr ""
+"Vi har sendt instruksjoner på epost for hvordan du kan endre passordet ditt. "
+"Du bør motta den om ganske kort tid."
 
 #: templates/registration/password_reset_form.html:10
 msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll e-mail "
 "instructions for setting a new one."
-msgstr "Glemt passordet? Skriv inn epostadressa di under så sender vi deg instruksjoner på hvordan du kan lage deg et nytt."
+msgstr ""
+"Glemt passordet? Skriv inn epostadressa di under så sender vi deg "
+"instruksjoner på hvordan du kan lage deg et nytt."
 
 #: templates/registration/password_reset_form.html:16
 msgid "Reset my password"
@@ -336,7 +415,8 @@ msgstr "Resultater"
 #, python-format
 msgid ""
 "Hidden file, only visible for members of group \"%(result.object.group)s\""
-msgstr "Skjult fil. Bare synlig for medlemmer av gruppa «%(result.object.group)s»."
+msgstr ""
+"Skjult fil. Bare synlig for medlemmer av gruppa «%(result.object.group)s»."
 
 #: templates/search/search.html:25
 msgid "No results"
