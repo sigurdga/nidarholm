@@ -12,6 +12,8 @@ class Story(Common, Title, Markdown):
 
     class Meta:
         ordering = ("pub_date",)
+        verbose_name  = _('news story')
+        verbose_name_plural = _('news stories')
 
     @models.permalink
     def get_absolute_url(self):

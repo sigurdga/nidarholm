@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 from core.models import Common, Title, Markdown
 
 class Debate(Common, Title, Markdown):
@@ -6,6 +7,8 @@ class Debate(Common, Title, Markdown):
 
     class Meta:
         ordering = ('created',)
+        verbose_name = _('forum post')
+        verbose_name_plural = _('forum posts')
 
     def __unicode__(self):
         return self.title
