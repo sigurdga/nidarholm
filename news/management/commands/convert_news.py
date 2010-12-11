@@ -23,7 +23,7 @@ class Command(BaseCommand):
 
             u = User.objects.get(username=row[7].decode('utf-8'))
             g, created = Group.objects.get_or_create(name=row[6].decode('utf-8').capitalize())
-            if g.name == "verden":
+            if g.name == "Verden":
                 g = None
             date = datetime.fromtimestamp(row[3])
             d, created = Story.objects.get_or_create(parent=None, title=row[4].decode('utf-8'), user=u, updated=date, created=date, pub_date=date)
@@ -39,7 +39,7 @@ class Command(BaseCommand):
             did = row[0]
             u = User.objects.get(username=row[7].decode('utf-8'))
             g, created = Group.objects.get_or_create(name=row[6].decode('utf-8').capitalize())
-            if g.name == "verden":
+            if g.name == "Verden":
                 g = None
             date = datetime.fromtimestamp(row[3])
             dd, created = Story.objects.get_or_create(parent=debate, user=u, created=date, updated=date, pub_date=date)

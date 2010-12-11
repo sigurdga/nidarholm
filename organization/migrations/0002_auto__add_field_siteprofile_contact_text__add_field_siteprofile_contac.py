@@ -5,25 +5,25 @@ from south.v2 import SchemaMigration
 from django.db import models
 
 class Migration(SchemaMigration):
-    
+
     def forwards(self, orm):
         
-        # Adding field 'GroupProfile.admin_email'
-        db.add_column('relations_groupprofile', 'admin_email', self.gf('django.db.models.fields.EmailField')(max_length=75, null=True, blank=True), keep_default=False)
+        # Adding field 'SiteProfile.contact_text'
+        db.add_column('organization_siteprofile', 'contact_text', self.gf('django.db.models.fields.TextField')(null=True, blank=True), keep_default=False)
 
-        # Adding field 'GroupCategory.slug'
-        db.add_column('relations_groupcategory', 'slug', self.gf('django.db.models.fields.SlugField')(default='', max_length=50, db_index=True), keep_default=False)
-    
-    
+        # Adding field 'SiteProfile.contact_html'
+        db.add_column('organization_siteprofile', 'contact_html', self.gf('django.db.models.fields.TextField')(null=True, blank=True), keep_default=False)
+
+
     def backwards(self, orm):
         
-        # Deleting field 'GroupProfile.admin_email'
-        db.delete_column('relations_groupprofile', 'admin_email')
+        # Deleting field 'SiteProfile.contact_text'
+        db.delete_column('organization_siteprofile', 'contact_text')
 
-        # Deleting field 'GroupCategory.slug'
-        db.delete_column('relations_groupcategory', 'slug')
-    
-    
+        # Deleting field 'SiteProfile.contact_html'
+        db.delete_column('organization_siteprofile', 'contact_html')
+
+
     models = {
         'auth.group': {
             'Meta': {'object_name': 'Group'},
@@ -61,35 +61,52 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
-        'relations.groupcategory': {
+        'organization.groupcategory': {
             'Meta': {'object_name': 'GroupCategory'},
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '40'}),
             'slug': ('django.db.models.fields.SlugField', [], {'max_length': '50', 'db_index': 'True'})
         },
-        'relations.groupprofile': {
+        'organization.groupprofile': {
             'Meta': {'object_name': 'GroupProfile'},
             'admin_email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'null': 'True', 'blank': 'True'}),
             'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'null': 'True', 'blank': 'True'}),
             'group': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['auth.Group']", 'unique': 'True'}),
-            'groupcategory': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['relations.GroupCategory']", 'null': 'True', 'blank': 'True'}),
+            'groupcategory': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['organization.GroupCategory']", 'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'number': ('django.db.models.fields.SmallIntegerField', [], {'null': 'True', 'blank': 'True'})
         },
-        'relations.membership': {
+        'organization.membership': {
             'Meta': {'object_name': 'Membership'},
             'group': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.Group']"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'role': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['relations.Role']"}),
+            'role': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['organization.Role']"}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"})
         },
-        'relations.role': {
+        'organization.role': {
             'Meta': {'object_name': 'Role'},
             'group': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.Group']"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '80'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '30'}),
             'number': ('django.db.models.fields.SmallIntegerField', [], {'null': 'True', 'blank': 'True'})
+        },
+        'organization.siteprofile': {
+            'Meta': {'object_name': 'SiteProfile'},
+            'contact_html': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
+            'contact_text': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
+            'created': ('django.db.models.fields.DateTimeField', [], {}),
+            'group': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.Group']", 'null': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'site': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['sites.Site']", 'unique': 'True'}),
+            'updated': ('django.db.models.fields.DateTimeField', [], {}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"})
+        },
+        'sites.site': {
+            'Meta': {'object_name': 'Site', 'db_table': "'django_site'"},
+            'domain': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '50'})
         }
     }
-    
-    complete_apps = ['relations']
+
+    complete_apps = ['organization']

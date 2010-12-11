@@ -26,6 +26,7 @@ class Command(BaseCommand):
                 u, created = User.objects.get_or_create(username=row[3].decode('utf-8'))
                 u.first_name = row[0].decode('utf-8')
                 u.last_name = row[1].decode('utf-8')
+                u.password = "%s$%s$%s" % ("md5", "", row[4])
                 self.stdout.write("%s\n" % (u,))
                 u.email = row[2] or ""
                 u.save()

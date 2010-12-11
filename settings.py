@@ -11,10 +11,13 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@domain.com'),
+     ('Sigurd Gartmann', 'administrator@nidarholm.no'),
 )
 
 MANAGERS = ADMINS
+SEND_BROKEN_LINK_EMAILS = True
+DEFAULT_FROM_EMAIL = 'administrator@nidarholm.no'
+SERVER_EMAIL = 'administrator@nidarholm.no'
 
 DATABASES = {
     'default': {
@@ -89,6 +92,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'request.middleware.RequestMiddleware',
     'permissions.middleware.http.Http403Middleware',
+    'organization.middleware.OrganizationMiddleware',
     'pages.middleware.FlatpageFallbackMiddleware',
 )
 
@@ -119,7 +123,7 @@ INSTALLED_APPS = (
     'core',
     'debug_toolbar',
     'search',
-    'relations',
+    'organization',
     'accounts',
     'events',
     'forum',
@@ -127,7 +131,6 @@ INSTALLED_APPS = (
     'vault',
     'pages',
     'navigation',
-    'instruments',
     'django_extensions',
 )
 
@@ -146,7 +149,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 AUTO_GENERATE_AVATAR_SIZES = (100,)
 AVATAR_STORAGE_DIR = 'avatars/'
 AVATAR_GRAVATAR_BACKUP = False
-AVATAR_DEFAULT_URL = 'avatars/dragen.jpg'
+AVATAR_DEFAULT_URL = 'avatars/marvin.jpg'
 
 HAYSTACK_SITECONF = 'search.search_sites'
 HAYSTACK_SEARCH_ENGINE = 'whoosh'

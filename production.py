@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 import os.path
 
 # Django settings for nidarholm project.
@@ -8,10 +10,13 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-        ('Sigurd Gartmann', 'sigurdga-django@sigurdga.no'),
+        ('Sigurd Gartmann', 'administrator@nidarholm.no'),
 )
 
 MANAGERS = ADMINS
+SEND_BROKEN_LINK_EMAILS = True
+DEFAULT_FROM_EMAIL = 'administrator@nidarholm.no'
+SERVER_EMAIL = 'administrator@nidarholm.no'
 
 DATABASES = {
     'default': {
@@ -81,12 +86,11 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    #'sqlmiddleware.SQLLogToConsoleMiddleware',
     'request.middleware.RequestMiddleware',
     'permissions.middleware.http.Http403Middleware',
+    'organization.middleware.OrganizationMiddleware',
     'pages.middleware.FlatpageFallbackMiddleware',
 )
 
@@ -97,11 +101,9 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     os.path.abspath(os.path.dirname(__file__)) + '/templates',
-    #os.path.abspath(os.path.dirname(__file__)) + '/../django-debug-toolbar/debug_toolbar/templates',
 )
 
 INSTALLED_APPS = (
-    'accounts',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -109,21 +111,22 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.admin',
     'south',
+    'haystack',
     'request',
     'tagging',
     'profiles',
     'registration',
     'avatar',
-    #'debug_toolbar',
     'core',
-    'relations',
+    'search',
+    'organization',
+    'accounts',
     'events',
     'forum',
     'news',
     'vault',
     'pages',
     'navigation',
-    #'instruments',
 )
 
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
@@ -140,7 +143,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 AUTO_GENERATE_AVATAR_SIZES = (100,)
 AVATAR_STORAGE_DIR = 'avatars/'
 AVATAR_GRAVATAR_BACKUP = False
-AVATAR_DEFAULT_URL = 'avatars/dragen.jpg'
+AVATAR_DEFAULT_URL = 'avatars/marvin.jpg'
 
 HAYSTACK_SITECONF = 'search.search_sites'
 HAYSTACK_SEARCH_ENGINE = 'whoosh'

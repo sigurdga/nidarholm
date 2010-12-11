@@ -66,7 +66,7 @@
          <div id="bottom-bg">
              <div id="bottom">
                  {% block footer %}
-                 <div id="footer">Opphavsrett (c) Nidarholm og Nidarholms medlemmer</div><div class="footerbox"><h2><a href="/kontakt/">Kontakt</a></h1><ul><li>post (a) nidarholm.no</li><li>Pb 1881 Lade, 7440 Trondheim</li><li>Kontonummer: 4240 07 10036</li><li>Org.nummer: 971 558 105</li></ul></div>{% endblock footer %}
+                 <div id="footer">Opphavsrett © {{ request.organization.site.name }} og {{ request.organization.site.name }}s medlemmer</div><div class="footerbox">{{ request.organization.contact_html|safe }}</div>{% endblock footer %}
                  {% load request_tag %}
                  {% active_users in 10 minutes as user_list %}
                  {% if request.user.is_authenticated %}

@@ -18,9 +18,9 @@
 
 <p>{{ profile.user.username}}</p>
 
-{% if 'Medlemmer' in request.user.groups %}
+{% if request.organization.group in request.user.groups.all %}
 {% load avatar_tags %}
-{% avatar profile.user 100 %}
+{% avatar profile.user 160 %}
 
 <h2>{% trans "Contact information" %}</h2>
 <table>

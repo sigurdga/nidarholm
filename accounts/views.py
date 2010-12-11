@@ -61,6 +61,6 @@ def user_groups(request, username):
         return list_detail.object_list(request, user.groups.all(), extra_context={'this_user': user}, template_name="accounts/user_groups.html")
 
 def member_list(request):
-    members = User.objects.filter(groups__name='Medlemmer').order_by('userprofile__instrument__number')
-    user_ok = Group.objects.get(name='Medlemmer') in request.user.groups.all()
+    members = User.objects.filter(groups=request.organization.group).order_by('first_name, last_name')
+    user_ok = request.organization.group in request.user.groups.all()
     return list_detail.object_list(request, members, template_name="accounts/members.html", extra_context={'user_ok': user_ok})

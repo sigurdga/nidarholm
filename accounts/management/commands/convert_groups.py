@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.contrib.auth.models import User, Group
-from relations.models import GroupCategory
+from organization.models import GroupCategory
 
 import MySQLdb
 
@@ -21,9 +21,12 @@ class Command(BaseCommand):
 	cursor.execute("select brukernavn, navn from medlem_av_gruppe inner join passord on passord.medlemid = medlem_av_gruppe.medlemid inner join gruppe on gruppeid = gruppe.id")
         for row in cursor.fetchall():
             self.stdout.write("put %s into %s\n" % (row[0], row[1]))
-            g, created = Group.objects.get_or_create(name=row[1].decode('utf-8').capitalize())
-            u = User.objects.get(username=row[0].decode('utf-8'))
-            if u:
-                u.groups.add(g)
-            u.save()
+            if row[1] == "verden":
+                self.stdout.write("not putting into verden")
+            else:
+                g, created = Group.objects.get_or_create(name=row[1].decode('utf-8').capitalize())
+                u = User.objects.get(username=row[0].decode('utf-8'))
+                if u:
+                    u.groups.add(g)
+                u.save()
         conn.close()

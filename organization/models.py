@@ -3,8 +3,15 @@ from django.contrib.auth.models import Group, User
 from django.contrib.sites.models import Site
 from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_save
+from django.shortcuts import get_object_or_404
 
 from core.models import Common
+
+from markdown import markdown
+
+def get_organization(request):
+    host = request.get_host()
+    return get_object_or_404(SiteProfile, site__domain=host)
 
 class GroupCategory(models.Model):
     name = models.CharField(_('name'), max_length=40)
@@ -19,7 +26,7 @@ class GroupCategory(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('relations-group-category-detail', (), {'slug': self.slug})
+        return ('organization-group-category-detail', (), {'slug': self.slug})
 
 
 class GroupProfile(models.Model):
@@ -66,9 +73,20 @@ class Membership(models.Model):
 
 class SiteProfile(Common):
     site = models.OneToOneField(Site, verbose_name=_('site'))
+    contact_text = models.TextField(_('page footer contact information'), null=True, blank=True, help_text=_('Use Markdown'))
+    contact_html = models.TextField(null=True, blank=True)
+
+    class Meta:
+        verbose_name = _('site profile')
+        verbose_name_plural = _('site profiles')
 
     def __unicode__(self):
         return self.site.name
+
+    def save(self, *args, **kwargs):
+        if self.contact_text:
+            self.contact_html = markdown(self.contact_text)
+        super(SiteProfile, self).save(*args, **kwargs)
 
 
 def create_group_profile(sender, instance, created, **kwargs):

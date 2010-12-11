@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-27 18:26+0100\n"
-"PO-Revision-Date: 2010-11-27 18:26+0100\n"
+"POT-Creation-Date: 2010-12-10 21:42+0100\n"
+"PO-Revision-Date: 2010-12-10 21:42+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -23,3 +23,11 @@ msgstr "Aktivitetskategori"
 #: models.py:21
 msgid "Event categories"
 msgstr "Aktivitetskategorier"
+
+#: models.py:48
+msgid "Event"
+msgstr "Aktivitet"
+
+#: models.py:49
+msgid "Events"
+msgstr "Aktiviteter"
