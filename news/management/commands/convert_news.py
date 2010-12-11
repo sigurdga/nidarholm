@@ -19,9 +19,9 @@ class Command(BaseCommand):
         cursor.execute("select debateid, ownerid, groupid, created, title, contents, navn, brukernavn from debate inner join passord on passord.medlemid=debate.ownerid inner join gruppe on gruppe.id = debate.groupid where parentid = 155")
         for row in cursor.fetchall():
             #self.stdout.write("%s\n" % (row[4],))
-            text = comment_converter(escaped_fnutts.sub('"', row[5]))
-
             u = User.objects.get(username=row[7].decode('utf-8'))
+            text = comment_converter(escaped_fnutts.sub('"', row[5]), u)
+
             g, created = Group.objects.get_or_create(name=row[6].decode('utf-8').capitalize())
             if g.name == "Verden":
                 g = None
@@ -35,6 +35,7 @@ class Command(BaseCommand):
 
     def make_children(self, db_cursor, debateid, debate):
         db_cursor.execute("select debateid, ownerid, groupid, created, title, contents, navn, brukernavn from debate inner join passord on passord.medlemid=ownerid inner join gruppe on gruppe.id = debate.groupid where parentid = %d" % (debateid,))
+        escaped_fnutts=re.compile(r'\\"')
         for row in db_cursor.fetchall():
             did = row[0]
             u = User.objects.get(username=row[7].decode('utf-8'))
@@ -44,7 +45,7 @@ class Command(BaseCommand):
             date = datetime.fromtimestamp(row[3])
             dd, created = Story.objects.get_or_create(parent=debate, user=u, created=date, updated=date, pub_date=date)
             dd.title = title=row[4].decode('utf-8')
-            dd.content = comment_converter(row[5].decode('utf-8'))
+            dd.content = comment_converter(escaped_fnutts.sub('"', row[5]), u)
             dd.group = g
             dd.save()
             self.make_children(db_cursor, did, dd)
