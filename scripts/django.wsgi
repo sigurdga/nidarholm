@@ -1,7 +1,7 @@
 import os
 import sys
 
-os.environ['DJANGO_SETTINGS_MODULE'] = 'nidarholm.production'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'nidarholm.settings'
 
 path1 = '/srv/www/beta/nidarholm'
 path2 = '/srv/www/beta'
