@@ -28,7 +28,8 @@ class Command(BaseCommand):
                 if row[11]:
                     ec, created = EventCategory.objects.get_or_create(title=str(row[11]), slug=str(row[11]))
                 e, created = Event.objects.get_or_create(title=row[0].decode('utf-8'), user=u, updated=date, created=date, start=start, end=end)
-                e.text = row[1].decode('utf-8')
+                e.location = row[2].decode('utf-8')
+                e.content = row[1].decode('utf-8')
                 e.group = g
                 e.event_serie = row[10]
                 e.event_category = ec
