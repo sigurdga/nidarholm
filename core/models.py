@@ -87,7 +87,7 @@ def extend_markdown(markdown_content):
 
     return markdown('\n'.join(parsed))
 
-def comment_converter(text):
+def comment_converter(text, user):
     oid = None
     name = None
     soup = BeautifulSoup(text, fromEncoding="utf-8")
@@ -113,7 +113,7 @@ def comment_converter(text):
                 print "Could not get: %s" % url
             else:
                 tmpcontents = netfile.read()
-                f, created = UploadedFile.objects.get_or_create(filename=name)
+                f, created = UploadedFile.objects.get_or_create(filename=name, user=user)
                 timestamp = datetime.now()
                 #FIXME: 2.5 does not have %f
                 t = timestamp.strftime("%s") + str(random.randrange(0,999999))
