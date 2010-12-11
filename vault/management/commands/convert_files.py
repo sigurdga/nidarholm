@@ -24,7 +24,7 @@ class Command(BaseCommand):
         for row in cursor.fetchall():
             self.stdout.write("%s %s %s\n" % (row[3], row[8], row[9]))
             u = User.objects.get(username=row[8].decode('utf-8'))
-            g, created = Group.objects.get_or_create(name=row[9].decode('utf-8'))
+            g, created = Group.objects.get_or_create(name=row[9].decode('utf-8').capitalize())
             f, created = UploadedFile.objects.get_or_create(filename=row[3].decode('utf-8'), user=u)
             timestamp = datetime.fromtimestamp(float(row[6]))
             f.uploaded = timestamp
