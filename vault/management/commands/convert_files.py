@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.contrib.auth.models import User, Group
+from django.conf import settings
 from tagging.models import Tag
 from vault.models import UploadedFile
 
@@ -8,6 +9,7 @@ from shutil import copyfile
 import magic
 import hashlib
 import random
+import os
 
 import MySQLdb
 
@@ -35,9 +37,13 @@ class Command(BaseCommand):
             path = folder + '/' + t
             short_path = short_folder + '/' + t
             f.file = short_path
-            copyfile(original_filename, path)
-            #f.content_type = magic.Magic(mime=True).from_file(original_filename)
-            f.content_type = m.file(original_filename)
+            try:
+                copyfile(original_filename, path)
+            except IOError:
+                print "COULD NOT COPY:"
+                print original_filename
+            else:
+                f.content_type = m.file(original_filename)
             f.tags = ",".join(self.find_tags(cursor, int(row[7])))
             if g.name == 'Verden':
                 g = None
