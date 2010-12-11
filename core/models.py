@@ -53,8 +53,9 @@ def replace_references(match_obj):
         return ""
     if file_to_preview.is_image():
         return """<div class="preview">
-        <img src="%s" alt="%s"/>
+        <a href="%s"><img src="%s" alt="%s"/></a>
         <p class="caption">%s</p></div>""" % (
+            file_to_preview.get_absolute_url(),
             reverse('vault.views.send_file', kwargs={'id':img_id, 'size': size}),
             description,
             description,
