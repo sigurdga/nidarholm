@@ -39,7 +39,7 @@ class Command(BaseCommand):
             #f.content_type = magic.Magic(mime=True).from_file(original_filename)
             f.content_type = m.file(original_filename)
             f.tags = ",".join(self.find_tags(cursor, int(row[7])))
-            if g.name == 'verden':
+            if g.name == 'Verden':
                 g = None
             f.group = g
             f.user = u
