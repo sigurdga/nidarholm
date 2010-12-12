@@ -22,15 +22,19 @@ def list_groups(request, group_name, groupcategory_name):
         ret += "<li>"
         ret += "<h2>" + groupprofile.group.name + "</h2>"
         ret += "<table>"
-        for user in groupprofile.group.user_set.all():
+        for u in groupprofile.group.user_set.all():
             # groupprofile.group.user_set.filter(groups=group) is too eager
-            if user.groups.filter(id=group.id).exists():
+            #if u.groups.filter(id=group.id).exists():
+            if u.userprofile_set.filter(status__lt=4):
                 ret += "<tr>"
-                ret += "<td>" + user.get_full_name() + "</td>"
-                ret += "<td>" + ", ".join([ role.name for role in roles_for_user_in_group(user, group) ]) + "</td>"
+                if request.organization.group in request.user.groups.all():
+                    ret += "<td><a href=\"" + u.get_absolute_url() +"\">" + u.get_full_name() + "</a></td>"
+                else:
+                    ret += "<td>" + u.get_full_name() + "</td>"
+                ret += "<td>" + ", ".join([ role.name for role in roles_for_user_in_group(u, group) ]) + "</td>"
                 if request.user.groups.filter(id=group.id):
-                    ret += "<td>%s</td>" % (user.get_profile().cellphone or "",)
-                ret += "<td>" + ", ".join([ role.name for role in roles_for_user_in_group(user, groupprofile.group) ]) + "</td>"
+                    ret += "<td>%s</td>" % (u.get_profile().cellphone or "",)
+                ret += "<td>" + ", ".join([ role.name for role in roles_for_user_in_group(u, groupprofile.group) ]) + "</td>"
                 ret += "</tr>"
         ret += "</table>"
         ret += "</li>"
