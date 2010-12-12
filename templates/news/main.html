@@ -28,8 +28,14 @@
 <ul>
 {% for story in object_list %}
 <li>
-  <h2><a href="{{ story.get_absolute_url }}">{{ story.title }}</a></h2>
-  {{ story.content_html|safe }}
+    <h2><a href="{{ story.get_absolute_url }}">{{ story.title }}</a></h2>
+    <div class="news-root">
+        <div class="news-root-header"><a href="{{ story.user.get_profile.get_absolute_url }}">{{ story.user.get_full_name }}</a>, {{ story.created }}</div>
+        <div class="text">
+            {{ story.content_html|safe }}
+        </div>
+        <div class="clear"></div>
+    </div>
 </li>
 {% empty %}
 <li>{% trans "No news at this time" %}</li>

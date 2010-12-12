@@ -9,7 +9,7 @@
 <div class="forum-post">
     <div class="forum-post-reply"><a href="{{ object.get_absolute_url }}comment">{% trans "Reply" %}</a></div>
     {% avatar object.user 40 %}
-    <div class="forum-header"><a href="{{ object.user.get_profile.get_absolute_url }}">{{ object.user.get_full_name }}</a>, {{ object.created }}</div>
+    <div class="forum-post-header"><a href="{{ object.user.get_profile.get_absolute_url }}">{{ object.user.get_full_name }}</a>, {{ object.created }}</div>
     {{ object.content_html|safe }}
 
     <ul>

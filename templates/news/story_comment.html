@@ -6,7 +6,9 @@
     {% avatar object.user 40 %}
     <div class="news-comment-header"><a href="{{ object.user.get_profile.get_absolute_url }}">{{ object.user.get_full_name }}</a>, {{ object.created }}</div>
 
-    {{ object.content_html|safe }}
+    <div class="text">
+        {{ object.content_html|safe }}
+    </div>
 
     <ul>
         {% for object in object.children.all %}
