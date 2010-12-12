@@ -9,7 +9,7 @@
 <p>Filtype: {{ object.content_type }}</p>
 
 {% if object.is_image %}
-<img src="{% url vault.views.send_file object.id %}" />
+<img src="{% url vault.views.send_file object.id '11' %}" />
 {% endif %}
 
 <p><a href="{% url vault.views.send_file object.id %}">Last ned</a>

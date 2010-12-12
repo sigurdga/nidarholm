@@ -157,6 +157,21 @@ def send_file(request, id, size=settings.DEFAULT_IMAGE_SIZE):
                     width, height = 460, 345
                 else:
                     width, height = 345, 460
+            elif size == 9:
+                if image.size[0] > image.size[1]:
+                    width, height = 520, 390
+                else:
+                    width, height = 390, 520
+            elif size == 10:
+                if image.size[0] > image.size[1]:
+                    width, height = 580, 435
+                else:
+                    width, height = 435, 580
+            elif size == 11:
+                if image.size[0] > image.size[1]:
+                    width, height = 640, 480
+                else:
+                    width, height = 480, 640
             elif size == 0:
                 width, height = 520, 520
                 method = "scale"
@@ -198,6 +213,6 @@ def send_file(request, id, size=settings.DEFAULT_IMAGE_SIZE):
     f.close()
     response = HttpResponse(content_type=uploaded_file.content_type)
     response['Content-Length'] = os.path.getsize(filename)
-    response['Content-Disposition'] = 'filename=%s' % (uploaded_file.filename)
+    response['Content-Disposition'] = 'filename=%s' % (uploaded_file.filename.encode('utf-8'),)
     response.write(output)
     return response
