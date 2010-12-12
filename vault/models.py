@@ -42,7 +42,7 @@ def upload_path(instance, filename):
 
 class UploadedFile(models.Model):
     file = models.FileField(upload_to=upload_path, storage=FileSystemStorage(location=settings.FILE_SERVE_ROOT + '/originals'))
-    content_type = models.CharField(max_length=15, blank=True)
+    content_type = models.CharField(max_length=80, blank=True)
     filename = models.CharField(max_length=100, blank=True)
     user = models.ForeignKey(User)
     group = models.ForeignKey(Group, blank=True, null=True)

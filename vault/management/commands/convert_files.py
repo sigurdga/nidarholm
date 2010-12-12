@@ -44,7 +44,8 @@ class Command(BaseCommand):
                 print original_filename
             else:
                 f.content_type = m.file(original_filename)
-            f.tags = ",".join(self.find_tags(cursor, int(row[7])))
+            f.tags = ",".join(self.find_tags(cursor, int(row[7]))[1:])
+            print f.tags
             if g.name == 'Verden':
                 g = None
             f.group = g

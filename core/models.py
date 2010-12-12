@@ -179,14 +179,18 @@ class Markdown(models.Model):
  
 
 class Title(models.Model):
-    title = models.CharField(_('title'), max_length=60)
-    slug = models.CharField(_('slug'), max_length=60)
+    title = models.CharField(_('title'), max_length=80)
+    slug = models.CharField(_('slug'), max_length=80)
 
     def save(self, *args, **kwargs):
-        self.title = self.title.strip()
+        self.title = self.title.strip()[:80]
         slug = slugify(self.title)
-        while self.__class__.objects.filter(slug=slug).exclude(pk=self.pk):
-            slug += "_"
+        dropout = False
+        while self.__class__.objects.filter(slug=slug).exclude(pk=self.pk) and not dropout:
+            if len(slug) < 80:
+                slug += "_"
+            else:
+                dropout = True
         self.slug = slug
         super(Title, self).save(*args, **kwargs)
 

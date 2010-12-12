@@ -25,7 +25,7 @@ class Command(BaseCommand):
             date = datetime.fromtimestamp(row[3])
             d, created = Debate.objects.get_or_create(parent=None, title=row[4].decode('utf-8'), user=u, updated=date, created=date)
             text = comment_converter(escaped_fnutts.sub('"', row[5]), u)
-            d.text = text
+            d.content = text
             d.group = g
             d.save()
             self.make_children(cursor, row[0], d)
@@ -44,7 +44,7 @@ class Command(BaseCommand):
             dd, created = Debate.objects.get_or_create(parent=debate, user=u, created=date, updated=date)
             dd.title = title=row[4].decode('utf-8')
             text = comment_converter(escaped_fnutts.sub('"', row[5]), u)
-            dd.text = text
+            dd.content = text
             dd.group = g
             dd.save()
             self.make_children(db_cursor, did, dd)

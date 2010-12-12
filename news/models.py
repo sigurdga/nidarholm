@@ -5,7 +5,7 @@ from core.models import Common, Title, Markdown
 
 class Story(Common, Title, Markdown):
     parent = models.ForeignKey('Story', null=True, blank=True, related_name='children')
-    pub_date = models.DateTimeField()
+    pub_date = models.DateTimeField(verbose_name=_('publish date'), auto_now_add=True)
 
     def __unicode__(self):
         return self.title
