@@ -84,7 +84,6 @@ div#menu {
     left: 74px;
 }
 div#menu ul {
-    list-style-type: none;
 }
 
 div#menu ul li {
@@ -95,10 +94,7 @@ div#menu ul li {
 
 div#sidebar {
     width: 280px;
-    /*float: right;*/
-    position: absolute;
-    top: 0;
-    right: 0;
+    float: right;
     padding: 0 10px;
 }
 div#content {
@@ -106,6 +102,22 @@ div#content {
     padding: 0 10px 0 10px;
     background-image: url(/m/i/content-bg.png);
     background-repeat: repeat-x;
+}
+div.text {
+    margin-top: 30px;
+}
+
+div.text img {
+    margin-top: -30px;
+}
+
+div.text ul {
+    padding-left: 20px;
+    padding-bottom: 15px;
+    list-style-type: disc;
+}
+div.text li {
+    list-style-type: disc;
 }
 
 div#footer {
@@ -122,7 +134,6 @@ div#middle h1 {
     font-size: 22px;
     font-weight: bold;
     padding-top: 12px;
-    clear: both;
 }
 
 div#sidebar h1 {
@@ -133,6 +144,9 @@ div#sidebar h1 {
 div#middle h2 {
     font-size: 18px;
     margin-top: 5px;
+}
+
+.clear {
     clear: both;
 }
 
@@ -166,33 +180,52 @@ div.preview {
 
 /* forum */
 
+div.news-root,
 div.news-comment,
-div.forum-post {
-    width: 460px;
+div.forum-post,
+div.forum-comment {
     position: relative;
     border-top: 1px solid #dddddd;
 }
+
+div.news-root {
+}
+
+div.forum-post {
+    width: 460px;
+}
+
+div.news-comment,
+div.forum-comment {
+    width: 460px;
+    margin-left: 20px;
+}
+
 div.news-comment img.avatar,
-div.forum-post img.avatar {
+div.forum-post img.avatar,
+div.forum-comment img.avatar {
     position: absolute;
     top: 0;
     left: 0;
 }
 
-div.news-comment ul,
-div.forum-post ul {
-    margin-left: 20px;
-}
-
-div.news-comment div.news-comment-header,
-div.forum-post div.forum-header {
+div.news-comment-header,
+div.forum-post-header,
+div.forum-comment-header {
     position: absolute;
     top: 0;
     left: 45px;
 }
+div.news-root-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
 
-div.news-comment div.news-comment-reply,
-div.forum-post div.forum-post-reply {
+div.news-root-reply,
+div.news-comment-reply,
+div.forum-post-reply,
+div.forum-comment-reply {
     position: absolute;
     top: 0;
     right: 0;
