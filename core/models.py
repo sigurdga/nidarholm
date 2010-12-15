@@ -154,8 +154,8 @@ class CommonManager(models.Manager):
 
 
 class Common(models.Model):
-    created = models.DateTimeField(_('created'))
-    updated = models.DateTimeField(_('updated'))
+    created = models.DateTimeField(_('created'), auto_now_add=True)
+    updated = models.DateTimeField(_('updated'), auto_now=True)
     user = models.ForeignKey(User, verbose_name=_('created by'))
     group = models.ForeignKey(Group, verbose_name=_('created for'), null=True, blank=True)
     
@@ -179,15 +179,18 @@ class Markdown(models.Model):
  
 
 class Title(models.Model):
-    title = models.CharField(_('title'), max_length=60)
-    slug = models.CharField(_('slug'), max_length=60)
+    title = models.CharField(_('title'), max_length=80)
+    slug = models.CharField(_('slug'), max_length=80)
 
     def save(self, *args, **kwargs):
-        title = self.title
+        self.title = self.title.strip()[:80]
         slug = slugify(self.title)
-        while self.__class__.objects.filter(slug=slug):
-            title += "_"
-            slug = slugify(title)
+        dropout = False
+        while self.__class__.objects.filter(slug=slug).exclude(pk=self.pk) and not dropout:
+            if len(slug) < 80:
+                slug += "_"
+            else:
+                dropout = True
         self.slug = slug
         super(Title, self).save(*args, **kwargs)
 

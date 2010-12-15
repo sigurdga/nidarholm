@@ -40,6 +40,7 @@ class GroupProfile(models.Model):
     class Meta:
         verbose_name = _('group profile')
         verbose_name_plural = _('group profiles')
+        ordering = ('number',)
 
     def __unicode__(self):
         return self.group.name

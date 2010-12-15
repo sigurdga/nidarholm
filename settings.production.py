@@ -20,12 +20,14 @@ SERVER_EMAIL = 'administrator@nidarholm.no'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '/srv/www/beta/nidarholm/database/development.sqlite3', # Or path to database file if using sqlite3.
-        'USER': '', # Not used with sqlite3.
-        'PASSWORD': '', # Not used with sqlite3.
-        'HOST': '', # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '', # Set to empty string for default. Not used with sqlite3.
+        #'ENGINE':'sqlite3',
+        #'NAME': '/srv/www/beta/nidarholm/database/development.sqlite3',
+        'ENGINE': 'postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'nidarholm', # Or path to database file if using sqlite3.
+        'USER': 'nidarholm', # Not used with sqlite3.
+        'PASSWORD': 'niweb', # Not used with sqlite3.
+        'HOST': 'localhost', # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '5433', # Set to empty string for default. Not used with sqlite3.
     }
 }
 
@@ -143,12 +145,15 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 AUTO_GENERATE_AVATAR_SIZES = (100,)
 AVATAR_STORAGE_DIR = 'avatars/'
 AVATAR_GRAVATAR_BACKUP = False
-AVATAR_DEFAULT_URL = 'avatars/marvin.jpg'
+AVATAR_DEFAULT_URL = '/m/avatars/default.png'
 
 HAYSTACK_SITECONF = 'search.search_sites'
 HAYSTACK_SEARCH_ENGINE = 'whoosh'
 HAYSTACK_XAPIAN_PATH = os.path.abspath(os.path.dirname(__file__)) + '/index.xapian'
 HAYSTACK_WHOOSH_PATH = os.path.abspath(os.path.dirname(__file__)) + '/index.whoosh'
+
+MAX_TAG_LENGTH = 64 # reduce later
+FORCE_LOWERCASE_TAGS = True # should replace with unidecoded space stripped versions
 
 ACCOUNT_ACTIVATION_DAYS = 14
 LOGIN_REDIRECT_URL = '/'
