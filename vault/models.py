@@ -8,6 +8,7 @@ from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 
 from hashlib import sha1
+from datetime import datetime
 
 class FileManager(models.Manager):
 

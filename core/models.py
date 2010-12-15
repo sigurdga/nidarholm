@@ -154,8 +154,8 @@ class CommonManager(models.Manager):
 
 
 class Common(models.Model):
-    created = models.DateTimeField(_('created'))#, auto_now_add=True)
-    updated = models.DateTimeField(_('updated'))#, auto_now=True)
+    created = models.DateTimeField(_('created'), auto_now_add=True)
+    updated = models.DateTimeField(_('updated'), auto_now=True)
     user = models.ForeignKey(User, verbose_name=_('created by'))
     group = models.ForeignKey(Group, verbose_name=_('created for'), null=True, blank=True)
     

@@ -28,10 +28,12 @@ def new_file(request):
             #original_filename = "{root}originals/{filename}".format(
             #    root=settings.FILE_SERVE_ROOT,
             #    filename=uploaded_file.file)
+            #original_filename = "%soriginals/%s" % (settings.FILE_SERVE_ROOT, uploaded_file.file)
             #import pdb; pdb.set_trace()
             #uploaded_file.content_type = magic.Magic(mime=True).from_file(original_filename)
-            uploaded_file.content_type = m.file(original_filename)
-            #uploaded_file.content_type = request.FILES['file'].content_type
+            #uploaded_file.content_type = m.file(original_filename)
+            # FIXME: Use one of the above
+            uploaded_file.content_type = request.FILES['file'].content_type
             uploaded_file.save()
             return HttpResponseRedirect('/files')
     else:

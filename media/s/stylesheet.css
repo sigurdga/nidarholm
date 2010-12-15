@@ -60,6 +60,14 @@ div#middle a {
     color: #a30302;
 }
 
+div#middle strong {
+    font-weight: bold;
+}
+
+div#middle em {
+    font-style: italic;
+}
+
 div#top a {
     color: #ffffff;
     font-weight: bold;
@@ -104,7 +112,9 @@ div#content {
     background-repeat: repeat-x;
 }
 div.text {
+    width: 100%;
     margin-top: 30px;
+    float: left;
 }
 
 div.text img {
@@ -114,10 +124,9 @@ div.text img {
 div.text ul {
     padding-left: 20px;
     padding-bottom: 15px;
-    list-style-type: disc;
 }
 div.text li {
-    list-style-type: disc;
+    list-style: disc;
 }
 
 div#footer {
@@ -229,4 +238,17 @@ div.forum-comment-reply {
     position: absolute;
     top: 0;
     right: 0;
+}
+
+td.col2 {
+    width: 100px;
+    margin-right: 20px;
+}
+td.col4 {
+    width: 220px;
+    margin-right: 20px;
+}
+td.col5 {
+    width: 280px;
+    margin-right: 20px;
 }

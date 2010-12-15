@@ -10,8 +10,11 @@
     <div class="forum-post-reply"><a href="{{ object.get_absolute_url }}comment">{% trans "Reply" %}</a></div>
     {% avatar object.user 40 %}
     <div class="forum-post-header"><a href="{{ object.user.get_profile.get_absolute_url }}">{{ object.user.get_full_name }}</a>, {{ object.created }}</div>
-    {{ object.content_html|safe }}
 
+    <div class="text">
+        {{ object.content_html|safe }}
+    </div>
+    <div class="clear"></div>
     <ul>
         {% for object in object.children.all %}
         <li>
