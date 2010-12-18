@@ -5,7 +5,7 @@
 
 {% block contextmenu %}{% if request.user.is_authenticated %}
 <li><a href="{% url news-new-story %}">{% trans "Create new story" %}</a></li>
-{% if infopage %}
+{% if infopage and infopage.admingroup in request.user.groups.all %}
 <li><a href="{% url edit-flatpage infopage.id %}">{% trans "Edit welcome text" %}</a></li>{% endif %}
 {% endif %}
 {% endblock %}
