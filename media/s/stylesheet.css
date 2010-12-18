@@ -105,6 +105,9 @@ div#sidebar {
     float: right;
     padding: 0 10px;
 }
+div#contextinfo {
+    margin-top: 20px;
+}
 div#content {
     width: 640px;
     padding: 0 10px 0 10px;
@@ -251,4 +254,11 @@ td.col4 {
 td.col5 {
     width: 280px;
     margin-right: 20px;
+}
+
+/* files */
+div.filetags {
+    float: right;
+}
+div.filelist h2 {
 }
