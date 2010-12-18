@@ -157,3 +157,5 @@ FORCE_LOWERCASE_TAGS = True # should replace with unidecoded space stripped vers
 
 ACCOUNT_ACTIVATION_DAYS = 14
 LOGIN_REDIRECT_URL = '/'
+
+PAGINATION_DEFAULT_WINDOW = 8
