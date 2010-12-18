@@ -45,6 +45,7 @@ urlpatterns = patterns('',
     (r'^forum/', include('forum.urls')),
     (r'^news/', include('news.urls')),
     (r'^events/', include('events.urls')),
+    (r'^projects/', include('projects.urls')),
     (r'^files/', include('vault.urls')),
 
     (r'^sitemap/', include('navigation.urls')),
