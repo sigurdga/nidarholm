@@ -1,5 +1,8 @@
 # encoding: utf-8
 import os.path
+import sys
+
+sys.path.insert(0, os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
 
 ugettext = lambda s: s
 
@@ -113,6 +116,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.admin',
+    'django.contrib.admindocs',
     'south',
     'haystack',
     'request',
@@ -126,12 +130,13 @@ INSTALLED_APPS = (
     'organization',
     'accounts',
     'events',
+    'projects',
     'forum',
     'news',
     'vault',
     'pages',
     'navigation',
-    'django_extensions',
+    #'django_extensions',
 )
 
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'

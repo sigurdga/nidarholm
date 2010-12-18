@@ -3,6 +3,7 @@ from permissions.middleware.http import Http403
 from django.shortcuts import get_object_or_404, render_to_response
 from vault.models import UploadedFile
 from vault.forms import UploadedFileForm
+from projects.models import Project
 from django.core.urlresolvers import reverse
 #from django.core.servers.basehttp import FileWrapper
 import os
@@ -53,12 +54,15 @@ def file_list(request, tags=""):
 
     menu_tags = [ (reverse('vault-tagged-file-list', args=[tag]), tag) for tag in tags ]
 
+    projects = Project.objects.for_user(request.user)
+
     return list_detail.object_list(request,
                                    queryset=queryset,
                                    paginate_by=20,
                                    extra_context={
                                            'tags': tags,
                                            'menu_tags': menu_tags,
+                                           'projects': projects,
                                            },
                                    )
 

@@ -1,6 +1,9 @@
 # encoding: utf-8
 
 import os.path
+import sys
+
+sys.path.insert(0, os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
 
 # Django settings for nidarholm project.
 
@@ -62,7 +65,7 @@ FILE_SERVE_ROOT = os.path.abspath(os.path.dirname(__file__)) + '/uploads/'
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = '/srv/www/beta/nidarholm/media/'
+MEDIA_ROOT = '/srv/www/beta/nidarholm/nidarholm/media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -124,6 +127,7 @@ INSTALLED_APPS = (
     'organization',
     'accounts',
     'events',
+    'projects',
     'forum',
     'news',
     'vault',

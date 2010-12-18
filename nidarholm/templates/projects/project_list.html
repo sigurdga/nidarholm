@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+
+<h1>{% trans "Prosjekter" %}</h1>
+
+<ul>
+{% for project in object_list %}
+<li><h2><a href="{{ project.get_absolute_url }}">{{ project.title }}</a></h2><a href="{% url file_list %}tags/{{ project.tag.name }}">{% trans "Project files" %}</a></li>
+{% endfor %}
+</ul>
+
+{% endblock %}
