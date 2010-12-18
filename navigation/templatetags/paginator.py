@@ -2,7 +2,7 @@ from django import template
 
 register = template.Library()
 
-def paginator(context, adjacent_pages=2):
+def paginator(context, adjacent_pages=4):
     """
     To be used in conjunction with the object_list generic view.
 
