@@ -127,6 +127,7 @@ INSTALLED_APPS = (
     'organization',
     'accounts',
     'events',
+    'projects',
     'forum',
     'news',
     'vault',

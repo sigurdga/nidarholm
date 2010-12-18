@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block title %}Filer{% endblock %}
  
@@ -35,11 +36,18 @@
 
 {% block contextinfo %}
 <form method="get" action="/search/">
-    <label for="id_q"><h2>Søk</h2></label><input type="text" name="q" value="" id="id_q" /><input type="submit" value="Søk" />
+    <label for="id_q"><h2>{% trans "Search" %}</h2></label><input type="text" name="q" value="" id="id_q" /><input type="submit" value="{% trans "Search" %}" />
 </form>
 
+<h2>{% trans "Projects" %}</h2>
+<ul>
+{% for project in projects %}
+<li><a href="{% url file_list %}tags/{{ tags|join:"/" }}{% if tags %}/{% endif %}{{ project.tag.name}}">{{ project.title }}</a></li>
+{% endfor %}
+</ul>
+
 {% if request.organization.group in request.user.groups.all %}
-  <h2>Tags</h2>
+<h2>{% trans "Tags" %}</h2>
   {% load tagging_tags %}
   {% tag_cloud_for_model vault.UploadedFile as cloud with distribution=log steps=8 min_count=50 %}
   {% for tag in cloud %}

@@ -13,7 +13,7 @@ class FlatPage(Common, Markdown):
     #registration_required = models.BooleanField(_('registration required'), help_text=_("If this is checked, only logged-in users will be able to view the page."))
     sites = models.ManyToManyField(Site, related_name="pages")
     admingroup = models.ForeignKey(Group, related_name='administers_pages',
-            verbose_name=('writable for'))
+            verbose_name=_('writable for'))
     class Meta:
         verbose_name = _('page')
         verbose_name_plural = _('pages')

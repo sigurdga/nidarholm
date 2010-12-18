@@ -116,6 +116,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.admin',
+    'django.contrib.admindocs',
     'south',
     'haystack',
     'request',
@@ -129,12 +130,13 @@ INSTALLED_APPS = (
     'organization',
     'accounts',
     'events',
+    'projects',
     'forum',
     'news',
     'vault',
     'pages',
     'navigation',
-    'django_extensions',
+    #'django_extensions',
 )
 
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
