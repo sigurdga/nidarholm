@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-18 16:29+0100\n"
+"POT-Creation-Date: 2010-12-18 19:30+0100\n"
 "PO-Revision-Date: 2010-12-18 16:31+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,11 +16,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: settings.deveoplment.py:168 settings.py:168
+#: settings.deveoplment.py:168
 msgid "Norwegian bokmål"
 msgstr "Bokmål"
 
-#: settings.deveoplment.py:169 settings.py:169
+#: settings.deveoplment.py:169
 msgid "English"
 msgstr "Engelsk"
 
@@ -71,7 +71,7 @@ msgid "Group"
 msgstr "Gruppe"
 
 #: templates/accounts/group_list.html:4 templates/accounts/user_groups.html:4
-#: templates/profiles/profile_detail.html:46
+#: templates/profiles/profile_detail.html:58
 msgid "Groups"
 msgstr "Grupper"
 
@@ -138,14 +138,17 @@ msgid "Event list"
 msgstr "Aktivitetsliste"
 
 #: templates/events/event_detail.html:8
+#: templates/projects/project_detail.html:8
 msgid "Edit"
 msgstr "Rediger"
 
 #: templates/events/event_detail.html:17
+#: templates/projects/project_detail.html:33
 msgid "For group"
 msgstr "For gruppe"
 
 #: templates/events/event_detail.html:17
+#: templates/projects/project_detail.html:33
 msgid "For all"
 msgstr "For alle"
 
@@ -309,27 +312,25 @@ msgstr "Adresse"
 msgid "Postcode"
 msgstr "Postnummer"
 
-#: templates/profiles/profile_detail.html:33
+#: templates/profiles/profile_detail.html:34
+#: templates/profiles/profile_detail.html:38
+#: templates/profiles/profile_detail.html:42
 msgid "Work information"
-msgstr "Arbeidsinformasjon"
+msgstr "Arbeid"
 
-#: templates/profiles/profile_detail.html:36
-msgid "Occupation"
-msgstr "Yrke"
-
-#: templates/profiles/profile_detail.html:39
-msgid "Employer"
-msgstr "Arbeidssted"
+#: templates/profiles/profile_detail.html:35
+msgid "at"
+msgstr "hos"
 
 #: templates/profiles/profile_detail.html:43
+msgid "At"
+msgstr "Hos"
+
+#: templates/profiles/profile_detail.html:49
 msgid "Birthday"
 msgstr "Fødselsdag"
 
-#: templates/profiles/profile_detail.html:44
-msgid "Coming soon …"
-msgstr "Kommer …"
-
-#: templates/profiles/profile_detail.html:52
+#: templates/profiles/profile_detail.html:64
 #, python-format
 msgid "%(profile.user.username)s is not member of any groups"
 msgstr "%(profile.user.username)s er ikke medlem av noen grupper"
@@ -337,6 +338,24 @@ msgstr "%(profile.user.username)s er ikke medlem av noen grupper"
 #: templates/profiles/profile_list.html:21
 msgid "Only superusers may see this"
 msgstr "Bare superbrukere får se dette"
+
+#: templates/projects/project_detail.html:4
+msgid "Project"
+msgstr "Prosjekt"
+
+#: templates/projects/project_detail.html:15
+#: templates/projects/project_list.html:10
+msgid "Project files"
+msgstr "Prosjektfiler"
+
+#: templates/projects/project_detail.html:22
+msgid "No files tagged with project tag"
+msgstr "Ingen filer tagget med prosjekt-tag"
+
+#: templates/projects/project_list.html:6
+#: templates/vault/uploadedfile_list.html:42
+msgid "Projects"
+msgstr "Prosjekter"
 
 #: templates/registration/login.html:4 templates/registration/login.html:8
 msgid "Login"
@@ -445,10 +464,18 @@ msgstr ""
 msgid "No results"
 msgstr "Ingen resultater"
 
-#: templates/vault/uploadedfile_list.html:42
-msgid "Projects"
-msgstr "Prosjekter"
-
 #: templates/vault/uploadedfile_list.html:50
 msgid "Tags"
 msgstr "Tags"
+
+#~ msgid "Prosjekter"
+#~ msgstr "Prosjekter"
+
+#~ msgid "Occupation"
+#~ msgstr "Yrke"
+
+#~ msgid "Employer"
+#~ msgstr "Arbeidssted"
+
+#~ msgid "Coming soon …"
+#~ msgstr "Kommer …"

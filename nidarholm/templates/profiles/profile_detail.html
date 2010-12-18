@@ -6,7 +6,7 @@
 {% block contextmenu %}
 {% if request.user == profile.user %}
 <li><a href="{% url edit-profile %}">{% trans "Edit user details" %}</a></li>
-<li><a href="{% url avatar_change %}"{% trans "Change profile picture" %}</a></li>
+<li><a href="{% url avatar_change %}">{% trans "Change profile picture" %}</a></li>
 {% endif %}
 {% if request.user.is_superuser %}
 <li><a href="{% url user-groups profile.user %}">{% trans "Edit group permissions" %}</a></li>
@@ -30,19 +30,31 @@
     <tr><th>{% trans "Postcode" %}</th><td>{% if profile.postcode %}{{ profile.postcode }}{% endif %}</td></tr>
 </table>
 
+{% if profile.occupation and profile.employer %}
 <h2>{% trans "Work information" %}</h2>
-<table>
-    {% if profile.occupation %}
-    <tr><th>{% trans "Occupation" %}</th><td>{{ profile.occupation }}</td></tr>
-    {% endif %}
-    {% if profile.employer %}
-    <tr><th>{% trans "Employer" %}</th><td>{{ profile.employer }}</td></tr>
-    {% endif %}
-</table>
+{{ profile.occupation }} {% trans "at" %} {{ profile.employer }}
+{% else %}
+{% if profile.occupation %}
+<h2>{% trans "Work information" %}</h2>
+{{ profile.occupation }}
+{% else %}
+{% if profile.employer %}
+<h2>{% trans "Work information" %}</h2>
+{% trans "At" %} {{ profile.employer }}
+{% endif %}
+{% endif %}
+{% endif %}
 
+{% if profile.born %}
 <h2>{% trans "Birthday" %}</h2>
-{% trans "Coming soon …" %}
+{{ profile.born|date:"j. F" }}
+{% endif %}
 
+{% endif %}
+{% endblock %}
+
+{% block contextinfo %}
+{% if request.organization.group in request.user.groups.all %}
 <h2>{% trans "Groups" %}</h2>
 
 <ul>
@@ -52,7 +64,7 @@
   <li><em>{% blocktrans %}{{ profile.user.username}} is not member of any groups{% endblocktrans %}</em></li>
   {% endfor %}
 </ul>
-
 {% endif %}
-
 {% endblock %}
+
+
