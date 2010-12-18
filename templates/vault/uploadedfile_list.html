@@ -5,16 +5,20 @@
 {% block content %}
 {% load tagging_tags %}
 
-<ul>
+<h1>Sist lastet opp</h1>
+
+<ul id="filelist">
 {% for uploadedfile in object_list %}
-<li><a href="{{ uploadedfile.get_absolute_url }}">{{ uploadedfile.filename }}</a>
+<li>
+<div class="filetags">
 {% tags_for_object uploadedfile as filetags %}
 {% for tag in filetags %}
-{% if tag.name != "Filer" %}
-  <a href="{% url file_list %}tags/{{ tags|join:"/"}}{% if tags %}/{% endif %}{{ tag.name }}">{{ tag }}</a>
-{% endif %}
+· <a href="{% url file_list %}tags/{{ tags|join:"/"}}{% if tags %}/{% endif %}{{ tag.name }}">{{ tag }}</a>
 {% endfor %}
-<br />{{ uploadedfile.uploaded }} <a href="{{ uploadedfile.user.get_absolute_url }}">{{ uploadedfile.user.get_full_name }}</a></li>
+</div>
+<h2><a href="{{ uploadedfile.get_absolute_url }}">{{ uploadedfile.filename }}</a></h2>
+{{ uploadedfile.uploaded }} <a href="{{ uploadedfile.user.get_absolute_url }}">{{ uploadedfile.user.get_full_name }}</a>
+</li>
 {% empty %}
 <li>Nothing here</li>
 {% endfor %}
@@ -31,21 +35,21 @@
 
 {% block contextinfo %}
 <form method="get" action="/search/">
-    <table> 
-        <tr><th><label for="id_q">Søk:</label></th><td><input type="text" name="q" value="" id="id_q" /></td></tr> 
-        <tr><td></td><td><input type="submit" value="Søk" /></td></tr> 
-    </table>
+    <label for="id_q"><h2>Søk</h2></label><input type="text" name="q" value="" id="id_q" /><input type="submit" value="Søk" />
 </form>
 
+{% if request.organization.group in request.user.groups.all %}
+  <h2>Tags</h2>
   {% load tagging_tags %}
-  {% tag_cloud_for_model vault.UploadedFile as cloud with distribution=log steps=4 min_count=50 %}
+  {% tag_cloud_for_model vault.UploadedFile as cloud with distribution=log steps=8 min_count=50 %}
   {% for tag in cloud %}
   {% if tag.name not in tags %}
     <span class="tag">
-      <a style="font-size:1.{{ tag.font_size }}em" href="{% url file_list %}tags/{{ tags|join:"/" }}{% if tags %}/{% endif %}{{ tag }}">{{ tag }}</a>
+      <a style="font-size:1.{{ tag.font_size }}em" href="{% url file_list %}tags/{{ tags|join:"/" }}{% if tags %}/{% endif %}{{ tag }}" title="{{ tag.count }}">{{ tag }}</a>
     </span>
     {% endif %}
   {% endfor %}
+{% endif %}
 {% endblock contextinfo %}
 
 
