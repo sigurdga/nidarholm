@@ -13,7 +13,7 @@
 <h1>{% trans "Forum" %}</h1>
 <ul>
 {% for debate in object_list %}
-<li><a href="{{ debate.get_absolute_url }}">{{ debate.title }}</a> {{ debate.created }}</li>
+<li><a href="{{ debate.get_absolute_url }}">{{ debate.title }}</a> {{ debate.created }} -- {{ debate.get_last_commentor }} {{ debate.get_last_comment_time }}</li>
 {% empty %}
 <li>{% trans "Nothing here" %}</li>
 {% endfor %}

@@ -7,8 +7,8 @@ from forum.forms import DebateForm
 from django.template.context import RequestContext
 from django.views.generic import list_detail
 
-def debate_list(request):
 
+def debate_list(request):
     return list_detail.object_list(request,
                                    queryset=Debate.objects.for_user(request.user).filter(parent=None).order_by('-created'),
                                    paginate_by=20,
