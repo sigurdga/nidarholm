@@ -1,5 +1,8 @@
 # encoding: utf-8
 import os.path
+import sys
+
+sys.path.insert(0, os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
 
 ugettext = lambda s: s
 
