@@ -7,6 +7,7 @@ from django.conf import settings
 from django.core.xheaders import populate_xheaders
 from django.utils.safestring import mark_safe
 from django.views.decorators.csrf import csrf_protect
+from django.views.generic.list_detail import object_list
 
 DEFAULT_TEMPLATE = 'pages/default.html'
 
@@ -78,3 +79,20 @@ def edit_flatpage(request, id):
         form = PageForm(instance=flatpage)
     return render_to_response('pages/edit_page.html', {'form': form}, context_instance=RequestContext(request))
 
+def new_flatpage(request):
+    if request.method == 'POST':
+        flatpage = FlatPage()
+        form = PageForm(requst.POST, instance=flatpage)
+        if form.is_valid():
+            form.save(commit=False)
+            flatpage.user = request.user
+            flatpage.save()
+            return HttpResponseRedirect(flatpage.url)
+    else:
+        flatpage = FlatPage()
+        form = PageForm(instance=flatpage)
+    return render_to_response('pages/new_page.html', {'form': form}, context_instance=RequestContext(request))
+
+def flatpage_list(request):
+    queryset = FlatPage.objects.for_user(request.user)
+    return object_list(request, queryset)

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+
+{% block content %}
+
+<h1>{% trans "Pages" %}</h1>
+
+{% for page in object_list %}
+
+<h2><a href="{{ page.url }}">{{ page.title }}</a></h2>
+
+<p>{{ page.user }} {{ page.created }}</p>
+
+{% endfor %}
+
+{% endblock %}
+
+{% block contextmenu %}
+
+<li><a href="{% url new-flatpage %}">{% trans "New page" %}</a></li>
+
+{% endblock %}

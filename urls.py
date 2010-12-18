@@ -4,7 +4,7 @@ from django.conf import settings
 from django.contrib.auth import views as auth_views
 from accounts.views import groups, group_object_detail, user_groups, member_list
 from news.views import story_list
-from pages.views import edit_flatpage
+from pages.views import edit_flatpage, new_flatpage, flatpage_list
 admin.autodiscover()
 
 from accounts.forms import ProfileForm
@@ -57,6 +57,8 @@ urlpatterns = patterns('',
     (r'^organization/', include('organization.urls')),
 
     (r'^pages/(?P<id>\d+)/edit$', edit_flatpage, (), 'edit-flatpage'),
+    (r'^pages/new$', new_flatpage, (), 'new-flatpage'),
+    (r'^pages/$', flatpage_list, (), 'flatpage-list'),
     (r'^admin/', include(admin.site.urls)),
     (r'^avatar/', include('avatar.urls')),
     (r'^search/', include('search.urls')),

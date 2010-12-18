@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Edit page content" %}{% endblock %}
+{% block title %}{% trans "Create a new page" %}{% endblock %}
 
 {% block content %}
 
-<h1>{% trans "Edit page content" %}</h1>
+<h1>{% trans "Create a new page" %}</h1>
 
 <form method="post">
   {% csrf_token %}
