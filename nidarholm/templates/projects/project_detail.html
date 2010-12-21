@@ -4,8 +4,8 @@
 {% block title %}{{ object.title}} - {% trans "Project" %}{% endblock %}
 
 {% block contextmenu %}
-{% if object.admingroup in request.user.groups.all %}
-<li><a href="{% url edit_project object.id %}">{% trans "Edit" %}</a></li>
+{% if object.admingroup in request.user.groups.all or request.organization.admingroup in request.user.groups.all %}
+<li><a href="{% url edit_project object.slug %}">{% trans "Edit" %}</a></li>
 {% endif %}
 {% endblock %}
 
