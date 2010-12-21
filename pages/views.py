@@ -71,7 +71,6 @@ def edit_flatpage(request, id):
         form = PageForm(request.POST, instance=flatpage)
         if form.is_valid():
             form.save(commit=False)
-            flatpage.user = request.user
             flatpage.save()
             return HttpResponseRedirect(flatpage.url)
     else:

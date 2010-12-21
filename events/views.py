@@ -50,7 +50,6 @@ def edit_event(request, id):
         form = EventForm(request.POST, instance=event)
         if form.is_valid():
             form.save(commit=False)
-            event.user = request.user
             event.save()
             return HttpResponseRedirect(event.get_absolute_url())
     else:
