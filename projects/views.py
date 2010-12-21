@@ -1,6 +1,7 @@
 from django.views.generic.list_detail import object_list, object_detail
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template.context import RequestContext
+from django.http import HttpResponseRedirect
 
 from projects.models import Project
 from projects.forms import ProjectForm
@@ -18,7 +19,8 @@ def project_detail(request, slug):
 
 def new_project(request):
     if request.method == 'POST':
-        form = ProjectForm(request.POST)
+        project = Project()
+        form = ProjectForm(request.POST, instance=project)
         if form.is_valid():
             form.save(commit=False)
             project.user = request.user
@@ -28,7 +30,7 @@ def new_project(request):
     else:
         project = Project()
         form = ProjectForm(instance=project)
-    return render_to_response('project/new_project.html', {'form': form}, context_instance=RequestContext(request))
+    return render_to_response('projects/new_project.html', {'form': form}, context_instance=RequestContext(request))
 
 def edit_project(request, slug):
     if request.method == 'POST':
