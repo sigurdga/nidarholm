@@ -76,6 +76,8 @@ class SiteProfile(Common):
     site = models.OneToOneField(Site, verbose_name=_('site'))
     contact_text = models.TextField(_('page footer contact information'), null=True, blank=True, help_text=_('Use Markdown'))
     contact_html = models.TextField(null=True, blank=True)
+    admingroup = models.ForeignKey(Group, related_name='administers_sites',
+            verbose_name=_('administration group'))
 
     class Meta:
         verbose_name = _('site profile')
