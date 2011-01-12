@@ -23,4 +23,13 @@ class Story(Common, Title, Markdown):
                               'month': self.pub_date.month,
                               'day': self.pub_date.day,
                               }
-        )
+        ) 
+
+    def get_top(self):
+        parent = self.parent
+        top = self
+        while parent:
+            top = parent
+            parent = top.parent
+        return top
+

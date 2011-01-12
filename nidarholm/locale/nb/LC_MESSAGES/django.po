@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-12 22:06+0100\n"
-"PO-Revision-Date: 2011-01-12 22:07+0100\n"
+"POT-Creation-Date: 2011-01-12 22:33+0100\n"
+"PO-Revision-Date: 2011-01-12 22:36+0100\n"
 "Last-Translator: Sigurd Gartmann <sigurdga-translate@sigurdga.no>\n"
 "Language-Team: Bokmål <sigurdga-translate@sigurdga.no>\n"
 "Language: \n"
@@ -57,9 +57,17 @@ msgstr "Logg inn"
 
 #: templates/base.html:74
 msgid "Active users last 10 minutes"
-msgstr "Aktive brukere de siste ti minuttene"
+msgstr "Aktive brukere (siste ti minutter)"
 
-#: templates/base.html:88
+#: templates/base.html:82
+msgid "Last commented news"
+msgstr "Nyhetsaktivitet"
+
+#: templates/base.html:87
+msgid "Last uploaded files"
+msgstr "Siste filer"
+
+#: templates/base.html:93
 msgid "active users last 10 minutes"
 msgstr "aktive brukere de siste ti minuttene"
 

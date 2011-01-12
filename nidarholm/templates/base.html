@@ -79,7 +79,12 @@
                      </ul>
                  </div>
                  <div class="footerbox">
-                     <h2>Siste filer</h2>
+                     <h2>{% trans "Last commented news" %}</h2>
+                     {% load interactivity %}
+                     {% last_commented_news request 10 %}
+                 </div>
+                 <div class="footerbox">
+                     <h2>{% trans "Last uploaded files" %}</h2>
                      {% load interactivity %}
                      {% file_list request 10 %}
                  </div>
