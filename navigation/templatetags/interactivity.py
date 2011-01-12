@@ -39,6 +39,6 @@ def format_active_list(list):
     ret = '<ul>'
     for debate in list:
         title, url, created = debate
-        ret += '<li><a href="%s">%s</a><br />%s' % (url, title, date(created, "DATE_FORMAT") + " " + time(created, "TIME_FORMAT"))
+        ret += '<li><a href="%s">%s</a><br />%s</li>' % (url, title, date(created, "DATE_FORMAT") + " " + time(created, "TIME_FORMAT"))
     ret += '</ul>'
     return ret
