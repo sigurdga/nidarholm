@@ -7,35 +7,6 @@ from django.contrib.auth.models import User, Group
 from accounts.forms import UserGroupsForm
 from django.template.context import RequestContext
 
-def login(request):
-    if request.method == 'POST':
-        form = AuthenticationForm(data=request.POST)
-        if form.is_valid():
-            auth.login(request, form.get_user())
-            return HttpResponseRedirect('/')
-    else:
-        form = AuthenticationForm(request)
-
-    return render_to_response("accounts/login.html", {'form': form}, context_instance=RequestContext(request))
-
-def logout(request):
-    auth.logout(request)
-    return HttpResponseRedirect('/')
-
-def register(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            user = auth.authenticate(
-                    username=form.cleaned_data.get("username"),
-                    password=form.cleaned_data.get("password1"))
-            auth.login(request, user)
-            return HttpResponseRedirect('/')
-    else:
-        form = UserCreationForm()
-    return render_to_response("accounts/register.html", {'form': form})
-
 def groups(request):
         return list_detail.object_list(request, Group.objects.all(), template_name="accounts/group_list.html")
 

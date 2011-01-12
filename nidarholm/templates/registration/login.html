@@ -16,8 +16,9 @@
     <input type="hidden" name="next" value="{{ next|escape }}" />
     <table>
         {{ form.as_table }}
-        <tr><td></td><td><a href="{% url django.contrib.auth.views.password_reset %}">{% trans "Lost your password?" %}</a></td></tr>
-        <tr><td></td><td><input type="submit" value="Logg inn" /></td></tr>
+        <tr><td></td><td><a href="{% url django.contrib.auth.views.password_reset %}">{% trans "Lost password or username?" %}</a></td></tr>
+        <tr><td></td><td><a href="{% url registration.views.register %}">{% trans "Are you a new user?" %}</a></td></tr>
+        <tr><td></td><td><input type="submit" value="{% trans "Login" %}" /></td></tr>
     </table>
 </form>
 

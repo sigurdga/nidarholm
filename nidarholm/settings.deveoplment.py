@@ -168,3 +168,8 @@ LANGUAGES = (
   ('nb', ugettext('Norwegian bokmål')),
   ('en', ugettext('English')),
 )
+
+TRANSLATION_HACK = (
+        ugettext('password (again)'),
+        ugettext('email address'),
+        )
