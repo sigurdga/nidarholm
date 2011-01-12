@@ -2,19 +2,21 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Sigurd Gartmann <sigurdga-translate@sigurdga.no>, 2011.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-19 14:23+0100\n"
-"PO-Revision-Date: 2010-12-19 14:24+0100\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"POT-Creation-Date: 2011-01-12 18:34+0100\n"
+"PO-Revision-Date: 2011-01-12 18:40+0100\n"
+"Last-Translator: Sigurd Gartmann <sigurdga-translate@sigurdga.no>\n"
+"Language-Team: Bokmål <sigurdga-translate@sigurdga.no>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: utf-8\n"
+"Plural-Forms: 2\n"
 
 #: settings.deveoplment.py:168 settings.py:168
 msgid "Norwegian bokmål"
@@ -63,6 +65,7 @@ msgstr "Brukergrupper"
 #: templates/pages/edit_page.html:14 templates/pages/new_page.html:14
 #: templates/profiles/create_profile.html:13
 #: templates/profiles/edit_profile.html:13
+#: templates/projects/new_project.html:14
 msgid "Submit"
 msgstr "Lagre"
 
@@ -358,6 +361,11 @@ msgstr "%(profile.user.username)s er ikke medlem av noen grupper"
 #: templates/profiles/profile_list.html:21
 msgid "Only superusers may see this"
 msgstr "Bare superbrukere får se dette"
+
+#: templates/projects/new_project.html:4 templates/projects/new_project.html:8
+#: templates/projects/project_list.html:18
+msgid "New project"
+msgstr "Nytt prosjekt"
 
 #: templates/projects/project_detail.html:4
 msgid "Project"
