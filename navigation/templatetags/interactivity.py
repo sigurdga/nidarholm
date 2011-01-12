@@ -15,7 +15,7 @@ def file_list(request, count=10):
 def html_list(list):
     ret = "<ul>"
     for file in list:
-        ret += "<li><a href=\"" + file.get_absolute_url() + "\">" + file.filename + "</a></li>"
+        ret += "<li><a href=\"" + file.get_absolute_url() + "\">" + file.filename + "</a><br />" + date(file.uploaded, "DATE_FORMAT") + " " + time(file.uploaded, "TIME_FORMAT") + "</li>"
     ret += "</ul>"
     return ret
 
