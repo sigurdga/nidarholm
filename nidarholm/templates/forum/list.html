@@ -11,6 +11,7 @@
 
 {% block contextinfo %}
 {% load forum_tags %}
+<h1>{% trans "Last active forum threads" %}</h1>
 {% last_commented request %}
 {% endblock %}
 

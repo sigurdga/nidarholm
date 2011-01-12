@@ -22,6 +22,6 @@ def html_list(list):
     ret = '<ul>'
     for debate in list:
         title, url, created, user = debate
-        ret += '<li><a href="%s">%s</a>: %s, %s' % (url, title, date(created, "DATE_FORMAT") + " " + time(created, "TIME_FORMAT"), user.get_full_name())
+        ret += '<li><a href="%s">%s</a><br />%s, %s' % (url, title, user.get_full_name(), date(created, "DATE_FORMAT") + " " + time(created, "TIME_FORMAT"))
     ret += '</ul>'
     return ret
