@@ -2,13 +2,15 @@ from django import template
 from forum.models import Debate
 from django.template.defaultfilters import date, time
 
+from datetime import datetime, timedelta
+
 register = template.Library()
 
 @register.simple_tag
 def last_commented(request):
     tops = []
     already_there = set()
-    debates = Debate.objects.for_user(request.user).order_by("-created")[0:100]
+    debates = Debate.objects.for_user(request.user).order_by("-created").filter(created__gt=datetime.now()-timedelta(days=366))
     for debate in debates:
         top = debate.get_top()
         if not top in already_there:
@@ -20,6 +22,6 @@ def html_list(list):
     ret = '<ul>'
     for debate in list:
         title, url, created, user = debate
-        ret += '<li><a href="%s">%s</a>: %s, %s' % (url, title, date(created, "DATE_FORMAT") + " " + time(created, "TIME_FORMAT"), user)
+        ret += '<li><a href="%s">%s</a>: %s, %s' % (url, title, date(created, "DATE_FORMAT") + " " + time(created, "TIME_FORMAT"), user.get_full_name())
     ret += '</ul>'
     return ret
