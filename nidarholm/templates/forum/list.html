@@ -9,6 +9,11 @@
   {% endif %}
 {% endblock %}
 
+{% block contextinfo %}
+{% load forum_tags %}
+{% last_commented request %}
+{% endblock %}
+
 {% block content %}
 <h1>{% trans "Forum" %}</h1>
 <ul>

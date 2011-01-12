@@ -20,6 +20,14 @@ class Debate(Common, Title, Markdown):
     def get_absolute_url(self):
         return ('forum-debate', (), {'slug': self.slug})
 
+    def get_top(self):
+        parent = self.parent
+        top = self
+        while parent:
+            top = parent
+            parent = top.parent
+        return top
+
     def get_top_url(self):
         parent = self.parent
         top = self
