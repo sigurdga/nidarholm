@@ -14,9 +14,6 @@
 {% block contextinfo %}
 {{ infopage.content_html|safe }}
 
-<h1>{% trans "Next important event" %}</h1>
-{% load event_tag %}
-{% next_of_category "Konserter" request.user %}
 
 {% endblock %}
 {% endif %}

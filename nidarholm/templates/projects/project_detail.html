@@ -10,6 +10,12 @@
 {% endblock %}
 
 {% block contextinfo %}
+{% load date %}
+<h1>{{ object.title }}</h1>
+<p>
+    {% between_datetimes object.start object.end %}<br />
+    ({% if object.group %}{% trans "For group" %}: {{ object.group }}{% else %}{% trans "For all" %}{% endif %})
+</p>
 {% if request.organization.group in request.user.groups.all %}
 {% load tagging_tags %}
 <h2><a href="{% url file_list %}tags/{{ object.tag.name }}">{% trans "Project files" %}</a></h2>
@@ -26,12 +32,6 @@
 {% endblock %}
 
 {% block content %}
-{% load date %}
-<h1>{{ object.title }}</h1>
-<p>
-    {% between_datetimes object.start object.end %}<br />
-    ({% if object.group %}{% trans "For group" %}: {{ object.group }}{% else %}{% trans "For all" %}{% endif %})
-</p>
 
 {{ object.content_html|safe }}
 
