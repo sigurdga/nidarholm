@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-12 22:33+0100\n"
-"PO-Revision-Date: 2011-01-12 22:36+0100\n"
+"POT-Creation-Date: 2011-01-13 01:29+0100\n"
+"PO-Revision-Date: 2011-01-13 01:30+0100\n"
 "Last-Translator: Sigurd Gartmann <sigurdga-translate@sigurdga.no>\n"
 "Language-Team: Bokmål <sigurdga-translate@sigurdga.no>\n"
 "Language: \n"
@@ -400,6 +400,13 @@ msgstr "Ingen filer tagget med prosjekt-tag"
 #: templates/vault/uploadedfile_list.html:42
 msgid "Projects"
 msgstr "Prosjekter"
+
+#: templates/registration/activate.html:4
+#: templates/registration/activate.html:8
+#: templates/registration/activation_complete.html:4
+#: templates/registration/activation_complete.html:8
+msgid "User activation"
+msgstr "Brukeraktivering"
 
 #: templates/registration/login.html:4 templates/registration/login.html:8
 #: templates/registration/login.html:21
