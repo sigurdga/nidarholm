@@ -1,3 +1,14 @@
-Brukeren din er nå aktivert
+{% extends "base.html" %}
+{% load i18n %}
 
-Håper alt virker som det skal.
+{% block title %}{% trans "User activation" %}{% endblock %}
+
+{% block content %}
+
+<h1>{% trans "User activation" %}</h1>
+
+<p>Brukeren din er nå aktivert, og kontoen din skal være klar til å logge inn.</p>
+<p>Håper alt virker som det skal. Du kan nå trykke på «Logg inn» og se at det virker.</p>
+<p>Hvis du har registrert deg selv, må noen godkjenne deg manuelt, og dette kan ta litt tid.</p>
+
+{% endblock %}

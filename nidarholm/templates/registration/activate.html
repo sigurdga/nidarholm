@@ -1,2 +1,12 @@
-Aktivering feilet, du brukte kode
-{{ activation_key }}
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "User activation" %}{% endblock %}
+
+{% block content %}
+
+<h1>{% trans "User activation" %}</h1>
+
+<p>Aktivering feilet, du brukte kode {{ activation_key }}</a>
+
+{% endblock %}

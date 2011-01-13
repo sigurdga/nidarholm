@@ -1,7 +1,7 @@
 Aktiver brukeren din på {{ site }}
 
 Du gjør det ved å klikke
-{{ activation_key }}
-innen {{ activation_key }}
+http://{{ site }}/accounts/activate/{{ activation_key }}/
+innen {{ expiration_days }} dager
 
 Hilsen Automatikken

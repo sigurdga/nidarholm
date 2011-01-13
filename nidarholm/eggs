@@ -10,3 +10,4 @@ pil
 pyexiv2
 magic
 unidecode
+-e hg+http://bitbucket.org/ubernostrum/django-registration/#egg=django-registration
