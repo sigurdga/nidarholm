@@ -4,6 +4,7 @@ django-registration
 django-avatar
 django-debug-toolbar
 django-extensions
+markdown
 xapian-haystack
 werkzeug
 pil
