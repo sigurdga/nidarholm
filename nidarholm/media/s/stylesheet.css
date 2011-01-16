@@ -97,7 +97,6 @@ div#menu ul {
 div#menu ul li {
     float: left;
     margin-right: 10px;
-    padding-left: 0;
 }
 
 div#sidebar {
@@ -127,9 +126,15 @@ div.text img {
 div.text ul {
     padding-left: 20px;
     padding-bottom: 15px;
+    list-style: disc outside;
 }
-div.text li {
-    list-style: disc;
+div.text ol {
+    padding-left: 20px;
+    padding-bottom: 15px;
+    list-style: decimal outside;
+}
+
+div.text ul li {
 }
 
 div#footer {
