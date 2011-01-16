@@ -10,3 +10,14 @@
 {% list_groups request group_name object.name %}
 
 {% endblock %}
+
+{% block contextinfo %}
+{% if request.user.is_superuser %}
+<h1>Ukategoriserte medlemmer</h1>
+<ul>
+{% for user in users_without_status.all %}
+<li><a href="{{ user.get_absolute_url }}">{{ user.username }}</a> ({{ user.get_full_name }})</li>
+{% endfor %}
+</ul>
+{% endif %}
+{% endblock %}
