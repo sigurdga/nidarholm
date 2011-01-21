@@ -1,5 +1,5 @@
 # encoding: utf-8
-from django.db import models
+from django.db import models, DatabaseError
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User, Group
 
@@ -49,13 +49,17 @@ def replace_references(match_obj):
         size = settings.DEFAULT_IMAGE_SIZE
     try:
         file_to_preview = UploadedFile.objects.get(id=img_id)
+    except DatabaseError:
+        url = unicode(img_id)
+        is_image = True
     except UploadedFile.DoesNotExist:
         return ""
-    if file_to_preview.is_image():
-        return """<div class="preview">
-        <a href="%s"><img src="%s" alt="%s"/></a>
-        <p class="caption">%s</p></div>""" % (
-            file_to_preview.get_absolute_url(),
+    else:
+        url = file_to_preview.get_absolute_url()
+        is_image = file_to_preview.is_image()
+    if is_image:
+        return """<div class="preview"><a href="%s"><img src="%s" alt="%s"/></a><p class="caption">%s</p></div>""" % (
+            url,
             reverse('vault.views.send_file', kwargs={'id':img_id, 'size': size}),
             description,
             description,
@@ -78,6 +82,7 @@ def replace_references(match_obj):
 
 def extend_markdown(markdown_content):
     parsed = []
+    print markdown_content
     pattern = re.compile(r'\!\[(?P<description>.*?)\]\[(?P<path>\d+(?:\/\d+)?)\]')
     for line in markdown_content.split('\n'):
         if line.find('![') > -1:
@@ -86,6 +91,7 @@ def extend_markdown(markdown_content):
         else:
             parsed.append(line)
 
+    print markdown('\n'.join(parsed))
     return markdown('\n'.join(parsed))
 
 def comment_converter(text, user):
