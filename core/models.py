@@ -82,7 +82,6 @@ def replace_references(match_obj):
 
 def extend_markdown(markdown_content):
     parsed = []
-    print markdown_content
     pattern = re.compile(r'\!\[(?P<description>.*?)\]\[(?P<path>\d+(?:\/\d+)?)\]')
     for line in markdown_content.split('\n'):
         if line.find('![') > -1:
@@ -91,7 +90,6 @@ def extend_markdown(markdown_content):
         else:
             parsed.append(line)
 
-    print markdown('\n'.join(parsed))
     return markdown('\n'.join(parsed))
 
 def comment_converter(text, user):
@@ -103,8 +101,7 @@ def comment_converter(text, user):
         try:
             url = img['src'] 
         except KeyError:
-            print "Could not find src in"
-            print img
+            pass
         else:
             print url
             #print soup
@@ -117,7 +114,8 @@ def comment_converter(text, user):
             try:
                 netfile = urllib2.urlopen(url)
             except urllib2.HTTPError:
-                print "Could not get: %s" % url
+                #print "Could not get: %s" % url
+                pass
             else:
                 tmpcontents = netfile.read()
                 f, created = UploadedFile.objects.get_or_create(filename=name, user=user)
