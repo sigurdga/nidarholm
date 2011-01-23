@@ -61,7 +61,7 @@
   {% for group in profile.user.groups.all %}
   <li><a href="{{ group.get_absolute_url }}">{{ group.name }}</a></li>
   {% empty %}
-  <li><em>{% blocktrans %}{{ profile.user.username}} is not member of any groups{% endblocktrans %}</em></li>
+  <li><em>{% blocktrans %}This person is not member of any groups{% endblocktrans %}</em></li>
   {% endfor %}
 </ul>
 {% endif %}
