@@ -16,7 +16,7 @@ def group_category_detail(request, slug, group_slug, status_id=None):
             extra_context={'group_name': group_slug, 'users_without_status': users_without_status, 'users_not_members': users_not_members})
     else:
         if request.organization.group in request.user.groups.all():
-            queryset = UserProfile.objects.filter(status=status_id)
+            queryset = UserProfile.objects.filter(status=status_id).select_related('user').order_by('user__first_name', 'user__last_name')
         else:
             queryset = UserProfile.objects.empty()
         return list_detail.object_list(request, queryset, template_name="organization/status.html")
