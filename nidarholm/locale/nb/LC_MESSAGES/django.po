@@ -8,29 +8,29 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-13 01:29+0100\n"
-"PO-Revision-Date: 2011-01-13 01:30+0100\n"
+"POT-Creation-Date: 2011-01-30 23:09+0100\n"
+"PO-Revision-Date: 2011-01-30 23:10+0100\n"
 "Last-Translator: Sigurd Gartmann <sigurdga-translate@sigurdga.no>\n"
 "Language-Team: Bokmål <sigurdga-translate@sigurdga.no>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1\n"
 
-#: settings.deveoplment.py:168 settings.py:168
+#: settings.deveoplment.py:169 settings.py:169
 msgid "Norwegian bokmål"
 msgstr "Bokmål"
 
-#: settings.deveoplment.py:169 settings.py:169
+#: settings.deveoplment.py:170 settings.py:170
 msgid "English"
 msgstr "Engelsk"
 
-#: settings.deveoplment.py:173 settings.py:173
+#: settings.deveoplment.py:174 settings.py:174
 msgid "password (again)"
 msgstr "passord (igjen)"
 
-#: settings.deveoplment.py:174 settings.py:174
+#: settings.deveoplment.py:175 settings.py:175
 msgid "email address"
 msgstr "epostadresse"
 
@@ -42,32 +42,32 @@ msgstr "Ingen tilgang"
 msgid "It looks like the permission system works"
 msgstr "Det ser ut som tilgangssystemet virker"
 
-#: templates/base.html:23
+#: templates/base.html:27
 msgid "Logged in as"
 msgstr "Logget inn som"
 
-#: templates/base.html:24
+#: templates/base.html:28
 msgid "Log out"
 msgstr "Logg ut"
 
-#: templates/base.html:26
+#: templates/base.html:30
 #: templates/registration/password_reset_complete.html:12
 msgid "Log in"
 msgstr "Logg inn"
 
-#: templates/base.html:74
+#: templates/base.html:78
 msgid "Active users last 10 minutes"
 msgstr "Aktive brukere (siste ti minutter)"
 
-#: templates/base.html:82
+#: templates/base.html:86
 msgid "Last commented news"
 msgstr "Nyhetsaktivitet"
 
-#: templates/base.html:87
+#: templates/base.html:91
 msgid "Last uploaded files"
 msgstr "Siste filer"
 
-#: templates/base.html:93
+#: templates/base.html:97
 msgid "active users last 10 minutes"
 msgstr "aktive brukere de siste ti minuttene"
 
@@ -80,7 +80,7 @@ msgstr "Brukergrupper"
 #: templates/events/new_event.html:14 templates/forum/new_debate.html:14
 #: templates/pages/edit_page.html:14 templates/pages/new_page.html:14
 #: templates/profiles/create_profile.html:13
-#: templates/profiles/edit_profile.html:13
+#: templates/profiles/edit_profile.html:23
 #: templates/projects/new_project.html:14
 msgid "Submit"
 msgstr "Lagre"
@@ -90,16 +90,18 @@ msgid "Group"
 msgstr "Gruppe"
 
 #: templates/accounts/group_list.html:4 templates/accounts/user_groups.html:4
-#: templates/profiles/profile_detail.html:58
+#: templates/profiles/profile_detail.html:60
 msgid "Groups"
 msgstr "Grupper"
 
 #: templates/accounts/members.html:4 templates/accounts/members.html.py:8
+#: templates/organization/status.html:4 templates/organization/status.html:8
 #: templates/profiles/profile_list.html:4
 msgid "All users"
 msgstr "Alle brukere"
 
-#: templates/accounts/members.html:22 templates/profiles/profile_list.html:18
+#: templates/accounts/members.html:22 templates/organization/status.html:22
+#: templates/profiles/profile_list.html:18
 msgid "No users"
 msgstr "Ingen brukere"
 
@@ -279,6 +281,16 @@ msgstr "Ingen nyheter på det nåværende tidspunktet"
 msgid "News archive"
 msgstr "Nyhetsarkiv"
 
+#: templates/organization/groupcategory_detail.html:17
+msgid "New user"
+msgstr "Nytt medlem"
+
+#: templates/organization/groupcategory_detail.html:23
+#: templates/search/search.html:5 templates/search/search.html.py:10
+#: templates/vault/uploadedfile_list.html:39
+msgid "Search"
+msgstr "Søk"
+
 #: templates/organization/groupcategory_list.html:4
 #: templates/organization/groupcategory_list.html:7
 msgid "Organization"
@@ -313,66 +325,70 @@ msgstr "Rediger brukerprofil"
 msgid "Add your details"
 msgstr "Legg inn brukerinformasjon"
 
-#: templates/profiles/edit_profile.html:4
 #: templates/profiles/edit_profile.html:7
+#: templates/profiles/edit_profile.html:15
+msgid "Edit your profile"
+msgstr "Rediger brukerprofilen din"
+
+#: templates/profiles/edit_profile.html:9
+#: templates/profiles/edit_profile.html:17
 #, python-format
-msgid "Edit user profile %(user)s"
-msgstr "Rediger brukerprofil «%(user)s»"
+msgid "Edit user profile: %(profile)s"
+msgstr "Rediger brukerprofil: «%(profile)s»"
 
 #: templates/profiles/profile_detail.html:8
-msgid "Edit user details"
-msgstr "Rediger brukerinformasjon"
+msgid "Edit user profile"
+msgstr "Rediger brukerprofil"
 
-#: templates/profiles/profile_detail.html:9
+#: templates/profiles/profile_detail.html:11
 msgid "Change profile picture"
 msgstr "Bytt profilbilde"
 
-#: templates/profiles/profile_detail.html:12
+#: templates/profiles/profile_detail.html:14
 msgid "Edit group permissions"
 msgstr "Rediger grupperettigheter"
 
-#: templates/profiles/profile_detail.html:25
+#: templates/profiles/profile_detail.html:27
 msgid "Contact information"
 msgstr "Kontaktinformasjon"
 
-#: templates/profiles/profile_detail.html:27
+#: templates/profiles/profile_detail.html:29
 msgid "Email"
 msgstr "Epost"
 
-#: templates/profiles/profile_detail.html:28
+#: templates/profiles/profile_detail.html:30
 msgid "Cellphone"
 msgstr "Mobiltelefon"
 
-#: templates/profiles/profile_detail.html:29
+#: templates/profiles/profile_detail.html:31
 msgid "Address"
 msgstr "Adresse"
 
-#: templates/profiles/profile_detail.html:30
+#: templates/profiles/profile_detail.html:32
 msgid "Postcode"
 msgstr "Postnummer"
 
-#: templates/profiles/profile_detail.html:34
-#: templates/profiles/profile_detail.html:38
-#: templates/profiles/profile_detail.html:42
+#: templates/profiles/profile_detail.html:36
+#: templates/profiles/profile_detail.html:40
+#: templates/profiles/profile_detail.html:44
 msgid "Work information"
 msgstr "Arbeid"
 
-#: templates/profiles/profile_detail.html:35
+#: templates/profiles/profile_detail.html:37
 msgid "at"
 msgstr "hos"
 
-#: templates/profiles/profile_detail.html:43
+#: templates/profiles/profile_detail.html:45
 msgid "At"
 msgstr "Hos"
 
-#: templates/profiles/profile_detail.html:49
+#: templates/profiles/profile_detail.html:51
 msgid "Birthday"
 msgstr "Fødselsdag"
 
-#: templates/profiles/profile_detail.html:64
-#, python-format
-msgid "%(profile.user.username)s is not member of any groups"
-msgstr "%(profile.user.username)s er ikke medlem av noen grupper"
+#: templates/profiles/profile_detail.html:66
+msgid "This person is not member of any groups"
+msgstr "Denne personen er ikke medlem av noen grupper"
 
 #: templates/profiles/profile_list.html:21
 msgid "Only superusers may see this"
@@ -408,22 +424,14 @@ msgstr "Prosjekter"
 msgid "User activation"
 msgstr "Brukeraktivering"
 
-#: templates/registration/login.html:4 templates/registration/login.html:8
-#: templates/registration/login.html:21
+#: templates/registration/login.html:5 templates/registration/login.html:9
+#: templates/registration/login.html:19
 msgid "Login"
 msgstr "Logg inn"
 
-#: templates/registration/login.html:11
+#: templates/registration/login.html:12
 msgid "Ooops! That was not correct."
 msgstr "Oisann! Det var feil."
-
-#: templates/registration/login.html:19
-msgid "Lost password or username?"
-msgstr "Mistet passord eller brukernavn?"
-
-#: templates/registration/login.html:20
-msgid "Are you a new user?"
-msgstr "Er du ny her?"
 
 #: templates/registration/logout.html:6
 msgid "Thanks for spending some quality time with the Web site today."
@@ -500,40 +508,32 @@ msgstr ""
 msgid "Reset my password"
 msgstr "Nullstill passordet mitt"
 
-#: templates/registration/registration_form.html:4
-#: templates/registration/registration_form.html:8
+#: templates/registration/registration_form.html:5
+#: templates/registration/registration_form.html:9
 msgid "New registration"
 msgstr "Registrer ny bruker"
 
-#: templates/registration/registration_form.html:10
+#: templates/registration/registration_form.html:11
 msgid ""
-"If you have already registered, and forgot your username or password, please "
-"go back to the login form and use the other option to recover you login "
-"information"
+"If you have lost your password, or are already registered by an "
+"administrator, please go back to the login form and click \"reset password\" "
+"near the password field"
 msgstr ""
-"Om du allerede er registrert, men har glemt brukernavnet eller passordet, er "
-"det fint om du går tilbake til innloggingssiden og velger det andre "
-"alternativet for mistet brukernavn eller passord"
+"Om du har mistet passorder, eller er registrert av en administrator, gå "
+"tilbake til innloggingssiden og klikk «Lag nytt passord»"
 
 #: templates/registration/registration_form.html:16
 msgid "Save"
 msgstr "Lagre"
-
-#: templates/search/search.html:5 templates/search/search.html.py:10
-#: templates/vault/uploadedfile_list.html:39
-msgid "Search"
-msgstr "Søk"
 
 #: templates/search/search.html:14
 msgid "Results"
 msgstr "Resultater"
 
 #: templates/search/search.html:21
-#, python-format
-msgid ""
-"Hidden file, only visible for members of group \"%(result.object.group)s\""
+msgid "Hidden file, only visible for members of permission group."
 msgstr ""
-"Skjult fil. Bare synlig for medlemmer av gruppa «%(result.object.group)s»."
+"Skjult fil. Bare synlig for medlemmer av en gruppe du ikke er medlem av."
 
 #: templates/search/search.html:25
 msgid "No results"
@@ -542,6 +542,24 @@ msgstr "Ingen resultater"
 #: templates/vault/uploadedfile_list.html:50
 msgid "Tags"
 msgstr "Tags"
+
+#~ msgid "Edit user details"
+#~ msgstr "Rediger brukerinformasjon"
+
+#~ msgid "Lost password or username?"
+#~ msgstr "Mistet passord eller brukernavn?"
+
+#~ msgid "Are you a new user?"
+#~ msgstr "Er du ny her?"
+
+#~ msgid ""
+#~ "If you have already registered, and forgot your username or password, "
+#~ "please go back to the login form and use the other option to recover you "
+#~ "login information"
+#~ msgstr ""
+#~ "Om du allerede er registrert, men har glemt brukernavnet eller passordet, "
+#~ "er det fint om du går tilbake til innloggingssiden og velger det andre "
+#~ "alternativet for mistet brukernavn eller passord"
 
 #~ msgid "Next important event"
 #~ msgstr "Neste konsert"
