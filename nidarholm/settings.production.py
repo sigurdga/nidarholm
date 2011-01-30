@@ -122,6 +122,7 @@ INSTALLED_APPS = (
     'profiles',
     'registration',
     'avatar',
+    'uni_form',
     'core',
     'search',
     'organization',
