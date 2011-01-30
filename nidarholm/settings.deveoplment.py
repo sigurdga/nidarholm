@@ -124,6 +124,7 @@ INSTALLED_APPS = (
     'profiles',
     'registration',
     'avatar',
+    'uni_form',
     'core',
     'debug_toolbar',
     'search',
@@ -136,7 +137,7 @@ INSTALLED_APPS = (
     'vault',
     'pages',
     'navigation',
-    #'django_extensions',
+    'django_extensions',
 )
 
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
