@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block title %}{{ object.name }}{% endblock %}
 
@@ -12,6 +13,10 @@
 {% endblock %}
 
 {% block contextinfo %}
+<form method="get" action="/search/">
+    <label for="id_q"><h2>{% trans "Search" %}</h2></label><input type="text" name="q" value="" id="id_q" /><input type="submit" value="{% trans "Search" %}" />
+</form>
+
 {% if request.user.is_superuser %}
 <h1>Ukategoriserte medlemmer</h1>
 <ul>
