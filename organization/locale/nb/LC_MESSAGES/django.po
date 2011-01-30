@@ -8,83 +8,101 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-10 21:44+0100\n"
-"PO-Revision-Date: 2010-11-27 18:33+0100\n"
+"POT-Creation-Date: 2011-01-30 23:11+0100\n"
+"PO-Revision-Date: 2011-01-30 23:12+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: models.py:15 models.py:47
+#: models.py:17 models.py:50
 msgid "name"
 msgstr "navn"
 
-#: models.py:19 models.py:36
+#: models.py:21 models.py:38
 msgid "group category"
 msgstr "gruppekategori"
 
-#: models.py:31 models.py:48 models.py:60
+#: models.py:33 models.py:51 models.py:63
 msgid "group"
 msgstr "gruppe"
 
-#: models.py:32
+#: models.py:34
 msgid "email"
 msgstr "epost"
 
-#: models.py:33
+#: models.py:35
 msgid "email to administrator"
 msgstr "epost til administrator"
 
-#: models.py:34 models.py:49
+#: models.py:36 models.py:52
 msgid "seaquence number"
 msgstr "rekkefølgenummer"
 
-#: models.py:39
+#: models.py:41
 msgid "group profile"
 msgstr "gruppeprofil"
 
-#: models.py:40
+#: models.py:42
 msgid "group profiles"
 msgstr "gruppeprofiler"
 
-#: models.py:52 models.py:62
+#: models.py:55 models.py:65
 msgid "role"
 msgstr "rolle"
 
-#: models.py:53
+#: models.py:56
 msgid "roles"
 msgstr "roller"
 
-#: models.py:61
+#: models.py:64
 msgid "user"
 msgstr "bruker"
 
-#: models.py:65
+#: models.py:68
 msgid "membership"
 msgstr "medlemskap"
 
-#: models.py:66
+#: models.py:69
 msgid "memberships"
 msgstr "medlemskap"
 
-#: models.py:73
+#: models.py:76
 msgid "site"
 msgstr "nettsted"
 
-#: models.py:91
+#: models.py:77
+msgid "page footer contact information"
+msgstr "kontaktinformasjon på sidebunnen"
+
+#: models.py:77
+msgid "Use Markdown"
+msgstr "Bruk Markdown-syntaks"
+
+#: models.py:80
+msgid "administration group"
+msgstr "administrasjonsgruppe"
+
+#: models.py:83
+msgid "site profile"
+msgstr "nettstedprofil"
+
+#: models.py:84
+msgid "site profiles"
+msgstr "nettstedprofiler"
+
+#: models.py:107
 msgid "Members"
 msgstr "Medlemmer"
 
-#: models.py:94
+#: models.py:110
 msgid "Administrators"
 msgstr "Administratorer"
 
 #~ msgid "primary group"
 #~ msgstr "primærgruppe"
-
-#~ msgid "administration group"
-#~ msgstr "administrasjonsgruppe"
 
 #~ msgid "administers_site"
 #~ msgstr "administrerer nettsted"
