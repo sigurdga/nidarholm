@@ -18,7 +18,7 @@
                     {% if not result.object.group or result.object.group in request.user.groups.all %}
                       <a href="{{ result.object.get_absolute_url }}">{{ result.object }}</a>
                     {% else %}
-                      {% blocktrans %}Hidden file, only visible for members of group "{{ result.object.group }}"{% endblocktrans %}
+                      {% blocktrans %}Hidden file, only visible for members of permission group.{% endblocktrans %}
                     {% endif %}
                 </p>
             {% empty %}
