@@ -5,7 +5,7 @@
 
 {% block contextmenu %}
 {% if request.user == profile.user or request.user.is_superuser %}
-<li><a href="{% url edit-profile profile.user.username %}">{% trans "Edit user profile" %}</a></li>
+<li><a href="{% url edit-profile profile.user.id %}">{% trans "Edit user profile" %}</a></li>
 {% endif %}
 {% if request.user == profile.user %}
 <li><a href="{% url avatar_change %}">{% trans "Change profile picture" %}</a></li>
