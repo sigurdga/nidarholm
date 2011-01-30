@@ -1,4 +1,5 @@
 pip-log.txt
+src
 *~
 *.pyc
 *.sqlite3
