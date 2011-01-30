@@ -1,10 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import User, Group
+from django.contrib.auth.forms import AuthenticationForm
 from django import forms
 from accounts.models import UserProfile
 from django.forms.formsets import formset_factory
 from django.forms.models import modelformset_factory, inlineformset_factory
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext as _
+from django.core.urlresolvers import reverse
+
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(label=_("Username"), max_length=30, help_text='%s <a href="%s" tabindex="4">%s</a>' % (_("Are you a new user?"), "/accounts/register/", _("Please register")))
+    password = forms.CharField(label=_("Password"), widget=forms.PasswordInput, help_text='%s <a href="%s" tabindex="5">%s</a>' % (_("No password?"), "/accounts/password/reset/", _("Reset your password")))
 
 class ProfileForm(forms.ModelForm):
 

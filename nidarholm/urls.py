@@ -5,12 +5,13 @@ from django.contrib.auth import views as auth_views
 from accounts.views import groups, group_object_detail, user_groups, member_list, edit_profile
 from news.views import story_list
 from pages.views import edit_flatpage, new_flatpage, flatpage_list
-from accounts.forms import ProfileForm
+from accounts.forms import ProfileForm, LoginForm
 
 admin.autodiscover()
 
 urlpatterns = patterns('',
     (r'^$', story_list, (), 'main'),
+    (r'^accounts/login/', 'django.contrib.auth.views.login', {'authentication_form': LoginForm}, 'auth_login'),
     (r'^accounts/', include('registration.urls')),
     (r'^forum/', include('forum.urls')),
     (r'^news/', include('news.urls')),

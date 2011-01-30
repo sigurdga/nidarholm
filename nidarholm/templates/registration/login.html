@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load uni_form_tags %}
 
 {% block title %}{% trans "Login" %}{% endblock %}
 
@@ -11,15 +12,11 @@
 <p class="error">{% trans "Ooops! That was not correct." %}</p>
 {% endif %}
 
-<form action="" method="post">
+<form action="" method="post" class="uniForm">
     {% csrf_token %}
     <input type="hidden" name="next" value="{{ next|escape }}" />
-    <table>
-        {{ form.as_table }}
-        <tr><td></td><td><a href="{% url django.contrib.auth.views.password_reset %}">{% trans "Lost password or username?" %}</a></td></tr>
-        <tr><td></td><td><a href="{% url registration.views.register %}">{% trans "Are you a new user?" %}</a></td></tr>
-        <tr><td></td><td><input type="submit" value="{% trans "Login" %}" /></td></tr>
-    </table>
+    {{ form|as_uni_form }}
+    <input type="submit" value="{% trans "Login" %}" />
 </form>
 
 <script type="text/javascript">

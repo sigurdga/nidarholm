@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load uni_form_tags %}
 
 {% block title %}{% trans "New registration" %}{% endblock %}
 
@@ -7,14 +8,12 @@
 
 <h1>{% trans "New registration" %}</h1>
 
-<p>{% trans "If you have already registered, and forgot your username or password, please go back to the login form and use the other option to recover you login information" %}</p>
+<p>{% trans 'If you have lost your password, or are already registered by an administrator, please go back to the login form and click "reset password" near the password field' %}</p>
 
-<form method="post">
+<form method="post" class="uniForm">
     {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-        <tr><td></td><td><input type="submit" value="{% trans "Save"%}" /></td></tr>
-    </table>
+    {{ form|as_uni_form }}
+    <input type="submit" value="{% trans "Save"%}" />
 </form>
 
 {% endblock content %}
