@@ -4,6 +4,7 @@ from django import forms
 from accounts.models import UserProfile
 from django.forms.formsets import formset_factory
 from django.forms.models import modelformset_factory, inlineformset_factory
+from django.utils.translation import ugettext_lazy as _
 
 class ProfileForm(forms.ModelForm):
 
@@ -16,13 +17,13 @@ class ProfileForm(forms.ModelForm):
         except User.DoesNotExist:
             pass
 
-    first_name = forms.CharField(label="First name", help_text="")
-    last_name = forms.CharField(label="Last name", help_text="")
-    email = forms.EmailField(label="Primary email", help_text="")
+    first_name = forms.CharField(label=_("First name"), help_text="")
+    last_name = forms.CharField(label=_("Last name"), help_text="")
+    email = forms.EmailField(label=_("Primary email"), help_text="")
 
     class Meta:
         model = UserProfile
-        fields = ('first_name', 'last_name', 'email', 'cellphone', 'address', 'postcode', 'occupation', 'employer')
+        fields = ('first_name', 'last_name', 'email', 'cellphone', 'address', 'postcode', 'born', 'personal_website', 'occupation', 'employer', 'employer_website')
 
     def save(self, *args, **kwargs):
         """

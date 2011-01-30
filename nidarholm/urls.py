@@ -2,7 +2,7 @@ from django.conf.urls.defaults import *
 from django.contrib import admin
 from django.conf import settings
 from django.contrib.auth import views as auth_views
-from accounts.views import groups, group_object_detail, user_groups, member_list
+from accounts.views import groups, group_object_detail, user_groups, member_list, edit_profile
 from news.views import story_list
 from pages.views import edit_flatpage, new_flatpage, flatpage_list
 from accounts.forms import ProfileForm
@@ -19,8 +19,8 @@ urlpatterns = patterns('',
     (r'^files/', include('vault.urls')),
 
     (r'^sitemap/', include('navigation.urls')),
-    (r'^users/edit/$', 'profiles.views.edit_profile', {'form_class': ProfileForm}, 'edit-profile'),
-    (r'^users/new/$', 'profiles.views.create_profile', {'form_class': ProfileForm}, 'create-profile'),
+    (r'^users/(?P<username>\w+)/edit/$', edit_profile, (), 'edit-profile'),
+    #(r'^users/new/$', 'profiles.views.create_profile', {'form_class': ProfileForm}, 'create-profile'),
     (r'^users/(?P<username>\w+)/groups$', user_groups, (), 'user-groups'),
     (r'^members$', member_list, (), 'member-list'),
     (r'^users/', include('profiles.urls')),
