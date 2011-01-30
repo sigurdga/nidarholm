@@ -69,8 +69,7 @@
 
          <div id="bottom-bg">
              <div id="bottom">
-                 {% block footer %}
-                 <div id="footer">Opphavsrett © {{ request.organization.site.name }} og {{ request.organization.site.name }}s medlemmer</div><div class="footerbox">{{ request.organization.contact_html|safe }}</div>{% endblock footer %}
+                 {% block footer %}<div class="footerbox">{{ request.organization.contact_html|safe }}</div>{% endblock footer %}
                  {% load request_tag %}
                  {% active_users in 10 minutes as user_list %}
                  {% if request.user.is_authenticated %}
