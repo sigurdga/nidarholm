@@ -81,7 +81,7 @@ def edit_flatpage(request, id):
 def new_flatpage(request):
     if request.method == 'POST':
         flatpage = FlatPage()
-        form = PageForm(requst.POST, instance=flatpage)
+        form = PageForm(request.POST, instance=flatpage)
         if form.is_valid():
             form.save(commit=False)
             flatpage.user = request.user
