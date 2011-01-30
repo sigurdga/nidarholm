@@ -20,7 +20,7 @@
 <form method="post" action="" class="uniForm">
     {% csrf_token %}
     {{ form|as_uni_form }}
-    <input type="submit" name="submit" value="{% trans "Submit" %}" id="submit" /
+    <input type="submit" name="submit" value="{% trans "Submit" %}" id="submit" />
 </form>
  
 {% endblock content %}
