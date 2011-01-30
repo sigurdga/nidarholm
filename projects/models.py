@@ -12,7 +12,7 @@ class Project(Common, Title, Markdown):
             verbose_name=_('project tag'))
     users = models.ManyToManyField(User, null=True, blank=True,
             related_name='user_of_projects',
-            verbose_name = _('users'))
+            verbose_name = _('project members'))
     admingroup = models.ForeignKey(Group, related_name='administers_projects',
             verbose_name = _('administration group'))
 
