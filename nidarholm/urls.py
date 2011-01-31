@@ -37,6 +37,7 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
     (r'^avatar/', include('avatar.urls')),
     (r'^search/', include('search.urls')),
+    (r'^tagging_autocomplete/', include('tagging_autocomplete.urls')),
 )
 
 if settings.DEVELOPMENT_MODE:

@@ -119,6 +119,7 @@ INSTALLED_APPS = (
     'haystack',
     'request',
     'tagging',
+    'tagging_autocomplete',
     'profiles',
     'registration',
     'avatar',

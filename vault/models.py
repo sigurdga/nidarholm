@@ -6,6 +6,7 @@ from django.db.models.query_utils import Q
 from tagging.fields import TagField
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
+from tagging_autocomplete.models import TagAutocompleteField
 
 from hashlib import sha1
 from datetime import datetime
@@ -48,7 +49,7 @@ class UploadedFile(models.Model):
     user = models.ForeignKey(User)
     group = models.ForeignKey(Group, blank=True, null=True)
     uploaded = models.DateTimeField(auto_now_add=True)
-    tags = TagField()
+    tags = TagAutocompleteField()
 
     objects = FileManager()
 
