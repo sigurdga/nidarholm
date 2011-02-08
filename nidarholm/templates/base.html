@@ -1,110 +1,110 @@
 {% load i18n %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" > 
-	<head> 
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" /> 
-		<title>{% block title %}Nidarholm{% endblock title %} - {{ request.get_host }}</title> 
- 
-                <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}s/reset-min.css"> 
-                <link rel="stylesheet" href="{{ MEDIA_URL }}uni_form/uni-form.css" type="text/css" />
-                <link rel="stylesheet" href="{{ MEDIA_URL }}uni_form/default.uni-form.css" type="text/css" />
-                <script src="{{ MEDIA_URL }}j/jquery.js" type="text/javascript"></script>
-                <link type="text/css" href="{{ MEDIA_URL }}j/development-bundle/themes/ui-lightness/jquery-ui-1.8.9.custom.css" rel="stylesheet" />	
-                <script type="text/javascript" src="{{ MEDIA_URL }}j/js/jquery-1.4.4.min.js"></script>
-                <script type="text/javascript" src="{{ MEDIA_URL }}j/js/jquery-ui-1.8.9.custom.min.js"></script>
-                <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL}}s/stylesheet.css" media="screen" /> 
-                <script src="{{ MEDIA_URL }}uni_form/uni-form.jquery.js" type="text/javascript"></script>
-                <script src="{{ MEDIA_URL }}tagging_autocomplete.js" type="text/javascript"></script>
-		
-	</head> 
- 
-	<body id="generic"> 
-      {% block body %}
-	    <div id="page"> 
-        {% block page %}
-        <div id="top-bg"> 
-            <div id="top"> 
-                <div id="login"> 
-                    {% block login %}
-                    {% if request.user.is_authenticated %}
-                    {% trans "Logged in as" %} <a href="{{ request.user.get_absolute_url }}">{{ request.user.username }}</a>.
-                    <a href="{% url auth_logout %}">{% trans "Log out" %}</a>
-                    {% else %}
-                    <a href="{% url auth_login %}">{% trans "Log in" %}</a>
-                    {% endif %}
-                    {% endblock login %}
-                </div> 
- 
-                {% load menu %}
-                <div id="breadcrumbs">
-                  {% block breadcrumbs %}
-                  {% breadcrumbs request.path_info request.user %}
-                  {% endblock breadcrumbs %}
-                </div> 
-                <div id="menu"> 
-                  {% block local_menu %}
-                  {% local_menu request.path_info request.user %}
-                  {% endblock local_menu %}
-                </div> 
-            </div> 
-        </div>
- 
-        <div id="middle-bg"> 
-            <div id="middle"> 
-                <div id="sidebar"> 
-                    <ul id="contextmenu"> 
-                        {% block contextmenu %}
-                        {% endblock %} 
-                    </ul> 
-                    <div id="contextinfo"> 
-                        {% block contextinfo %}{% endblock %}
-                    </div> 
-                </div> 
- 
-                <div id="content"> 
-                    {% block content %}
-                    No content here
-                    {% endblock content %}
-                </div> 
-                <div style="clear:both;"></div> 
-            </div>
-        </div> 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" >
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <title>{% block title %}Nidarholm{% endblock title %} - {{ request.get_host }}</title>
 
-         <div id="bottom-bg">
-             <div id="bottom">
-                 {% block footer %}<div class="footerbox">{{ request.organization.contact_html|safe }}</div>{% endblock footer %}
-                 {% load request_tag %}
-                 {% active_users in 10 minutes as user_list %}
-                 {% if request.user.is_authenticated %}
-                 <div class="footerbox">
-                     <h2>{% trans "Active users last 10 minutes" %}</h2>
-                     <ul>
-                         {% for user in user_list %}
-                         <li><a href="{{ user.get_profile.get_absolute_url }}">{{ user.username }}</a></li>
-                         {% endfor %}
-                     </ul>
-                 </div>
-                 <div class="footerbox">
-                     <h2>{% trans "Last commented news" %}</h2>
-                     {% load interactivity %}
-                     {% last_commented_news request 10 %}
-                 </div>
-                 <div class="footerbox">
-                     <h2>{% trans "Last uploaded files" %}</h2>
-                     {% load interactivity %}
-                     {% file_list request 10 %}
-                 </div>
-                 {% else %}
-                 {% if user_list %}
-                 <p>{{ user_list|length }} {% trans "active users last 10 minutes" %}</p>
-                 {% endif %}
-                 {% endif %}
-                 <div style="clear:both;"></div> 
-             </div>
+        <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}s/reset-min.css">
+        <link rel="stylesheet" href="{{ MEDIA_URL }}uni_form/uni-form.css" type="text/css" />
+        <link rel="stylesheet" href="{{ MEDIA_URL }}uni_form/default.uni-form.css" type="text/css" />
+        <script src="{{ MEDIA_URL }}j/jquery.js" type="text/javascript"></script>
+        <link type="text/css" href="{{ MEDIA_URL }}j/development-bundle/themes/ui-lightness/jquery-ui-1.8.9.custom.css" rel="stylesheet" />
+        <script type="text/javascript" src="{{ MEDIA_URL }}j/js/jquery-1.4.4.min.js"></script>
+        <script type="text/javascript" src="{{ MEDIA_URL }}j/js/jquery-ui-1.8.9.custom.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL}}s/stylesheet.css" media="screen" />
+        <script src="{{ MEDIA_URL }}uni_form/uni-form.jquery.js" type="text/javascript"></script>
+        <script src="{{ MEDIA_URL }}tagging_autocomplete.js" type="text/javascript"></script>
+
+    </head>
+
+    <body id="generic">
+        {% block body %}
+        <div id="page">
+            {% block page %}
+            <div id="top-bg">
+                <div id="top">
+                    <div id="login">
+                        {% block login %}
+                        {% if request.user.is_authenticated %}
+                        {% trans "Logged in as" %} <a href="{{ request.user.get_absolute_url }}">{{ request.user.username }}</a>.
+                        <a href="{% url auth_logout %}">{% trans "Log out" %}</a>
+                        {% else %}
+                        <a href="{% url auth_login %}">{% trans "Log in" %}</a>
+                        {% endif %}
+                        {% endblock login %}
+                    </div>
+
+                    {% load menu %}
+                    <div id="breadcrumbs">
+                        {% block breadcrumbs %}
+                        {% breadcrumbs request.path_info request.user %}
+                        {% endblock breadcrumbs %}
+                    </div>
+                    <div id="menu">
+                        {% block local_menu %}
+                        {% local_menu request.path_info request.user %}
+                        {% endblock local_menu %}
+                    </div>
+                </div>
+            </div>
+
+            <div id="middle-bg">
+                <div id="middle">
+                    <div id="sidebar">
+                        <ul id="contextmenu">
+                            {% block contextmenu %}
+                            {% endblock %}
+                        </ul>
+                        <div id="contextinfo">
+                            {% block contextinfo %}{% endblock %}
+                        </div>
+                    </div>
+
+                    <div id="content">
+                        {% block content %}
+                        No content here
+                        {% endblock content %}
+                    </div>
+                    <div style="clear:both;"></div>
+                </div>
+            </div>
+
+            <div id="bottom-bg">
+                <div id="bottom">
+                    {% block footer %}<div class="footerbox">{{ request.organization.contact_html|safe }}</div>{% endblock footer %}
+                    {% load request_tag %}
+                    {% active_users in 10 minutes as user_list %}
+                    {% if request.user.is_authenticated %}
+                    <div class="footerbox">
+                        <h2>{% trans "Active users last 10 minutes" %}</h2>
+                        <ul>
+                            {% for user in user_list %}
+                            <li><a href="{{ user.get_profile.get_absolute_url }}">{{ user.username }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="footerbox">
+                        <h2>{% trans "Last commented news" %}</h2>
+                        {% load interactivity %}
+                        {% last_commented_news request 10 %}
+                    </div>
+                    <div class="footerbox">
+                        <h2>{% trans "Last uploaded files" %}</h2>
+                        {% load interactivity %}
+                        {% file_list request 10 %}
+                    </div>
+                    {% else %}
+                    {% if user_list %}
+                    <p>{{ user_list|length }} {% trans "active users last 10 minutes" %}</p>
+                    {% endif %}
+                    {% endif %}
+                    <div style="clear:both;"></div>
+                </div>
+            </div>
+            {% endblock page %}
         </div>
-    {% endblock page %}
-  </div>
-  {% endblock body %}
-</body>
+        {% endblock body %}
+    </body>
 </html>
