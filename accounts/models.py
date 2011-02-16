@@ -3,6 +3,15 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.utils.translation import ugettext_lazy as _
 
+STATUS_CHOICES = (
+    (1, _('Active')),
+    (2, _('Junior')),
+    (3, _('Honory')),
+    (4, _('On leave')),
+    (5, _('Quitted')),
+    (6, _('Non-member')),
+    (7, _('Supporting')),
+)
 class UserProfile(models.Model):
     user = models.ForeignKey(User)
     #organization = models.ForeignKey(Organization)
@@ -28,7 +37,7 @@ class UserProfile(models.Model):
     joined = models.DateField(null=True, blank=True,
             verbose_name=_('joined date'))
     # to be replaced by something generic, maybe use knowledge from other fields
-    status = models.SmallIntegerField(null=True, blank=True,
+    status = models.SmallIntegerField(choices=STATUS_CHOICES, null=True, blank=True,
             verbose_name=_('membership status'))
     parent_organization_member_number = models.IntegerField(null=True, blank=True,
             verbose_name=_('external member number'))
