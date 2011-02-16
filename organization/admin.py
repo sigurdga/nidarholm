@@ -7,6 +7,12 @@ class SiteProfileAdmin(admin.ModelAdmin):
 admin.site.register(SiteProfile, SiteProfileAdmin)
 
 admin.site.register(GroupCategory)
-admin.site.register(GroupProfile)
+
+class GroupProfileAdmin(admin.ModelAdmin):
+    list_display = ('group', 'groupcategory', 'number')
+    search_fields = ('group__name',)
+    ordering = ('groupcategory', 'number')
+admin.site.register(GroupProfile, GroupProfileAdmin)
+
 admin.site.register(Role)
 admin.site.register(Membership)
