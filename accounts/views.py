@@ -49,9 +49,9 @@ def edit_profile(request, id):
     profile = user.get_profile()
 
     if request.user.is_superuser:
-        form_class = ProfileForm
-    elif request.user == user:
         form_class = get_profile_form()
+    elif request.user == user:
+        form_class = ProfileForm
     else:
         return HttpResponseRedirect(user.get_absolute_url())
 
