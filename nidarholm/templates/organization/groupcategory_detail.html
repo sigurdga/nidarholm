@@ -24,6 +24,16 @@
 </form>
 
 {% if request.user.is_superuser %}
+
+<h1>Medlemmer ikke på epostliste</h1>
+<ul>
+{% for user in members_not_on_mailinglist %}
+<li><a href="{{ user.get_absolute_url }}">{{ user.username }}</a> {{ user.get_full_name }}</li>
+{% empty %}
+<li><em>Alle i medlemslista er på epostlista, så lenge de er oppført med epostadresse</em></li>
+{% endfor %}
+</ul>
+
 <h1>Ukategoriserte medlemmer</h1>
 <ul>
 {% for user in users_without_status.all %}
