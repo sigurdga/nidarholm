@@ -2,7 +2,11 @@
 {% load avatar_tags %}
 
 <div class="forum-comment">
-    <div class="forum-comment-reply"><a href="{{ object.get_absolute_url }}comment">{% trans "Reply" %}</a></div>
+    <div class="forum-comment-reply">
+        {% if request.user == object.user %}
+        <a href="{% url forum-edit-debate-comment object.slug %}">Endre</a> ·
+        {% endif %}
+        <a href="{{ object.get_absolute_url }}comment">{% trans "Reply" %}</a></div>
     {% avatar object.user 40 %}
     <div class="forum-comment-header"><a href="{{ object.user.get_profile.get_absolute_url }}">{{ object.user.get_full_name }}</a>, {{ object.created }}</div>
 

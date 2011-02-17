@@ -22,6 +22,22 @@ def debate_object_detail(request, slug):
                                      template_name='forum/debate_detail.html',
                                      )
 
+def edit_debate(request, slug):
+    """slug is the slug of the parent, may be null"""
+
+    debate = get_object_or_404(Debate, slug=slug)
+
+    if request.user != debate.user:
+        return HttpResponseRedirect(debate.get_top_url())
+    if request.method == 'POST':
+        form = DebateForm(data=request.POST, instance=debate)
+        if form.is_valid():
+            debate.save()
+            return HttpResponseRedirect(debate.get_top_url())
+    else:
+        form = DebateForm(instance=debate)
+    return render_to_response('forum/new_debate.html', {'form': form}, context_instance=RequestContext(request))
+
 def new_debate(request, slug=None):
     """slug is the slug of the parent, may be null"""
     if request.method == 'POST':
