@@ -6,7 +6,11 @@
 
 <h1>{{ object.title }}</h1>
 <div class="news-root">
-    <div class="news-root-reply"><a href="{% url news-stories %}{{ object.id }}/comment">{% trans "Reply" %}</a></div>
+    <div class="news-root-reply">
+        {% if request.user == object.user %}
+        <a href="{% url news-edit-story-comment object.id %}">Endre</a> ·
+        {% endif %}
+        <a href="{% url news-stories %}{{ object.id }}/comment">{% trans "Reply" %}</a></div>
     <div class="news-root-header"><a href="{{ object.user.get_profile.get_absolute_url }}">{{ object.user.get_full_name }}</a>, {{ object.created }}</div>
 
     <div class="text">
