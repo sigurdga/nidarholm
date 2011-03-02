@@ -1,6 +1,6 @@
 from django.contrib import auth
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response, get_object_or_404
 from django.views.generic import list_detail
 from django.contrib.auth.models import User, Group
@@ -92,3 +92,10 @@ def new_profile(request):
                 'profile': profile,
                 },
             context_instance=RequestContext(request))
+
+def all_members(request):
+    if request.user.is_superuser:
+        members = User.objects.filter(groups=request.organization.group).order_by('first_name', 'last_name')
+        return list_detail.object_list(request, members, template_name="accounts/all_about_all.html")
+    else:
+        raise Http404

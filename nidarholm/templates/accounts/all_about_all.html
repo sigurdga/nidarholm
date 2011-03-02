@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<table>
+    <tr>
+        <td>Navn</td>
+        <td>Status</td>
+        <td>Tlf</td>
+        <td>Adresse</td>
+        <td>Pnr</td>
+        <td>Født</td>
+        <td>Startet</td>
+        <td>NMF-nr</td>
+        <td>Reskon</td>
+    </tr>
+{% for user in object_list %}
+
+<tr>
+    <td>{{ user.first_name }} {{ user.last_name }}</td>
+    <td>{{ user.get_profile.get_status_display }}</td>
+    <td>{{ user.get_profile.cellphone }}</td>
+    <td>{{ user.get_profile.address }}</td>
+    <td>{{ user.get_profile.postcode }}</td>
+    <td>{{ user.get_profile.born }}</td>
+    <td>{{ user.get_profile.joined }}</td>
+    <td>{{ user.get_profile.parent_organization_member_number }}</td>
+    <td>{{ user.get_profile.account }}</td>
+
+</tr>
+
+{% endfor %}
+</table>
+
+{% endblock %}
