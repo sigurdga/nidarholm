@@ -38,6 +38,24 @@ td, th {
     vertical-align: top;
 }
 
+dl {
+    margin-bottom: 1em;
+    width: 100%;
+    float: left;
+}
+
+dt {
+    font-weight: bold;
+    float: left;
+    clear: left;
+    margin-right: 1ex;
+}
+
+dd {
+    clear: right;
+    float: left;
+}
+
 div#top {
     margin: 0 auto;
     width: 960px;

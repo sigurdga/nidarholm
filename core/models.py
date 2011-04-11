@@ -90,7 +90,7 @@ def extend_markdown(markdown_content):
         else:
             parsed.append(line)
 
-    return markdown('\n'.join(parsed))
+    return markdown('\n'.join(parsed), ['def_list'])
 
 def comment_converter(text, user):
     oid = None
