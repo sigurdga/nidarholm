@@ -65,6 +65,58 @@ def file_list(request, tags=""):
                                            'projects': projects,
                                            },
                                    )
+def edit_file(request, id):
+    uploadedfile = get_object_or_404(UploadedFile, pk=id)
+    if request.user == uploadedfile.user or request.user.is_superuser:
+        if request.method == 'POST':
+            form = UploadedFileForm(request.POST, request.FILES, instance=uploadedfile)
+            if form.is_valid():
+                m = magic.open(magic.MAGIC_MIME)
+                m.load()
+                uploaded_file = form.save(commit=False)
+                #uploaded_file.user = request.user
+                if 'file' in request.FILES:
+                    uploaded_file.filename = request.FILES['file'].name
+                    uploaded_file.content_type = request.FILES['file'].content_type
+                #original_filename = "{root}originals/{filename}".format(
+                #    root=settings.FILE_SERVE_ROOT,
+                #    filename=uploaded_file.file)
+                #original_filename = "%soriginals/%s" % (settings.FILE_SERVE_ROOT, uploaded_file.file)
+                #import pdb; pdb.set_trace()
+                #uploaded_file.content_type = magic.Magic(mime=True).from_file(original_filename)
+                #uploaded_file.content_type = m.file(original_filename)
+                # FIXME: Use one of the above
+                uploaded_file.save()
+                return HttpResponseRedirect('/files')
+        else:
+            form = UploadedFileForm(instance=uploadedfile)
+        return render_to_response('vault/new_file.html', {'form': form}, context_instance=RequestContext(request))
+    else:
+        raise Http403
+
+def file_list(request, tags=""):
+
+    if tags:
+        tags = tags.split("/")
+        queryset = UploadedFile.objects.for_user(request.user)
+        queryset = TaggedItem.objects.get_by_model(queryset, tags)
+    else:
+        tags = []
+        queryset = UploadedFile.objects.for_user(request.user)
+
+    menu_tags = [ (reverse('vault-tagged-file-list', args=[tag]), tag) for tag in tags ]
+
+    projects = Project.objects.for_user(request.user)
+
+    return list_detail.object_list(request,
+                                   queryset=queryset,
+                                   paginate_by=20,
+                                   extra_context={
+                                           'tags': tags,
+                                           'menu_tags': menu_tags,
+                                           'projects': projects,
+                                           },
+                                   )
 
 def file_object_detail(request, id):
     return list_detail.object_detail(request,

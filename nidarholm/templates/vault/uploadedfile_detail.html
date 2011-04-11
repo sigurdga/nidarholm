@@ -1,6 +1,15 @@
 {% extends 'base.html' %}
 
 {% block title %}Filinformasjon{% endblock %}
+
+{% block contextmenu %}
+
+{% if object.user == request.user or request.user.is_superuser %}
+<li><a href="{% url vault-edit-file object.id %}">Rediger fil</a></li>
+{% endif %}
+<li><a href="{% url vault-new-file %}">Ny fil</a></li>
+
+{% endblock contextmenu %}
  
 {% block content %}
 
