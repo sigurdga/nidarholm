@@ -49,11 +49,11 @@
 {% if request.organization.group in request.user.groups.all %}
 <h2>{% trans "Tags" %}</h2>
   {% load tagging_tags %}
-  {% tag_cloud_for_model vault.UploadedFile as cloud with distribution=log steps=8 min_count=50 %}
+  {% tag_cloud_for_model vault.UploadedFile as cloud with distribution=log steps=8 min_count=30 %}
   {% for tag in cloud %}
   {% if tag.name not in tags %}
     <span class="tag">
-      <a style="font-size:1.{{ tag.font_size }}em" href="{% url file_list %}tags/{{ tags|join:"/" }}{% if tags %}/{% endif %}{{ tag }}" title="{{ tag.count }}">{{ tag }}</a>
+      <a style="font-size:1.{{ tag.font_size }}ex; margin-right:5px;" href="{% url file_list %}tags/{{ tags|join:"/" }}{% if tags %}/{% endif %}{{ tag }}" title="{{ tag.count }}">{{ tag }}</a>
     </span>
     {% endif %}
   {% endfor %}
