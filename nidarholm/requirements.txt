@@ -1,15 +1,18 @@
+django
 django-request
 django-profiles
 django-avatar
 django-debug-toolbar
 django-extensions
 django-uni-form
+django-tagging
 django-haystack
 xapian-haystack
+BeautifulSoup
 markdown
 werkzeug
 pil
-pyexiv2
+#pyexiv2
 #magic
 unidecode
 -e hg+http://bitbucket.org/ubernostrum/django-registration/#egg=django-registration
