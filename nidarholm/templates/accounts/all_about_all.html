@@ -5,6 +5,7 @@
     <tr>
         <td>Navn</td>
         <td>Status</td>
+        <td>Epost</td>
         <td>Tlf</td>
         <td>Adresse</td>
         <td>Pnr</td>
@@ -18,6 +19,7 @@
 <tr>
     <td>{{ user.first_name }} {{ user.last_name }}</td>
     <td>{{ user.get_profile.get_status_display }}</td>
+    <td>{{ user.email }}</td>
     <td>{{ user.get_profile.cellphone }}</td>
     <td>{{ user.get_profile.address }}</td>
     <td>{{ user.get_profile.postcode }}</td>
