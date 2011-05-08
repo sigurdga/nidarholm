@@ -115,11 +115,13 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.admin',
+    'django.contrib.comments',
     'south',
     'haystack',
     'request',
     'tagging',
     'tagging_autocomplete',
+    'mptt',
     'profiles',
     'registration',
     'avatar',
@@ -135,6 +137,9 @@ INSTALLED_APPS = (
     'vault',
     'pages',
     'navigation',
+    's7n.timeline',
+    's7n.threaded_comments',
+    's7n.forum',
 )
 
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
@@ -165,3 +170,6 @@ ACCOUNT_ACTIVATION_DAYS = 14
 LOGIN_REDIRECT_URL = '/'
 
 PAGINATION_DEFAULT_WINDOW = 8
+
+COMMENTS_APP = "s7n.threaded_comments"
+TIMELINE_APP = "s7n.timeline"

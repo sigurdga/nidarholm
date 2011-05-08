@@ -1,6 +1,9 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.contrib.auth.models import User, Group
 from forum.models import Debate
+from s7n.forum.models import Forum
+from s7n.threaded_comments import ThreadedComment
+from mptt.managers import TreeManager
 
 from core.models import comment_converter
 
@@ -12,42 +15,43 @@ from datetime import datetime
 class Command(BaseCommand):
     help = "Converts users not already converted, or updates their info"
     def handle(self, *args, **options):
-        escaped_fnutts=re.compile(r'\\"')
-        conn = MySQLdb.connect(host="localhost", user="nidarholmfiler", passwd="Si1iep3p", db="nidarholm")
-        cursor = conn.cursor()
-        cursor.execute("select debateid, ownerid, groupid, created, title, contents, navn, brukernavn from debate inner join passord on passord.medlemid=debate.ownerid inner join gruppe on gruppe.id = debate.groupid where parentid = 1")
-        for row in cursor.fetchall():
-            self.stdout.write("%s\n" % (row[4],))
-            u = User.objects.get(username=row[7].decode('utf-8'))
-            g, created = Group.objects.get_or_create(name=row[6].decode('utf-8').capitalize())
-            if g.name == "Verden":
-                g = None
-            date = datetime.fromtimestamp(row[3])
-            d, created = Debate.objects.get_or_create(parent=None, title=row[4].decode('utf-8'), user=u, updated=date, created=date)
-            text = comment_converter(escaped_fnutts.sub('"', row[5]), u)
-            d.content = text
-            d.group = g
-            d.save()
-            self.make_children(cursor, row[0], d)
-        conn.close()
+        for debate in Debate.objects.filter(parent=None):
+            #forum = Forum.objects.get_or_create(user=debate.user, created_date=debate.created, updated_date=debate.updated)
+            forum = Forum()
+            forum.user = debate.user
+            forum.group = debate.group
+            forum.created_date = debate.created
+            forum.updated_date = debate.updated
+            forum.content = debate.content
+            if not forum.content:
+                forum.content = "BLANK"
+            forum.title = debate.title
+            if not forum.title:
+                forum.title = "BLANK"
+            forum.save()
+            print forum.title
+            print "----------"
+            self.make_children(debate, forum)
+            print ""
+            print ""
+        print "Rebuilding"
+        ThreadedComment.tree.rebuild()
 
-    def make_children(self, db_cursor, debateid, debate):
-        escaped_fnutts=re.compile(r'\\"')
-        db_cursor.execute("select debateid, ownerid, groupid, created, title, contents, navn, brukernavn from debate inner join passord on passord.medlemid=ownerid inner join gruppe on gruppe.id = debate.groupid where parentid = %d" % (debateid,))
-        for row in db_cursor.fetchall():
-            did = row[0]
-            u = User.objects.get(username=row[7].decode('utf-8'))
-            g, created = Group.objects.get_or_create(name=row[6].decode('utf-8').capitalize())
-            if g.name == "Verden":
-                g = None
-            date = datetime.fromtimestamp(row[3])
-            dd, created = Debate.objects.get_or_create(parent=debate, user=u, created=date, updated=date)
-            dd.title = title=row[4].decode('utf-8')
-            text = comment_converter(escaped_fnutts.sub('"', row[5]), u)
-            dd.content = text
-            dd.group = g
-            dd.save()
-            self.make_children(db_cursor, did, dd)
-
-            
-
+    def make_children(self, parent_debate, forum_top, parent_comment=None):
+        for debate in Debate.objects.filter(parent=parent_debate):
+            #comment = ThreadedComment.objects.get_or_create(user=debate.user, submit_date=debate.created, update_date=debate.updated, defaults={'content_type_id': 1, 'site_id': 1})
+            comment = ThreadedComment()
+            comment.content_object = forum_top
+            if parent_comment:
+                comment.parent = parent_comment
+            comment.user = debate.user
+            comment.submit_date = debate.created
+            comment.update_date = debate.updated
+            comment.content = debate.content
+            comment.site_id = 1
+            if not comment.content:
+                comment.content = "BLANK"
+            comment.save()
+            print "  " * comment.level,
+            print comment.user
+            self.make_children(debate, forum_top, comment)

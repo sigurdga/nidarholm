@@ -11,6 +11,9 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     (r'^$', story_list, (), 'main'),
+    (r'^c/', include('s7n.threaded_comments.urls')),
+    (r'^f/', include('s7n.forum.urls')),
+    (r'^t/', include('s7n.timeline.urls')),
     (r'^accounts/login/', 'django.contrib.auth.views.login', {'authentication_form': LoginForm}, 'auth_login'),
     (r'^accounts/', include('registration.urls')),
     (r'^forum/', include('forum.urls')),

@@ -326,3 +326,108 @@ div.filelist h2 {
 
 
 .uniForm .ctrlHolder{ padding: 7px 7px 7px 0; border-bottom: 1px solid #dfdfdf; }
+
+/* forum */
+div.discussion {
+  position: relative;
+  width: 460px; }
+  div.discussion h1 {
+    font-size: 140%; }
+  div.discussion div.count {
+    position: absolute;
+    top: 1.6em;
+    right: 0; }
+    div.discussion div.count span.count {
+      font-size: 140%; }
+  div.discussion div.meta {
+    position: absolute;
+    left: 0;
+    top: 2.8em; }
+    div.discussion div.meta span.tags {
+      font-style: italic;
+      color: grey; }
+  div.discussion div.date {
+    position: absolute;
+    right: 0;
+    top: 2.8em; }
+  div.discussion div.post {
+    margin: 1.5em 0 0 0; }
+
+dl.comments {
+  position: relative;
+  margin: 0 0 0 0; }
+  dl.comments dt {
+    border-top: 1px solid grey;
+    position: relative;
+    width: 460px;
+    font-weight: normal;
+    padding-bottom: 2em; }
+    dl.comments dt div.reply-link {
+      position: absolute;
+      right: 0;
+      top: 0; }
+    dl.comments dt div.comment {
+      margin-top: 0.5em}
+  dl.comments dd {
+    margin: 0 0 0 20px; }
+
+dl.discussion-list {
+  position: relative;
+  width: 100%; }
+  dl.discussion-list dt {
+    position: relative;
+    border-bottom: 1px solid #efefef;
+    height: 2.5em;
+    float: none;
+    clear: none;
+    margin: 0;
+    font-weight: normal;
+    margin-top: 1.5em; }
+    dl.discussion-list dt a {
+      text-decoration: none;
+      color: #333333; }
+    dl.discussion-list dt div.header {
+      position: absolute;
+      height: 1.5em;
+    overflow: hidden;
+      left: 0;
+      top: 0; }
+      dl.discussion-list dt div.header span.title {
+        font-size: 140%;
+        color: #333333; }
+      dl.discussion-list dt div.header span.teaser {
+        color: grey; }
+    dl.discussion-list dt div.count {
+      position: absolute;
+      right: 0;
+      top: 0;
+      font-size: 140%;
+      color: #333333; }
+    dl.discussion-list dt div.meta {
+      position: absolute;
+      left: 0;
+      top: 1.4em; }
+      dl.discussion-list dt div.meta span.tags {
+        font-style: italic;
+        color: grey; }
+    dl.discussion-list dt div.date {
+      position: absolute;
+      right: 0;
+      top: 1.3em; }
+  dl.discussion-list dd {
+      clear: none;
+      float: none;
+    position: relative; }
+    dl.discussion-list dd a {
+      text-decoration: none;
+      color: #333333; }
+    dl.discussion-list dd div.date {
+      position: absolute;
+      right: 0;
+      top: 0; }
+    dl.discussion-list dd span.teaser {
+      color: grey; }
+
+div.action {
+  margin: 10px 0; }
+
