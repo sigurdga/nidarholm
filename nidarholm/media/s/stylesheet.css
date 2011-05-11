@@ -374,6 +374,9 @@ dl.comments {
 dl.discussion-list {
   position: relative;
   width: 100%; }
+  dl.discussion-list a {
+      color: #333333;
+  }
   dl.discussion-list dt {
     position: relative;
     border-bottom: 1px solid #efefef;
@@ -395,7 +398,7 @@ dl.discussion-list {
       dl.discussion-list dt div.header span.title {
         font-size: 140%;
         color: #333333; }
-      dl.discussion-list dt div.header span.teaser {
+      dl.discussion-list dt span.teaser {
         color: grey; }
     dl.discussion-list dt div.count {
       position: absolute;
