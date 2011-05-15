@@ -3,6 +3,7 @@ src
 *~
 *.pyc
 *.sqlite3
+/s7n
 uploads
 nidarholm/media/avatars
 .project
