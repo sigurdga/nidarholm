@@ -20,9 +20,6 @@ from os.path import basename
 from datetime import datetime
 from BeautifulSoup import BeautifulSoup
 
-m = magic.open(magic.MAGIC_MIME)
-m.load()
-
 def slugify(value):
     """
     Normalizes a string using unidecode library. Lowercase it, remove
@@ -99,7 +96,7 @@ def comment_converter(text, user):
 
     for img in soup('img'):
         try:
-            url = img['src'] 
+            url = img['src']
         except KeyError:
             pass
         else:
@@ -133,12 +130,13 @@ def comment_converter(text, user):
                 outfile = open(path, "w")
                 outfile.write(tmpcontents)
                 outfile.close()
-                
-                f.content_type = m.file(path)
+
+                mime = magic.Magic(mime=True)
+                f.content_type = mime.from_file(path)
                 #print f.content_type
                 f.save()
                 oid = f.id
-            
+
             if oid:
                 new_reference = '!['+name+']['+str(oid)+']'
                 if img.parent.name == "a":
@@ -162,7 +160,7 @@ class Common(models.Model):
     updated = models.DateTimeField(_('updated'), auto_now=True)
     user = models.ForeignKey(User, verbose_name=_('created by'))
     group = models.ForeignKey(Group, verbose_name=_('created for'), null=True, blank=True)
-    
+
     objects = CommonManager()
 
     class Meta:
@@ -180,7 +178,7 @@ class Markdown(models.Model):
 
     class Meta:
         abstract = True
- 
+
 
 class Title(models.Model):
     title = models.CharField(_('title'), max_length=80)
