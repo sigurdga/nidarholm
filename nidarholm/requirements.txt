@@ -12,8 +12,9 @@ BeautifulSoup
 markdown
 werkzeug
 pil
-#pyexiv2
-#magic
+python-magic
+whoosh
+south
 unidecode
--e hg+http://bitbucket.org/ubernostrum/django-registration/#egg=django-registration
--e git+git://github.com/alekam/django-tagging-autocomplete#egg=django-tagging-autocomplete
+hg+http://bitbucket.org/ubernostrum/django-registration/#egg=django-registration
+git+git://github.com/alekam/django-tagging-autocomplete#egg=django-tagging-autocomplete
