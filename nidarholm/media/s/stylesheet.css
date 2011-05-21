@@ -218,7 +218,7 @@ div.news-comment,
 div.forum-post,
 div.forum-comment {
     position: relative;
-    border-top: 1px solid #efefef;
+    border-top: 1px solid #dddddd;
 }
 
 div.news-root {
