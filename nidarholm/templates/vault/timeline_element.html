@@ -1,0 +1,12 @@
+{% load i18n %}
+{% blocktrans with date=action.action_date|timesince user=action.user.get_full_name user_url=action.user.get_absolute_url content_url=action.content_object.get_absolute_url object=action.content_object %}
+<a href="{{ user_url }}">{{ user }}</a>, {{ date }} ago,
+uploaded the file <a href="{{ content_url }}">{{ object }}</a>{% endblocktrans %}:
+<div class="content"><a href="{{ action.content_object.get_absolute_url }}">
+        {% if action.content_object.is_image %}
+        <div style="float:right"><img src="{% url vault-send-file action.object_id %}/1"/></div>
+        {% endif %}
+        {{ action.content_object.filename|safe }}
+</a></div>
+<div style="clear:left"></div>
+
