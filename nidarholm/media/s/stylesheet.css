@@ -140,10 +140,6 @@ div.text {
     float: left;
 }
 
-div.text img {
-    #margin-top: -30px;
-}
-
 div.text ul {
     padding-left: 20px;
     padding-bottom: 15px;
@@ -155,7 +151,7 @@ div.text ol {
     list-style: decimal outside;
 }
 
-div.text ul li {
+div.text ul li {
 }
 
 div#footer {
@@ -222,10 +218,10 @@ div.news-comment,
 div.forum-post,
 div.forum-comment {
     position: relative;
-    border-top: 1px solid #dddddd;
+    border-top: 1px solid #efefef;
 }
 
-div.news-root {
+div.news-root {
 }
 
 div.forum-post {
@@ -239,8 +235,8 @@ div.forum-comment {
 }
 
 div.news-comment img.avatar,
-div.forum-post img.avatar,
-div.forum-comment img.avatar {
+div.forum-post img.avatar,
+div.forum-comment img.avatar {
     position: absolute;
     top: 0;
     left: 0;
@@ -345,7 +341,7 @@ div.discussion {
     top: 2.8em; }
     div.discussion div.meta span.tags {
       font-style: italic;
-      color: grey; }
+      color: gray; }
   div.discussion div.date {
     position: absolute;
     right: 0;
@@ -357,7 +353,7 @@ dl.comments {
   position: relative;
   margin: 0 0 0 0; }
   dl.comments dt {
-    border-top: 1px solid grey;
+    border-top: 1px solid #efefef;
     position: relative;
     width: 460px;
     font-weight: normal;
@@ -399,7 +395,7 @@ dl.discussion-list {
         font-size: 140%;
         color: #333333; }
       dl.discussion-list dt span.teaser {
-        color: grey; }
+        color: gray; }
     dl.discussion-list dt div.count {
       position: absolute;
       right: 0;
@@ -412,7 +408,7 @@ dl.discussion-list {
       top: 1.4em; }
       dl.discussion-list dt div.meta span.tags {
         font-style: italic;
-        color: grey; }
+        color: gray; }
     dl.discussion-list dt div.date {
       position: absolute;
       right: 0;
