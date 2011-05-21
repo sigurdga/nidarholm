@@ -23,7 +23,10 @@ class Story(Common, Title, Markdown):
                               'month': self.pub_date.month,
                               'day': self.pub_date.day,
                               }
-        ) 
+        )
+
+    def object_template(self):
+        return "news/story.html"
 
     def get_top(self):
         parent = self.parent

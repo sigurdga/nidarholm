@@ -429,8 +429,13 @@ dl.discussion-list {
       right: 0;
       top: 0; }
     dl.discussion-list dd span.teaser {
-      color: grey; }
+      color: gray; }
 
 div.action {
-  margin: 10px 0; }
+  padding: 10px 0; }
+  div.action div.content {
+    border-top: 1px solid #efefef; }
+    div#timeline div.content a {
+      text-decoration: none;
+      color: gray; }
 

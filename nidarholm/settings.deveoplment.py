@@ -117,27 +117,32 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.admin',
     'django.contrib.admindocs',
+    'django.contrib.comments',
     'south',
     'haystack',
     'request',
     'tagging',
     'tagging_autocomplete',
+    'mptt',
     'profiles',
     'registration',
     'avatar',
     'uni_form',
     'core',
-    'debug_toolbar',
+    #'debug_toolbar',
     'search',
     'organization',
     'accounts',
     'events',
     'projects',
-    'forum',
+    #'forum',
     'news',
     'vault',
     'pages',
     'navigation',
+    's7n.timeline',
+    's7n.threaded_comments',
+    's7n.forum',
     'django_extensions',
 )
 
@@ -175,3 +180,6 @@ TRANSLATION_HACK = (
         ugettext('password (again)'),
         ugettext('email address'),
         )
+
+COMMENTS_APP = "s7n.threaded_comments"
+TIMELINE_APP = "s7n.timeline"

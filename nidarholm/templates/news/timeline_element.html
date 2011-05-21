@@ -1,0 +1,13 @@
+{% load i18n %}
+
+{% if action.update_content_type.model == 'threadedcomment' %}
+{% blocktrans with update_type=action.update_content_type user_url=action.user.get_absolute_url user=action.user.get_full_name update_url=action.update_object.get_absolute_url date=action.action_date|timesince object=action.content_object content_url=action.content_object.get_absolute_url %}
+<a href="{{ user_url }}">{{ user }}</a>, {{ date }} ago,
+<a href="{{ update_url }}">commented</a> the news story <a href="{{ content_url }}">{{ object }}</a>{% endblocktrans %}:
+<div class="content"><a href="{{ action.update_object.get_absolute_url }}">{{ action.update_object.content_html|striptags|truncatewords:16|safe }}</a></div>
+{% else %}
+{% blocktrans with date=action.action_date|timesince user=action.user.get_full_name user_url=action.user.get_absolute_url content_url=action.content_object.get_absolute_url object=action.content_object %}
+<a href="{{ user_url }}">{{ user }}</a>, {{ date }} ago,
+added</a> the news story <a href="{{ content_url }}">{{ object }}</a>{% endblocktrans %}:
+<div class="content"><a href="{{ action.content_object.get_absolute_url }}">{{ action.content_object.content_html|striptags|truncatewords:16|safe }}</a></div>
+{% endif %}
