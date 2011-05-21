@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from core.models import Common, Title, Markdown
+from s7n import timeline
 
 class Story(Common, Title, Markdown):
     parent = models.ForeignKey('Story', null=True, blank=True, related_name='children')
@@ -36,3 +37,4 @@ class Story(Common, Title, Markdown):
             parent = top.parent
         return top
 
+timeline.register(Story, datetime_field='pub_date')
