@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load comments %}
+{% load threaded_comments %}
+
+{% block title %}{% trans "Forum" %}{% endblock %}
+
+{% block content %}
+<h1>{% trans "Forum" %}</h1>
+{% if object_list %}
+<dl class="discussion-list">
+{% for discussion in object_list %}
+{% get_comment_count for discussion as comment_count %}
+<dt class="discussion">
+<a href="{{ discussion.get_absolute_url }}">
+    <div class="header">
+        <span class="title">{{ discussion.title }}</span>
+        {% if discussion.group %}→ <span class="group">{{ discussion.group }}</span>{% endif %}
+        {% if discussion.tags %}<span class="tags">{{ discussion.tags }}</span>{% endif %}
+    </div>
+    <div class="count">{{ comment_count }}</div>
+    <div class="meta">
+        <span class="author">{{ discussion.user.get_full_name }}</span>
+        <span class="teaser">{{ discussion.content_html|striptags|truncatewords:6 }}</span>
+    </div>
+    <div class="date">{{ discussion.created_date|timesince }}</div>
+</a>
+</dt>
+{% get_last_comments for discussion as last_comments %}
+{% for comment in last_comments %}
+<dd class="comment">
+    <a href="{{ comment.get_absolute_url }}">
+        <span class="author">{{ comment.user.get_full_name }}</span>
+        <span class="teaser">{{ comment.content_html|striptags|truncatewords:8 }}</span>
+        <div class="date">{{ comment.submit_date|timesince }}</div>
+    </a>
+</dd>
+{% endfor %}
+{% endfor %}
+</dl>
+{% else %}
+{% trans "No discussions from" %} {{ year }}
+{% endif %}
+
+{% load paginator %}
+{% if is_paginated %}<div class="paginator">{% paginator %}</div>{% endif %}
+
+{% endblock content %}
+
+
+{% block contextinfo %}
+<h2>Arkiv</h2>
+<ul>
+{% for date in date_list %}
+<li><a href="{% url forum-archive-year date.year %}">{{ date.year }}</a></li>
+{% endfor %}
+</ul>
+{% endblock contextinfo %}
