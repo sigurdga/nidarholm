@@ -140,12 +140,12 @@ div.text {
     float: left;
 }
 
-div.text ul {
+div.text ul, div.content ul, div.comment ul {
     padding-left: 20px;
     padding-bottom: 15px;
     list-style: disc outside;
 }
-div.text ol {
+div.text ol, div.content ol, div.comment ol {
     padding-left: 20px;
     padding-bottom: 15px;
     list-style: decimal outside;
@@ -164,7 +164,7 @@ div#bottom div.footerbox {
 }
 
 div#middle h1 {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: bold;
     padding-top: 12px;
 }
@@ -322,6 +322,7 @@ div.filelist h2 {
 
 
 .uniForm .ctrlHolder{ padding: 7px 7px 7px 0; border-bottom: 1px solid #dfdfdf; }
+.uniForm fieldset { clear:left; }
 
 /* forum */
 div.discussion {
