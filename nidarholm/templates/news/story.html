@@ -3,8 +3,10 @@
 <div class="discussion">
     <h1>{{ object.title }}</h1>
     <div class="count">
+        {% if request.user.is_authenticated %}
         {% if not "new" in request.path and not "edit" in request.path %}
         <a href="{% url comments-new %}?ctype={{ content_type_id }}&object_id={{ object.id }}" title="{% trans "Make a comment" %}">{% trans 'Reply' %}</a>
+        {% endif %}
         {% endif %}
     </div>
     <div class="meta">
