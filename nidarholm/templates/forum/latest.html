@@ -47,6 +47,9 @@
 
 {% endblock content %}
 
+{% block contextmenu %}
+<li><a href="{% url forum-new %}">{% trans "New forum post" %}</a></li>
+{% endblock contextmenu %}
 
 {% block contextinfo %}
 <h2>Arkiv</h2>

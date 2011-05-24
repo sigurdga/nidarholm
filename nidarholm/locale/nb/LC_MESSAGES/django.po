@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-21 18:36+0200\n"
+"POT-Creation-Date: 2011-05-24 22:46+0200\n"
 "PO-Revision-Date: 2011-05-21 18:38+0200\n"
 "Last-Translator: Sigurd Gartmann <sigurdga-translate@sigurdga.no>\n"
 "Language-Team: Bokmål <sigurdga-translate@sigurdga.no>\n"
@@ -18,19 +18,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1\n"
 
-#: settings.deveoplment.py:175 settings.py:175
+#: settings.deveoplment.py:175
 msgid "Norwegian bokmål"
 msgstr "Bokmål"
 
-#: settings.deveoplment.py:176 settings.py:176
+#: settings.deveoplment.py:176
 msgid "English"
 msgstr "Engelsk"
 
-#: settings.deveoplment.py:180 settings.py:180
+#: settings.deveoplment.py:180
 msgid "password (again)"
 msgstr "passord (igjen)"
 
-#: settings.deveoplment.py:181 settings.py:181
+#: settings.deveoplment.py:181
 msgid "email address"
 msgstr "epostadresse"
 
@@ -174,14 +174,23 @@ msgid "For all"
 msgstr "For alle"
 
 #: templates/forum/comment.html:9 templates/forum/debate_detail.html:14
-#: templates/news/story.html:7 templates/news/story_comment.html:9
-#: templates/news/story_detail.html:17
+#: templates/news/story.html:8 templates/news/story_comment.html:9
+#: templates/news/story_detail.html:18
 msgid "Reply"
 msgstr "Svar"
 
+#: templates/forum/latest.html:6 templates/forum/latest.html.py:9
 #: templates/forum/list.html:4 templates/forum/list.html.py:19
 msgid "Forum"
 msgstr "Forum"
+
+#: templates/forum/latest.html:42
+msgid "No discussions from"
+msgstr "Ingen diskusjoner fra"
+
+#: templates/forum/latest.html:51
+msgid "New forum post"
+msgstr "Ny forumpost"
 
 #: templates/forum/list.html:8
 msgid "New topic"
@@ -277,7 +286,7 @@ msgstr "Nyheter"
 msgid "No news at this time"
 msgstr "Ingen nyheter på det nåværende tidspunktet"
 
-#: templates/news/story.html:7 templates/news/story_detail.html:17
+#: templates/news/story.html:8 templates/news/story_detail.html:18
 msgid "Make a comment"
 msgstr "Skriv en kommentar"
 
@@ -287,7 +296,7 @@ msgstr "Skriv en kommentar"
 msgid "News archive"
 msgstr "Nyhetsarkiv"
 
-#: templates/news/story_detail.html:26
+#: templates/news/story_detail.html:28
 msgid "Comments"
 msgstr "Kommentarer"
 
@@ -587,6 +596,42 @@ msgstr ""
 #: templates/vault/uploadedfile_list.html:50
 msgid "Tags"
 msgstr "Tags"
+
+#, fuzzy
+#~ msgid "Activate users"
+#~ msgstr "Alle brukere"
+
+#, fuzzy
+#~ msgid "Re-send activation emails"
+#~ msgstr "Brukeraktivering"
+
+#, fuzzy
+#~ msgid "E-mail"
+#~ msgstr "Epost"
+
+#, fuzzy
+#~ msgid "Password"
+#~ msgstr "Nullstilling av passord"
+
+#, fuzzy
+#~ msgid "Password (again)"
+#~ msgstr "passord (igjen)"
+
+#, fuzzy
+#~ msgid "user"
+#~ msgstr "Ingen brukere"
+
+#, fuzzy
+#~ msgid "activation key"
+#~ msgstr "Brukeraktivering"
+
+#, fuzzy
+#~ msgid "registration profile"
+#~ msgstr "Rediger brukerprofil"
+
+#, fuzzy
+#~ msgid "registration profiles"
+#~ msgstr "Rediger brukerprofil"
 
 #~ msgid "Edit user details"
 #~ msgstr "Rediger brukerinformasjon"
