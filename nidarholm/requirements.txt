@@ -8,8 +8,6 @@ django-uni-form
 django-tagging
 djanog-mptt
 django-haystack
-django-mptt
-xapian-haystack
 BeautifulSoup
 markdown
 werkzeug
