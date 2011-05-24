@@ -140,22 +140,18 @@ div.text {
     float: left;
 }
 
-div.text img {
-    #margin-top: -30px;
-}
-
-div.text ul {
+div.text ul, div.content ul, div.comment ul {
     padding-left: 20px;
     padding-bottom: 15px;
     list-style: disc outside;
 }
-div.text ol {
+div.text ol, div.content ol, div.comment ol {
     padding-left: 20px;
     padding-bottom: 15px;
     list-style: decimal outside;
 }
 
-div.text ul li {
+div.text ul li {
 }
 
 div#footer {
@@ -168,7 +164,7 @@ div#bottom div.footerbox {
 }
 
 div#middle h1 {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: bold;
     padding-top: 12px;
 }
@@ -225,7 +221,7 @@ div.forum-comment {
     border-top: 1px solid #dddddd;
 }
 
-div.news-root {
+div.news-root {
 }
 
 div.forum-post {
@@ -239,8 +235,8 @@ div.forum-comment {
 }
 
 div.news-comment img.avatar,
-div.forum-post img.avatar,
-div.forum-comment img.avatar {
+div.forum-post img.avatar,
+div.forum-comment img.avatar {
     position: absolute;
     top: 0;
     left: 0;
@@ -326,6 +322,7 @@ div.filelist h2 {
 
 
 .uniForm .ctrlHolder{ padding: 7px 7px 7px 0; border-bottom: 1px solid #dfdfdf; }
+.uniForm fieldset { clear:left; }
 
 /* forum */
 div.discussion {
@@ -345,7 +342,7 @@ div.discussion {
     top: 2.8em; }
     div.discussion div.meta span.tags {
       font-style: italic;
-      color: grey; }
+      color: gray; }
   div.discussion div.date {
     position: absolute;
     right: 0;
@@ -357,7 +354,7 @@ dl.comments {
   position: relative;
   margin: 0 0 0 0; }
   dl.comments dt {
-    border-top: 1px solid grey;
+    border-top: 1px solid #efefef;
     position: relative;
     width: 460px;
     font-weight: normal;
@@ -374,6 +371,9 @@ dl.comments {
 dl.discussion-list {
   position: relative;
   width: 100%; }
+  dl.discussion-list a {
+      color: #333333;
+  }
   dl.discussion-list dt {
     position: relative;
     border-bottom: 1px solid #efefef;
@@ -395,8 +395,8 @@ dl.discussion-list {
       dl.discussion-list dt div.header span.title {
         font-size: 140%;
         color: #333333; }
-      dl.discussion-list dt div.header span.teaser {
-        color: grey; }
+      dl.discussion-list dt span.teaser {
+        color: gray; }
     dl.discussion-list dt div.count {
       position: absolute;
       right: 0;
@@ -409,7 +409,7 @@ dl.discussion-list {
       top: 1.4em; }
       dl.discussion-list dt div.meta span.tags {
         font-style: italic;
-        color: grey; }
+        color: gray; }
     dl.discussion-list dt div.date {
       position: absolute;
       right: 0;
@@ -426,8 +426,13 @@ dl.discussion-list {
       right: 0;
       top: 0; }
     dl.discussion-list dd span.teaser {
-      color: grey; }
+      color: gray; }
 
 div.action {
-  margin: 10px 0; }
+  padding: 10px 0; }
+  div.action div.content {
+    border-top: 1px solid #efefef; }
+    div#timeline div.content a {
+      text-decoration: none;
+      color: gray; }
 

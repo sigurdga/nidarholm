@@ -25,7 +25,7 @@ DATABASES = {
     'default': {
         #'ENGINE':'sqlite3',
         #'NAME': '/srv/www/beta/nidarholm/database/development.sqlite3',
-        'ENGINE': 'postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'nidarholm', # Or path to database file if using sqlite3.
         'USER': 'nidarholm', # Not used with sqlite3.
         'PASSWORD': 'niweb', # Not used with sqlite3.
@@ -132,7 +132,7 @@ INSTALLED_APPS = (
     'accounts',
     'events',
     'projects',
-    'forum',
+    #'forum',
     'news',
     'vault',
     'pages',

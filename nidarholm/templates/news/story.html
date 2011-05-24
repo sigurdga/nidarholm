@@ -1,0 +1,22 @@
+{% load i18n %}
+
+<div class="discussion">
+    <h1>{{ object.title }}</h1>
+    <div class="count">
+        {% if request.user.is_authenticated %}
+        {% if not "new" in request.path and not "edit" in request.path %}
+        <a href="{% url comments-new %}?ctype={{ content_type_id }}&object_id={{ object.id }}" title="{% trans "Make a comment" %}">{% trans 'Reply' %}</a>
+        {% endif %}
+        {% endif %}
+    </div>
+    <div class="meta">
+        <span class="author"><a href="{{ object.user.get_absolute_url }}">{{ object.user.get_full_name }}</a></span>
+        {% if object.group %}→ <span class="group">{{ object.group }}</span>{% endif %}
+        {% if object.tags %}<span class="tags">{{ object.tags }}</span>{% endif %}
+    </div>
+    <div class="date">{{ object.created_date }}</div>
+
+    <div class="post">
+        {{ object.content_html|safe }}
+    </div>
+</div>

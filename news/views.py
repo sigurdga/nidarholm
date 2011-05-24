@@ -7,6 +7,7 @@ from news.forms import StoryForm
 from pages.models import FlatPage
 from django.views.generic import list_detail, date_based
 from django.template.context import RequestContext
+from django.contrib.contenttypes.models import ContentType
 
 def story_list(request):
     infopage = get_object_or_404(FlatPage, url__exact='/', sites__id__exact=settings.SITE_ID)
@@ -30,8 +31,8 @@ def story_detail(request, year, month, day, slug):
     queryset = Story.objects.for_user(request.user).filter(parent=None)
     date_field = "pub_date"
     month_format = "%m"
-    return date_based.object_detail(request, year, month, day, queryset, date_field, month_format=month_format, slug=slug, allow_future=True)
-    
+    content_type_id = ContentType.objects.get_for_model(Story).id
+    return date_based.object_detail(request, year, month, day, queryset, date_field, month_format=month_format, slug=slug, allow_future=True, extra_context={'content_type_id': content_type_id})
 
 def edit_story(request, id):
     story = get_object_or_404(Story, id=id)

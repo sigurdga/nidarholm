@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 {% load i18n %}
+{% load threaded_comments %}
+{% load comments %}
 
-{% block title %}{{ object.title }}{% endblock %}
+{% block title %}{{ object.title }} - {% trans "News" %}{% endblock %}
 {% block content %}
+
+{% get_comment_count for object as comment_count %}
 
 <h1>{{ object.title }}</h1>
 <div class="news-root">
@@ -10,22 +14,20 @@
         {% if request.user == object.user %}
         <a href="{% url news-edit-story-comment object.id %}">Endre</a> ·
         {% endif %}
-        <a href="{% url news-stories %}{{ object.id }}/comment">{% trans "Reply" %}</a></div>
+        {% if request.user.is_authenticated %}
+        <a href="{% url comments-new %}?ctype= {{ content_type_id }}&object_id={{ object.id }}" title="{% trans "Make a comment" %}">{% trans "Reply" %}</a>
+        {% endif %}
+    </div>
     <div class="news-root-header"><a href="{{ object.user.get_profile.get_absolute_url }}">{{ object.user.get_full_name }}</a>, {{ object.created }}</div>
 
     <div class="text">
         {{ object.content_html|safe }}
     </div>
 
-    <ul class="clear">
-        {% for object in object.children.all %}
-        <li>
-            {% with "news/story_comment.html" as filename %}
-            {% include filename %}
-            {% endwith %}
-        </li>
-        {% endfor %}
-    </ul>
+    {% if comment_count %}
+    <h2>{% trans "Comments" %}</h2>
+    {% render_comment_tree for object %}
+    {% endif %}
 </div>
 
 {% endblock content %}

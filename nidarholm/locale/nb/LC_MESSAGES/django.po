@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-30 23:09+0100\n"
-"PO-Revision-Date: 2011-01-30 23:10+0100\n"
+"POT-Creation-Date: 2011-05-21 18:36+0200\n"
+"PO-Revision-Date: 2011-05-21 18:38+0200\n"
 "Last-Translator: Sigurd Gartmann <sigurdga-translate@sigurdga.no>\n"
 "Language-Team: Bokmål <sigurdga-translate@sigurdga.no>\n"
 "Language: \n"
@@ -18,19 +18,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1\n"
 
-#: settings.deveoplment.py:169 settings.py:169
+#: settings.deveoplment.py:175 settings.py:175
 msgid "Norwegian bokmål"
 msgstr "Bokmål"
 
-#: settings.deveoplment.py:170 settings.py:170
+#: settings.deveoplment.py:176 settings.py:176
 msgid "English"
 msgstr "Engelsk"
 
-#: settings.deveoplment.py:174 settings.py:174
+#: settings.deveoplment.py:180 settings.py:180
 msgid "password (again)"
 msgstr "passord (igjen)"
 
-#: settings.deveoplment.py:175 settings.py:175
+#: settings.deveoplment.py:181 settings.py:181
 msgid "email address"
 msgstr "epostadresse"
 
@@ -42,32 +42,32 @@ msgstr "Ingen tilgang"
 msgid "It looks like the permission system works"
 msgstr "Det ser ut som tilgangssystemet virker"
 
-#: templates/base.html:27
+#: templates/base.html:30
 msgid "Logged in as"
 msgstr "Logget inn som"
 
-#: templates/base.html:28
+#: templates/base.html:31
 msgid "Log out"
 msgstr "Logg ut"
 
-#: templates/base.html:30
+#: templates/base.html:33
 #: templates/registration/password_reset_complete.html:12
 msgid "Log in"
 msgstr "Logg inn"
 
-#: templates/base.html:78
+#: templates/base.html:80
 msgid "Active users last 10 minutes"
 msgstr "Aktive brukere (siste ti minutter)"
 
-#: templates/base.html:86
+#: templates/base.html:88
 msgid "Last commented news"
 msgstr "Nyhetsaktivitet"
 
-#: templates/base.html:91
+#: templates/base.html:93
 msgid "Last uploaded files"
 msgstr "Siste filer"
 
-#: templates/base.html:97
+#: templates/base.html:99
 msgid "active users last 10 minutes"
 msgstr "aktive brukere de siste ti minuttene"
 
@@ -140,7 +140,7 @@ msgstr "Ny aktivitet"
 #: templates/events/event_archive_day.html:13
 #: templates/events/event_archive_month.html:13
 #: templates/events/event_archive_year.html:16
-#: templates/events/event_list.html:26 templates/forum/list.html:30
+#: templates/events/event_list.html:31 templates/forum/list.html:30
 msgid "Nothing here"
 msgstr "Ingenting her"
 
@@ -173,8 +173,9 @@ msgstr "For gruppe"
 msgid "For all"
 msgstr "For alle"
 
-#: templates/forum/comment.html:5 templates/forum/debate_detail.html:10
-#: templates/news/story_comment.html:5 templates/news/story_detail.html:9
+#: templates/forum/comment.html:9 templates/forum/debate_detail.html:14
+#: templates/news/story.html:7 templates/news/story_comment.html:9
+#: templates/news/story_detail.html:17
 msgid "Reply"
 msgstr "Svar"
 
@@ -255,31 +256,64 @@ msgstr "Nettstedkart"
 msgid "No links in menu structure"
 msgstr "Ingen lenker i menystrukturen"
 
-#: templates/news/main.html:4
+#: templates/news/main.html:5
 msgid "Main"
 msgstr "Hovedside"
 
-#: templates/news/main.html:7
+#: templates/news/main.html:9
 msgid "Create new story"
 msgstr "Lag ny nyhet"
 
-#: templates/news/main.html:9
+#: templates/news/main.html:11
 msgid "Edit welcome text"
 msgstr "Rediger velkomsttekst"
 
-#: templates/news/main.html:23
+#: templates/news/main.html:19 templates/news/main.html.py:50
+#: templates/news/story_detail.html:6
 msgid "News"
 msgstr "Nyheter"
 
-#: templates/news/main.html:37
+#: templates/news/main.html:33 templates/news/main.html.py:64
 msgid "No news at this time"
 msgstr "Ingen nyheter på det nåværende tidspunktet"
+
+#: templates/news/story.html:7 templates/news/story_detail.html:17
+msgid "Make a comment"
+msgstr "Skriv en kommentar"
 
 #: templates/news/story_archive.html:4 templates/news/story_archive.html:7
 #: templates/news/story_archive_year.html:4
 #: templates/news/story_archive_year.html:6
 msgid "News archive"
 msgstr "Nyhetsarkiv"
+
+#: templates/news/story_detail.html:26
+msgid "Comments"
+msgstr "Kommentarer"
+
+#: templates/news/timeline_element.html:4
+#, python-format
+msgid ""
+"\n"
+"<a href=\"%(user_url)s\">%(user)s</a>, %(date)s ago,\n"
+"<a href=\"%(update_url)s\">commented</a> the news story <a href="
+"\"%(content_url)s\">%(object)s</a>"
+msgstr ""
+"\n"
+"<a href=\"%(user_url)s\">%(user)s</a>, for %(date)s siden,\n"
+"<a href=\"%(update_url)s\">kommenterte</a> nyheten <a href=\"%(content_url)s"
+"\">%(object)s</a>"
+
+#: templates/news/timeline_element.html:9
+#, python-format
+msgid ""
+"\n"
+"<a href=\"%(user_url)s\">%(user)s</a>, %(date)s ago,\n"
+"added the news story <a href=\"%(content_url)s\">%(object)s</a>"
+msgstr ""
+"\n"
+"<a href=\"%(user_url)s\">%(user)s</a>, for %(date)s siden,\n"
+"la til nyheten <a href=\"%(content_url)s\">%(object)s</a>"
 
 #: templates/organization/groupcategory_detail.html:17
 msgid "New user"
@@ -538,6 +572,17 @@ msgstr ""
 #: templates/search/search.html:25
 msgid "No results"
 msgstr "Ingen resultater"
+
+#: templates/vault/timeline_element.html:2
+#, python-format
+msgid ""
+"\n"
+"<a href=\"%(user_url)s\">%(user)s</a>, %(date)s ago,\n"
+"uploaded the file <a href=\"%(content_url)s\">%(object)s</a>"
+msgstr ""
+"\n"
+"<a href=\"%(user_url)s\">%(user)s</a>, for %(date)s siden,\n"
+"lastet opp fila <a href=\"%(content_url)s\">%(object)s</a>"
 
 #: templates/vault/uploadedfile_list.html:50
 msgid "Tags"

@@ -1,30 +1,26 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load timeline_tags %}
 
 {% block title %}{% trans "Main" %}{% endblock %}
 
-{% block contextmenu %}{% if request.user.is_authenticated %}
+{% block contextmenu %}
+{% if request.user.is_authenticated %}
 <li><a href="{% url news-new-story %}">{% trans "Create new story" %}</a></li>
 {% if infopage and infopage.admingroup in request.user.groups.all %}
-<li><a href="{% url edit-flatpage infopage.id %}">{% trans "Edit welcome text" %}</a></li>{% endif %}
+<li><a href="{% url edit-flatpage infopage.id %}">{% trans "Edit welcome text" %}</a></li>
+{% endif %}
 {% endif %}
 {% endblock %}
 
-{% if infopage %}
 {% block contextinfo %}
-{{ infopage.content_html|safe }}
 
-
-{% endblock %}
-{% endif %}
-
-{% block content %}
-
+{% if request.user.is_authenticated %}
 <h1>{% trans "News" %}</h1>
 
 <ul>
-{% for story in object_list %}
-<li>
+    {% for story in object_list %}
+    <li>
     <h2><a href="{{ story.get_absolute_url }}">{{ story.title }}</a></h2>
     <div class="news-root">
         <div class="news-root-header"><a href="{{ story.user.get_profile.get_absolute_url }}">{{ story.user.get_full_name }}</a>, {{ story.created }}</div>
@@ -32,10 +28,42 @@
             {{ story.content_html|safe }}
         </div>
     </div>
-</li>
-{% empty %}
-<li>{% trans "No news at this time" %}</li>
-{% endfor %}
+    </li>
+    {% empty %}
+    <li>{% trans "No news at this time" %}</li>
+    {% endfor %}
 </ul>
+{% endif %}
+
+{% if infopage %}
+{{ infopage.content_html|safe }}
+{% endif %}
+
+{% endblock %}
+
+{% block content %}
+
+{% if request.user.is_authenticated %}
+{% render_timeline for request.user %}
+{% else %}
+
+<h1>{% trans "News" %}</h1>
+
+<ul>
+    {% for story in object_list %}
+    <li>
+    <h2><a href="{{ story.get_absolute_url }}">{{ story.title }}</a></h2>
+    <div class="news-root">
+        <div class="news-root-header"><a href="{{ story.user.get_profile.get_absolute_url }}">{{ story.user.get_full_name }}</a>, {{ story.created }}</div>
+        <div class="text">
+            {{ story.content_html|safe }}
+        </div>
+    </div>
+    </li>
+    {% empty %}
+    <li>{% trans "No news at this time" %}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 
 {% endblock content %}

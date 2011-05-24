@@ -7,6 +7,7 @@ from tagging.fields import TagField
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from tagging_autocomplete.models import TagAutocompleteField
+from s7n.timeline.models import TimelineModel
 
 from hashlib import sha1
 from datetime import datetime
@@ -42,7 +43,7 @@ def upload_path(instance, filename):
     return folder + '/' + timestamp
 
 
-class UploadedFile(models.Model):
+class UploadedFile(TimelineModel):
     file = models.FileField(upload_to=upload_path, storage=FileSystemStorage(location=settings.FILE_SERVE_ROOT + '/originals'))
     content_type = models.CharField(max_length=80, blank=True)
     filename = models.CharField(max_length=100, blank=True)
@@ -59,6 +60,9 @@ class UploadedFile(models.Model):
     class Meta:
         ordering = ("-uploaded",)
 
+    class TimelineMeta:
+        datetime_field = 'uploaded'
+
     @models.permalink
     def get_absolute_url(self):
         return ('vault-file', (), {'id': self.id})
@@ -66,5 +70,10 @@ class UploadedFile(models.Model):
     def is_image(self):
         if self.content_type.startswith('image'):
             return True
+
+    def object_template(self):
+        return "vault/uploadedfile.html"
+
+
 
 #tagging.register(UploadedFile)
