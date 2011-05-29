@@ -10,7 +10,7 @@
   {% ifequal num page %}
     <span class="paginate-current" title="{% trans "Current page" %}">{{ num }}</span>
   {% else %}
-    <span class="paginate-link"><a href="?page={{ num }}" title="{% blocktrans %}Page {{ num }}{% endblocktrans %}">{{ num }}</a></span>
+  <span class="paginate-link"><a href="?page={{ num }}" title="{% trans "Page" %} {{ num }}">{{ num }}</a></span>
   {% endifequal %}
 {% endfor %}
 {% if has_next %}
