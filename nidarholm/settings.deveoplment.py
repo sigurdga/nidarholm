@@ -94,7 +94,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'request.middleware.RequestMiddleware',
-    'permissions.middleware.http.Http403Middleware',
+    's7n.utils.middleware.http.Http403Middleware',
     'organization.middleware.OrganizationMiddleware',
     'pages.middleware.FlatpageFallbackMiddleware',
 )

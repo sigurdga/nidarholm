@@ -1,9 +1,15 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "No access" %} | {{ block.super }}{% endblock %}
+{% block title %}{% trans "Access denied (403)" %} | {{ block.super }}{% endblock %}
 
 {% block content %}
-<h1>{% trans "No access" %}</h1>
-<span>{% trans "It looks like the permission system works" %} (Error: 403)</span>
+<h1>{% trans "Access denied" %}</h1>
+
+{% if message %}
+<p>{{ message }}</p>
+{% else %}
+<p>{% trans "The access restrictions work, and you do not have permission to do whatever you where trying to do. Ideally you would have gotten a better error message than this if the developers where not so lazy." %}</p>
+{% endif %}
 {% endblock content %}
+
