@@ -1,0 +1,9 @@
+html {
+  margin: 0;
+  padding: 0;
+  background: #fff url(skins/markitup/images/bg-editor-html.png) no-repeat 0px 0;
+}
+
+body {
+  padding: 5px 5px 5px 35px;
+}

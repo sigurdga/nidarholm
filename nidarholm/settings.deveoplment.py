@@ -128,6 +128,7 @@ INSTALLED_APPS = (
     'registration',
     'avatar',
     'uni_form',
+    'markitup',
     'core',
     #'debug_toolbar',
     'search',
@@ -150,11 +151,11 @@ AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 INTERNAL_IPS = ('127.0.0.1', '192.168.0.102')
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-    "django.core.context_processors.request",
     "django.contrib.auth.context_processors.auth",
     "django.core.context_processors.debug",
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
+    "django.core.context_processors.request",
     "django.contrib.messages.context_processors.messages",
     )
 
@@ -183,3 +184,8 @@ TRANSLATION_HACK = (
 
 COMMENTS_APP = "s7n.threaded_comments"
 TIMELINE_APP = "s7n.timeline"
+
+MARKITUP_FILTER = ('markdown.markdown', {'safe_mode': True})
+MARKITUP_SET = 'markitup/sets/markdown'
+MARKITUP_SKIN = 'markitup/skins/markitup'
+
