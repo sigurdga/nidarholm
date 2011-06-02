@@ -5,7 +5,7 @@
     <div class="date">{{ action.action_date }}</div>
     <a href="{{ action.user.get_absolute_url }}">{{ action.user.get_full_name }}</a>
     {% blocktrans with update_object_url=action.update_object.get_absolute_url %}
-    <a href="{{ update_object_url }}">commented</a> the news story
+    <a href="{{ update_object_url }}">commented</a> the forum post
     {% endblocktrans %}
     <a href="{{ action.content_object.get_absolute_url }}">{{ action.content_object }}</a>
 </div>
@@ -14,7 +14,7 @@
 <div class="header">
     <div class="date">{{ action.action_date }}</div>
     <a href="{{ action.user.get_absolute_url }}">{{ action.user.get_full_name }}</a>
-    {% trans "posted the news story" %}
+    {% trans "created the forum post" %}
     <a href="{{ action.content_object.get_absolute_url }}">{{ action.content_object }}</a>
 </div>
 <div class="content"><a href="{{ action.content_object.get_absolute_url }}">{{ action.content_object.content_html|striptags|truncatewords:16|safe }}</a></div>

@@ -429,10 +429,18 @@ dl.discussion-list {
       color: gray; }
 
 div.action {
-  padding: 10px 0; }
+  padding: 10px 0 14px 0; }
   div.action div.content {
     border-top: 1px solid #efefef; }
     div#timeline div.content a {
       text-decoration: none;
       color: gray; }
+    div#timeline div.header {
+        position: relative;
+    }
+    div#timeline div.date {
+      position: absolute;
+      right: 0;
+      top: 0;
+  }
 
