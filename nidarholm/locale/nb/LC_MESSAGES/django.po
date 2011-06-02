@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-24 22:46+0200\n"
-"PO-Revision-Date: 2011-05-21 18:38+0200\n"
+"POT-Creation-Date: 2011-06-02 20:18+0200\n"
+"PO-Revision-Date: 2011-06-02 20:19+0200\n"
 "Last-Translator: Sigurd Gartmann <sigurdga-translate@sigurdga.no>\n"
 "Language-Team: Bokmål <sigurdga-translate@sigurdga.no>\n"
 "Language: \n"
@@ -18,56 +18,65 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1\n"
 
-#: settings.deveoplment.py:175
+#: settings.deveoplment.py:176 settings.py:176
 msgid "Norwegian bokmål"
 msgstr "Bokmål"
 
-#: settings.deveoplment.py:176
+#: settings.deveoplment.py:177 settings.py:177
 msgid "English"
 msgstr "Engelsk"
 
-#: settings.deveoplment.py:180
+#: settings.deveoplment.py:181 settings.py:181
 msgid "password (again)"
 msgstr "passord (igjen)"
 
-#: settings.deveoplment.py:181
+#: settings.deveoplment.py:182 settings.py:182
 msgid "email address"
 msgstr "epostadresse"
 
-#: templates/403.html:4 templates/403.html.py:7
-msgid "No access"
-msgstr "Ingen tilgang"
+#: templates/403.html:4
+msgid "Access denied (403)"
+msgstr "Ingen adgang (403)"
 
-#: templates/403.html:8
-msgid "It looks like the permission system works"
-msgstr "Det ser ut som tilgangssystemet virker"
+#: templates/403.html:7
+msgid "Access denied"
+msgstr "Ingen adgang"
 
-#: templates/base.html:30
+#: templates/403.html:12
+msgid ""
+"The access restrictions work, and you do not have permission to do whatever "
+"you where trying to do. Ideally you would have gotten a better error message "
+"than this if the developers where not so lazy."
+msgstr ""
+"Rettighetssystemet virker, og du har ikke rettigheter til å gjøre det du "
+"prøvde å gjøre. Ideelt sett skulle du ha fått en bedre feilmelding enn dette."
+
+#: templates/base.html:56
 msgid "Logged in as"
 msgstr "Logget inn som"
 
-#: templates/base.html:31
+#: templates/base.html:57
 msgid "Log out"
 msgstr "Logg ut"
 
-#: templates/base.html:33
+#: templates/base.html:59
 #: templates/registration/password_reset_complete.html:12
 msgid "Log in"
 msgstr "Logg inn"
 
-#: templates/base.html:80
+#: templates/base.html:107
 msgid "Active users last 10 minutes"
 msgstr "Aktive brukere (siste ti minutter)"
 
-#: templates/base.html:88
+#: templates/base.html:115
 msgid "Last commented news"
 msgstr "Nyhetsaktivitet"
 
-#: templates/base.html:93
+#: templates/base.html:120
 msgid "Last uploaded files"
 msgstr "Siste filer"
 
-#: templates/base.html:99
+#: templates/base.html:126
 msgid "active users last 10 minutes"
 msgstr "aktive brukere de siste ti minuttene"
 
@@ -224,6 +233,15 @@ msgstr "fra"
 msgid "New post"
 msgstr "Nytt innlegg"
 
+#: templates/forum/timeline_element.html:7
+#, python-format
+msgid "<a href=\"%(update_object_url)s\">commented</a> the forum post"
+msgstr "<a href=\"%(update_object_url)s\">kommenterte</a> forumposten"
+
+#: templates/forum/timeline_element.html:15
+msgid "created the forum post"
+msgstr "startet forumtråden"
+
 #: templates/navigation/paginator.html:4
 msgid "First page"
 msgstr "Første side"
@@ -237,9 +255,8 @@ msgid "Current page"
 msgstr "Aktiv side"
 
 #: templates/navigation/paginator.html:13
-#, python-format
-msgid "Page %(num)s"
-msgstr "Side %(num)s"
+msgid "Page"
+msgstr "Side"
 
 #: templates/navigation/paginator.html:17 templates/search/search.html:32
 msgid "Next page"
@@ -300,29 +317,14 @@ msgstr "Nyhetsarkiv"
 msgid "Comments"
 msgstr "Kommentarer"
 
-#: templates/news/timeline_element.html:4
+#: templates/news/timeline_element.html:7
 #, python-format
-msgid ""
-"\n"
-"<a href=\"%(user_url)s\">%(user)s</a>, %(date)s ago,\n"
-"<a href=\"%(update_url)s\">commented</a> the news story <a href="
-"\"%(content_url)s\">%(object)s</a>"
-msgstr ""
-"\n"
-"<a href=\"%(user_url)s\">%(user)s</a>, for %(date)s siden,\n"
-"<a href=\"%(update_url)s\">kommenterte</a> nyheten <a href=\"%(content_url)s"
-"\">%(object)s</a>"
+msgid "<a href=\"%(update_object_url)s\">commented</a> the news story"
+msgstr "<a href=\"%(update_object_url)s\">kommenterte</a> nyheten"
 
-#: templates/news/timeline_element.html:9
-#, python-format
-msgid ""
-"\n"
-"<a href=\"%(user_url)s\">%(user)s</a>, %(date)s ago,\n"
-"added the news story <a href=\"%(content_url)s\">%(object)s</a>"
-msgstr ""
-"\n"
-"<a href=\"%(user_url)s\">%(user)s</a>, for %(date)s siden,\n"
-"la til nyheten <a href=\"%(content_url)s\">%(object)s</a>"
+#: templates/news/timeline_element.html:15
+msgid "posted the news story"
+msgstr "la ut nyheten"
 
 #: templates/organization/groupcategory_detail.html:17
 msgid "New user"
@@ -582,86 +584,14 @@ msgstr ""
 msgid "No results"
 msgstr "Ingen resultater"
 
-#: templates/vault/timeline_element.html:2
-#, python-format
-msgid ""
-"\n"
-"<a href=\"%(user_url)s\">%(user)s</a>, %(date)s ago,\n"
-"uploaded the file <a href=\"%(content_url)s\">%(object)s</a>"
-msgstr ""
-"\n"
-"<a href=\"%(user_url)s\">%(user)s</a>, for %(date)s siden,\n"
-"lastet opp fila <a href=\"%(content_url)s\">%(object)s</a>"
+#: templates/vault/timeline_element.html:7
+msgid "uploaded the picture"
+msgstr "lastet opp bildet"
+
+#: templates/vault/timeline_element.html:9
+msgid "uploaded the file"
+msgstr "lastet opp fila"
 
 #: templates/vault/uploadedfile_list.html:50
 msgid "Tags"
 msgstr "Tags"
-
-#, fuzzy
-#~ msgid "Activate users"
-#~ msgstr "Alle brukere"
-
-#, fuzzy
-#~ msgid "Re-send activation emails"
-#~ msgstr "Brukeraktivering"
-
-#, fuzzy
-#~ msgid "E-mail"
-#~ msgstr "Epost"
-
-#, fuzzy
-#~ msgid "Password"
-#~ msgstr "Nullstilling av passord"
-
-#, fuzzy
-#~ msgid "Password (again)"
-#~ msgstr "passord (igjen)"
-
-#, fuzzy
-#~ msgid "user"
-#~ msgstr "Ingen brukere"
-
-#, fuzzy
-#~ msgid "activation key"
-#~ msgstr "Brukeraktivering"
-
-#, fuzzy
-#~ msgid "registration profile"
-#~ msgstr "Rediger brukerprofil"
-
-#, fuzzy
-#~ msgid "registration profiles"
-#~ msgstr "Rediger brukerprofil"
-
-#~ msgid "Edit user details"
-#~ msgstr "Rediger brukerinformasjon"
-
-#~ msgid "Lost password or username?"
-#~ msgstr "Mistet passord eller brukernavn?"
-
-#~ msgid "Are you a new user?"
-#~ msgstr "Er du ny her?"
-
-#~ msgid ""
-#~ "If you have already registered, and forgot your username or password, "
-#~ "please go back to the login form and use the other option to recover you "
-#~ "login information"
-#~ msgstr ""
-#~ "Om du allerede er registrert, men har glemt brukernavnet eller passordet, "
-#~ "er det fint om du går tilbake til innloggingssiden og velger det andre "
-#~ "alternativet for mistet brukernavn eller passord"
-
-#~ msgid "Next important event"
-#~ msgstr "Neste konsert"
-
-#~ msgid "Prosjekter"
-#~ msgstr "Prosjekter"
-
-#~ msgid "Occupation"
-#~ msgstr "Yrke"
-
-#~ msgid "Employer"
-#~ msgstr "Arbeidssted"
-
-#~ msgid "Coming soon …"
-#~ msgstr "Kommer …"
