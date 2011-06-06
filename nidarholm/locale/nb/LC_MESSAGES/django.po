@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-02 20:18+0200\n"
+"POT-Creation-Date: 2011-06-06 23:19+0200\n"
 "PO-Revision-Date: 2011-06-02 20:19+0200\n"
 "Last-Translator: Sigurd Gartmann <sigurdga-translate@sigurdga.no>\n"
 "Language-Team: Bokmål <sigurdga-translate@sigurdga.no>\n"
@@ -18,19 +18,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1\n"
 
-#: settings.deveoplment.py:176 settings.py:176
+#: settings.deveoplment.py:176
 msgid "Norwegian bokmål"
 msgstr "Bokmål"
 
-#: settings.deveoplment.py:177 settings.py:177
+#: settings.deveoplment.py:177
 msgid "English"
 msgstr "Engelsk"
 
-#: settings.deveoplment.py:181 settings.py:181
+#: settings.deveoplment.py:181
 msgid "password (again)"
 msgstr "passord (igjen)"
 
-#: settings.deveoplment.py:182 settings.py:182
+#: settings.deveoplment.py:182
 msgid "email address"
 msgstr "epostadresse"
 
@@ -568,6 +568,7 @@ msgstr ""
 "tilbake til innloggingssiden og klikk «Lag nytt passord»"
 
 #: templates/registration/registration_form.html:16
+#: templates/threaded_comments/new_comment.html:32
 msgid "Save"
 msgstr "Lagre"
 
