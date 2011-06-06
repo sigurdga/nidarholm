@@ -126,6 +126,7 @@ INSTALLED_APPS = (
     'registration',
     'avatar',
     'uni_form',
+    'markitup',
     'core',
     'search',
     'organization',
@@ -173,3 +174,8 @@ PAGINATION_DEFAULT_WINDOW = 8
 
 COMMENTS_APP = "s7n.threaded_comments"
 TIMELINE_APP = "s7n.timeline"
+
+MARKITUP_FILTER = ('s7n.utils.markdown', {'safe_mode': True})
+MARKITUP_SET = 'markitup/sets/markdown'
+MARKITUP_SKIN = 'markitup/skins/markitup'
+
