@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load uni_form_tags %}
+{% load i18n %}
+{% load threaded_comments %}
+
+{% get_threaded_comment_form for obj parent_id as form %}
+
+{% block content %}
+
+{% include obj.object_template with object=obj %}
+
+{% for node in ancestors %}
+
+<dl class="comments">
+    <dt id="c{{ node.id }}">
+    <div class="author"><a href="{{ node.user.get_absolute_url }}">{{ node.user.get_full_name }}</a> {{ node.submit_date }}</div>
+
+    <div class="comment">
+        {{ node.content_html|safe }}
+    </div>
+    </dt>
+</dl>
+
+{% endfor %}
+
+<form action="{% comment_form_target %}" method="post" class="uniForm">
+    <fieldset>
+        {{ form|as_uni_form }}
+        {% csrf_token %}
+    </fieldset>
+    <div class="buttonHolder">
+        <button type="submit" name="submit_comment" class="primaryAction" id="submit_new_comment">{% trans 'Save' %}</button>
+    </div>
+</form>
+
+<script>
+    $("#id_comment").markItUp(markdownSettings);
+</script>
+
+{% endblock content %}
