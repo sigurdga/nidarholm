@@ -18,3 +18,9 @@ south
 unidecode
 hg+http://bitbucket.org/ubernostrum/django-registration/#egg=django-registration
 git+git://github.com/alekam/django-tagging-autocomplete#egg=django-tagging-autocomplete
+git+ssh://git@git.strekmann.no/s7n_pages.git@master#egg=s7n-pages
+git+ssh://git@git.strekmann.no/s7n_threaded_comments.git@nidarholm#egg=s7n-threaded-comments
+git+ssh://git@git.strekmann.no/s7n_forum.git@nidarholm#egg=s7n-forum
+git+ssh://git@git.strekmann.no/s7n_utils.git@master#egg=s7n-utils
+git+ssh://git@git.strekmann.no/s7n_paginator.git@master#egg=s7n-paginator
+git+ssh://git@git.strekmann.no/s7n_timeline.git@nidarholm#egg=s7n-timeline

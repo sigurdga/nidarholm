@@ -1,20 +1,19 @@
 # encoding: utf-8
+
 import os.path
 import sys
 
 sys.path.insert(0, os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
 
-ugettext = lambda s: s
-
 # Django settings for nidarholm project.
 
-DEVELOPMENT_MODE = True
+DEVELOPMENT_MODE = False
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-     ('Sigurd Gartmann', 'administrator@nidarholm.no'),
+        ('Sigurd Gartmann', 'administrator@nidarholm.no'),
 )
 
 MANAGERS = ADMINS
@@ -24,12 +23,14 @@ SERVER_EMAIL = 'administrator@nidarholm.no'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'development.sqlite3', # Or path to database file if using sqlite3.
-        'USER': '', # Not used with sqlite3.
-        'PASSWORD': '', # Not used with sqlite3.
-        'HOST': '', # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '', # Set to empty string for default. Not used with sqlite3.
+        #'ENGINE':'sqlite3',
+        #'NAME': '/srv/www/beta/nidarholm/database/development.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'nidarholm', # Or path to database file if using sqlite3.
+        'USER': 'nidarholm', # Not used with sqlite3.
+        'PASSWORD': 'niweb', # Not used with sqlite3.
+        'HOST': 'localhost', # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '5433', # Set to empty string for default. Not used with sqlite3.
     }
 }
 
@@ -57,14 +58,14 @@ USE_I18N = True
 USE_L10N = True
 
 # Default file size (in columns, where a column is 40px and margins are 20px
-DEFAULT_IMAGE_SIZE = 4 #220px
+DEFAULT_IMAGE_SIZE = 4
 
 # Serves local files, where permissions are checked
-FILE_SERVE_ROOT = os.path.abspath(os.path.dirname(__file__)) + '/uploads/'
+FILE_SERVE_ROOT = '/srv/www/nidarholm/shared/uploads/'
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = os.path.abspath(os.path.dirname(__file__)) + '/media/'
+MEDIA_ROOT = '/srv/www/nidarholm/releases/current/nidarholm/nidarholm/media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -90,11 +91,10 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    #'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'request.middleware.RequestMiddleware',
-    's7n.utils.middleware.http.Http403Middleware',
+    'permissions.middleware.http.Http403Middleware',
     'organization.middleware.OrganizationMiddleware',
     'pages.middleware.FlatpageFallbackMiddleware',
 )
@@ -106,7 +106,6 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     os.path.abspath(os.path.dirname(__file__)) + '/templates',
-    os.path.abspath(os.path.dirname(__file__)) + '/../django-debug-toolbar/debug_toolbar/templates',
 )
 
 INSTALLED_APPS = (
@@ -127,10 +126,10 @@ INSTALLED_APPS = (
     'profiles',
     'registration',
     'avatar',
+    'markitup',
     'uni_form',
     'markitup',
     'core',
-    #'debug_toolbar',
     'search',
     'organization',
     'accounts',
@@ -144,11 +143,9 @@ INSTALLED_APPS = (
     's7n.timeline',
     's7n.threaded_comments',
     's7n.forum',
-    'django_extensions',
 )
 
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
-INTERNAL_IPS = ('127.0.0.1', '192.168.0.102')
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.auth.context_processors.auth",
@@ -162,30 +159,29 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 AUTO_GENERATE_AVATAR_SIZES = (100,)
 AVATAR_STORAGE_DIR = 'avatars/'
 AVATAR_GRAVATAR_BACKUP = False
-AVATAR_DEFAULT_URL = 'avatars/marvin.jpg'
+AVATAR_DEFAULT_URL = '/m/avatars/default.png'
 
 HAYSTACK_SITECONF = 'search.search_sites'
 HAYSTACK_SEARCH_ENGINE = 'whoosh'
-HAYSTACK_XAPIAN_PATH = os.path.abspath(os.path.dirname(__file__)) + '/index.xapian'
-HAYSTACK_WHOOSH_PATH = os.path.abspath(os.path.dirname(__file__)) + '/index.whoosh'
+HAYSTACK_XAPIAN_PATH = '/srv/www/nidarholm/shared/indexes/index.xapian'
+HAYSTACK_WHOOSH_PATH = '/srv/www/nidarholm/shared/indexes/index.whoosh'
+
+MAX_TAG_LENGTH = 64 # reduce later
+FORCE_LOWERCASE_TAGS = True # should replace with unidecoded space stripped versions
 
 ACCOUNT_ACTIVATION_DAYS = 14
 LOGIN_REDIRECT_URL = '/'
 
-LANGUAGES = (
-  ('nb', ugettext('Norwegian bokmål')),
-  ('en', ugettext('English')),
-)
-
-TRANSLATION_HACK = (
-        ugettext('password (again)'),
-        ugettext('email address'),
-        )
+PAGINATION_DEFAULT_WINDOW = 8
 
 COMMENTS_APP = "s7n.threaded_comments"
 TIMELINE_APP = "s7n.timeline"
 
-MARKITUP_FILTER = ('markdown.markdown', {'safe_mode': True})
+MARKITUP_FILTER = ('s7n.utils.markdown', {'safe_mode': True})
 MARKITUP_SET = 'markitup/sets/markdown'
 MARKITUP_SKIN = 'markitup/skins/markitup'
 
+try:
+    from local_settings import *
+except ImportError:
+    pass

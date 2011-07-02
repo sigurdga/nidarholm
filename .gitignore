@@ -12,4 +12,4 @@ build
 index.xapian
 index.whoosh
 .settings
-settings.py
+local_settings.py
