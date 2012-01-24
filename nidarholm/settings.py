@@ -9,7 +9,7 @@ sys.path.insert(0, os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
 
 DEVELOPMENT_MODE = False
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -30,7 +30,7 @@ DATABASES = {
         'USER': 'nidarholm', # Not used with sqlite3.
         'PASSWORD': 'niweb', # Not used with sqlite3.
         'HOST': 'localhost', # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '5433', # Set to empty string for default. Not used with sqlite3.
+        'PORT': '5432', # Set to empty string for default. Not used with sqlite3.
     }
 }
 
@@ -61,16 +61,16 @@ USE_L10N = True
 DEFAULT_IMAGE_SIZE = 4
 
 # Serves local files, where permissions are checked
-FILE_SERVE_ROOT = '/srv/www/nidarholm/shared/uploads/'
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = '/srv/www/nidarholm/releases/current/nidarholm/nidarholm/media/'
+MEDIA_ROOT = '/home/sigurdga/nidarholm/shared/media/'
+FILE_SERVE_ROOT = MEDIA_ROOT
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = '/m/'
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -191,8 +191,8 @@ AVATAR_DEFAULT_URL = '/m/avatars/default.png'
 
 HAYSTACK_SITECONF = 'search.search_sites'
 HAYSTACK_SEARCH_ENGINE = 'whoosh'
-HAYSTACK_XAPIAN_PATH = '/srv/www/nidarholm/shared/indexes/index.xapian'
-HAYSTACK_WHOOSH_PATH = '/srv/www/nidarholm/shared/indexes/index.whoosh'
+HAYSTACK_XAPIAN_PATH = '/home/sigurdga/nidarholm/shared/indexes/index.xapian'
+HAYSTACK_WHOOSH_PATH = '/home/sigurdga/nidarholm/shared/indexes/index.whoosh'
 
 MAX_TAG_LENGTH = 64 # reduce later
 FORCE_LOWERCASE_TAGS = True # should replace with unidecoded space stripped versions
