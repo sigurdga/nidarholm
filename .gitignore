@@ -13,3 +13,4 @@ index.xapian
 index.whoosh
 .settings
 local_settings.py
+fabfile.py
