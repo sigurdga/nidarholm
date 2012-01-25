@@ -149,10 +149,10 @@ def send_file(request, id, size=settings.DEFAULT_IMAGE_SIZE):
                     raise ImportError('Cannot import the Python Image Library.')
 
             image = Image.open(original_filename)
-            exif = pyexiv2.Image(original_filename)
-            exif.readMetadata()
+            exif = pyexiv2.ImageMetadata(original_filename)
+            exif.read()
 
-            if 'Exif.Image.Orientation' in exif.exifKeys():
+            if 'Exif.Image.Orientation' in exif.exif_keys:
                 orientation = exif['Exif.Image.Orientation']
                 if orientation == 1:
                     # Nothing
@@ -249,20 +249,22 @@ def send_file(request, id, size=settings.DEFAULT_IMAGE_SIZE):
 
             if exif:
                 if delete_exif_thumbnail:
-                    exif.deleteThumbnail()
+                    # delete thumbnail before copy. the changed original is not saved.
+                    thumb = pyexiv2.exif.ExifThumbnail(exif)
+                    thumb.erase()
 
-                new_file_exif = pyexiv2.Image(filename)
-                new_file_exif.readMetadata()
+                new_file_exif = pyexiv2.ImageMetadata(filename)
+                new_file_exif.read()
 
                 # reset image orientation for new image
-                exif.copyMetadataTo(new_file_exif)
+                exif.copy(new_file_exif)
                 new_file_exif['Exif.Image.Orientation'] = 1
                 #new_file_exif['Exif.Image.XResolution'] = 11.1
                 #new_file_exif['Exif.Image.YResolution'] = 1
                 new_file_exif['Exif.Image.ImageWidth'] = width
                 new_file_exif['Exif.Image.ImageLength'] = height
 
-                new_file_exif.writeMetadata()
+                new_file_exif.write()
 
     f = open(filename, 'r')
     output = f.read()
