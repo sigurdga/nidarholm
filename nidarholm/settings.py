@@ -21,6 +21,8 @@ SEND_BROKEN_LINK_EMAILS = True
 DEFAULT_FROM_EMAIL = 'administrator@nidarholm.no'
 SERVER_EMAIL = 'administrator@nidarholm.no'
 
+MAIN_HOST = 'nidarholm.no' # used by mail server to pull updated email lists
+
 DATABASES = {
     'default': {
         #'ENGINE':'sqlite3',
