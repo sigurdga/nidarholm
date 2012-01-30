@@ -14,10 +14,12 @@ markdown
 werkzeug
 pil
 python-magic
+pycrypto
 whoosh
 south
 unidecode
-hg+http://bitbucket.org/ubernostrum/django-registration/#egg=django-registration
+#hg+http://bitbucket.org/ubernostrum/django-registration/#egg=django-registration
+django-registration
 git+git://github.com/alekam/django-tagging-autocomplete#egg=django-tagging-autocomplete
 git+ssh://git@git.strekmann.no/s7n_pages.git@master#egg=s7n-pages
 git+ssh://git@git.strekmann.no/s7n_threaded_comments.git@nidarholm#egg=s7n-threaded-comments
