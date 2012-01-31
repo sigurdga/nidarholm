@@ -17,13 +17,6 @@ pad = lambda s: s + (BLOCK_SIZE - len(s) % BLOCK_SIZE) * PADDING
 EncodeAES = lambda c, s: base64.b64encode(c.encrypt(pad(s)))
 DecodeAES = lambda c, e: c.decrypt(base64.b64decode(e)).rstrip(PADDING)
 
-def trans(string):
-    string = string.replace("æ","a")
-    string = string.replace("ø","o")
-    string = string.replace("å","a")
-    string = string.replace(" ","")
-    return string
-
 class Command(BaseCommand):
     help = "Updates mailingslists based on group and organization membership"
     def handle(self, *args, **options):
