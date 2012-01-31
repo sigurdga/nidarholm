@@ -187,10 +187,10 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.messages.context_processors.messages",
     )
 
-AUTO_GENERATE_AVATAR_SIZES = (100,)
+AUTO_GENERATE_AVATAR_SIZES = (40,100,)
 AVATAR_STORAGE_DIR = 'avatars/'
 AVATAR_GRAVATAR_BACKUP = False
-AVATAR_DEFAULT_URL = '/m/avatars/default.png'
+AVATAR_DEFAULT_URL = '/media/avatars/default.png'
 
 HAYSTACK_SITECONF = 'search.search_sites'
 HAYSTACK_SEARCH_ENGINE = 'whoosh'
