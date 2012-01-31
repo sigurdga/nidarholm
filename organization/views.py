@@ -50,7 +50,7 @@ def email_lists_json(request, groups):
     data = simplejson.loads(decoded)
     group_list = data['groups']
     prefix = data['prefix']
-    organization_group = request.organization #SiteProfile.objects.get(site=request.site).group #site__name="Musikkforeningen Nidarholm").group
+    organization_group = request.organization.group #SiteProfile.objects.get(site=request.site).group #site__name="Musikkforeningen Nidarholm").group
     lists = {}
     for group in group_list:
         listname = prefix + trans(group.lower())
@@ -60,5 +60,4 @@ def email_lists_json(request, groups):
             if organization_group in user.groups.all():
                 if user.get_profile().status < 4 and user.email:
                     lists[listname].append(user.email)
-
     return HttpResponse(content=EncodeAES(cipher, simplejson.dumps(lists)), mimetype="application/octet-stream")

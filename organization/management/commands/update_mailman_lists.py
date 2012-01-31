@@ -27,7 +27,7 @@ def trans(string):
 class Command(BaseCommand):
     help = "Updates mailingslists based on group and organization membership"
     def handle(self, *args, **options):
-        data = {'prefix': "nidarholm-", 'groups': ["Medlemmer", "Euph", "Klarinett", "Småmessing", "Fløyte", "Saksofon", "Horn", "Trombone", "Tuba", "Slagverk", "Obo", "Fagott"]}
+        data = {'prefix': "nidarholm-", 'groups': ["Medlemmer", "Fløyte", "Klarinett", "Saksofon", "Horn", "Småmessing", "Trombone", "Euph", "Tuba", "Slagverk"]}
         secret = settings.SECRET_KEY[0:16]
         cipher = AES.new(secret)
 
@@ -35,7 +35,8 @@ class Command(BaseCommand):
 
         host = settings.MAIN_HOST
         protocol = "http://"
-        contents = urlopen(protocol + host + reverse('organization-email-lists', args=[encoded])).read()
+        url = protocol + host + reverse('organization-email-lists', args=[encoded])
+        contents = urlopen(url).read()
 
         decoded = DecodeAES(cipher, contents)
         data = simplejson.loads(decoded)
