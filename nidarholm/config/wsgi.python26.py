@@ -2,8 +2,8 @@ import os
 import sys
 import site
 
-PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(__file__))) #../..
-site_packages = os.path.join(os.path.dirname(os.path.dirname(PROJECT_ROOT)), 'lib', 'python2.7', 'site-packages')
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) #../..
+site_packages = os.path.join(os.path.dirname(os.path.dirname(PROJECT_ROOT)), 'lib', 'python2.6', 'site-packages')
 
 #site.addsitedir(site_packages)
 sys.path.insert(0, site_packages)
