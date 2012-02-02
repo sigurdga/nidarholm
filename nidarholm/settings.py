@@ -192,9 +192,15 @@ AVATAR_STORAGE_DIR = 'avatars/'
 AVATAR_GRAVATAR_BACKUP = False
 AVATAR_DEFAULT_URL = '/media/avatars/default.png'
 
+#HAYSTACK_CONNECTIONS = {
+    #'default': {
+        #'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        #'PATH': '/home/sigurdga/nidarholm/shared/indexes/index.whoosh',
+    #},
+#}
 HAYSTACK_SITECONF = 'search.search_sites'
 HAYSTACK_SEARCH_ENGINE = 'whoosh'
-HAYSTACK_XAPIAN_PATH = '/home/sigurdga/nidarholm/shared/indexes/index.xapian'
+#HAYSTACK_XAPIAN_PATH = '/home/sigurdga/nidarholm/shared/indexes/index.xapian'
 HAYSTACK_WHOOSH_PATH = '/home/sigurdga/nidarholm/shared/indexes/index.whoosh'
 
 MAX_TAG_LENGTH = 64 # reduce later
