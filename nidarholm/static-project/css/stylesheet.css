@@ -52,9 +52,9 @@ div#middle a {
 div#middle h2 a {
     color: #333333;
     font-size: 14px;
+    font-weight: bold;
 }
 div#sidebar h2 a {
-    font-weight: bold;
 }
 div#middle strong {
     font-weight: bold;
@@ -438,6 +438,7 @@ dl.discussion-list {
     white-space: nowrap;
 }
 #timeline-wrapper { height: 30em; overflow: auto; }
+#timeline-wrapper h1 { display: none; }
 
 div.action {
   margin: 12px 0 12px 0; }
