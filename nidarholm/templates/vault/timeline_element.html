@@ -1,16 +1,18 @@
 {% load i18n %}
 
 <div class="header">
-    <div class="date">{{ action.action_date }}</div>
+    <div class="date">{{ action.action_date|date:"j. N H:i" }}</div>
     <a href="{{ action.user.get_absolute_url }}">{{ action.user.get_full_name }}</a>
-    {% if action.content_object.is_image %}
-    {% trans "uploaded the picture" %}
-    {% else %}
-    {% trans "uploaded the file" %}
-    {% endif %}
-    <a href="{{ action.content_object.get_absolute_url }}">{{ action.content_object }}</a>
+    <div class="one-line-ellipsis">
+        {% if action.content_object.is_image %}
+        {% trans "uploaded the picture" %}
+        {% else %}
+        {% trans "uploaded the file" %}
+        {% endif %}
+        <a href="{{ action.content_object.get_absolute_url }}">{{ action.content_object }}</a>
+    </div>
 </div>
-<div class="content"><a href="{{ action.content_object.get_absolute_url }}">
+<div class="content one-line-ellipsis"><a href="{{ action.content_object.get_absolute_url }}">
         {% if action.content_object.is_image %}
         <div style="float:right"><img src="{% url vault-send-file action.object_id %}/1"/></div>
         {% endif %}

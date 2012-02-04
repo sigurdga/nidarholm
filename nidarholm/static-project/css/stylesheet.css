@@ -431,13 +431,22 @@ dl.discussion-list {
     dl.discussion-list dd span.teaser {
       color: gray; }
 
+.one-line-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    white-space: nowrap;
+}
+#timeline-wrapper { height: 30em; overflow: auto; }
+
 div.action {
-  padding: 10px 0 14px 0; }
+  margin: 12px 0 12px 0; }
   div.action div.content {
-    border-top: 1px solid #efefef; }
+    }
     div#timeline div.content a {
       text-decoration: none;
-      color: gray; }
+      color: gray;
+    }
     div#timeline div.header {
         position: relative;
     }
