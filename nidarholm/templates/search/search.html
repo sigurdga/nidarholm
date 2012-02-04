@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 {% load i18n %}
+{% load avatar_tags %}
+{% load tagging_tags %}
 
 {% block content %}
-    <h2>{% trans "Search" %}</h2>
+    <h1>{% trans "Search" %}</h1>
 
     <form method="get" action=".">
         <table>
@@ -11,18 +13,35 @@
         </table>
 
         {% if query %}
-            <h3>{% trans "Results" %}</h3>
+            <h2>{% trans "Results" %}</h2>
 
             {% for result in page.object_list %}
-                <p>
-                    {% if not result.object.group or result.object.group in request.user.groups.all %}
-                      <a href="{{ result.object.get_absolute_url }}">{{ result.object }}</a>
-                    {% else %}
-                      {% blocktrans %}Hidden file, only visible for members of permission group.{% endblocktrans %}
-                    {% endif %}
-                </p>
+            <div style="padding-bottom:1ex; margin-top: 1ex;">
+            {% if not result.object.group or result.object.group in request.user.groups.all %}
+            {% if result.content_type == "auth.user" %}
+            <div style="float:right">{% avatar result.object 40 %}</div>
+            <a href="{{ result.object.get_absolute_url }}">{{ result.object.get_full_name }}</a>
+            <div>{{ result.object.username }}</div>
+            {% else %}
+            {% if result.content_type == "vault.uploadedfile" %}
+            {% if result.object.is_image %}
+            <img style="float:right" src="{% url vault.views.send_file result.object.id '1' %}"/>
+            {% endif %}
+            <a href="{{ result.object.get_absolute_url }}">{{ result.object }}</a>
+            <div>
+                {% tags_for_object result.object as filetags %}
+                {% for tag in filetags.all %}
+                <a style="padding: 1px 2px; border: 1px solid #ddd; color: #aaa" href="{% url file_list %}tags/{{ tag.name }}">{{ tag }}</a>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% endif %}
+            {% else %}
+            {% blocktrans %}Hidden file, only visible for members of permission group.{% endblocktrans %}
+            {% endif %}
+            </div>
             {% empty %}
-                <p>{% trans "No results" %}</p>
+                <div>{% trans "No results" %}</div>
             {% endfor %}
 
             {% if page.has_previous or page.has_next %}
