@@ -431,10 +431,16 @@ dl.discussion-list {
     dl.discussion-list dd span.teaser {
       color: gray; }
 
-.one-line-ellipsis {
+.with-image {
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 100%;
+    width: 210px;
+    white-space: nowrap;
+}
+.without-image {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 250px;
     white-space: nowrap;
 }
 #timeline-wrapper { height: 30em; overflow: auto; }
@@ -442,9 +448,9 @@ dl.discussion-list {
 
 div.action {
   margin: 12px 0 12px 0; }
-  div.action div.content {
+  div.action a.content {
     }
-    div#timeline div.content a {
+    div#timeline .content a {
       text-decoration: none;
       color: gray;
     }
@@ -457,3 +463,4 @@ div.action {
       top: 0;
   }
 
+div.action p { margin: 0; padding: 0 }

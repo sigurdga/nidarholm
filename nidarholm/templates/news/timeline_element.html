@@ -4,20 +4,20 @@
 <div class="header">
     <div class="date">{{ action.action_date|date:"j. N H:i" }}</div>
     <a href="{{ action.user.get_absolute_url }}">{{ action.user.get_full_name }}</a>
-    <div class="one-line-ellipsis">{% blocktrans with update_object_url=action.update_object.get_absolute_url %}<a href="{{ update_object_url }}">commented</a> the news story{% endblocktrans %}
+    <div class="without-image">{% blocktrans with update_object_url=action.update_object.get_absolute_url %}<a href="{{ update_object_url }}">commented</a> the news story{% endblocktrans %}
         <a href="{{ action.content_object.get_absolute_url }}" title="{{ action.content_object }}">{{ action.content_object }}</a></div>
 </div>
 {% with action.update_object.content_html|striptags|truncatewords:30|safe as snippet %}
-<div class="content one-line-ellipsis"><a href="{{ update_url }}" title="{{ snippet }}">{{ snippet }}</a></div>
+<div class="content without-image"><a href="{{ update_url }}" title="{{ snippet }}">{{ snippet }}</a></div>
 {% endwith %}
 {% else %}
 <div class="header">
     <div class="date">{{ action.action_date|date:"j. N H:i" }}</div>
     <a href="{{ action.user.get_absolute_url }}">{{ action.user.get_full_name }}</a>
-    <div class="one-line-ellipsis">{% trans "posted the news story" %}
+    <div class="without-image">{% trans "posted the news story" %}
         <a href="{{ action.content_object.get_absolute_url }}" title="{{ action.content_object }}">{{ action.content_object }}</a></div>
 </div>
 {% with action.content_object.content_html|striptags|truncatewords:30|safe as snippet %}
-<div class="content one-line-ellipsis"><a href="{{ action.content_object.get_absolute_url }}" title="{{ snippet }}">{{ snippet }}</a></div>
+<div class="content without-image"><a href="{{ action.content_object.get_absolute_url }}" title="{{ snippet }}">{{ snippet }}</a></div>
 {% endwith %}
 {% endif %}
