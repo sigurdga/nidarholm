@@ -46,8 +46,8 @@ def edit_file(request, id):
         if request.method == 'POST':
             form = UploadedFileForm(request.POST, request.FILES, instance=uploadedfile)
             if form.is_valid():
-                m = magic.open(magic.MAGIC_MIME)
-                m.load()
+                #m = magic.open(magic.MAGIC_MIME)
+                #m.load()
                 uploaded_file = form.save(commit=False)
                 #uploaded_file.user = request.user
                 if 'file' in request.FILES:
