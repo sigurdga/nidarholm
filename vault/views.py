@@ -15,7 +15,7 @@ import pyexiv2
 import magic
 
 FORMAT = "jpeg"
-QUALITY = 75
+QUALITY = 95
 
 def new_file(request):
     if request.method == 'POST':
@@ -40,29 +40,6 @@ def new_file(request):
         form = UploadedFileForm(instance=uploadedfile)
     return render_to_response('vault/new_file.html', {'form': form}, context_instance=RequestContext(request))
 
-def file_list(request, tags=""):
-
-    if tags:
-        tags = tags.split("/")
-        queryset = UploadedFile.objects.for_user(request.user)
-        queryset = TaggedItem.objects.get_by_model(queryset, tags)
-    else:
-        tags = []
-        queryset = UploadedFile.objects.for_user(request.user)
-
-    menu_tags = [ (reverse('vault-tagged-file-list', args=[tag]), tag) for tag in tags ]
-
-    projects = Project.objects.for_user(request.user)
-
-    return list_detail.object_list(request,
-                                   queryset=queryset,
-                                   paginate_by=20,
-                                   extra_context={
-                                           'tags': tags,
-                                           'menu_tags': menu_tags,
-                                           'projects': projects,
-                                           },
-                                   )
 def edit_file(request, id):
     uploadedfile = get_object_or_404(UploadedFile, pk=id)
     if request.user == uploadedfile.user or request.user.is_superuser:
@@ -115,7 +92,6 @@ def file_list(request, tags=""):
                                            'projects': projects,
                                            },
                                    )
-
 def file_object_detail(request, id):
     return list_detail.object_detail(request,
                                      UploadedFile.objects.for_user(request.user),
@@ -153,7 +129,7 @@ def send_file(request, id, size=settings.DEFAULT_IMAGE_SIZE):
             exif.read()
 
             if 'Exif.Image.Orientation' in exif.exif_keys:
-                orientation = exif['Exif.Image.Orientation']
+                orientation = exif['Exif.Image.Orientation'].value
                 if orientation == 1:
                     # Nothing
                     pass
@@ -244,7 +220,7 @@ def send_file(request, id, size=settings.DEFAULT_IMAGE_SIZE):
                 except ImportError:
                     from PIL import ImageOps
 
-                ImageOps.fit(image, (width, height), Image.ANTIALIAS).save(
+                o = ImageOps.fit(image, (width, height), Image.ANTIALIAS).save(
                     filename, FORMAT, quality=QUALITY)
 
             if exif:
@@ -261,8 +237,8 @@ def send_file(request, id, size=settings.DEFAULT_IMAGE_SIZE):
                 new_file_exif['Exif.Image.Orientation'] = 1
                 #new_file_exif['Exif.Image.XResolution'] = 11.1
                 #new_file_exif['Exif.Image.YResolution'] = 1
-                new_file_exif['Exif.Image.ImageWidth'] = width
-                new_file_exif['Exif.Image.ImageLength'] = height
+                new_file_exif['Exif.Image.XResolution'] = pyexiv2.utils.make_fraction(width)
+                new_file_exif['Exif.Image.YResolution'] = pyexiv2.utils.make_fraction(height)
 
                 new_file_exif.write()
 
