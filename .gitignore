@@ -5,7 +5,6 @@ src
 *.sqlite3
 /s7n
 uploads
-nidarholm/media/avatars
 .project
 .pydevproject
 build
@@ -14,3 +13,4 @@ index.whoosh
 .settings
 local_settings.py
 fabfile.py
+/nidarholm/media
