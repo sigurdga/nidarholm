@@ -1,17 +1,34 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load date %}
+{% load event_tag %}
 
 {% block title %}{% trans "Events" %} {{ day }}{% endblock %}
 
 {% block content %}
 
 <h1>{% trans "Events" %} {{ day }}</h1>
-<ul>
 {% for event in object_list %}
-<li><a href="{{ event.get_absolute_url }}">{{ event.title }}</a></li>
+<div class="event">
+  <acronym class="calendar" title="{{ event.start|date:"l j. F Y" }}">
+     <span class="calendar-weekday">{{ event.start|date:"l"|capfirst }}</span>
+     <span class="calendar-day">{{ event.start|date:"j" }}</span>
+     <span class="calendar-month">{{ event.start|date:"F" }}</span>
+  </acronym>
+  <h2><a href="{{ event.get_absolute_url }}">{{ event.title }}</a></h2>
+  {% single_datetime event.start event.whole_day %}{% if event.location %}, {{ event.location }}{% endif %}
+</div>
 {% empty %}
-<li>{% trans "Nothing here" %}</li>
+{% trans "Nothing here" %}
 {% endfor %}
-</ul>
 
 {% endblock content %}
+
+{% block contextinfo %}
+<div class="datenav">
+    <h1><a href="{% url events-month month.year month.month %}">{{ month|date:"E Y" }}</a></h1>
+    <a class="next" href="{% url events-month next_month.year next_month.month %}" title="{{ next_month|date:"E Y" }}">»</a>
+    <a class="prev" href="{% url events-month previous_month.year previous_month.month %}" title="{{ previous_month|date:"E Y" }}">«</a>
+</div>
+{% format_calendar %}
+{% endblock %}

@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load event_tag %}
 
-{% block title %}{% trans "Event archive" %}{% endblock %}
+{% block title %}{% trans "Activity calendar" %}{% endblock %}
+
 
 {% block contextmenu %}
 {% if request.user.is_authenticated %}
@@ -10,23 +12,37 @@
 {% endblock %}
 
 {% block contextinfo %}
+
+<div class="datenav">
+<h1>{{ month|date:"E Y" }}</h1>
+    <a class="next" href="{% url events-month next_month.year next_month.month %}" title="{{ next_month|date:"E Y" }}">»</a>
+    <a class="prev" href="{% url events-month previous_month.year previous_month.month %}" title="{{ previous_month|date:"E Y" }}">«</a>
+</div>
+{% format_calendar %}
+<h1>{% trans "Archive" %}</h1>
+<ul id="archive-years">
 {% for year in date_list %}
 <li><a href="{{ year.year }}">{{ year.year }}</a></li>
 {% endfor %}
+</ul>
 {% endblock contextinfo %}
 
 {% block content %}
 {% load date %}
 
-<h1>{% trans "Event archive" %}</h1>
-<ul>
-{% for event in latest %}
-<li>
-  <a href="{{ event.get_absolute_url }}">{{ event.title }}</a><br />
-  {% single_datetime event.start event.whole_day %}{% if event.location %}, {{ event.location }}{% endif %}</li>
+<h1>{% trans "Activity calendar" %}</h1>
+{% for event in upcoming %}
+<div class="event">
+  <acronym class="calendar" title="{{ event.start|date:"l j. F Y" }}">
+     <span class="calendar-weekday">{{ event.start|date:"l"|capfirst }}</span>
+     <span class="calendar-day">{{ event.start|date:"j" }}</span>
+     <span class="calendar-month">{{ event.start|date:"F" }}</span>
+  </acronym>
+  <h2><a href="{{ event.get_absolute_url }}">{{ event.title }}</a></h2>
+  {% single_datetime event.start event.whole_day %}{% if event.location %}, {{ event.location }}{% endif %}
+</div>
 {% empty %}
-<li>{% trans "Nothing here" %}</li>
+{% trans "Nothing here" %}
 {% endfor %}
-</ul>
 
 {% endblock content %}

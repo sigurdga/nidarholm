@@ -8,10 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-10 21:42+0100\n"
+"POT-Creation-Date: 2012-02-07 15:42+0100\n"
 "PO-Revision-Date: 2010-12-10 21:42+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -31,3 +32,35 @@ msgstr "Aktivitet"
 #: models.py:49
 msgid "Events"
 msgstr "Aktiviteter"
+
+#: templatetags/event_tag.py:22
+msgid "week"
+msgstr "uke"
+
+#: templatetags/event_tag.py:22
+msgid "mo"
+msgstr "ma"
+
+#: templatetags/event_tag.py:22
+msgid "tu"
+msgstr "ti"
+
+#: templatetags/event_tag.py:22
+msgid "we"
+msgstr "on"
+
+#: templatetags/event_tag.py:22
+msgid "th"
+msgstr "to"
+
+#: templatetags/event_tag.py:22
+msgid "fr"
+msgstr "fr"
+
+#: templatetags/event_tag.py:22
+msgid "sa"
+msgstr "lø"
+
+#: templatetags/event_tag.py:22
+msgid "su"
+msgstr "sø"

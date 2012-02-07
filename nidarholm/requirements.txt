@@ -18,6 +18,7 @@ pycrypto
 whoosh
 south
 unidecode
+python-dateutil
 #hg+http://bitbucket.org/ubernostrum/django-registration/#egg=django-registration
 django-registration
 git+git://github.com/alekam/django-tagging-autocomplete#egg=django-tagging-autocomplete

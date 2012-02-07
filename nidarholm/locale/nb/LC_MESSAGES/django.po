@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-06 23:19+0200\n"
+"POT-Creation-Date: 2012-02-07 15:45+0100\n"
 "PO-Revision-Date: 2011-06-02 20:19+0200\n"
 "Last-Translator: Sigurd Gartmann <sigurdga-translate@sigurdga.no>\n"
 "Language-Team: Bokmål <sigurdga-translate@sigurdga.no>\n"
@@ -18,19 +18,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1\n"
 
-#: settings.deveoplment.py:176
+#: local_settings.py:62
 msgid "Norwegian bokmål"
 msgstr "Bokmål"
 
-#: settings.deveoplment.py:177
+#: local_settings.py:63
 msgid "English"
 msgstr "Engelsk"
 
-#: settings.deveoplment.py:181
+#: local_settings.py:67
 msgid "password (again)"
 msgstr "passord (igjen)"
 
-#: settings.deveoplment.py:182
+#: local_settings.py:68
 msgid "email address"
 msgstr "epostadresse"
 
@@ -51,32 +51,32 @@ msgstr ""
 "Rettighetssystemet virker, og du har ikke rettigheter til å gjøre det du "
 "prøvde å gjøre. Ideelt sett skulle du ha fått en bedre feilmelding enn dette."
 
-#: templates/base.html:56
+#: templates/base.html:59
 msgid "Logged in as"
 msgstr "Logget inn som"
 
-#: templates/base.html:57
+#: templates/base.html:60
 msgid "Log out"
 msgstr "Logg ut"
 
-#: templates/base.html:59
+#: templates/base.html:62
 #: templates/registration/password_reset_complete.html:12
 msgid "Log in"
 msgstr "Logg inn"
 
-#: templates/base.html:107
+#: templates/base.html:110
 msgid "Active users last 10 minutes"
 msgstr "Aktive brukere (siste ti minutter)"
 
-#: templates/base.html:115
+#: templates/base.html:118
 msgid "Last commented news"
 msgstr "Nyhetsaktivitet"
 
-#: templates/base.html:120
+#: templates/base.html:123
 msgid "Last uploaded files"
 msgstr "Siste filer"
 
-#: templates/base.html:126
+#: templates/base.html:129
 msgid "active users last 10 minutes"
 msgstr "aktive brukere de siste ti minuttene"
 
@@ -135,35 +135,37 @@ msgstr "Profilbilde"
 msgid "Upload"
 msgstr "Last opp"
 
-#: templates/events/event_archive.html:4
-#: templates/events/event_archive.html:21 templates/events/event_list.html:10
-msgid "Event archive"
+#: templates/events/event_archive.html:5
+#: templates/events/event_archive.html:33
+msgid "Activity calendar"
 msgstr "Aktivitetskalender"
 
-#: templates/events/event_archive.html:8 templates/events/event_list.html:8
-#: templates/events/new_event.html:4 templates/events/new_event.html.py:8
+#: templates/events/event_archive.html:10 templates/events/new_event.html:4
+#: templates/events/new_event.html.py:8
 msgid "New event"
 msgstr "Ny aktivitet"
 
-#: templates/events/event_archive.html:28
-#: templates/events/event_archive_day.html:13
-#: templates/events/event_archive_month.html:13
-#: templates/events/event_archive_year.html:16
-#: templates/events/event_list.html:31 templates/forum/list.html:30
+#: templates/events/event_archive.html:22
+msgid "Archive"
+msgstr "Arkiv"
+
+#: templates/events/event_archive.html:45
+#: templates/events/event_archive_day.html:22
+#: templates/events/event_archive_month.html:24
+#: templates/events/event_archive_year.html:16 templates/forum/list.html:30
 msgid "Nothing here"
 msgstr "Ingenting her"
 
-#: templates/events/event_archive_day.html:4
-#: templates/events/event_archive_day.html:8
+#: templates/events/event_archive_day.html:6
+#: templates/events/event_archive_day.html:10
+#: templates/events/event_archive_month.html:6
+#: templates/events/event_archive_month.html:10
 #: templates/events/event_detail.html:4
 msgid "Events"
 msgstr "Aktiviteter"
 
-#: templates/events/event_archive_month.html:4
-#: templates/events/event_archive_month.html:8
 #: templates/events/event_archive_year.html:4
 #: templates/events/event_archive_year.html:9
-#: templates/events/event_list.html:4 templates/events/event_list.html:19
 msgid "Event list"
 msgstr "Aktivitetsliste"
 
@@ -238,7 +240,7 @@ msgstr "Nytt innlegg"
 msgid "<a href=\"%(update_object_url)s\">commented</a> the forum post"
 msgstr "<a href=\"%(update_object_url)s\">kommenterte</a> forumposten"
 
-#: templates/forum/timeline_element.html:15
+#: templates/forum/timeline_element.html:17
 msgid "created the forum post"
 msgstr "startet forumtråden"
 
@@ -246,7 +248,7 @@ msgstr "startet forumtråden"
 msgid "First page"
 msgstr "Første side"
 
-#: templates/navigation/paginator.html:7 templates/search/search.html:30
+#: templates/navigation/paginator.html:7 templates/search/search.html:49
 msgid "Previous page"
 msgstr "Forrige side"
 
@@ -258,7 +260,7 @@ msgstr "Aktiv side"
 msgid "Page"
 msgstr "Side"
 
-#: templates/navigation/paginator.html:17 templates/search/search.html:32
+#: templates/navigation/paginator.html:17 templates/search/search.html:51
 msgid "Next page"
 msgstr "Neste side"
 
@@ -294,12 +296,11 @@ msgstr "Lag ny nyhet"
 msgid "Edit welcome text"
 msgstr "Rediger velkomsttekst"
 
-#: templates/news/main.html:19 templates/news/main.html.py:50
-#: templates/news/story_detail.html:6
+#: templates/news/main.html:31 templates/news/story_detail.html:6
 msgid "News"
 msgstr "Nyheter"
 
-#: templates/news/main.html:33 templates/news/main.html.py:64
+#: templates/news/main.html:45
 msgid "No news at this time"
 msgstr "Ingen nyheter på det nåværende tidspunktet"
 
@@ -322,7 +323,7 @@ msgstr "Kommentarer"
 msgid "<a href=\"%(update_object_url)s\">commented</a> the news story"
 msgstr "<a href=\"%(update_object_url)s\">kommenterte</a> nyheten"
 
-#: templates/news/timeline_element.html:15
+#: templates/news/timeline_element.html:17
 msgid "posted the news story"
 msgstr "la ut nyheten"
 
@@ -331,7 +332,7 @@ msgid "New user"
 msgstr "Nytt medlem"
 
 #: templates/organization/groupcategory_detail.html:23
-#: templates/search/search.html:5 templates/search/search.html.py:10
+#: templates/search/search.html:7 templates/search/search.html.py:12
 #: templates/vault/uploadedfile_list.html:39
 msgid "Search"
 msgstr "Søk"
@@ -572,27 +573,34 @@ msgstr ""
 msgid "Save"
 msgstr "Lagre"
 
-#: templates/search/search.html:14
+#: templates/search/search.html:16
 msgid "Results"
 msgstr "Resultater"
 
-#: templates/search/search.html:21
+#: templates/search/search.html:40
 msgid "Hidden file, only visible for members of permission group."
 msgstr ""
 "Skjult fil. Bare synlig for medlemmer av en gruppe du ikke er medlem av."
 
-#: templates/search/search.html:25
+#: templates/search/search.html:44
 msgid "No results"
 msgstr "Ingen resultater"
 
-#: templates/vault/timeline_element.html:7
+#: templates/vault/new_file.html:6 templates/vault/new_file.html.py:10
+msgid "New file"
+msgstr "Nytt fil"
+
+#: templates/vault/timeline_element.html:11
 msgid "uploaded the picture"
 msgstr "lastet opp bildet"
 
-#: templates/vault/timeline_element.html:9
+#: templates/vault/timeline_element.html:19
 msgid "uploaded the file"
 msgstr "lastet opp fila"
 
 #: templates/vault/uploadedfile_list.html:50
 msgid "Tags"
 msgstr "Tags"
+
+#~ msgid "Event archive"
+#~ msgstr "Aktivitetskalender"

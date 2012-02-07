@@ -129,7 +129,9 @@ div#sidebar {
     padding: 0 10px;
 }
 div#contextinfo {
-    margin-top: 20px;
+}
+div#contextmenu {
+    margin-bottom: 20px;
 }
 div#content {
     width: 640px;
@@ -464,3 +466,22 @@ div.action {
   }
 
 div.action p { margin: 0; padding: 0 }
+
+.month { margin-bottom: 10px; font-size: 16px; }
+.month .wno { font-weight: bold; text-align: right; padding-left: 0; }
+#middle .month a { text-decoration: none; color: #333 }
+#middle .month .other_month a { color: #aaa; }
+.month .activities { background-color: #ebb; }
+.month .today { font-weight: bold; }
+.month td { padding: 4px 6px; text-align: right; width: 12.5% }
+.month th { padding: 4px 6px; text-align: center; font-weight: bold; width: 12.5% }
+
+.datenav { position: relative; }
+.datenav h1 { text-align: center; margin: 0; display: block; }
+.datenav a { font-size: 32px; }
+.datenav h1 a { font-size: inherit; }
+#sidebar .datenav a:hover { text-decoration: none; background-color: #ebb }
+.datenav .next { display: block; position: absolute; top: 0; right: 0; }
+.datenav .prev { display: block; position: absolute; top: 0; left: 0; }
+
+#archive-years { margin-left: 0; }
