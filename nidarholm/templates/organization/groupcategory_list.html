@@ -6,7 +6,7 @@
 {% block content %}
 <h1>{% trans "Organization" %}</h1>
 {% if object_list %}
-<ul>
+<ul class="reset">
   {% for category in object_list %}
   <li><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>
   {% endfor %}

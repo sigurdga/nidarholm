@@ -20,7 +20,7 @@ def phone_number_format(number):
                 return "%s %s %s %s" % (n.group(1), n.group(2), n.group(3), n.group(4))
             else:
                 return number
-    
+
 
 @register.simple_tag
 def list_groups(request, group_name, groupcategory_name):
@@ -32,7 +32,7 @@ def list_groups(request, group_name, groupcategory_name):
     groupcategory = GroupCategory.objects.get(name=groupcategory_name)
 
     #TODO: Add 404 on exceptions
-    ret = "<ul>"
+    ret = '<ul class="reset">'
     for groupprofile in groupcategory.groupprofile_set.all():
         ret += "<li>"
         ret += "<h2>" + groupprofile.group.name + "</h2>"

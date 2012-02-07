@@ -30,7 +30,7 @@
 {% block content %}
 <h1>{% trans "News" %}</h1>
 
-<ul>
+<ul class="reset">
     {% for story in object_list %}
     <li>
     <h2><a href="{{ story.get_absolute_url }}">{{ story.title }}</a></h2>

@@ -2,13 +2,13 @@
 {% load i18n %}
 
 {% block title %}Filer{% endblock %}
- 
+
 {% block content %}
 {% load tagging_tags %}
 
 <h1>Sist lastet opp</h1>
 
-<ul id="filelist">
+<ul id="filelist" class="reset">
 {% for uploadedfile in object_list %}
 <li>
 <div class="filetags">
