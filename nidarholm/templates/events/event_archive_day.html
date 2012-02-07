@@ -8,7 +8,7 @@
 {% block content %}
 
 <h1>{% trans "Events" %} {{ day }}</h1>
-{% for event in object_list %}
+{% for event in present %}
 <div class="event">
   <acronym class="calendar" title="{{ event.start|date:"l j. F Y" }}">
      <span class="calendar-weekday">{{ event.start|date:"l"|capfirst }}</span>
@@ -16,7 +16,7 @@
      <span class="calendar-month">{{ event.start|date:"F" }}</span>
   </acronym>
   <h2><a href="{{ event.get_absolute_url }}">{{ event.title }}</a></h2>
-  {% single_datetime event.start event.whole_day %}{% if event.location %}, {{ event.location }}{% endif %}
+  {% between_datetimes event.start event.end event.whole_day %}{% if event.location %}, {{ event.location }}{% endif %}
 </div>
 {% empty %}
 {% trans "Nothing here" %}

@@ -9,6 +9,7 @@ import calendar
 from collections import OrderedDict
 from datetime import date
 from dateutil.relativedelta import relativedelta
+from django.db.models import Q
 
 DATEFIELD = 'start'
 MONTH_FORMAT = '%m'
@@ -43,7 +44,15 @@ class EventArchiveIndexView(ArchiveIndexView):
         month_end = today.replace(month=today.month+1) # plus some
         future_qs = self.get_queryset().filter(start__gte=today, start__lt=today+relativedelta(months=+3)).order_by("start")
         month_qs = self.get_queryset().filter(start__gt=month_start, start__lt=month_end).order_by("start")
-        dates_with_events = [ d.date() for d in self.get_date_list(month_qs, 'day') ]
+        dates_with_events = set()
+        for event in month_qs.all():
+            start = event.start.date()
+            dates_with_events.add(start)
+            if event.end:
+                end = event.end.date()
+                while start < end:
+                    start += relativedelta(days=+1)
+                    dates_with_events.add(start)
         week_list = make_calendar_context(today.year, today.month, dates_with_events)
 
         context['calendar'] = week_list
@@ -70,7 +79,15 @@ class EventMonthArchiveView(MonthArchiveView):
 
     def get_context_data(self, **kwargs):
         context = super(EventMonthArchiveView, self).get_context_data(**kwargs)
-        dates_with_events = [ datetime.date() for datetime in kwargs['date_list'] ]
+        dates_with_events = set()
+        for event in self.get_queryset():
+            start = event.start.date()
+            dates_with_events.add(start)
+            if event.end:
+                end = event.end.date()
+                while start < end:
+                    start += relativedelta(days=+1)
+                    dates_with_events.add(start)
         month = int(self.kwargs['month'])
         year = int(self.kwargs['year'])
         week_list = make_calendar_context(year, month, dates_with_events)
@@ -90,10 +107,22 @@ class EventDayArchiveView(DayArchiveView):
         year = int(self.kwargs['year'])
         month_start = date(year=year, month=month, day=1)
         month_end = date(year=year, month=month+1, day=1)
-        month_qs = self.get_queryset().filter(start__gt=month_start, start__lt=month_end).order_by("start")
-        dates_with_events = [ d.date() for d in self.get_date_list(month_qs, 'day') ]
+        day = date(year=year, month=month, day=int(self.kwargs['day']))
+        month_qs = self.get_queryset().filter(start__gte=month_start, start__lt=month_end).order_by("start")
+        day_qs = self.get_queryset().filter(Q(end__isnull=True, start__range=(day, day))|Q(end__gte=day,start__lte=day))
+        dates_with_events = set()
+        for event in month_qs.all():
+            start = event.start.date()
+            dates_with_events.add(start)
+            if event.end:
+                end = event.end.date()
+                while start < end:
+                    start += relativedelta(days=+1)
+                    dates_with_events.add(start)
+
         week_list = make_calendar_context(year, month, dates_with_events)
         context['calendar'] = week_list
+        context['present'] = day_qs
         context['month'] = month_start
         context['previous_month'] = month_start + relativedelta(months=-1)
         context['next_month'] = month_start + relativedelta(months=+1)

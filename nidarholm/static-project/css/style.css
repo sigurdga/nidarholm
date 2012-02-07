@@ -551,8 +551,8 @@ div.action p { margin: 0; padding: 0 }
 .datenav a { font-size: 32px; }
 .datenav h1 a { font-size: inherit; }
 #sidebar .datenav a:hover { text-decoration: none; background-color: #ebb }
-.datenav .next { display: block; position: absolute; top: 0; right: 0; }
-.datenav .prev { display: block; position: absolute; top: 0; left: 0; }
+.datenav .next { display: block; position: absolute; top: 3px; right: 0; }
+.datenav .prev { display: block; position: absolute; top: 3px; left: 0; }
 
 
 /* ==|== non-semantic helper classes ======================================== */
