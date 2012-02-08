@@ -41,7 +41,7 @@ class EventArchiveIndexView(ArchiveIndexView):
         context = super(EventArchiveIndexView, self).get_context_data(**kwargs)
         today = date.today()
         month_start = today.replace(day=1)
-        month_end = today.replace(month=today.month+1) # plus some
+        month_end = month_start + relativedelta(days=+40) # plus some (makes sure we get the extra days for next month marked)
         future_qs = self.get_queryset().filter(start__gte=today, start__lt=today+relativedelta(months=+3)).order_by("start")
         month_qs = self.get_queryset().filter(start__gt=month_start, start__lt=month_end).order_by("start")
         dates_with_events = set()
@@ -106,7 +106,7 @@ class EventDayArchiveView(DayArchiveView):
         month = int(self.kwargs['month'])
         year = int(self.kwargs['year'])
         month_start = date(year=year, month=month, day=1)
-        month_end = date(year=year, month=month+1, day=1)
+        month_end = month_start + relativedelta(months=+1)
         day = date(year=year, month=month, day=int(self.kwargs['day']))
         month_qs = self.get_queryset().filter(start__gte=month_start, start__lt=month_end).order_by("start")
         day_qs = self.get_queryset().filter(Q(end__isnull=True, start__range=(day, day))|Q(end__gte=day,start__lte=day))
