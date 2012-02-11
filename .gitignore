@@ -14,3 +14,4 @@ index.whoosh
 local_settings.py
 fabfile.py
 /nidarholm/media
+/node_modules
