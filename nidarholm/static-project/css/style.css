@@ -96,7 +96,7 @@ div#bottom-bg {
     background-repeat: no-repeat;
     padding-bottom: 10px;
 }
-div#top {
+#top {
     margin: 0 auto;
     width: 960px;
     height: 150px;
@@ -109,7 +109,7 @@ div#middle {
     clear: both;
     position: relative;
 }
-div#bottom {
+#bottom {
     margin: 0 auto;
     width: 960px;
 }
@@ -129,7 +129,7 @@ div#middle strong {
 div#middle em {
     font-style: italic;
 }
-div#top a {
+#top a {
     color: #ffffff;
     font-weight: bold;
 }
@@ -183,8 +183,6 @@ ul { padding: 0 0 0 20px; }
     top: 132px;
     left: 74px;
 }
-#menu ul {
-}
 
 #menu ul li {
     float: left;
@@ -232,7 +230,7 @@ div.text ul li {
 div#footer {
 }
 
-div#bottom div.footerbox {
+#bottom div.footerbox {
     width: 220px;
     float: left;
     padding: 20px 10px 0 10px;
