@@ -15,13 +15,13 @@
 <a href="{{ discussion.get_absolute_url }}">
     <div class="header">
         <span class="title">{{ discussion.title }}</span>
-        {% if discussion.group %}→ <span class="group">{{ discussion.group }}</span>{% endif %}
         {% if discussion.tags %}<span class="tags">{{ discussion.tags }}</span>{% endif %}
     </div>
-    <div class="count">{{ comment_count }}</div>
+    <div class="count" title="{{ comment_count }} svar">{{ comment_count }}</div>
+    <div class="permission">{{ discussion.group|default:"Verden" }}</div>
     <div class="meta">
         <span class="author">{{ discussion.user.get_full_name }}</span>
-        <span class="teaser">{{ discussion.content_html|striptags|truncatewords:6 }}</span>
+        <span class="teaser">{{ discussion.content_html|striptags|truncatewords:20 }}</span>
     </div>
     <div class="date">{{ discussion.created_date|timesince }}</div>
 </a>
@@ -30,8 +30,10 @@
 {% for comment in last_comments %}
 <dd class="comment">
     <a href="{{ comment.get_absolute_url }}">
-        <span class="author">{{ comment.user.get_full_name }}</span>
-        <span class="teaser">{{ comment.content_html|striptags|truncatewords:8 }}</span>
+        <div class="meta">
+            <span class="author">{{ comment.user.get_full_name }}</span>
+            <span class="teaser">{{ comment.content_html|striptags|truncatewords:20 }}</span>
+        </div>
         <div class="date">{{ comment.submit_date|timesince }}</div>
     </a>
 </dd>

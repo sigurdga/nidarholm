@@ -33,6 +33,7 @@
 <ul class="reset">
     {% for story in object_list %}
     <li>
+    <div class="permission">{{ story.group|default:"Verden" }}</div>
     <h2><a href="{{ story.get_absolute_url }}">{{ story.title }}</a></h2>
     <div class="news-root">
         <div class="news-root-header"><a href="{{ story.user.get_profile.get_absolute_url }}">{{ story.user.get_full_name }}</a>, {{ story.created }}</div>

@@ -365,6 +365,9 @@ div.filelist h2 {
 .event h2 {
     padding-top: 8px;
 }
+.event .permission {
+    margin-top: 9px;
+}
 .calendar {
     display: block;
     text-align: center;
@@ -441,7 +444,12 @@ dl.comments {
   dl.comments dd {
     margin: 0 0 0 20px; }
 
+dl.discussion-list dd { float: none; }
+dl.discussion-list dd.comment { margin-left: 0; width: 640px; }
+dl.discussion-list dd.comment a { display: block; }
+
 dl.discussion-list {
+    margin-top: 0;
   position: relative;
   width: 100%; }
   dl.discussion-list a {
@@ -470,6 +478,15 @@ dl.discussion-list {
         color: #333333; }
       dl.discussion-list dt span.teaser {
         color: gray; }
+        dd.comment .meta, dt.discussion .meta, dt.discussion .header {
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          width: 540px;
+      }
+      dd.comment a {
+          position: relative;
+      }
     dl.discussion-list dt div.count {
       position: absolute;
       right: 0;
@@ -485,18 +502,25 @@ dl.discussion-list {
         color: gray; }
     dl.discussion-list dt div.date {
       position: absolute;
-      right: 0;
-      top: 1.3em; }
-  dl.discussion-list dd {
+      left: 535px;
+      top: 18px; }
+    dl.discussion-list dt div.permission {
+      position: absolute;
+      left: 535px;
+      top: 4px; }
+    }
+  dl.discussion-list dd.comment {
       clear: none;
       float: none;
+      margin-left: 0;
     position: relative; }
+    dd.comment { margin-left: 0; }
     dl.discussion-list dd a {
       text-decoration: none;
       color: #333333; }
     dl.discussion-list dd div.date {
       position: absolute;
-      right: 0;
+      left: 535px;
       top: 0; }
     dl.discussion-list dd span.teaser {
       color: gray; }
@@ -551,6 +575,10 @@ div.action p { margin: 0; padding: 0 }
 #sidebar .datenav a:hover { text-decoration: none; background-color: #ebb }
 .datenav .next { display: block; position: absolute; top: 3px; right: 0; }
 .datenav .prev { display: block; position: absolute; top: 3px; left: 0; }
+
+a.permission { margin-top: 15px; background-color: #eee; border: 1px solid #ddd; border-radius: 3px; padding: 2px 4px; }
+a.permission:hover { text-decoration: none }
+div.permission, a.permission { float: right; }
 
 
 /* ==|== non-semantic helper classes ======================================== */

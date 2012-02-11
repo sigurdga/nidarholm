@@ -45,7 +45,6 @@ class GroupProfile(models.Model):
     def __unicode__(self):
         return self.group.name
 
-
 class Role(models.Model):
     name = models.CharField(_('name'), max_length=30)
     group = models.ForeignKey(Group, verbose_name=_('group'))
