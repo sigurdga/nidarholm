@@ -23,6 +23,10 @@
 
 {% endfor %}
 
+<div class="comment-for">
+    Kommentaren vil bli synlig for <a class="permission">{{ obj.group|default:"Verden" }}</a>
+</div>
+
 <form action="{% comment_form_target %}" method="post" class="uniForm">
     <fieldset>
         {{ form|as_uni_form }}
