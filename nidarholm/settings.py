@@ -173,6 +173,8 @@ INSTALLED_APPS = (
     's7n.timeline',
     's7n.threaded_comments',
     's7n.forum',
+    'samklang_utils',
+    'floppyforms',
 )
 
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'

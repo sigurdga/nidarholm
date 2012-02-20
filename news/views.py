@@ -46,7 +46,7 @@ def edit_story(request, id):
             return HttpResponseRedirect('/')
     else:
         form = StoryForm(instance=story)
-    return render_to_response('forum/new_debate.html', {'form': form}, context_instance=RequestContext(request))
+    return render_to_response('forum/new_debate.html', {'form': form, 'object': story}, context_instance=RequestContext(request))
 
 def new_story(request, id=None):
     """slug is the slug of the parent, may be null"""

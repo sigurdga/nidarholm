@@ -154,6 +154,17 @@
             {% endblock page %}
         </div>
         {% endblock body %}
+        {% block footer_include %}
+        {% endblock footer_include %}
+        <script src="{{ STATIC_URL }}js/samklang.js"></script>
+        <script>
+            $(document).ready(function(){
+                samklang = new Samklang();
+                samklang.init();
+                {% block footer_js %}{% endblock footer_js %}
+            });
+        </script>
+
         <!-- Piwik -->
         <script type="text/javascript">
             var pkBaseURL = (("https:" == document.location.protocol) ? "https://stat.nidarholm.no/" : "http://stat.nidarholm.no/");
