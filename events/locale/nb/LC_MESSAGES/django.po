@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-07 15:42+0100\n"
+"POT-Creation-Date: 2012-02-21 11:13+0100\n"
 "PO-Revision-Date: 2010-12-10 21:42+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: models.py:8
+msgid "title"
+msgstr "tittel"
+
+#: models.py:10
+msgid "description"
+msgstr "beskrivelse"
+
 #: models.py:20
 msgid "Event category"
 msgstr "Aktivitetskategori"
@@ -24,6 +32,42 @@ msgstr "Aktivitetskategori"
 #: models.py:21
 msgid "Event categories"
 msgstr "Aktivitetskategorier"
+
+#: models.py:26
+msgid "location"
+msgstr "sted"
+
+#: models.py:27
+msgid "whole day"
+msgstr "heldags"
+
+#: models.py:27
+msgid "You can also check this when you do not know the time"
+msgstr "Du kan også krysse av her når du ikke vet tidspunktet"
+
+#: models.py:28
+msgid "start"
+msgstr "start"
+
+#: models.py:28
+msgid "Set date or date and time"
+msgstr "Sett dato eller både dato og klokkeslett"
+
+#: models.py:29
+msgid "end"
+msgstr "slutt"
+
+#: models.py:29
+msgid "Optional"
+msgstr "Valgfri"
+
+#: models.py:31
+msgid "event serie"
+msgstr "aktivitetsserie"
+
+#: models.py:32
+msgid "event category"
+msgstr "aktivitetskategori"
 
 #: models.py:48
 msgid "Event"
