@@ -153,7 +153,7 @@ def edit_event(request, id):
     else:
         event = get_object_or_404(Event, id=id)
         form = EventForm(instance=event)
-    return render_to_response('events/new_event.html', {'form': form}, context_instance=RequestContext(request))
+    return render_to_response('events/new_event.html', {'form': form, 'object': event}, context_instance=RequestContext(request))
 
 def new_event(request):
     if request.method == 'POST':

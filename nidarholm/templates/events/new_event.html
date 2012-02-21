@@ -6,7 +6,7 @@
 
 {% block content %}
 
-<h1>{% trans "New event" %}</h1>
+<h1>{% if object.title %}{% trans "Edit" %} {{ object.title }}{% else %}{% trans "New event" %}{% endif %}</h1>
 
 <form method="post" action="" class="uniForm">{% csrf_token %}
     <fieldset>
