@@ -5,9 +5,9 @@ from django.utils.translation import ugettext_lazy as _
 from core.models import Common, Title, Markdown
 
 class EventCategory(models.Model):
-    title = models.CharField(max_length=20)
+    title = models.CharField(_("title"), max_length=20)
     slug = models.SlugField()
-    description = models.TextField(blank=True)
+    description = models.TextField(_("description"), blank=True)
 
     def __unicode__(self):
         return self.title
@@ -23,13 +23,13 @@ class EventCategory(models.Model):
 
 class Event(Common, Title, Markdown):
     #place = models.ForeignKey('Place', blank=True, null=True)
-    location = models.CharField(max_length=50, blank=True, null=True)
-    whole_day = models.BooleanField(default=False)
-    start = models.DateTimeField()
-    end = models.DateTimeField(blank=True, null=True)
+    location = models.CharField(_("location"), max_length=50, blank=True, null=True)
+    whole_day = models.BooleanField(_("whole day"), default=False, help_text=_("You can also check this when you do not know the time"))
+    start = models.DateTimeField(_("start"), help_text=_("Set date or date and time"))
+    end = models.DateTimeField(_("end"), help_text=_("Optional"), blank=True, null=True)
     # when adding re-occurrences, use event_serie with an incremented value
-    event_serie = models.IntegerField(blank=True, null=True)
-    event_category = models.ForeignKey(EventCategory, blank=True, null=True)
+    event_serie = models.IntegerField(_("event serie"), blank=True, null=True)
+    event_category = models.ForeignKey(EventCategory, verbose_name=_("event category"), blank=True, null=True)
 
     def __unicode__(self):
         return self.title
