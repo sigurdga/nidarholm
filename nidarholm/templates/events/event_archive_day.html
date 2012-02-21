@@ -5,6 +5,12 @@
 
 {% block title %}{% trans "Events" %} {{ day }}{% endblock %}
 
+{% block contextmenu %}
+{% if request.user.is_authenticated %}
+<li><a href="{% url events-new %}">{% trans "New event" %}</a></li>
+{% endif %}
+{% endblock %}
+
 {% block content %}
 
 <h1>{% trans "Events" %} {{ day }}</h1>
