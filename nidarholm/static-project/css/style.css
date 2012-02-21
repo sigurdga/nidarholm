@@ -594,6 +594,9 @@ div.permission, a.permission { float: right; }
 div.comment-for { text-align: right; }
 div.comment-for a.permission { float: none }
 
+#wmd-button-bar { max-width: 280px }
+#wmd-button-bar .wmd-button { border: none }
+#wmd-button-bar .wmd-help-button { top: 2px }
 
 /* ==|== non-semantic helper classes ======================================== */
 .ir { display: block; border: 0; text-indent: -999em; overflow: hidden; background-color: transparent; background-repeat: no-repeat; text-align: left; direction: ltr; }
