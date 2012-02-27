@@ -263,7 +263,7 @@ ul.reset {
 }
 
 p {
-    padding-bottom: 14px;
+    /*padding-bottom: 14px;*/
 }
 
 .footerbox { color: #ffffff; }
@@ -363,10 +363,10 @@ div.filelist h2 {
     clear: left;
 }
 .event h2 {
-    padding-top: 8px;
+    padding-top: 2px;
 }
 .event .permission {
-    margin-top: 9px;
+    margin-top: 4px;
 }
 .event-details { margin-left: 64px; }
 .calendar {
