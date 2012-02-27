@@ -23,8 +23,11 @@
      <span class="calendar-day">{{ event.start|date:"j" }}</span>
      <span class="calendar-month">{{ event.start|date:"F" }}</span>
   </acronym>
-  <h2><a href="{{ event.get_absolute_url }}">{{ event.title }}</a></h2>
-  {% between_datetimes event.start event.end event.whole_day %}{% if event.location %}, {{ event.location }}{% endif %}
+  <div class="event-details">
+      <h2><a href="{{ event.get_absolute_url }}">{{ event.title }}</a></h2>
+      {% between_datetimes event.start event.end event.whole_day %}{% if event.location %}, {{ event.location }}{% endif %}
+      {{ event.content_html|safe }}
+  </div>
 </div>
 {% empty %}
 {% trans "Nothing here" %}

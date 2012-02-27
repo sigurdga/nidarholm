@@ -7,14 +7,31 @@
 
 {% load date %}
 <h1>{% trans "Event list" %} {{ year }}</h1>
-<ul>
 {% for event in object_list %}
-<li><a href="{{ event.get_absolute_url }}">{{ event.title }}</a><br />
-{% between_datetimes event.start event.end event.whole_day %}
-</li>
+<div class="event">
+    <a class="permission">{{ event.group|default:"Verden" }}</a>
+  <acronym class="calendar" title="{{ event.start|date:"l j. F Y" }}">
+     <span class="calendar-weekday">{{ event.start|date:"l"|capfirst }}</span>
+     <span class="calendar-day">{{ event.start|date:"j" }}</span>
+     <span class="calendar-month">{{ event.start|date:"F" }}</span>
+  </acronym>
+  <div class="event-details">
+      <h2><a href="{{ event.get_absolute_url }}">{{ event.title }}</a></h2>
+      {% between_datetimes event.start event.end event.whole_day %}{% if event.location %}, {{ event.location }}{% endif %}
+      {{ event.content_html|safe }}
+  </div>
+</div>
 {% empty %}
-<li>{% trans "Nothing here" %}</li>
+{% trans "Nothing here" %}
 {% endfor %}
-</ul>
 
 {% endblock content %}
+
+{% block contextinfo %}
+<h1>{{ year }}</h1>
+<ul id="archive-years">
+{% for month in date_list %}
+<li><a href="{% url events-month month.year month.month %}">{{ month|date:"E" }}</a></li>
+{% endfor %}
+</ul>
+{% endblock contextinfo %}

@@ -368,6 +368,7 @@ div.filelist h2 {
 .event .permission {
     margin-top: 9px;
 }
+.event-details { margin-left: 64px; }
 .calendar {
     display: block;
     text-align: center;
