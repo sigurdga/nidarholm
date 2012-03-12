@@ -1,15 +1,21 @@
-from django.http import HttpResponseRedirect
+# coding: utf-8
+
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404, render_to_response
 from events.models import Event
 from events.forms import EventForm
 from django.template.context import RequestContext
 from django.views.generic import date_based, DayArchiveView, MonthArchiveView, ArchiveIndexView
+from django.views.generic.list import BaseListView
 from datetime import date
 import calendar
 from collections import OrderedDict
-from datetime import date
+from datetime import date, datetime, time, timedelta
 from dateutil.relativedelta import relativedelta
 from django.db.models import Q
+import vobject
+from django.core.urlresolvers import reverse
+from django.template.defaultfilters import slugify
 
 DATEFIELD = 'start'
 MONTH_FORMAT = '%m'
@@ -61,6 +67,47 @@ class EventArchiveIndexView(ArchiveIndexView):
         context['previous_month'] = today + relativedelta(months=-1)
         context['next_month'] = today + relativedelta(months=+1)
         return context
+
+class EventVobjectView(BaseListView):
+    model = Event
+
+    def get_queryset(self):
+        now = date.today()
+        qs = super(EventVobjectView, self).get_queryset().filter(start__gte=now, group__isnull=True)
+        return qs
+
+    def render_to_response(self, context):
+        cal = vobject.iCalendar()
+        cal.add('method').value = 'PUBLISH'
+        cal.add('calscale').value = 'GREGORIAN'
+        cal.add('x-original').value = "http://" + self.request.get_host() + reverse('events-archive')
+        for event in self.get_queryset():
+            e = cal.add('vevent')
+            e.add('url').value = "http://" + self.request.get_host() + event.get_absolute_url()
+            e.add('summary').value = event.title
+            e.add('description').value = event.content
+            e.add('location').value = event.location
+            e.add('dtstamp').value = datetime.now()
+            if event.whole_day or event.start.time() == time(0,0,0):
+                e.add('dtstart').value = event.start.date()
+                if not event.end or event.end == event.start:
+                    e.add('dtend').value = event.start.date() + timedelta(1)
+                else:
+                    e.add('dtend').value = event.end.date()
+
+            else:
+                e.add('dtstart').value = event.start
+                if event.end:
+                    e.add('dtend').value = event.end
+                else:
+                    e.add('dtend').value = event.start
+
+        icalstream = cal.serialize()
+        response = HttpResponse(icalstream, mimetype='text/calendar')
+        name = slugify(self.request.organization.site.name)
+        response['Filename'] = name + '.ics'  # IE needs this
+        response['Content-Disposition'] = 'attachment; filename=' + name + '.ics'
+        return response
 
 
 def event_archive_year(request, year):

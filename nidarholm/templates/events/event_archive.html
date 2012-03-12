@@ -9,6 +9,7 @@
 {% if request.user.is_authenticated %}
 <li><a href="{% url events-new %}">{% trans "New event" %}</a></li>
 {% endif %}
+<li><a href="{% url events-export %}">{% trans "Export public events" %}</a></li>
 {% endblock %}
 
 {% block contextinfo %}

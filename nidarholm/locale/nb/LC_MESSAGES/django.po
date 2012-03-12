@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-07 15:45+0100\n"
+"POT-Creation-Date: 2012-03-12 14:41+0100\n"
 "PO-Revision-Date: 2011-06-02 20:19+0200\n"
 "Last-Translator: Sigurd Gartmann <sigurdga-translate@sigurdga.no>\n"
 "Language-Team: Bokmål <sigurdga-translate@sigurdga.no>\n"
@@ -51,32 +51,32 @@ msgstr ""
 "Rettighetssystemet virker, og du har ikke rettigheter til å gjøre det du "
 "prøvde å gjøre. Ideelt sett skulle du ha fått en bedre feilmelding enn dette."
 
-#: templates/base.html:59
+#: templates/base.html:78
 msgid "Logged in as"
 msgstr "Logget inn som"
 
-#: templates/base.html:60
+#: templates/base.html:79
 msgid "Log out"
 msgstr "Logg ut"
 
-#: templates/base.html:62
+#: templates/base.html:81
 #: templates/registration/password_reset_complete.html:12
 msgid "Log in"
 msgstr "Logg inn"
 
-#: templates/base.html:110
+#: templates/base.html:129
 msgid "Active users last 10 minutes"
 msgstr "Aktive brukere (siste ti minutter)"
 
-#: templates/base.html:118
+#: templates/base.html:137
 msgid "Last commented news"
 msgstr "Nyhetsaktivitet"
 
-#: templates/base.html:123
+#: templates/base.html:142
 msgid "Last uploaded files"
 msgstr "Siste filer"
 
-#: templates/base.html:129
+#: templates/base.html:148
 msgid "active users last 10 minutes"
 msgstr "aktive brukere de siste ti minuttene"
 
@@ -86,7 +86,7 @@ msgid "User groups"
 msgstr "Brukergrupper"
 
 #: templates/accounts/edit_user_groups.html:13
-#: templates/events/new_event.html:14 templates/forum/new_debate.html:14
+#: templates/events/new_event.html:15 templates/forum/new_debate.html:22
 #: templates/pages/edit_page.html:14 templates/pages/new_page.html:14
 #: templates/profiles/create_profile.html:13
 #: templates/profiles/edit_profile.html:23
@@ -136,30 +136,36 @@ msgid "Upload"
 msgstr "Last opp"
 
 #: templates/events/event_archive.html:5
-#: templates/events/event_archive.html:33
+#: templates/events/event_archive.html:34
 msgid "Activity calendar"
 msgstr "Aktivitetskalender"
 
-#: templates/events/event_archive.html:10 templates/events/new_event.html:4
-#: templates/events/new_event.html.py:8
+#: templates/events/event_archive.html:10
+#: templates/events/event_archive_day.html:10
+#: templates/events/event_archive_month.html:10
+#: templates/events/new_event.html:5 templates/events/new_event.html.py:9
 msgid "New event"
 msgstr "Ny aktivitet"
 
-#: templates/events/event_archive.html:22
+#: templates/events/event_archive.html:12
+msgid "Export public events"
+msgstr "Eksporter offentlige aktiviteter"
+
+#: templates/events/event_archive.html:23
 msgid "Archive"
 msgstr "Arkiv"
 
-#: templates/events/event_archive.html:45
-#: templates/events/event_archive_day.html:22
-#: templates/events/event_archive_month.html:24
-#: templates/events/event_archive_year.html:16 templates/forum/list.html:30
+#: templates/events/event_archive.html:50
+#: templates/events/event_archive_day.html:31
+#: templates/events/event_archive_month.html:33
+#: templates/events/event_archive_year.html:25 templates/forum/list.html:30
 msgid "Nothing here"
 msgstr "Ingenting her"
 
 #: templates/events/event_archive_day.html:6
-#: templates/events/event_archive_day.html:10
+#: templates/events/event_archive_day.html:16
 #: templates/events/event_archive_month.html:6
-#: templates/events/event_archive_month.html:10
+#: templates/events/event_archive_month.html:16
 #: templates/events/event_detail.html:4
 msgid "Events"
 msgstr "Aktiviteter"
@@ -169,7 +175,7 @@ msgstr "Aktiviteter"
 msgid "Event list"
 msgstr "Aktivitetsliste"
 
-#: templates/events/event_detail.html:8
+#: templates/events/event_detail.html:8 templates/events/new_event.html:9
 #: templates/projects/project_detail.html:8
 msgid "Edit"
 msgstr "Rediger"
@@ -186,7 +192,7 @@ msgstr "For alle"
 
 #: templates/forum/comment.html:9 templates/forum/debate_detail.html:14
 #: templates/news/story.html:8 templates/news/story_comment.html:9
-#: templates/news/story_detail.html:18
+#: templates/news/story_detail.html:21
 msgid "Reply"
 msgstr "Svar"
 
@@ -195,11 +201,11 @@ msgstr "Svar"
 msgid "Forum"
 msgstr "Forum"
 
-#: templates/forum/latest.html:42
+#: templates/forum/latest.html:44
 msgid "No discussions from"
 msgstr "Ingen diskusjoner fra"
 
-#: templates/forum/latest.html:51
+#: templates/forum/latest.html:53
 msgid "New forum post"
 msgstr "Ny forumpost"
 
@@ -231,16 +237,16 @@ msgstr "Siste"
 msgid "from"
 msgstr "fra"
 
-#: templates/forum/new_debate.html:4 templates/forum/new_debate.html.py:8
+#: templates/forum/new_debate.html:5 templates/forum/new_debate.html.py:14
 msgid "New post"
 msgstr "Nytt innlegg"
 
-#: templates/forum/timeline_element.html:7
+#: templates/forum/timeline_element.html:8
 #, python-format
 msgid "<a href=\"%(update_object_url)s\">commented</a> the forum post"
 msgstr "<a href=\"%(update_object_url)s\">kommenterte</a> forumposten"
 
-#: templates/forum/timeline_element.html:17
+#: templates/forum/timeline_element.html:19
 msgid "created the forum post"
 msgstr "startet forumtråden"
 
@@ -300,11 +306,11 @@ msgstr "Rediger velkomsttekst"
 msgid "News"
 msgstr "Nyheter"
 
-#: templates/news/main.html:45
+#: templates/news/main.html:46
 msgid "No news at this time"
 msgstr "Ingen nyheter på det nåværende tidspunktet"
 
-#: templates/news/story.html:8 templates/news/story_detail.html:18
+#: templates/news/story.html:8 templates/news/story_detail.html:21
 msgid "Make a comment"
 msgstr "Skriv en kommentar"
 
@@ -314,16 +320,16 @@ msgstr "Skriv en kommentar"
 msgid "News archive"
 msgstr "Nyhetsarkiv"
 
-#: templates/news/story_detail.html:28
+#: templates/news/story_detail.html:31
 msgid "Comments"
 msgstr "Kommentarer"
 
-#: templates/news/timeline_element.html:7
+#: templates/news/timeline_element.html:9
 #, python-format
 msgid "<a href=\"%(update_object_url)s\">commented</a> the news story"
 msgstr "<a href=\"%(update_object_url)s\">kommenterte</a> nyheten"
 
-#: templates/news/timeline_element.html:17
+#: templates/news/timeline_element.html:20
 msgid "posted the news story"
 msgstr "la ut nyheten"
 
@@ -569,7 +575,6 @@ msgstr ""
 "tilbake til innloggingssiden og klikk «Lag nytt passord»"
 
 #: templates/registration/registration_form.html:16
-#: templates/threaded_comments/new_comment.html:32
 msgid "Save"
 msgstr "Lagre"
 

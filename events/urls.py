@@ -3,6 +3,7 @@ from events.views import *
 
 urlpatterns = patterns('',
     (r'^$', EventArchiveIndexView.as_view(), (), 'events-archive'),
+    (r'^export.ics$', EventVobjectView.as_view(), (), 'events-export'),
     (r'^new$', new_event, (), 'events-new'),
     (r'^(?P<id>\d+)/edit$', edit_event, (), 'events-edit'),
     (r'^(?P<year>\d{4})$', event_archive_year, (), 'events-year'),
