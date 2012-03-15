@@ -3,3 +3,4 @@
 
 User-agent: *
 Disallow: /events/*
+Allow: /events/*.ics
