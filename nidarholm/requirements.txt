@@ -31,5 +31,4 @@ git+ssh://git@git.strekmann.no/s7n_paginator.git@master#egg=s7n-paginator
 git+ssh://git@git.strekmann.no/s7n_timeline.git@nidarholm#egg=s7n-timeline
 samklang-utils
 django-floppyforms
-pycrypto
 #bzr+https://code.launchpad.net/~adam.russell/pyexiv2/pyexiv2-0.3
