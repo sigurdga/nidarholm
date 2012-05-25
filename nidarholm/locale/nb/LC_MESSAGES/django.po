@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-12 14:41+0100\n"
+"POT-Creation-Date: 2012-05-25 17:45+0200\n"
 "PO-Revision-Date: 2011-06-02 20:19+0200\n"
 "Last-Translator: Sigurd Gartmann <sigurdga-translate@sigurdga.no>\n"
 "Language-Team: Bokmål <sigurdga-translate@sigurdga.no>\n"
@@ -135,6 +135,95 @@ msgstr "Profilbilde"
 msgid "Upload"
 msgstr "Last opp"
 
+#: templates/build/django-registration/build/lib.linux-x86_64-2.7/registration/admin.py:23
+#: templates/build/django-registration/registration/admin.py:23
+msgid "Activate users"
+msgstr "Akriver brukere"
+
+#: templates/build/django-registration/build/lib.linux-x86_64-2.7/registration/admin.py:43
+#: templates/build/django-registration/registration/admin.py:43
+msgid "Re-send activation emails"
+msgstr "Send aktiveringsepost på nytt"
+
+#: templates/build/django-registration/build/lib.linux-x86_64-2.7/registration/forms.py:35
+#: templates/build/django-registration/registration/forms.py:35
+msgid "Username"
+msgstr "Brukernavn"
+
+#: templates/build/django-registration/build/lib.linux-x86_64-2.7/registration/forms.py:36
+#: templates/build/django-registration/registration/forms.py:36
+msgid "This value may contain only letters, numbers and @/./+/-/_ characters."
+msgstr "Denne verdien kan bare bestå av bokstaver, tall og disse tegnene: @/./+/-/_"
+
+#: templates/build/django-registration/build/lib.linux-x86_64-2.7/registration/forms.py:39
+#: templates/build/django-registration/registration/forms.py:39
+msgid "E-mail"
+msgstr "E-post"
+
+#: templates/build/django-registration/build/lib.linux-x86_64-2.7/registration/forms.py:41
+#: templates/build/django-registration/registration/forms.py:41
+msgid "Password"
+msgstr "Passord"
+
+#: templates/build/django-registration/build/lib.linux-x86_64-2.7/registration/forms.py:43
+#: templates/build/django-registration/registration/forms.py:43
+msgid "Password (again)"
+msgstr "Passord (igjen)"
+
+#: templates/build/django-registration/build/lib.linux-x86_64-2.7/registration/forms.py:53
+#: templates/build/django-registration/registration/forms.py:53
+msgid "A user with that username already exists."
+msgstr "En bruker med dette brukernavnet finnes allerede."
+
+#: templates/build/django-registration/build/lib.linux-x86_64-2.7/registration/forms.py:67
+#: templates/build/django-registration/registration/forms.py:67
+msgid "The two password fields didn't match."
+msgstr "De to passordene er ikke like."
+
+#: templates/build/django-registration/build/lib.linux-x86_64-2.7/registration/forms.py:78
+#: templates/build/django-registration/registration/forms.py:78
+msgid "I have read and agree to the Terms of Service"
+msgstr "Jeg har lest og er enig med brukervilkårene"
+
+#: templates/build/django-registration/build/lib.linux-x86_64-2.7/registration/forms.py:79
+#: templates/build/django-registration/registration/forms.py:79
+msgid "You must agree to the terms to register"
+msgstr "Du må være enig med brukervilkårene for å registrere deg"
+
+#: templates/build/django-registration/build/lib.linux-x86_64-2.7/registration/forms.py:95
+#: templates/build/django-registration/registration/forms.py:95
+msgid ""
+"This email address is already in use. Please supply a different email "
+"address."
+msgstr "Denne epostadressa er allerede i bruk. Prøv med en annen epostadresse."
+
+#: templates/build/django-registration/build/lib.linux-x86_64-2.7/registration/forms.py:122
+#: templates/build/django-registration/registration/forms.py:122
+msgid ""
+"Registration using free email addresses is prohibited. Please supply a "
+"different email address."
+msgstr "Registrering med en gratis epostadresse er ikke tillatt. Bruk en annen epostadresse."
+
+#: templates/build/django-registration/build/lib.linux-x86_64-2.7/registration/models.py:176
+#: templates/build/django-registration/registration/models.py:176
+msgid "user"
+msgstr "bruker"
+
+#: templates/build/django-registration/build/lib.linux-x86_64-2.7/registration/models.py:177
+#: templates/build/django-registration/registration/models.py:177
+msgid "activation key"
+msgstr "aktiveringsnøkkel"
+
+#: templates/build/django-registration/build/lib.linux-x86_64-2.7/registration/models.py:182
+#: templates/build/django-registration/registration/models.py:182
+msgid "registration profile"
+msgstr "brukerprofil"
+
+#: templates/build/django-registration/build/lib.linux-x86_64-2.7/registration/models.py:183
+#: templates/build/django-registration/registration/models.py:183
+msgid "registration profiles"
+msgstr "brukerprofiler"
+
 #: templates/events/event_archive.html:5
 #: templates/events/event_archive.html:34
 msgid "Activity calendar"
@@ -254,7 +343,7 @@ msgstr "startet forumtråden"
 msgid "First page"
 msgstr "Første side"
 
-#: templates/navigation/paginator.html:7 templates/search/search.html:49
+#: templates/navigation/paginator.html:7 templates/search/search.html:63
 msgid "Previous page"
 msgstr "Forrige side"
 
@@ -266,7 +355,7 @@ msgstr "Aktiv side"
 msgid "Page"
 msgstr "Side"
 
-#: templates/navigation/paginator.html:17 templates/search/search.html:51
+#: templates/navigation/paginator.html:17 templates/search/search.html:65
 msgid "Next page"
 msgstr "Neste side"
 
@@ -582,12 +671,12 @@ msgstr "Lagre"
 msgid "Results"
 msgstr "Resultater"
 
-#: templates/search/search.html:40
+#: templates/search/search.html:54
 msgid "Hidden file, only visible for members of permission group."
 msgstr ""
 "Skjult fil. Bare synlig for medlemmer av en gruppe du ikke er medlem av."
 
-#: templates/search/search.html:44
+#: templates/search/search.html:58
 msgid "No results"
 msgstr "Ingen resultater"
 

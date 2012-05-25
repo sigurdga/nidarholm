@@ -22,7 +22,8 @@
             <div style="float:right">{% avatar result.object 40 %}</div>
             <a href="{{ result.object.get_absolute_url }}">{{ result.object.get_full_name }}</a>
             <div>{{ result.object.username }}</div>
-            {% else %}
+            {% endif %}
+
             {% if result.content_type == "vault.uploadedfile" %}
             {% if result.object.is_image %}
             <img style="float:right" src="{% url vault.views.send_file result.object.id '1' %}"/>
@@ -35,7 +36,20 @@
                 {% endfor %}
             </div>
             {% endif %}
+
+            {% if result.content_type == "news.story" %}
+            <a href="{{ result.object.get_absolute_url }}">{{ result.object }}</a>
+            <div>
+                {{ result.object.content_html|striptags|truncatewords:24 }}
+                ({{ result.object.user.username }})
+            </div>
             {% endif %}
+
+            {% if result.content_type == "pages.flatpage" %}
+            <a href="{{ result.object.get_absolute_url }}">{{ result.object }}</a>
+            <div>{{ result.object.content_html|striptags|truncatewords:24 }}</div>
+            {% endif %}
+
             {% else %}
             {% blocktrans %}Hidden file, only visible for members of permission group.{% endblocktrans %}
             {% endif %}
