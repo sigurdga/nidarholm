@@ -72,8 +72,8 @@ class EventVobjectView(BaseListView):
     model = Event
 
     def get_queryset(self):
-        now = date.today()
-        qs = super(EventVobjectView, self).get_queryset().filter(start__gte=now, group__isnull=True)
+        one_year_ago = date.today() - timedelta(365)
+        qs = super(EventVobjectView, self).get_queryset().filter(start__gte=one_year_ago, group__isnull=True)
         return qs
 
     def render_to_response(self, context):
@@ -86,7 +86,8 @@ class EventVobjectView(BaseListView):
             e.add('url').value = "http://" + self.request.get_host() + event.get_absolute_url()
             e.add('summary').value = event.title
             e.add('description').value = event.content
-            e.add('location').value = event.location
+            if event.location:
+                e.add('location').value = event.location
             e.add('dtstamp').value = datetime.now()
             if event.whole_day or event.start.time() == time(0,0,0):
                 e.add('dtstart').value = event.start.date()
