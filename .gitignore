@@ -15,3 +15,5 @@ local_settings.py
 fabfile.py
 /nidarholm/media
 /node_modules
+libexiv2python.so
+npm-debug.log
