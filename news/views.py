@@ -36,17 +36,17 @@ def story_detail(request, year, month, day, slug):
 
 def edit_story(request, id):
     story = get_object_or_404(Story, id=id)
-    if request.user != story.user:
-        return HttpResponseRedirect('/')
-
-    if request.method == 'POST':
-        form = StoryForm(data=request.POST, instance=story)
-        if form.is_valid():
-            story.save()
-            return HttpResponseRedirect('/')
+    if request.user == story.user or request.organization.admingroup in request.user.groups.all():
+        if request.method == 'POST':
+            form = StoryForm(data=request.POST, instance=story)
+            if form.is_valid():
+                story.save()
+                return HttpResponseRedirect('/')
+        else:
+            form = StoryForm(instance=story)
+        return render_to_response('forum/new_debate.html', {'form': form, 'object': story}, context_instance=RequestContext(request))
     else:
-        form = StoryForm(instance=story)
-    return render_to_response('forum/new_debate.html', {'form': form, 'object': story}, context_instance=RequestContext(request))
+        return HttpResponseRedirect('/')
 
 def new_story(request, id=None):
     """slug is the slug of the parent, may be null"""
