@@ -14,7 +14,7 @@
 {% endblock %}
 
 {% block contextmenu %}
-{% if request.organization.admingroup in request.user.groups.all %}
+{% if request.organization.group in request.user.groups.all %}
 <a href="{% url new_project %}">{% trans "New project" %}</a>
 {% endif %}
 {% endblock %}
