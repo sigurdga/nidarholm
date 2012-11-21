@@ -4,7 +4,7 @@ import os.path
 import sys
 
 sys.path.insert(0, os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
-sys.path.append('/usr/lib/pymodules/python2.6') # hack to get pyexiv2 loaded on hylla server
+#sys.path.append('/usr/lib/pymodules/python2.6') # hack to get pyexiv2 loaded on hylla server
 
 # Django settings for nidarholm project.
 
