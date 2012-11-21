@@ -14,7 +14,7 @@ def project_list(request):
 
 def project_detail(request, slug):
     queryset = Project.objects.for_user(request.user)
-    
+
     return object_detail(request, queryset, slug=slug)
 
 def new_project(request):
