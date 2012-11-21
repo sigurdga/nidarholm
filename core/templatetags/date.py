@@ -6,7 +6,7 @@ from django.template.defaultfilters import date, time
 register = template.Library()
 
 @register.simple_tag
-def single_datetime(from_date, whole_day=False):
+def single_datetime(from_date, whole_day=True):
     if whole_day:
         return date(from_date, "DATE_FORMAT")
     else:
@@ -16,7 +16,7 @@ def single_datetime(from_date, whole_day=False):
                     )
 
 @register.simple_tag
-def between_datetimes(from_date, to_date, whole_day=False):
+def between_datetimes(from_date, to_date, whole_day=True):
     if not to_date:
         return single_datetime(from_date, whole_day)
     if whole_day:
