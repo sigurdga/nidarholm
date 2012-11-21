@@ -37,4 +37,44 @@
 
 {{ object.content_html|safe }}
 
+{% if object.tag %}
+<h2>Relevante forumposter</h2>
+<dl class="discussion-list">
+{% load comments %}
+{% load threaded_comments %}
+{% load tagging_tags %}
+{% tagged_objects object.tag in forum.Forum as forum_list %}
+{% for discussion in forum_list %}
+{% get_comment_count for discussion as comment_count %}
+<dt class="discussion">
+<a href="{{ discussion.get_absolute_url }}">
+    <div class="header">
+        <span class="title">{{ discussion.title }}</span>
+        {% if discussion.tags %}<span class="tags">{{ discussion.tags }}</span>{% endif %}
+    </div>
+    <div class="count" title="{{ comment_count }} svar">{{ comment_count }}</div>
+    <div class="permission">{{ discussion.group|default:"Verden" }}</div>
+    <div class="meta">
+        <span class="author">{{ discussion.user.get_full_name }}</span>
+        <span class="teaser">{{ discussion.content_html|striptags|truncatewords:20 }}</span>
+    </div>
+    <div class="date">{{ discussion.created_date|timesince }}</div>
+</a>
+</dt>
+{% get_last_comments for discussion as last_comments %}
+{% for comment in last_comments %}
+<dd class="comment">
+    <a href="{{ comment.get_absolute_url }}">
+        <div class="meta">
+            <span class="author">{{ comment.user.get_full_name }}</span>
+            <span class="teaser">{{ comment.content_html|striptags|truncatewords:20 }}</span>
+        </div>
+        <div class="date">{{ comment.submit_date|timesince }}</div>
+    </a>
+</dd>
+{% endfor %}
+{% endfor %}
+</dl>
+{% endif %}
+
 {% endblock content %}
