@@ -24,7 +24,9 @@ def new_project(request):
         if form.is_valid():
             form.save(commit=False)
             project.user = request.user
+            project.admingroup = request.organization.admingroup
             project.save()
+            form.save_m2m()
             return HttpResponseRedirect(project.get_absolute_url())
 
     else:
