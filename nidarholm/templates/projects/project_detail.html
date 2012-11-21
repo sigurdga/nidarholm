@@ -17,6 +17,7 @@
     ({% if object.group %}{% trans "For group" %}: {{ object.group }}{% else %}{% trans "For all" %}{% endif %})
 </p>
 {% if request.organization.group in request.user.groups.all %}
+{% if object.tag %}
 {% load tagging_tags %}
 <h2><a href="{% url file_list %}tags/{{ object.tag.name }}">{% trans "Project files" %}</a></h2>
 {% tagged_objects object.tag in vault.UploadedFile as uploadedfiles %}
@@ -28,6 +29,7 @@
     <li><em>{% trans "No files tagged with project tag" %} {{ object.tag.name }}</em></li>
     {% endfor %}
 </ul>
+{% endif %}
 {% endif %}
 {% endblock %}
 
