@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load date %}
 
 {% block content %}
 
@@ -7,7 +8,10 @@
 
 <ul class="reset">
 {% for project in object_list %}
-<li><h2><a href="{{ project.get_absolute_url }}">{{ project.title }}</a></h2><a href="{% url file_list %}tags/{{ project.tag.name }}">{% trans "Project files" %}</a></li>
+<li>
+<h2><a href="{{ project.get_absolute_url }}">{{ project.title }}</a></h2>
+{% between_datetimes project.start project.end %}
+</li>
 {% endfor %}
 </ul>
 
