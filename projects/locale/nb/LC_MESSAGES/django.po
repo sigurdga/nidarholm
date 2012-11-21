@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-30 23:16+0100\n"
+"POT-Creation-Date: 2012-11-22 00:10+0100\n"
 "PO-Revision-Date: 2011-01-30 23:16+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,8 +30,8 @@ msgid "project tag"
 msgstr "prosjekt-tag"
 
 #: models.py:15
-msgid "project members"
-msgstr "prosjektmedlemmer"
+msgid "project group"
+msgstr "prosjektgruppe"
 
 #: models.py:17
 msgid "administration group"
@@ -44,6 +44,9 @@ msgstr "prosjekt"
 #: models.py:28
 msgid "projects"
 msgstr "prosjekter"
+
+#~ msgid "project members"
+#~ msgstr "prosjektmedlemmer"
 
 #~ msgid "users"
 #~ msgstr "prosjektmedlemmer"
