@@ -555,6 +555,7 @@ dl.discussion-list {
 #timeline-wrapper { height: 30em; overflow: auto; }
 #timeline-wrapper h1 { display: none; }
 
+#projects .project { text-decoration: none }
 #projects p { margin-top: 0; margin-bottom: 0 }
 
 div.action {

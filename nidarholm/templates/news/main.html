@@ -26,8 +26,10 @@
 <div id="projects">
     <h1>Prosjekter</h1>
     {% for project in projects %}
-    <h2><a href="{{ project.get_absolute_url }}">{{ project }}</a></h2>
-    <p>{% between_datetimes project.start project.end 1 %}</p>
+    <a class="project" href="{{ project.get_absolute_url }}">
+        <h2>{{ project }}</h2>
+        <p>{% between_datetimes project.start project.end %}</p>
+    </a>
     {% empty %}
     <p class="empty">Ingen prosjekter definert</p>
     {% endfor %}

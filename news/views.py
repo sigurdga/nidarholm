@@ -18,7 +18,12 @@ def story_list(request):
     return list_detail.object_list(request,
             queryset=Story.objects.for_user(request.user).filter(parent=None).order_by('-pub_date')[:10],
             template_name='news/main.html',
-            extra_context={'infopage': infopage, 'projects': Project.objects.for_user(request.user).filter(start__lte=now, end__gte=now) })
+            extra_context={
+                'infopage': infopage,
+                'projects': Project.objects.for_user(request.user).filter(
+                    start__lte=now,
+                    end__gte=now
+                    ).order_by('end') })
 
 def story_archive(request):
     queryset = Story.objects.for_user(request.user).filter(parent=None)
