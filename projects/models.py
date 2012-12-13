@@ -6,8 +6,8 @@ from tagging.models import Tag
 from core.models import Common, Title, Markdown
 
 class Project(Common, Title, Markdown):
-    start = models.DateTimeField(verbose_name=_('project start'))
-    end = models.DateTimeField(verbose_name=_('project end'))
+    start = models.DateField(verbose_name=_('project start'))
+    end = models.DateField(verbose_name=_('project end'))
     tag = models.ForeignKey(Tag, null=True, blank=True,
             verbose_name=_('project tag'))
     users = models.ManyToManyField(User, null=True, blank=True,
