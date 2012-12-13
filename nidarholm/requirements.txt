@@ -22,7 +22,7 @@ vobject
 python-dateutil<2
 #hg+http://bitbucket.org/ubernostrum/django-registration/#egg=django-registration
 django-registration
-bzr+lp:~adam.russell/pyexiv2/pyexiv2-0.3#egg=pyexiv2
+#bzr+lp:~adam.russell/pyexiv2/pyexiv2-0.3#egg=pyexiv2
 git+git://github.com/alekam/django-tagging-autocomplete#egg=django-tagging-autocomplete
 git+ssh://git@git.strekmann.no/s7n_pages.git@master#egg=s7n-pages
 git+ssh://git@git.strekmann.no/s7n_threaded_comments.git@nidarholm#egg=s7n-threaded-comments
