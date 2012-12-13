@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load timeline_tags %}
+{% load date %}
 
 {% block title %}{% trans "Main" %}{% endblock %}
 
@@ -18,6 +19,18 @@
 {% if request.user.is_authenticated %}
 <div id="timeline-wrapper">
 {% render_timeline for request.user %}
+</div>
+{% endif %}
+
+{% if request.user.is_authenticated %}
+<div id="projects">
+    <h1>Prosjekter</h1>
+    {% for project in projects %}
+    <h2><a href="{{ project.get_absolute_url }}">{{ project }}</a></h2>
+    <p>{% between_datetimes project.start project.end 1 %}</p>
+    {% empty %}
+    <p class="empty">Ingen prosjekter definert</p>
+    {% endfor %}
 </div>
 {% endif %}
 

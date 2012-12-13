@@ -1,9 +1,11 @@
+import datetime
+
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
-from django.template.defaultfilters import slugify
 from django.conf import settings
 from news.models import Story
 from news.forms import StoryForm
+from projects.models import Project
 from pages.models import FlatPage
 from django.views.generic import list_detail, date_based
 from django.template.context import RequestContext
@@ -11,11 +13,12 @@ from django.contrib.contenttypes.models import ContentType
 
 def story_list(request):
     infopage = get_object_or_404(FlatPage, url__exact='/', sites__id__exact=settings.SITE_ID)
+    now = datetime.datetime.now()
 
     return list_detail.object_list(request,
             queryset=Story.objects.for_user(request.user).filter(parent=None).order_by('-pub_date')[:10],
             template_name='news/main.html',
-            extra_context={'infopage': infopage})
+            extra_context={'infopage': infopage, 'projects': Project.objects.for_user(request.user).filter(start__lte=now, end__gte=now) })
 
 def story_archive(request):
     queryset = Story.objects.for_user(request.user).filter(parent=None)
