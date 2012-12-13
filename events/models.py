@@ -1,8 +1,8 @@
 from django.db import models
-from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
 from core.models import Common, Title, Markdown
+from projects.models import Project
 
 class EventCategory(models.Model):
     title = models.CharField(_("title"), max_length=20)
@@ -30,6 +30,7 @@ class Event(Common, Title, Markdown):
     # when adding re-occurrences, use event_serie with an incremented value
     event_serie = models.IntegerField(_("event serie"), blank=True, null=True)
     event_category = models.ForeignKey(EventCategory, verbose_name=_("event category"), blank=True, null=True)
+    project = models.ForeignKey(Project, verbose_name=_("project"), blank=True, null=True)
 
     def __unicode__(self):
         return self.title

@@ -557,6 +557,10 @@ dl.discussion-list {
 
 #projects .project { text-decoration: none }
 #projects p { margin-top: 0; margin-bottom: 0 }
+#projects .event a,
+#events .event a {
+    display: block; font-weight: bold;
+}
 
 div.action {
   margin: 12px 0 12px 0; }
