@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load uni_form_tags %}
 
 {% block title %}{% trans "Project" %}{% endblock %}
 
@@ -7,12 +8,16 @@
 
 <h1>{% trans "Project" %}</h1>
 
-<form method="post">
+<form method="post" class="uniForm">
   {% csrf_token %}
-  <table>
-    {{ form.as_table }}
-    <tr><td></td><td><input type="submit" value="{% trans "Submit" %}" /></td></tr>
-  </table>
+    <fieldset>
+    {{ form|as_uni_form }}
+    </fieldset>
+    <div class="buttonHolder"><button type="submit">{% trans "Submit" %}</button></div>
 </form>
 
 {% endblock content %}
+
+{% block footer_include %}
+{{ form.media }}
+{% endblock %}

@@ -3,6 +3,7 @@ from django import forms
 from projects.models import Project
 from django.contrib.auth.models import User
 
+from samklang_utils.forms import MarkdownTextarea
 
 class ProjectForm(ModelForm):
     class Meta:
@@ -10,6 +11,7 @@ class ProjectForm(ModelForm):
         fields = ('title', 'content', 'group', 'tag', 'start', 'end', 'users')
         widgets = {
                 'users': CheckboxSelectMultiple(),
+                'content': MarkdownTextarea(),
                 }
 
     def __init__(self, *args, **kwargs):
