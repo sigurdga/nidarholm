@@ -12,11 +12,13 @@ from collections import OrderedDict
 from datetime import date, datetime, time, timedelta
 from dateutil.relativedelta import relativedelta
 from django.db.models import Q
-import vobject
+#import vobject
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+import pytz
+from icalendar import Calendar, Event as CalendarEvent
 
 DATEFIELD = 'start'
 MONTH_FORMAT = '%m'
@@ -78,33 +80,37 @@ class EventVobjectView(BaseListView):
         return qs
 
     def render_to_response(self, context):
-        cal = vobject.iCalendar()
-        cal.add('method').value = 'PUBLISH'
-        cal.add('calscale').value = 'GREGORIAN'
-        cal.add('x-original').value = "http://" + self.request.get_host() + reverse('events-archive')
+        # A hack while waiting for python 1.5 upgrade
+        oslo = pytz.timezone("Europe/Oslo")
+        cal = Calendar()
+        #cal.add('method', 'PUBLISH')
+        #cal.add('calscale').value = 'GREGORIAN'
+        cal['x-original'] = "http://" + self.request.get_host() + reverse('events-archive')
         for event in self.get_queryset():
-            e = cal.add('vevent')
-            e.add('url').value = "http://" + self.request.get_host() + event.get_absolute_url()
-            e.add('summary').value = event.title
-            e.add('description').value = event.content
+            e = CalendarEvent()
+            e['uid'] = "%d@nidarholm.no" % event.id
+            e.add('url', "http://" + self.request.get_host() + event.get_absolute_url())
+            e.add('summary', event.title)
+            e.add('description', event.content)
             if event.location:
-                e.add('location').value = event.location
-            e.add('dtstamp').value = datetime.now()
+                e.add('location', event.location)
+            e.add('dtstamp', oslo.localize(datetime.now()))
             if event.whole_day or event.start.time() == time(0,0,0):
-                e.add('dtstart').value = event.start.date()
+                e.add('dtstart', oslo.localize(event.start).date())
                 if not event.end or event.end == event.start:
-                    e.add('dtend').value = event.start.date() + timedelta(1)
+                    e.add('dtend', oslo.localize(event.start + timedelta(1)).date())
                 else:
-                    e.add('dtend').value = event.end.date()
+                    e.add('dtend', oslo.localize(event.end).date())
 
             else:
-                e.add('dtstart').value = event.start
+                e.add('dtstart', oslo.localize(event.start))
                 if event.end:
-                    e.add('dtend').value = event.end
+                    e.add('dtend', oslo.localize(event.end))
                 else:
-                    e.add('dtend').value = event.start
+                    e.add('dtend', oslo.localize(event.start))
+            cal.add_component(e)
 
-        icalstream = cal.serialize()
+        icalstream = cal.to_ical()
         response = HttpResponse(icalstream, mimetype='text/calendar')
         name = slugify(self.request.organization.site.name)
         response['Filename'] = name + '.ics'  # IE needs this

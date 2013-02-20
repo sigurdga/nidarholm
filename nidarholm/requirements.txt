@@ -18,7 +18,7 @@ pycrypto
 whoosh
 south
 unidecode
-vobject
+#vobject
 python-dateutil<2
 #hg+http://bitbucket.org/ubernostrum/django-registration/#egg=django-registration
 django-registration
@@ -33,3 +33,5 @@ git+ssh://git@git.strekmann.no/s7n_timeline.git@nidarholm#egg=s7n-timeline
 samklang-utils
 django-floppyforms
 #bzr+https://code.launchpad.net/~adam.russell/pyexiv2/pyexiv2-0.3
+pytz
+icalendar
