@@ -5,9 +5,8 @@ from django.shortcuts import get_object_or_404, render_to_response
 from events.models import Event
 from events.forms import EventForm
 from django.template.context import RequestContext
-from django.views.generic import date_based, DayArchiveView, MonthArchiveView, ArchiveIndexView
+from django.views.generic import date_based, DayArchiveView, MonthArchiveView, ArchiveIndexView, DeleteView
 from django.views.generic.list import BaseListView
-from datetime import date
 import calendar
 from collections import OrderedDict
 from datetime import date, datetime, time, timedelta
@@ -16,6 +15,8 @@ from django.db.models import Q
 import vobject
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 DATEFIELD = 'start'
 MONTH_FORMAT = '%m'
@@ -215,3 +216,14 @@ def new_event(request):
         event = Event()
         form = EventForm(instance=event)
     return render_to_response('events/new_event.html', {'form': form}, context_instance=RequestContext(request))
+
+class EventDeleteView(DeleteView):
+
+    model = Event
+
+    def get_success_url(self):
+        return reverse('events-archive')
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(EventDeleteView, self).dispatch(*args, **kwargs)

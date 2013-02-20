@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load uni_form_tags %}
+
+{% block title %}{% trans "Delete" %}{{ object.title }}{% endblock %}
+
+{% block content %}
+
+<h1>{% trans "Delete" %} {{ object.title }}</h1>
+
+<p>{{ object.title }}</p>
+<p>{{ object.start }}</p>
+<p>{{ object.location }}</p>
+
+<form method="post" action="" class="uniForm">{% csrf_token %}
+    <div class="buttonHolder">
+        <a class="btn" href="{{ object.get_absolute_url }}">{% trans "Cancel" %}</a>
+        <button type="submit" class="btn primaryAction">{% trans "Delete" %}</button>
+    </div>
+</form>
+
+{% endblock content %}
+
+{% block footer_include %}
+{{ form.media }}
+{% endblock %}

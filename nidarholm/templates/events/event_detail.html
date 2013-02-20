@@ -6,6 +6,7 @@
 {% block contextmenu %}
 {% if request.user.is_authenticated %}
 <li><a href="{% url events-edit object.id %}">{% trans "Edit" %}</a></li>
+<li><a href="{% url events-delete object.id %}">{% trans "Delete" %}</a></li>
 {% endif %}
 {% endblock %}
 
