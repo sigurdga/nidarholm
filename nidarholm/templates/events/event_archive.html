@@ -34,7 +34,13 @@
 <h1>{% trans "Activity calendar" %}</h1>
 {% for event in upcoming %}
 <div class="event">
-    <a class="permission">{{ event.group|default:"Verden" }}</a>
+    <div class="permission">
+        {% if request.user == event.user or request.organization.admingroup in request.user.groups.all %}
+        <a href="{% url events-delete event.id %}">{% trans "Delete" %}</a>
+        ·
+        {% endif %}
+        <span class="permission">{{ event.group|default:"Verden" }}</span>
+    </div>
   <acronym class="calendar" title="{{ event.start|date:"l j. F Y" }}">
      <span class="calendar-weekday">{{ event.start|date:"l"|capfirst }}</span>
      <span class="calendar-day">{{ event.start|date:"j" }}</span>

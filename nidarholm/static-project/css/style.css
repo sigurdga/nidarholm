@@ -598,7 +598,7 @@ div.action p { margin: 0; padding: 0 }
 .datenav .next { display: block; position: absolute; top: 3px; right: 0; }
 .datenav .prev { display: block; position: absolute; top: 3px; left: 0; }
 
-a.permission { margin-top: 15px; background-color: #eee; border: 1px solid #ddd; border-radius: 3px; padding: 2px 4px; }
+a.permission, span.permission { margin-top: 15px; background-color: #eee; border: 1px solid #ddd; border-radius: 3px; padding: 2px 4px; }
 a.permission:hover { text-decoration: none }
 div.permission, a.permission { float: right; }
 
