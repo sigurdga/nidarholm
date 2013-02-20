@@ -109,6 +109,7 @@ class EventVobjectView(BaseListView):
         name = slugify(self.request.organization.site.name)
         response['Filename'] = name + '.ics'  # IE needs this
         response['Content-Disposition'] = 'attachment; filename=' + name + '.ics'
+        response['Content-Type'] = 'text/calendar; charset=utf-8'
         return response
 
 
