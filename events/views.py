@@ -71,6 +71,10 @@ class EventArchiveIndexView(ArchiveIndexView):
         context['next_month'] = today + relativedelta(months=+1)
         return context
 
+    def get_queryset(self):
+        return Event.objects.for_user(self.request.user)
+
+
 class EventVobjectView(BaseListView):
     model = Event
 
@@ -150,6 +154,10 @@ class EventMonthArchiveView(MonthArchiveView):
         context['calendar'] = week_list
         return context
 
+    def get_queryset(self):
+        return Event.objects.for_user(self.request.user)
+
+
 class EventDayArchiveView(DayArchiveView):
     model = Event
     date_field = DATEFIELD
@@ -183,6 +191,10 @@ class EventDayArchiveView(DayArchiveView):
         context['previous_month'] = month_start + relativedelta(months=-1)
         context['next_month'] = month_start + relativedelta(months=+1)
         return context
+
+    def get_queryset(self):
+        return Event.objects.for_user(self.request.user)
+
 
 def event_archive_day(request, year, month, day):
     return date_based.archive_day(request, year, month, day, Event.objects.for_user(request.user), DATEFIELD,
