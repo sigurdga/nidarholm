@@ -173,7 +173,7 @@ class EventDayArchiveView(DayArchiveView):
         month_end = month_start + relativedelta(months=+1)
         day = date(year=year, month=month, day=int(self.kwargs['day']))
         month_qs = self.get_queryset().filter(start__gte=month_start, start__lt=month_end).order_by("start")
-        day_qs = self.get_queryset().filter(Q(end__isnull=True, start__range=(day, day))|Q(end__gte=day,start__lte=day))
+        day_qs = self.get_queryset().filter(Q(end__isnull=True, start__range=(day, day))|Q(end__lte=day+timedelta(days=1),start__gte=day))
         dates_with_events = set()
         for event in month_qs.all():
             start = event.start.date()
