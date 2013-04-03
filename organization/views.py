@@ -1,13 +1,11 @@
 # -*- encoding: utf-8 -*-
 
-from django.views.generic import list_detail, DetailView
-from organization.models import GroupCategory, SiteProfile, GroupProfile
+from django.views.generic import list_detail
+from organization.models import GroupCategory
 from django.contrib.auth.models import User, Group
 from django.db.models import Q
 from django.utils import simplejson
 from django.http import HttpResponse
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
 
 from accounts.models import UserProfile
 
