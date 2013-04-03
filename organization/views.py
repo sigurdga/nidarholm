@@ -26,7 +26,7 @@ def group_category_detail(request, slug, group_slug, status_id=None):
         if request.organization.group in request.user.groups.all():
             queryset = UserProfile.objects.filter(status=status_id).select_related('user').order_by('user__first_name', 'user__last_name')
         else:
-            queryset = UserProfile.objects.empty()
+            queryset = UserProfile.objects.none()
         return list_detail.object_list(request, queryset, template_name="organization/status.html")
 
 def trans(string):
