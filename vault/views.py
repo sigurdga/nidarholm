@@ -237,8 +237,8 @@ def send_file(request, id, size=settings.DEFAULT_IMAGE_SIZE):
                 # reset image orientation for new image
                 exif.copy(new_file_exif)
                 new_file_exif['Exif.Image.Orientation'] = 1
-                new_file_exif['Exif.Image.XResolution'] = pyexiv2.utils.make_fraction(str(width))
-                new_file_exif['Exif.Image.YResolution'] = pyexiv2.utils.make_fraction(str(height))
+                new_file_exif['Exif.Image.ExifImageWidth'] = width
+                new_file_exif['Exif.Image.ExifImageHeight'] = height
 
                 new_file_exif.write()
 
