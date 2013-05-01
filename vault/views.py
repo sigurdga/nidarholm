@@ -237,8 +237,8 @@ def send_file(request, id, size=settings.DEFAULT_IMAGE_SIZE):
                 new_file_exif['Exif.Image.Orientation'] = 1
                 #new_file_exif['Exif.Image.XResolution'] = 11.1
                 #new_file_exif['Exif.Image.YResolution'] = 1
-                new_file_exif['Exif.Image.XResolution'] = pyexiv2.utils.make_fraction(width)
-                new_file_exif['Exif.Image.YResolution'] = pyexiv2.utils.make_fraction(height)
+                new_file_exif['Exif.Image.XResolution'] = pyexiv2.utils.make_fraction(str(width))
+                new_file_exif['Exif.Image.YResolution'] = pyexiv2.utils.make_fraction(str(height))
 
                 new_file_exif.write()
 
