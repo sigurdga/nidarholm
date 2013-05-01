@@ -1,4 +1,4 @@
-from django.http import HttpResponseRedirect, HttpResponse, Http404
+from django.http import HttpResponseRedirect, HttpResponse
 from permissions.middleware.http import Http403
 from django.shortcuts import get_object_or_404, render_to_response
 from vault.models import UploadedFile
@@ -12,7 +12,7 @@ from django.views.generic import list_detail
 from tagging.models import TaggedItem
 from django.template.context import RequestContext
 import pyexiv2
-import magic
+#import magic
 
 FORMAT = "jpeg"
 QUALITY = 95
@@ -118,13 +118,14 @@ def send_file(request, id, size=settings.DEFAULT_IMAGE_SIZE):
 
             try:
                 import Image
+                image = Image.open(original_filename)
             except ImportError:
                 try:
                     from PIL import Image
+                    image = Image.open(original_filename)
                 except ImportError:
                     raise ImportError('Cannot import the Python Image Library.')
 
-            image = Image.open(original_filename)
             exif = pyexiv2.ImageMetadata(original_filename)
             exif.read()
 
@@ -217,11 +218,12 @@ def send_file(request, id, size=settings.DEFAULT_IMAGE_SIZE):
             elif method == 'crop':
                 try:
                     import ImageOps
+                    ImageOps.fit(image, (width, height), Image.ANTIALIAS).save(
+                            filename, FORMAT, quality=QUALITY)
                 except ImportError:
                     from PIL import ImageOps
-
-                o = ImageOps.fit(image, (width, height), Image.ANTIALIAS).save(
-                    filename, FORMAT, quality=QUALITY)
+                    ImageOps.fit(image, (width, height), Image.ANTIALIAS).save(
+                            filename, FORMAT, quality=QUALITY)
 
             if exif:
                 if delete_exif_thumbnail:
@@ -235,8 +237,6 @@ def send_file(request, id, size=settings.DEFAULT_IMAGE_SIZE):
                 # reset image orientation for new image
                 exif.copy(new_file_exif)
                 new_file_exif['Exif.Image.Orientation'] = 1
-                #new_file_exif['Exif.Image.XResolution'] = 11.1
-                #new_file_exif['Exif.Image.YResolution'] = 1
                 new_file_exif['Exif.Image.XResolution'] = pyexiv2.utils.make_fraction(str(width))
                 new_file_exif['Exif.Image.YResolution'] = pyexiv2.utils.make_fraction(str(height))
 
