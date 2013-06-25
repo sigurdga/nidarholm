@@ -28,9 +28,7 @@ def make_calendar_context(year, month, activity_date_list):
     week_list = OrderedDict()
     today = date.today()
     for day in cal.itermonthdates(year, month):
-        week_number = int(day.strftime("%W"))
-        if week_number == 0:
-            week_number = week_list.keys()[-1]
+        week_number = day.isocalendar()[1]
         if not week_number in week_list:
             week_list[week_number] = []
         week_list[week_number].append((
