@@ -11,8 +11,9 @@ from django.conf import settings
 from django.views.generic import list_detail
 from tagging.models import TaggedItem
 from django.template.context import RequestContext
-import pyexiv2
+#import pyexiv2
 #import magic
+from gi.repository import GExiv2
 
 FORMAT = "jpeg"
 QUALITY = 95
@@ -126,11 +127,10 @@ def send_file(request, id, size=settings.DEFAULT_IMAGE_SIZE):
                 except ImportError:
                     raise ImportError('Cannot import the Python Image Library.')
 
-            exif = pyexiv2.ImageMetadata(original_filename)
-            exif.read()
+            exif = GExiv2.Metadata(original_filename)
 
-            if 'Exif.Image.Orientation' in exif.exif_keys:
-                orientation = exif['Exif.Image.Orientation'].value
+            if 'Exif.Image.Orientation' in exif:
+                orientation = int(exif['Exif.Image.Orientation'])
                 if orientation == 1:
                     # Nothing
                     pass
@@ -161,7 +161,6 @@ def send_file(request, id, size=settings.DEFAULT_IMAGE_SIZE):
                 image = image.convert('RGB')
 
             method = "crop"
-            delete_exif_thumbnail = True
             if size == 1:
                 width, height = 40, 40
             elif size == 2:
@@ -208,7 +207,6 @@ def send_file(request, id, size=settings.DEFAULT_IMAGE_SIZE):
             elif size == 0:
                 width, height = 520, 520
                 method = "scale"
-                delete_exif_thumbnail = False
 
             # use PIL methods to edit images
             if method == 'scale':
@@ -226,21 +224,13 @@ def send_file(request, id, size=settings.DEFAULT_IMAGE_SIZE):
                             filename, FORMAT, quality=QUALITY)
 
             if exif:
-                if delete_exif_thumbnail:
-                    # delete thumbnail before copy. the changed original is not saved.
-                    thumb = pyexiv2.exif.ExifThumbnail(exif)
-                    thumb.erase()
-
-                new_file_exif = pyexiv2.ImageMetadata(filename)
-                new_file_exif.read()
 
                 # reset image orientation for new image
-                exif.copy(new_file_exif)
-                new_file_exif['Exif.Image.Orientation'] = 1
-                new_file_exif['Exif.Image.ExifImageWidth'] = width
-                new_file_exif['Exif.Image.ExifImageHeight'] = height
+                exif['Exif.Image.Orientation'] = str(1)
+                exif['Exif.Image.ExifImageWidth'] = str(width)
+                exif['Exif.Image.ExifImageHeight'] = str(height)
 
-                new_file_exif.write()
+                exif.save_file()
 
     f = open(filename, 'r')
     output = f.read()
