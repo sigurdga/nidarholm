@@ -58,6 +58,7 @@ def email_lists_json(request, groups):
         g = Group.objects.get(name=group)
         for user in g.user_set.all():
             if organization_group in user.groups.all():
-                if user.get_profile().status < 4 and user.email:
+                status = user.get_profile().status
+                if status and status < 4 and user.email:
                     lists[listname].append(user.email)
     return HttpResponse(content=EncodeAES(cipher, simplejson.dumps(lists)), mimetype="application/octet-stream")
