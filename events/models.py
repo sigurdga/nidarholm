@@ -4,6 +4,8 @@ from django.utils.translation import ugettext_lazy as _
 from core.models import Common, Title, Markdown
 from projects.models import Project
 
+import datetime
+
 class EventCategory(models.Model):
     title = models.CharField(_("title"), max_length=20)
     slug = models.SlugField()
@@ -34,6 +36,9 @@ class Event(Common, Title, Markdown):
 
     def __unicode__(self):
         return self.title
+
+    def in_future(self):
+        return self.start > datetime.datetime.now()
 
     @models.permalink
     def get_absolute_url(self):

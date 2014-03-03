@@ -31,11 +31,13 @@
         <p>{% between_datetimes project.start project.end %}</p>
         <ul>
         {% for event in project.event_set.all %}
-        <li class="event">
-                <a href="{{ event.get_absolute_url }}">{{ event.title }}</a>
-                {% between_datetimes event.start event.end event.whole_day %}{% if event.location %}, {{ event.location }}{% endif %}
-                {{ event.content_html|safe }}
-        </li>
+            {% if event.in_future %}
+            <li class="event">
+                    <a href="{{ event.get_absolute_url }}">{{ event.title }}</a>
+                    {% between_datetimes event.start event.end event.whole_day %}{% if event.location %}, {{ event.location }}{% endif %}
+                    {{ event.content_html|safe }}
+            </li>
+            {% endif %}
         {% endfor %}
     </ul>
     </a>
