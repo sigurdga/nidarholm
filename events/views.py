@@ -9,7 +9,7 @@ from django.views.generic import date_based, DayArchiveView, MonthArchiveView, A
 from django.views.generic.list import BaseListView
 import calendar
 from collections import OrderedDict
-from datetime import date, datetime, time, timedelta
+from datetime import date, time, timedelta
 from dateutil.relativedelta import relativedelta
 from django.db.models import Q
 #import vobject
@@ -17,11 +17,11 @@ from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-import pytz
-from icalendar import Calendar, Event as CalendarEvent
+from icalendar import Calendar, LocalTimezone, Event as CalendarEvent
 
 DATEFIELD = 'start'
 MONTH_FORMAT = '%m'
+
 
 def make_calendar_context(year, month, activity_date_list):
     cal = calendar.Calendar()
@@ -34,10 +34,11 @@ def make_calendar_context(year, month, activity_date_list):
         week_list[week_number].append((
             int(day.strftime("%d")),
             day in activity_date_list,
-            day.month==month,
-            day==today,
-            ))
+            day.month == month,
+            day == today,
+        ))
     return week_list
+
 
 class EventArchiveIndexView(ArchiveIndexView):
     model = Event
@@ -48,9 +49,15 @@ class EventArchiveIndexView(ArchiveIndexView):
         context = super(EventArchiveIndexView, self).get_context_data(**kwargs)
         today = date.today()
         month_start = today.replace(day=1)
-        month_end = month_start + relativedelta(days=+40) # plus some (makes sure we get the extra days for next month marked)
-        future_qs = self.get_queryset().filter(start__gte=today, start__lt=today+relativedelta(months=+3)).order_by("start")
-        month_qs = self.get_queryset().filter(start__gt=month_start, start__lt=month_end).order_by("start")
+
+        # plus some (makes sure we get the extra days for next month marked)
+        month_end = month_start + relativedelta(days=+40)
+        future_qs = self.get_queryset().filter(
+            start__gte=today, start__lt=today + relativedelta(months=+3)
+        ).order_by("start")
+        month_qs = self.get_queryset().filter(
+            start__gt=month_start, start__lt=month_end
+        ).order_by("start")
         dates_with_events = set()
         for event in month_qs.all():
             start = event.start.date()
@@ -60,7 +67,11 @@ class EventArchiveIndexView(ArchiveIndexView):
                 while start < end:
                     start += relativedelta(days=+1)
                     dates_with_events.add(start)
-        week_list = make_calendar_context(today.year, today.month, dates_with_events)
+        week_list = make_calendar_context(
+            today.year,
+            today.month,
+            dates_with_events
+        )
 
         context['calendar'] = week_list
         context['upcoming'] = future_qs
@@ -78,16 +89,22 @@ class EventVobjectView(BaseListView):
 
     def get_queryset(self):
         one_year_ago = date.today() - timedelta(365)
-        qs = super(EventVobjectView, self).get_queryset().filter(start__gte=one_year_ago, group__isnull=True)
+        qs = super(EventVobjectView, self).get_queryset().filter(
+            start__gte=one_year_ago,
+            group__isnull=True
+        )
         return qs
 
     def render_to_response(self, context):
         # A hack while waiting for python 1.5 upgrade
-        oslo = pytz.timezone("Europe/Oslo")
         cal = Calendar()
+        cal.add('version', '2.0')
+        cal.add('prodid', '-//Nidarholm//Publisert kalender//')
+        cal.add('X-WR-CALNAME', 'Publisert kalender')
         #cal.add('method', 'PUBLISH')
         #cal.add('calscale').value = 'GREGORIAN'
         cal['x-original'] = "http://" + self.request.get_host() + reverse('events-archive')
+        localtimezone = LocalTimezone()
         for event in self.get_queryset():
             e = CalendarEvent()
             e['uid'] = "%d@nidarholm.no" % event.id
@@ -96,20 +113,26 @@ class EventVobjectView(BaseListView):
             e.add('description', event.content)
             if event.location:
                 e.add('location', event.location)
-            e.add('dtstamp', oslo.localize(datetime.now()))
-            if event.whole_day or event.start.time() == time(0,0,0):
-                e.add('dtstart', oslo.localize(event.start).date())
+            e.add('dtstamp', event.updated.replace(tzinfo=localtimezone))
+            if event.whole_day or event.start.time() == time(0, 0, 0):
+                e.add('dtstart', event.start.replace(
+                    tzinfo=localtimezone
+                ).date())
                 if not event.end or event.end == event.start:
-                    e.add('dtend', oslo.localize(event.start + timedelta(1)).date())
+                    e.add('dtend', (event.start + timedelta(1)).replace(
+                        tzinfo=localtimezone
+                    ).date())
                 else:
-                    e.add('dtend', oslo.localize(event.end).date())
+                    e.add('dtend', event.end.replace(
+                        tzinfo=localtimezone
+                    ).date())
 
             else:
-                e.add('dtstart', oslo.localize(event.start))
+                e.add('dtstart', event.start.replace(tzinfo=localtimezone))
                 if event.end:
-                    e.add('dtend', oslo.localize(event.end))
+                    e.add('dtend', event.end.replace(tzinfo=localtimezone))
                 else:
-                    e.add('dtend', oslo.localize(event.start))
+                    e.add('dtend', event.start.replace(tzinfo=localtimezone))
             cal.add_component(e)
 
         icalstream = cal.to_ical()
@@ -122,7 +145,10 @@ class EventVobjectView(BaseListView):
 
 
 def event_archive_year(request, year):
-    return date_based.archive_year(request, year, Event.objects.for_user(request.user), DATEFIELD,
+    return date_based.archive_year(request,
+                                   year,
+                                   Event.objects.for_user(request.user),
+                                   DATEFIELD,
                                    make_object_list=True,
                                    allow_future=True,
                                    )
@@ -170,8 +196,18 @@ class EventDayArchiveView(DayArchiveView):
         month_start = date(year=year, month=month, day=1)
         month_end = month_start + relativedelta(months=+1)
         day = date(year=year, month=month, day=int(self.kwargs['day']))
-        month_qs = self.get_queryset().filter(start__gte=month_start, start__lt=month_end).order_by("start")
-        day_qs = self.get_queryset().filter(Q(end__isnull=True, start__range=(day, day))|Q(end__lte=day+timedelta(days=1),start__gte=day))
+        month_qs = self.get_queryset().filter(
+            start__gte=month_start,
+            start__lt=month_end
+        ).order_by("start")
+        day_qs = self.get_queryset().filter(
+            Q(
+                end__isnull=True,
+                start__range=(day, day)
+            ) | Q(
+                end__lte=day + timedelta(days=1),
+                start__gte=day)
+        )
         dates_with_events = set()
         for event in month_qs.all():
             start = event.start.date()
@@ -201,12 +237,14 @@ def event_archive_day(request, year, month, day):
                                   allow_empty=True,
                                   )
 
+
 def event_object_detail(request, year, month, day, slug):
     return date_based.object_detail(request, year, month, day, Event.objects.for_user(request.user), DATEFIELD,
                                     month_format=MONTH_FORMAT,
                                     slug=slug,
                                     allow_future=True,
                                     )
+
 
 def edit_event(request, id):
     if request.method == 'POST':
@@ -221,6 +259,7 @@ def edit_event(request, id):
         form = EventForm(instance=event)
     return render_to_response('events/new_event.html', {'form': form, 'object': event}, context_instance=RequestContext(request))
 
+
 def new_event(request):
     if request.method == 'POST':
         form = EventForm(request.POST)
@@ -233,6 +272,7 @@ def new_event(request):
         event = Event()
         form = EventForm(instance=event)
     return render_to_response('events/new_event.html', {'form': form}, context_instance=RequestContext(request))
+
 
 class EventDeleteView(DeleteView):
 
