@@ -12,12 +12,12 @@ from collections import OrderedDict
 from datetime import date, time, timedelta
 from dateutil.relativedelta import relativedelta
 from django.db.models import Q
-#import vobject
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from icalendar import Calendar, LocalTimezone, Event as CalendarEvent
+import pytz
 
 DATEFIELD = 'start'
 MONTH_FORMAT = '%m'
@@ -113,26 +113,26 @@ class EventVobjectView(BaseListView):
             e.add('description', event.content)
             if event.location:
                 e.add('location', event.location)
-            e.add('dtstamp', event.updated.replace(tzinfo=localtimezone))
+            e.add('dtstamp', event.updated.replace(tzinfo=pytz.utc))
             if event.whole_day or event.start.time() == time(0, 0, 0):
                 e.add('dtstart', event.start.replace(
-                    tzinfo=localtimezone
+                    tzinfo=pytz.utc
                 ).date())
                 if not event.end or event.end == event.start:
                     e.add('dtend', (event.start + timedelta(1)).replace(
-                        tzinfo=localtimezone
+                        tzinfo=pytz.utc
                     ).date())
                 else:
                     e.add('dtend', event.end.replace(
-                        tzinfo=localtimezone
+                        tzinfo=pytz.utc
                     ).date())
 
             else:
-                e.add('dtstart', event.start.replace(tzinfo=localtimezone))
+                e.add('dtstart', event.start.replace(tzinfo=pytz.utc))
                 if event.end:
-                    e.add('dtend', event.end.replace(tzinfo=localtimezone))
+                    e.add('dtend', event.end.replace(tzinfo=pytz.utc))
                 else:
-                    e.add('dtend', event.start.replace(tzinfo=localtimezone))
+                    e.add('dtend', event.start.replace(tzinfo=pytz.utc))
             cal.add_component(e)
 
         icalstream = cal.to_ical()
